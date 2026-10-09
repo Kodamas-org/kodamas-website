@@ -1,0 +1,88 @@
+---
+// Page footer: a teal card with the wordmark, copyright, contact button and
+// footer links, then an aqua strip with the legal link.
+import Wordmark from '../atoms/Wordmark.astro';
+import Text from '../atoms/Text.astro';
+import Button from '../atoms/Button.astro';
+import Link from '../atoms/Link.astro';
+import FooterLink from '../molecules/FooterLink.astro';
+import { links } from '../../data/links';
+---
+
+<footer class="site-footer">
+	<div class="site-footer__card">
+		<div class="site-footer__brand">
+			<Wordmark as="p" size="l" tone="white" />
+			<Text size="xl" class="site-footer__copyright">All rights reserved 2026 ©</Text>
+			<Button href={links.connect} variant="primary" size="l" class="site-footer__cta">
+				Connect With Us
+			</Button>
+		</div>
+		<nav aria-label="Footer">
+			<ul class="site-footer__links" role="list">
+				<li><FooterLink href={links.ourStory}>Our Story</FooterLink></li>
+				<li><FooterLink href={links.blogfolio}>Blogfolio</FooterLink></li>
+				<li><FooterLink href={links.emmaLinkedIn}>Emma’s LinkedIn</FooterLink></li>
+				<li><FooterLink href={links.danielaLinkedIn}>Daniela’s LinkedIn</FooterLink></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="site-footer__legal">
+		<Link href={links.privacyTerms} variant="arrow" tone="navy">Privacy Policy &amp; Terms of Service</Link>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		padding-top: var(--space-10);
+	}
+	.site-footer__card {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: var(--space-10);
+		row-gap: var(--space-9);
+		margin-inline: var(--layout-header-gutter);
+		padding: var(--space-9) var(--space-8) var(--space-10);
+		background: var(--color-surface-band);
+		border-radius: var(--radius-l) var(--radius-l) 0 0;
+		color: var(--color-text-on-dark);
+	}
+	.site-footer__brand {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.site-footer :global(.site-footer__copyright) {
+		margin-top: var(--space-3);
+	}
+	.site-footer :global(.site-footer__cta) {
+		margin-top: auto;
+	}
+	.site-footer__links {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-7);
+		padding-top: var(--space-7);
+	}
+	.site-footer__legal {
+		padding: var(--space-4) var(--layout-header-gutter);
+		background: var(--color-surface-aqua);
+		font-size: var(--font-size-body-m);
+		--focus-color: var(--color-focus-on-light);
+	}
+
+	@media (max-width: 48rem) {
+		.site-footer__card {
+			grid-template-columns: 1fr;
+			margin-inline: 0;
+			padding: var(--space-7) var(--layout-gutter);
+		}
+		.site-footer :global(.site-footer__cta) {
+			margin-top: var(--space-7);
+		}
+		.site-footer__links {
+			gap: var(--space-5);
+			padding-top: 0;
+		}
+	}
+</style>

@@ -1,0 +1,45 @@
+---
+// Team member: drop-shaped photo, name, role with a linked organisation,
+// and nationality with a flag.
+import Avatar from '../atoms/Avatar.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props {
+	name: string;
+	photo?: string;
+	role: string;
+	org: { label: string; href: string };
+	nationality: string;
+	flag: string;
+}
+
+const { name, photo, role, org, nationality, flag } = Astro.props;
+---
+
+<article class="person-card">
+	<Avatar src={photo} alt={name} shape="drop" size="team" />
+	<Heading level={3} size="heading-2" align="center">{name}</Heading>
+	<Text align="center" class="person-card__role">
+		{role}{' '}<Link href={org.href} tone="aqua">{org.label}</Link>
+	</Text>
+	<Text align="center" weight="bold">
+		<span aria-hidden="true">{flag}</span>{' '}{nationality}
+	</Text>
+</article>
+
+<style>
+	.person-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-4);
+	}
+	.person-card :global(.avatar) {
+		margin-bottom: var(--space-4);
+	}
+	.person-card__role {
+		margin-top: var(--space-2);
+	}
+</style>

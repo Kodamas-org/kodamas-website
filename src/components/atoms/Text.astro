@@ -1,0 +1,73 @@
+---
+// Body text in Inter.
+// size: 'xl' (lead paragraphs), 'l' (quotes), 'm' (default), 's' (small UI)
+// weight: 'regular', 'semibold', 'bold'
+interface Props {
+	as?: 'p' | 'span' | 'div';
+	size?: 'xl' | 'l' | 'm' | 's';
+	weight?: 'regular' | 'semibold' | 'bold';
+	italic?: boolean;
+	align?: 'start' | 'center';
+	class?: string;
+}
+
+const {
+	as: Tag = 'p',
+	size = 'm',
+	weight = 'regular',
+	italic = false,
+	align = 'start',
+	class: className,
+} = Astro.props;
+---
+
+<Tag
+	class:list={[
+		'text',
+		`text--${size}`,
+		`text--${weight}`,
+		`text--${align}`,
+		{ 'text--italic': italic },
+		className,
+	]}><slot /></Tag
+>
+
+<style>
+	.text {
+		font-family: var(--font-body);
+	}
+	.text--xl {
+		font-size: var(--font-size-body-xl);
+		line-height: var(--line-height-body);
+	}
+	.text--l {
+		font-size: var(--font-size-body-l);
+		line-height: var(--line-height-relaxed);
+	}
+	.text--m {
+		font-size: var(--font-size-body-m);
+		line-height: var(--line-height-body);
+	}
+	.text--s {
+		font-size: var(--font-size-body-s);
+		line-height: var(--line-height-body);
+	}
+	.text--regular {
+		font-weight: var(--font-weight-regular);
+	}
+	.text--semibold {
+		font-weight: var(--font-weight-semibold);
+	}
+	.text--bold {
+		font-weight: var(--font-weight-bold);
+	}
+	.text--italic {
+		font-style: italic;
+	}
+	.text--start {
+		text-align: start;
+	}
+	.text--center {
+		text-align: center;
+	}
+</style>

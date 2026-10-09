@@ -1,0 +1,64 @@
+---
+// Portrait photo.
+// shape: 'drop' (team) or 'circle' (testimonials)
+// size: 'team' or 'testimonial'
+// Without `src` it shows a labelled placeholder until the real photo arrives.
+interface Props {
+	src?: string;
+	alt: string;
+	shape?: 'drop' | 'circle';
+	size?: 'team' | 'testimonial';
+	class?: string;
+}
+
+const { src, alt, shape = 'circle', size = 'testimonial', class: className } = Astro.props;
+const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
+---
+
+{
+	src ? (
+		<img src={src} alt={alt} class:list={classes} loading="lazy" decoding="async" />
+	) : (
+		<div class:list={[...classes, 'avatar--placeholder']} role="img" aria-label={alt}>
+			<span class="avatar__label" aria-hidden="true">
+				Photo needed:
+				<br />
+				{alt}
+			</span>
+		</div>
+	)
+}
+
+<style>
+	.avatar {
+		display: block;
+		flex-shrink: 0;
+		aspect-ratio: 1;
+		object-fit: cover;
+	}
+	.avatar--team {
+		width: var(--size-avatar-team);
+	}
+	.avatar--testimonial {
+		width: var(--size-avatar-testimonial);
+	}
+	.avatar--drop {
+		border-radius: var(--radius-drop);
+	}
+	.avatar--circle {
+		border-radius: var(--radius-round);
+	}
+	.avatar--placeholder {
+		display: grid;
+		place-items: center;
+		padding: var(--space-5);
+		background: var(--color-control-teal);
+		border: var(--border-width-medium) dashed var(--color-aqua-glow);
+		color: var(--color-white);
+		text-align: center;
+	}
+	.avatar__label {
+		font-size: var(--font-size-body-s);
+		line-height: var(--line-height-ui);
+	}
+</style>

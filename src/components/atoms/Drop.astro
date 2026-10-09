@@ -1,0 +1,41 @@
+---
+// The Kodamas drop: a shape with a square top-left corner and three rounded
+// corners. Decorative only, so it is hidden from screen readers.
+// size: 's' (footer links), 'm' (quote card), 'l' (hero)
+// tone: 'gradient' (pink gradient) or 'flat' (solid pink)
+interface Props {
+	size?: 's' | 'm' | 'l';
+	tone?: 'gradient' | 'flat';
+	class?: string;
+}
+
+const { size = 'm', tone = 'gradient', class: className } = Astro.props;
+---
+
+<span class:list={['drop', `drop--${size}`, `drop--${tone}`, className]} aria-hidden="true"></span>
+
+<style>
+	.drop {
+		display: block;
+		flex-shrink: 0;
+		border-radius: var(--radius-drop);
+	}
+	.drop--s {
+		width: var(--size-drop-s);
+		height: var(--size-drop-s);
+	}
+	.drop--m {
+		width: var(--size-drop-m);
+		height: var(--size-drop-m);
+	}
+	.drop--l {
+		width: var(--size-drop-l);
+		height: var(--size-drop-l);
+	}
+	.drop--gradient {
+		background: var(--gradient-drop);
+	}
+	.drop--flat {
+		background: var(--color-bloom-pink);
+	}
+</style>

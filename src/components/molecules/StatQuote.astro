@@ -1,0 +1,54 @@
+---
+// A quoted statistic in an outlined card, with a drop on its top-left corner
+// and the source underneath.
+import Drop from '../atoms/Drop.astro';
+
+interface Props {
+	source: string;
+}
+
+const { source } = Astro.props;
+---
+
+<figure class="stat-quote">
+	<Drop size="m" class="stat-quote__drop" />
+	<div class="stat-quote__card">
+		<blockquote class="stat-quote__text">
+			<p><slot /></p>
+		</blockquote>
+		<figcaption class="stat-quote__source">{source}</figcaption>
+	</div>
+</figure>
+
+<style>
+	.stat-quote {
+		position: relative;
+		padding-top: calc(var(--size-drop-m) / 3);
+		padding-left: calc(var(--size-drop-m) / 2);
+	}
+	.stat-quote :global(.stat-quote__drop) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: var(--z-raised);
+	}
+	.stat-quote__card {
+		padding: var(--space-10) var(--space-8) var(--space-10) var(--space-8);
+		border: var(--border-width-medium) solid var(--color-glass-edge);
+		border-radius: var(--radius-m);
+		font-size: var(--font-size-body-l);
+		line-height: var(--line-height-relaxed);
+	}
+	.stat-quote__text {
+		font-weight: var(--font-weight-bold);
+	}
+	.stat-quote__source {
+		font-weight: var(--font-weight-regular);
+	}
+
+	@media (max-width: 48rem) {
+		.stat-quote__card {
+			padding: var(--space-9) var(--space-5) var(--space-7);
+		}
+	}
+</style>

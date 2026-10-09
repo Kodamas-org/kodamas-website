@@ -1,0 +1,137 @@
+---
+// Aqua background with slowly drifting teal glows, plus a pause/play button
+// in the bottom-right corner. Starts paused when the visitor has asked their
+// system for reduced motion.
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['backdrop', className]} data-backdrop>
+	<div class="backdrop__layer" aria-hidden="true">
+		<span class="backdrop__glow backdrop__glow--a"></span>
+		<span class="backdrop__glow backdrop__glow--b"></span>
+		<span class="backdrop__glow backdrop__glow--c"></span>
+	</div>
+	<div class="backdrop__content">
+		<slot />
+	</div>
+	<button class="backdrop__control" type="button" aria-label="Pause background animation">
+		<svg class="backdrop__icon backdrop__icon--pause" viewBox="0 0 12 12" aria-hidden="true">
+			<rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"></rect>
+			<rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"></rect>
+		</svg>
+		<svg class="backdrop__icon backdrop__icon--play" viewBox="0 0 12 12" aria-hidden="true">
+			<path d="M3 1.5v9l7.5-4.5z" fill="currentColor"></path>
+		</svg>
+	</button>
+</div>
+
+<script>
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	document.querySelectorAll<HTMLElement>('[data-backdrop]').forEach((backdrop) => {
+		const button = backdrop.querySelector<HTMLButtonElement>('.backdrop__control');
+		const setPaused = (paused: boolean) => {
+			backdrop.toggleAttribute('data-paused', paused);
+			button?.setAttribute(
+				'aria-label',
+				paused ? 'Play background animation' : 'Pause background animation',
+			);
+		};
+		setPaused(reduceMotion);
+		button?.addEventListener('click', () => setPaused(!backdrop.hasAttribute('data-paused')));
+	});
+</script>
+
+<style>
+	.backdrop {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		background: var(--color-surface-aqua);
+		--focus-color: var(--color-focus-on-light);
+	}
+	.backdrop__layer {
+		position: absolute;
+		inset: 0;
+		z-index: var(--z-base);
+		pointer-events: none;
+	}
+	.backdrop__glow {
+		position: absolute;
+		border-radius: var(--radius-round);
+		background: radial-gradient(closest-side, var(--color-glow), transparent);
+		animation: drift var(--duration-backdrop) var(--ease-drift) infinite alternate;
+	}
+	/* Glow positions and drift are the artwork's shape, not reusable design values */
+	.backdrop__glow--a {
+		width: 90%;
+		height: 80%;
+		top: 10%;
+		left: 5%;
+	}
+	.backdrop__glow--b {
+		width: 60%;
+		height: 70%;
+		top: 30%;
+		right: -15%;
+		background: radial-gradient(closest-side, var(--color-shade), transparent);
+		animation-duration: calc(var(--duration-backdrop) * 1.3);
+		animation-direction: alternate-reverse;
+	}
+	.backdrop__glow--c {
+		width: 50%;
+		height: 50%;
+		bottom: -10%;
+		left: -15%;
+		animation-duration: calc(var(--duration-backdrop) * 0.8);
+	}
+	.backdrop[data-paused] .backdrop__glow {
+		animation-play-state: paused;
+	}
+
+	@keyframes drift {
+		from {
+			transform: translate(0, 0) scale(1);
+		}
+		to {
+			transform: translate(8%, -6%) scale(1.15);
+		}
+	}
+
+	.backdrop__content {
+		position: relative;
+		z-index: var(--z-raised);
+	}
+
+	.backdrop__control {
+		position: absolute;
+		right: var(--space-4);
+		bottom: var(--space-4);
+		z-index: var(--z-raised);
+		display: grid;
+		place-items: center;
+		width: var(--size-control);
+		height: var(--size-control);
+		padding: 0;
+		background: var(--color-control-teal);
+		border: 0;
+		border-radius: var(--radius-round);
+		color: var(--color-white);
+		cursor: pointer;
+	}
+	.backdrop__icon {
+		width: var(--size-control-icon);
+		height: var(--size-control-icon);
+	}
+	.backdrop__icon--play,
+	.backdrop[data-paused] .backdrop__icon--pause {
+		display: none;
+	}
+	.backdrop[data-paused] .backdrop__icon--play {
+		display: block;
+	}
+</style>

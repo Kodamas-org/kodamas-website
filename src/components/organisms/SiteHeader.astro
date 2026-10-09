@@ -1,0 +1,60 @@
+---
+// Top bar with the wordmark and main navigation. It sticks to the top of the
+// window, slides away while scrolling down and comes back when scrolling up.
+import Wordmark from '../atoms/Wordmark.astro';
+import NavMenu from '../molecules/NavMenu.astro';
+import { links } from '../../data/links';
+---
+
+<header class="site-header" data-site-header>
+	<a href={links.home} class="site-header__home" aria-label="Kodamas, home">
+		<Wordmark size="s" tone="aqua" />
+	</a>
+	<NavMenu
+		links={[
+			{ label: 'Blogfolio', href: links.blogfolio },
+			{ label: 'Our Story', href: links.ourStory },
+		]}
+		cta={{ label: 'Connect With Us', href: links.connect }}
+	/>
+</header>
+
+<script>
+	const header = document.querySelector<HTMLElement>('[data-site-header]');
+	if (header) {
+		let lastY = window.scrollY;
+		window.addEventListener(
+			'scroll',
+			() => {
+				const y = window.scrollY;
+				const goingDown = y > lastY && y > header.offsetHeight;
+				// Keep the header visible while something inside it has focus
+				header.toggleAttribute('data-hidden', goingDown && !header.contains(document.activeElement));
+				lastY = y;
+			},
+			{ passive: true },
+		);
+		header.addEventListener('focusin', () => header.removeAttribute('data-hidden'));
+	}
+</script>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: var(--z-header);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-5);
+		padding: var(--space-3) var(--layout-header-gutter);
+		background: var(--color-surface-page);
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.site-header[data-hidden] {
+		transform: translateY(-100%);
+	}
+	.site-header__home {
+		text-decoration: none;
+	}
+</style>

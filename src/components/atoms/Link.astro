@@ -1,0 +1,50 @@
+---
+// Text link.
+// variant: 'inline' (underlined, inside text), 'nav' (header, no underline),
+//          'arrow' (underlined with a trailing →)
+// tone: 'aqua', 'white' or 'navy'
+interface Props {
+	href: string;
+	variant?: 'inline' | 'nav' | 'arrow';
+	tone?: 'aqua' | 'white' | 'navy';
+	class?: string;
+}
+
+const { href, variant = 'inline', tone = 'aqua', class: className } = Astro.props;
+---
+
+<a href={href} class:list={['link', `link--${variant}`, `link--${tone}`, className]}
+	><slot />{variant === 'arrow' && <span class="link__arrow" aria-hidden="true"> →</span>}</a
+>
+
+<style>
+	.link {
+		text-underline-offset: var(--size-underline-offset);
+		text-decoration-thickness: var(--border-width-thin);
+		transition: color var(--duration-fast) var(--ease-standard);
+	}
+	.link--inline,
+	.link--arrow {
+		text-decoration-line: underline;
+	}
+	.link--nav {
+		text-decoration: none;
+		font-size: var(--font-size-nav);
+		line-height: var(--line-height-ui);
+	}
+	.link--nav:hover {
+		text-decoration-line: underline;
+	}
+	.link--aqua {
+		color: var(--color-aqua-glow);
+	}
+	.link--white {
+		color: var(--color-white);
+	}
+	.link--navy {
+		color: var(--color-midnight-navy);
+	}
+	.link:hover {
+		text-decoration-thickness: var(--border-width-medium);
+	}
+</style>

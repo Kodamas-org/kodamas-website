@@ -1,0 +1,71 @@
+---
+// Pill-shaped button. Renders a link when `href` is given, otherwise a <button>.
+// variant: 'primary' (aqua with navy text) or 'inverse' (white with pink text)
+// size: 'm' (header) or 'l' (footer, offer card)
+interface Props {
+	href?: string;
+	variant?: 'primary' | 'inverse';
+	size?: 'm' | 'l';
+	type?: 'button' | 'submit';
+	class?: string;
+}
+
+const { href, variant = 'primary', size = 'm', type = 'button', class: className } = Astro.props;
+const classes = ['button', `button--${variant}`, `button--${size}`, className];
+---
+
+{
+	href ? (
+		<a href={href} class:list={classes}>
+			<slot />
+		</a>
+	) : (
+		<button type={type} class:list={classes}>
+			<slot />
+		</button>
+	)
+}
+
+<style>
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 0;
+		border-radius: var(--radius-pill);
+		font-family: var(--font-body);
+		line-height: var(--line-height-ui);
+		text-decoration: none;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: transform var(--duration-fast) var(--ease-standard);
+		--focus-color: var(--color-focus-on-dark);
+	}
+	.button:hover {
+		transform: translateY(calc(var(--space-1) * -0.5));
+	}
+	.button--m {
+		padding: var(--space-4) var(--space-5);
+		font-size: var(--font-size-body-s);
+		font-weight: var(--font-weight-medium);
+	}
+	.button--l {
+		padding: var(--space-5) var(--space-8);
+		font-size: var(--font-size-body-m);
+		font-weight: var(--font-weight-bold);
+	}
+	.button--primary {
+		background: var(--color-aqua-glow);
+		color: var(--color-midnight-navy);
+	}
+	@media (max-width: 48rem) {
+		.button--m {
+			padding: var(--space-3);
+		}
+	}
+	.button--inverse {
+		background: var(--color-white);
+		color: var(--color-pink-deep);
+		--focus-color: var(--color-white);
+	}
+</style>

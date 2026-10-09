@@ -1,0 +1,16 @@
+---
+// Full-width teal strip with one centred line of text.
+import Text from '../atoms/Text.astro';
+---
+
+<aside class="info-band">
+	<Text size="xl" align="center"><slot /></Text>
+</aside>
+
+<style>
+	.info-band {
+		padding: var(--space-4) var(--layout-gutter);
+		background: var(--color-surface-band);
+		color: var(--color-text-on-dark);
+	}
+</style>

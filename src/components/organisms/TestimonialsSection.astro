@@ -1,0 +1,37 @@
+---
+// Stack of client testimonials on the animated aqua background.
+// Pass Testimonial components in the slot. The heading is for screen readers
+// only; the design has no visible title here.
+import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
+---
+
+<AnimatedBackdrop>
+	<section class="testimonials" aria-labelledby="testimonials-title">
+		<h2 id="testimonials-title" class="visually-hidden">What people say about us</h2>
+		<div class="testimonials__list">
+			<slot />
+		</div>
+	</section>
+</AnimatedBackdrop>
+
+<style>
+	.testimonials {
+		max-width: var(--layout-container-max);
+		margin-inline: auto;
+		padding: var(--space-11) var(--layout-gutter);
+	}
+	.testimonials__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	@media (max-width: 48rem) {
+		.testimonials {
+			padding-block: var(--space-9);
+		}
+		.testimonials__list {
+			gap: var(--space-7);
+		}
+	}
+</style>

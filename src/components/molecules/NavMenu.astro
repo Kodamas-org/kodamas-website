@@ -1,0 +1,90 @@
+---
+// Header navigation: text links plus a call-to-action button.
+// On small screens the text links fold into a "Menu" toggle.
+import Link from '../atoms/Link.astro';
+import Button from '../atoms/Button.astro';
+
+interface Props {
+	links: { label: string; href: string }[];
+	cta: { label: string; href: string };
+}
+
+const { links, cta } = Astro.props;
+---
+
+<nav class="nav-menu" aria-label="Main">
+	<button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="nav-menu-list">
+		Menu
+	</button>
+	<ul class="nav-menu__list" id="nav-menu-list" role="list">
+		{
+			links.map((link) => (
+				<li>
+					<Link href={link.href} variant="nav" tone="aqua">
+						{link.label}
+					</Link>
+				</li>
+			))
+		}
+	</ul>
+	<Button href={cta.href} variant="primary" size="m">{cta.label}</Button>
+</nav>
+
+<script>
+	document.querySelectorAll<HTMLElement>('.nav-menu').forEach((nav) => {
+		const toggle = nav.querySelector<HTMLButtonElement>('.nav-menu__toggle');
+		toggle?.addEventListener('click', () => {
+			const open = toggle.getAttribute('aria-expanded') === 'true';
+			toggle.setAttribute('aria-expanded', String(!open));
+		});
+	});
+</script>
+
+<style>
+	.nav-menu {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: var(--space-5);
+	}
+	.nav-menu__list {
+		display: flex;
+		align-items: center;
+		gap: var(--space-5);
+	}
+	.nav-menu__toggle {
+		display: none;
+		padding: var(--space-2) var(--space-3);
+		background: none;
+		border: var(--border-width-thin) solid var(--color-aqua-glow);
+		border-radius: var(--radius-pill);
+		color: var(--color-aqua-glow);
+		font-size: var(--font-size-body-s);
+		cursor: pointer;
+	}
+
+	@media (max-width: 48rem) {
+		.nav-menu {
+			gap: var(--space-3);
+		}
+		.nav-menu__toggle {
+			display: inline-flex;
+		}
+		.nav-menu__list {
+			display: none;
+			position: absolute;
+			top: calc(100% + var(--space-4));
+			right: 0;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--space-4);
+			padding: var(--space-5);
+			background: var(--color-midnight-navy);
+			border: var(--border-width-thin) solid var(--color-aqua-glow);
+			border-radius: var(--radius-s);
+		}
+		.nav-menu__toggle[aria-expanded='true'] + .nav-menu__list {
+			display: flex;
+		}
+	}
+</style>

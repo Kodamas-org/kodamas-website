@@ -1,21 +1,117 @@
 ---
-import '@fontsource-variable/funnel-display';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/organisms/Hero.astro';
+import TeamSection from '../components/organisms/TeamSection.astro';
+import InfoBand from '../components/organisms/InfoBand.astro';
+import OfferSection from '../components/organisms/OfferSection.astro';
+import SplitSection from '../components/organisms/SplitSection.astro';
+import TestimonialsSection from '../components/organisms/TestimonialsSection.astro';
+import PersonCard from '../components/molecules/PersonCard.astro';
+import FeatureCard from '../components/molecules/FeatureCard.astro';
+import GlassCard from '../components/molecules/GlassCard.astro';
+import StatQuote from '../components/molecules/StatQuote.astro';
+import Testimonial from '../components/molecules/Testimonial.astro';
+import Highlight from '../components/atoms/Highlight.astro';
+import Text from '../components/atoms/Text.astro';
+import { links } from '../data/links';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Kodamas</title>
-	</head>
-	<body>
-		<h1>Welcome to Kodamas</h1>
-	</body>
-</html>
+<BaseLayout
+	title="Kodamas"
+	description="When your app and team outgrow their DIY phase, we build the tools and processes that keep your people happy and product & growth moving together."
+>
+	<Hero>
+		When your app and team <Highlight>outgrow their DIY phase</Highlight>, we build the tools and
+		processes that keep your people happy and product &amp; growth moving together.
+	</Hero>
 
-<style>
-	h1 {
-		font-family: 'Funnel Display Variable', sans-serif;
-	}
-</style>
+	<TeamSection>
+		<PersonCard
+			name="Daniela Contessa"
+			role="Former Head of Product"
+			org={{ label: '@HappyCow', href: links.happyCowDaniela }}
+			nationality="Italian"
+			flag="🇮🇹"
+		/>
+		<PersonCard
+			name="Emma Cebuliak"
+			role="Former Head of Business Growth"
+			org={{ label: '@HappyCow', href: links.happyCowEmma }}
+			nationality="Canadian"
+			flag="🇨🇦"
+		/>
+	</TeamSection>
+
+	<InfoBand>Based in Italy and Japan, working globally 🌏.</InfoBand>
+
+	<OfferSection
+		eyebrow="The Offer"
+		title="The Founder Reset Sprint 🚀"
+		price="€500"
+		duration="1 week"
+		note="Limited-offer launch pricing"
+		cta={{ label: 'Book a call', href: links.bookCall }}
+	>
+		<FeatureCard title="Product UI/UX and operations audit">
+			Find what's quietly killing your conversion and team sanity.
+		</FeatureCard>
+		<FeatureCard title="Marketing & Sales audit">
+			Find where your revenue is leaking, KPI by KPI.
+		</FeatureCard>
+		<FeatureCard title="Combined 90-day roadmap" wide>
+			Both audits compared with initiatives ranked by impact
+		</FeatureCard>
+		<Fragment slot="footer">
+			Most consultants give you one half of this. We give you both, prioritized and sequenced.
+		</Fragment>
+		<GlassCard slot="after" title="What’s Covered">
+			Pipeline &amp; CRM, Funnel, Product Design, Product Delivery, and Operations.
+		</GlassCard>
+	</OfferSection>
+
+	<SplitSection title="Keep Going" id="keep-going-title">
+		<Text size="xl">The Sprint gives you the roadmap.</Text>
+		<Text size="xl">
+			If you want help executing it, work with us ongoing on either lateral, product or
+			marketing/sales, or both.
+		</Text>
+	</SplitSection>
+
+	<SplitSection
+		title="Why is streamlining processes early on a good idea?"
+		id="why-title"
+		headingSize="heading-1"
+		align="center"
+	>
+		<StatQuote source="(Forrester Consulting)">
+			"Fixing usability issues before launch has been shown to deliver over 400% ROI with payback
+			in under six months, driven largely by a 7.2% lift in conversion rate."
+		</StatQuote>
+	</SplitSection>
+
+	<TestimonialsSection>
+		<Testimonial name="Geoff Hucker" href={links.geoffHucker} role="Work for Impact CEO & Founder">
+			“Daniela sets clear priorities and drives cross-functional teams to deliver on time and to a
+			high standard.”
+		</Testimonial>
+		<Testimonial
+			name="Samyukta Kartik"
+			href={links.samyuktaKartik}
+			role="Marketing & Communications Consultant"
+		>
+			“Emma created a thriving environment where every team member had the space to grow into
+			their unique strengths. Her insights helped me and contributed to some of our best team
+			achievements.”
+		</Testimonial>
+		<Testimonial
+			name="Martin Kubler"
+			href={links.martinKubler}
+			role="Founder of The Gluttonous Sloth"
+			quoteSize="s"
+		>
+			“Emma has managed to create a great team culture with the right balance of goal-hungriness
+			and market realism. Furthermore, creating a great product with limited resources takes great
+			skill, yet somehow Daniela manages this effortlessly.”
+		</Testimonial>
+	</TestimonialsSection>
+</BaseLayout>

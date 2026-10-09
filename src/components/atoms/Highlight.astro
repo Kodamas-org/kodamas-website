@@ -1,0 +1,16 @@
+---
+// Bold phrase with a pink underline, used to stress key words in a paragraph.
+---
+
+<strong class="highlight"><slot /></strong>
+
+<style>
+	.highlight {
+		font-weight: var(--font-weight-bold);
+		text-decoration-line: underline;
+		text-decoration-color: var(--color-highlight-pink);
+		text-decoration-thickness: var(--size-underline);
+		text-underline-offset: var(--size-underline-offset);
+		text-decoration-skip-ink: none;
+	}
+</style>

@@ -1,0 +1,60 @@
+---
+// The "Kodamas" name set in Funnel Display.
+// size: 's' (header), 'l' (footer), 'xl' (hero)
+// tone: 'aqua', 'white', or 'two-tone' (white "Ko" + aqua "damas", hero only)
+interface Props {
+	size?: 's' | 'l' | 'xl';
+	tone?: 'aqua' | 'white' | 'two-tone';
+	as?: 'span' | 'p' | 'h1';
+}
+
+const { size = 's', tone = 'aqua', as: Tag = 'span' } = Astro.props;
+---
+
+<Tag class:list={['wordmark', `wordmark--${size}`, `wordmark--${tone}`]}>
+	{
+		tone === 'two-tone' ? (
+			<>
+				<span class="wordmark__lead">Ko</span>
+				<span class="wordmark__tail">damas</span>
+			</>
+		) : (
+			'Kodamas'
+		)
+	}
+</Tag>
+
+<style>
+	.wordmark {
+		display: inline-block;
+		font-family: var(--font-display);
+		font-weight: var(--font-weight-bold);
+		letter-spacing: var(--letter-spacing-display);
+		line-height: var(--line-height-none);
+	}
+	.wordmark--s {
+		font-size: var(--font-size-wordmark-s);
+	}
+	.wordmark--l {
+		font-size: var(--font-size-display-l);
+	}
+	.wordmark--xl {
+		font-size: var(--font-size-display-xl);
+	}
+	.wordmark--aqua {
+		color: var(--color-aqua-glow);
+	}
+	.wordmark--white {
+		color: var(--color-white);
+	}
+	.wordmark--two-tone .wordmark__lead {
+		color: var(--color-white);
+	}
+	.wordmark--two-tone .wordmark__tail {
+		color: var(--color-aqua-glow);
+	}
+	.wordmark__lead,
+	.wordmark__tail {
+		display: inline;
+	}
+</style>

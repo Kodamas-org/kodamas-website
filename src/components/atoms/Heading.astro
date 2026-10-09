@@ -1,0 +1,51 @@
+---
+// Heading with the level (for document structure) and the look (size)
+// chosen separately, so the outline stays correct whatever the design needs.
+// size: 'display-l', 'heading-1', 'heading-2', 'heading-3'
+interface Props {
+	level: 1 | 2 | 3 | 4 | 5 | 6;
+	size?: 'display-l' | 'heading-1' | 'heading-2' | 'heading-3';
+	align?: 'start' | 'center';
+	class?: string;
+	id?: string;
+}
+
+const { level, size = 'heading-1', align = 'start', class: className, id } = Astro.props;
+const Tag = `h${level}` as const;
+---
+
+<Tag id={id} class:list={['heading', `heading--${size}`, `heading--${align}`, className]}><slot /></Tag>
+
+<style>
+	.heading {
+		font-weight: var(--font-weight-bold);
+	}
+	.heading--display-l {
+		font-family: var(--font-display);
+		font-size: var(--font-size-display-l);
+		line-height: var(--line-height-tight);
+		letter-spacing: var(--letter-spacing-display);
+	}
+	.heading--heading-1 {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-1);
+		line-height: var(--line-height-heading);
+	}
+	.heading--heading-2 {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-2);
+		line-height: var(--line-height-snug);
+	}
+	.heading--heading-3 {
+		font-family: var(--font-body);
+		font-size: var(--font-size-heading-3);
+		line-height: var(--line-height-body);
+		font-weight: var(--font-weight-semibold);
+	}
+	.heading--start {
+		text-align: start;
+	}
+	.heading--center {
+		text-align: center;
+	}
+</style>

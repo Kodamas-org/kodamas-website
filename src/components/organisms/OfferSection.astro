@@ -1,0 +1,113 @@
+---
+// The offer: a pink card with the price, the included items and a booking
+// button, followed by a glass card, all on the animated aqua background.
+// Slots: default = the items (FeatureCard), "footer" = closing line,
+//        "after" = cards shown under the offer card (GlassCard)
+import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Pill from '../atoms/Pill.astro';
+import Text from '../atoms/Text.astro';
+import Button from '../atoms/Button.astro';
+
+interface Props {
+	eyebrow: string;
+	title: string;
+	price: string;
+	duration: string;
+	note: string;
+	cta: { label: string; href: string };
+}
+
+const { eyebrow, title, price, duration, note, cta } = Astro.props;
+---
+
+<AnimatedBackdrop>
+	<section class="offer" aria-labelledby="offer-title">
+		<article class="offer__card">
+			<header class="offer__header">
+				<div class="offer__heading">
+					<Eyebrow>{eyebrow}</Eyebrow>
+					<Heading level={2} size="heading-1" id="offer-title">{title}</Heading>
+				</div>
+				<Pill><span class="visually-hidden">Price: </span>{price}</Pill>
+			</header>
+			<div class="offer__meta">
+				<Text weight="bold">{duration}</Text>
+				<Text italic>{note}</Text>
+			</div>
+			<div class="offer__items">
+				<slot />
+			</div>
+			<Text align="center" class="offer__closing"><slot name="footer" /></Text>
+			<Button href={cta.href} variant="inverse" size="l" class="offer__cta">{cta.label}</Button>
+		</article>
+		<slot name="after" />
+	</section>
+</AnimatedBackdrop>
+
+<style>
+	.offer {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		max-width: calc(var(--layout-card-max) + 2 * var(--layout-gutter));
+		margin-inline: auto;
+		padding: var(--space-10) var(--layout-gutter);
+	}
+	.offer__card {
+		display: flex;
+		flex-direction: column;
+		padding: var(--space-8);
+		background: var(--color-surface-pink);
+		border-radius: var(--radius-l);
+		box-shadow: var(--shadow-glow);
+		color: var(--color-white);
+		--focus-color: var(--color-focus-on-light);
+	}
+	.offer__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: var(--space-5);
+	}
+	.offer__heading {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+	.offer__meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+	.offer__items {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-3);
+		margin-top: var(--space-3);
+	}
+	.offer :global(.offer__closing) {
+		max-width: var(--layout-narrow-text);
+		margin: var(--space-7) auto var(--space-6);
+	}
+	.offer :global(.offer__cta) {
+		align-self: center;
+	}
+
+	@media (max-width: 48rem) {
+		.offer {
+			padding-block: var(--space-9);
+		}
+		.offer__card {
+			padding: var(--space-6) var(--space-5);
+		}
+		.offer__header {
+			flex-direction: column-reverse;
+		}
+		.offer__items {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
