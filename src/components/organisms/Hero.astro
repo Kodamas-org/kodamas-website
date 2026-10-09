@@ -1,33 +1,34 @@
 ---
 // Opening section: the large two-tone "Kodamas" wordmark with a pink drop
-// tucked behind the K, followed by the intro paragraph. The K and the
-// paragraph share the container's left edge; the drop sits in the margin.
+// tucked behind the K, followed by the intro paragraph.
 import Wordmark from '../atoms/Wordmark.astro';
 import Drop from '../atoms/Drop.astro';
 import Text from '../atoms/Text.astro';
 ---
 
-<section class="hero container" aria-labelledby="hero-title">
-	<div class="hero__inner">
+<section class="hero" aria-labelledby="hero-title">
+	<div class="hero__title">
 		<Drop size="l" class="hero__drop" />
 		<h1 id="hero-title" class="hero__wordmark"><Wordmark size="xl" tone="two-tone" /></h1>
-		<Text size="l" class="hero__intro"><slot /></Text>
 	</div>
+	<Text size="xl" class="hero__intro"><slot /></Text>
 </section>
 
 <style>
 	.hero {
-		padding-block: var(--space-section);
+		max-width: var(--layout-page-max);
+		margin-inline: auto;
+		padding: var(--space-10) var(--layout-header-gutter) var(--space-10);
 	}
-	.hero__inner {
+	.hero__title {
 		position: relative;
+		padding-left: var(--overlap-hero-drop);
 		padding-top: var(--overlap-hero-drop);
 	}
 	.hero :global(.hero__drop) {
 		position: absolute;
 		top: 0;
-		/* The drop sits in the page margin so the K lines up with every other section */
-		left: calc(-1 * min(var(--overlap-hero-drop), var(--layout-gutter)));
+		left: 0;
 	}
 	.hero__wordmark {
 		position: relative;
@@ -35,12 +36,18 @@ import Text from '../atoms/Text.astro';
 	}
 	.hero :global(.hero__intro) {
 		max-width: var(--layout-text-max);
-		margin-top: var(--space-8);
+		margin-top: var(--space-10);
+		padding-left: var(--indent-hero-intro);
 	}
 
 	@media (max-width: 48rem) {
+		.hero {
+			padding-top: var(--space-9);
+			padding-bottom: var(--space-10);
+		}
 		.hero :global(.hero__intro) {
-			margin-top: var(--space-6);
+			margin-top: var(--space-7);
+			padding-left: 0;
 		}
 	}
 </style>

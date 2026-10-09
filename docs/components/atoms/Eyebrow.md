@@ -4,11 +4,11 @@
 
 ## What it is
 
-A small 14px semibold label above a title.
+A small semibold label that sits above a title to introduce it.
 
 ## When to use it
 
-“The Offer” above the offer title. One to three words.
+“The Offer” above the offer title. Keep it to one to three words.
 
 ## Props
 
@@ -22,7 +22,7 @@ One style; takes the surrounding text colour.
 
 ## Tokens used
 
-`--font-body`, `--font-size-small`, `--font-weight-semibold`, `--line-height-ui`
+`--font-body`, `--font-size-body-m`, `--font-weight-semibold`, `--line-height-ui`
 
 ## Example
 

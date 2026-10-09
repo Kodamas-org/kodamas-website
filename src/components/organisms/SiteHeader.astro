@@ -7,19 +7,17 @@ import { links } from '../../data/links';
 ---
 
 <header class="site-header" data-site-header>
-	<div class="site-header__inner container">
-		<a href={links.home} class="site-header__home" aria-label="Kodamas, home">
-			<Wordmark size="s" tone="aqua" />
-		</a>
-		<NavMenu
-			links={[
-				{ label: 'Blogfolio', href: links.blogfolio },
-				{ label: 'Our Story', href: links.ourStory },
-				{ label: 'Test Home', href: links.testHome },
-			]}
-			cta={{ label: 'Connect With Us', href: links.connect }}
-		/>
-	</div>
+	<a href={links.home} class="site-header__home" aria-label="Kodamas, home">
+		<Wordmark size="s" tone="aqua" />
+	</a>
+	<NavMenu
+		links={[
+			{ label: 'Blogfolio', href: links.blogfolio },
+			{ label: 'Our Story', href: links.ourStory },
+			{ label: 'Test Home', href: links.testHome },
+		]}
+		cta={{ label: 'Connect With Us', href: links.connect }}
+	/>
 </header>
 
 <script>
@@ -46,18 +44,16 @@ import { links } from '../../data/links';
 		position: sticky;
 		top: 0;
 		z-index: var(--z-header);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-5);
+		padding: var(--space-3) var(--layout-header-gutter);
 		background: var(--color-surface-page);
 		transition: transform var(--duration-base) var(--ease-standard);
 	}
 	.site-header[data-hidden] {
 		transform: translateY(-100%);
-	}
-	.site-header__inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-5);
-		padding-block: var(--space-4);
 	}
 	.site-header__home {
 		text-decoration: none;

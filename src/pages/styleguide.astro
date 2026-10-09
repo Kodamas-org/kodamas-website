@@ -7,6 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Wordmark from '../components/atoms/Wordmark.astro';
 import Drop from '../components/atoms/Drop.astro';
 import Button from '../components/atoms/Button.astro';
+import Pill from '../components/atoms/Pill.astro';
 import Link from '../components/atoms/Link.astro';
 import Heading from '../components/atoms/Heading.astro';
 import Text from '../components/atoms/Text.astro';
@@ -37,32 +38,30 @@ const palette = [...tokensCss.matchAll(/--color-([a-z-]+):\s*(#[0-9a-fA-F]{6});/
 }));
 
 const typeScale = [
-	{ token: 'display', family: 'display', weight: 'bold', leading: 'none', sizes: '72 → 200', sample: 'Kodamas', use: 'Hero wordmark only' },
-	{ token: 'h2', family: 'display', weight: 'bold', leading: 'heading', sizes: '32 → 40', sample: 'Keep Going', use: 'Section titles · Heading size l' },
-	{ token: 'h3', family: 'display', weight: 'bold', leading: 'snug', sizes: '20 → 24', sample: 'Daniela Contessa', use: 'Names · Heading size m' },
-	{ token: 'lead', family: 'body', weight: 'regular', leading: 'lead', sizes: '18 → 20', sample: 'The Sprint gives you the roadmap.', use: 'Intro paragraphs · Text l · card titles (Heading s)' },
-	{ token: 'body', family: 'body', weight: 'regular', leading: 'body', sizes: '16 → 18', sample: 'Find where your revenue is leaking, KPI by KPI.', use: 'Default text · Text m · button l' },
-	{ token: 'ui', family: 'body', weight: 'semibold', leading: 'ui', sizes: '16', sample: 'Connect With Us', use: 'Nav links, button m, names in cards' },
-	{ token: 'small', family: 'body', weight: 'regular', leading: 'lead', sizes: '14', sample: 'All rights reserved 2026 ©', use: 'Captions, legal · Text s · button s' },
+	{ token: 'display-xl', family: 'display', weight: 'bold', leading: 'none', sample: 'Kodamas', use: 'Hero wordmark' },
+	{ token: 'display-l', family: 'display', weight: 'bold', leading: 'tight', sample: 'Keep Going', use: 'Big section titles, footer wordmark' },
+	{ token: 'heading-1', family: 'display', weight: 'bold', leading: 'heading', sample: 'The Founder Reset Sprint', use: 'Section headings' },
+	{ token: 'heading-2', family: 'display', weight: 'bold', leading: 'snug', sample: 'Daniela Contessa', use: 'Names, short quotes' },
+	{ token: 'heading-3', family: 'body', weight: 'semibold', leading: 'body', sample: 'Combined 90-day roadmap', use: 'Card titles' },
+	{ token: 'quote-s', family: 'display', weight: 'bold', leading: 'heading', sample: '“A longer testimonial quote”', use: 'Long quotes', italic: true },
+	{ token: 'body-xl', family: 'body', weight: 'regular', leading: 'body', sample: 'The Sprint gives you the roadmap.', use: 'Lead paragraphs, footer links' },
+	{ token: 'body-l', family: 'body', weight: 'bold', leading: 'relaxed', sample: 'Fixing usability issues before launch…', use: 'Statistic quote' },
+	{ token: 'body-m', family: 'body', weight: 'regular', leading: 'body', sample: 'Find where your revenue is leaking, KPI by KPI.', use: 'Default body, card text, buttons' },
+	{ token: 'body-s', family: 'body', weight: 'medium', leading: 'body', sample: 'Connect With Us', use: 'Small UI text' },
+	{ token: 'nav', family: 'body', weight: 'regular', leading: 'ui', sample: 'Blogfolio', use: 'Header links' },
+	{ token: 'wordmark-s', family: 'display', weight: 'bold', leading: 'none', sample: 'Kodamas', use: 'Header wordmark' },
 ];
 
-const buttonSizes = [
-	{ size: 's', height: '40', text: '14 semibold', use: 'Compact actions on desktop only (below 44px tap target)' },
-	{ size: 'm', height: '48 (44 on mobile)', text: '16 semibold', use: 'Default: header and footer “Connect With Us”' },
-	{ size: 'l', height: '56', text: '18 semibold (16 mobile)', use: 'The one main action on a page: “Book a call”' },
-];
-
-const spaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-const spaceRoles = ['section', 'card', 'card-s', 'grid'];
+const spaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 const radii = ['s', 'm', 'l', 'pill', 'drop'];
-const shadows = ['card', 'raised', 'glass'];
+const shadows = ['card', 'glow', 'glass'];
 ---
 
 <BaseLayout title="Styleguide · Kodamas" description="Kodamas design tokens and components." noindex>
-	<div class="sg container">
+	<div class="sg">
 		<header class="sg__intro">
-			<Heading level={1} size="l">Styleguide</Heading>
-			<Text size="l">
+			<Heading level={1} size="display-l">Styleguide</Heading>
+			<Text size="xl">
 				Design tokens and every component, rendered live. Values come from
 				<code>src/styles/tokens.css</code>.
 			</Text>
@@ -70,7 +69,6 @@ const shadows = ['card', 'raised', 'glass'];
 				<ul class="sg__toc" role="list">
 					<li><Link href="#colours" tone="aqua">Colours</Link></li>
 					<li><Link href="#type" tone="aqua">Type scale</Link></li>
-					<li><Link href="#buttons" tone="aqua">Button sizes</Link></li>
 					<li><Link href="#spacing" tone="aqua">Spacing, radii, shadows</Link></li>
 					<li><Link href="#atoms" tone="aqua">Atoms</Link></li>
 					<li><Link href="#molecules" tone="aqua">Molecules</Link></li>
@@ -81,7 +79,7 @@ const shadows = ['card', 'raised', 'glass'];
 
 		<!-- Colours -->
 		<section class="sg__section" aria-labelledby="colours">
-			<Heading level={2} size="l" id="colours">Colours</Heading>
+			<Heading level={2} size="heading-1" id="colours">Colours</Heading>
 			<ul class="sg__swatches" role="list">
 				{
 					palette.map((c) => (
@@ -98,15 +96,13 @@ const shadows = ['card', 'raised', 'glass'];
 
 		<!-- Type -->
 		<section class="sg__section" aria-labelledby="type">
-			<Heading level={2} size="l" id="type">Type scale</Heading>
-			<Text>Seven sizes. Sizes in px go from mobile to desktop.</Text>
+			<Heading level={2} size="heading-1" id="type">Type scale</Heading>
 			<ul class="sg__type" role="list">
 				{
 					typeScale.map((t) => (
 						<li class="sg__type-row">
 							<div class="sg__type-meta">
 								<code>--font-size-{t.token}</code>
-								<span>{t.sizes} px</span>
 								<span class="sg__muted">
 									{t.family === 'display' ? 'Funnel Display' : 'Inter'} · {t.weight} · line height{' '}
 									{t.leading}
@@ -115,7 +111,7 @@ const shadows = ['card', 'raised', 'glass'];
 							</div>
 							<p
 								class="sg__type-sample"
-								style={`font-family: var(--font-${t.family}); font-size: var(--font-size-${t.token}); font-weight: var(--font-weight-${t.weight}); line-height: var(--line-height-${t.leading});`}
+								style={`font-family: var(--font-${t.family}); font-size: var(--font-size-${t.token}); font-weight: var(--font-weight-${t.weight}); line-height: var(--line-height-${t.leading});${t.italic ? ' font-style: italic;' : ''}`}
 							>
 								{t.sample}
 							</p>
@@ -125,40 +121,10 @@ const shadows = ['card', 'raised', 'glass'];
 			</ul>
 		</section>
 
-		<!-- Buttons -->
-		<section class="sg__section" aria-labelledby="buttons">
-			<Heading level={2} size="l" id="buttons">Button sizes</Heading>
-			<ul class="sg__type" role="list">
-				{
-					buttonSizes.map((b) => (
-						<li class="sg__type-row">
-							<div class="sg__type-meta">
-								<code>size="{b.size}"</code>
-								<span>
-									{b.height} px tall · {b.text}
-								</span>
-								<span class="sg__muted">{b.use}</span>
-							</div>
-							<div class="sg__row">
-								<Button href="#buttons" size={b.size as 's' | 'm' | 'l'}>
-									Primary {b.size}
-								</Button>
-								<span class="sg__chip-pink">
-									<Button href="#buttons" variant="inverse" size={b.size as 's' | 'm' | 'l'}>
-										Inverse {b.size}
-									</Button>
-								</span>
-							</div>
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
 		<!-- Spacing, radii, shadows -->
 		<section class="sg__section" aria-labelledby="spacing">
-			<Heading level={2} size="l" id="spacing">Spacing, radii, shadows</Heading>
-			<Heading level={3} size="s">Spacing scale</Heading>
+			<Heading level={2} size="heading-1" id="spacing">Spacing, radii, shadows</Heading>
+			<Heading level={3} size="heading-3">Spacing</Heading>
 			<ul class="sg__spaces" role="list">
 				{
 					spaces.map((s) => (
@@ -169,18 +135,7 @@ const shadows = ['card', 'raised', 'glass'];
 					))
 				}
 			</ul>
-			<Heading level={3} size="s">Spacing roles (current screen size)</Heading>
-			<ul class="sg__spaces" role="list">
-				{
-					spaceRoles.map((s) => (
-						<li class="sg__space">
-							<code>--space-{s}</code>
-							<span class="sg__bar" style={`width: var(--space-${s})`} />
-						</li>
-					))
-				}
-			</ul>
-			<Heading level={3} size="s">Radii</Heading>
+			<Heading level={3} size="heading-3">Radii</Heading>
 			<ul class="sg__boxes" role="list">
 				{
 					radii.map((r) => (
@@ -191,8 +146,8 @@ const shadows = ['card', 'raised', 'glass'];
 					))
 				}
 			</ul>
-			<Heading level={3} size="s">Shadows</Heading>
-			<ul class="sg__boxes sg__surface--aqua sg__pad" role="list">
+			<Heading level={3} size="heading-3">Shadows</Heading>
+			<ul class="sg__boxes sg__boxes--light" role="list">
 				{
 					shadows.map((s) => (
 						<li class="sg__box-item">
@@ -206,89 +161,98 @@ const shadows = ['card', 'raised', 'glass'];
 
 		<!-- Atoms -->
 		<section class="sg__section" aria-labelledby="atoms">
-			<Heading level={2} size="l" id="atoms">Atoms</Heading>
+			<Heading level={2} size="heading-1" id="atoms">Atoms</Heading>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Wordmark</Heading>
+				<Heading level={3} size="heading-3">Wordmark</Heading>
 				<div class="sg__row">
 					<Wordmark size="s" tone="aqua" />
-					<Wordmark size="m" tone="white" />
+					<Wordmark size="l" tone="white" />
 				</div>
-				<div class="sg__clip"><Wordmark size="xl" tone="two-tone" /></div>
-				<Text size="s" class="sg__muted">size: s · m · xl — tone: aqua · white · two-tone</Text>
+				<div class="sg__scaled"><Wordmark size="xl" tone="two-tone" /></div>
+				<Text size="s" class="sg__muted">size: s · l · xl — tone: aqua · white · two-tone</Text>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Drop</Heading>
+				<Heading level={3} size="heading-3">Drop</Heading>
 				<div class="sg__row">
 					<Drop size="s" /><Drop size="m" /><Drop size="l" /><Drop size="s" tone="flat" /><Drop
 						size="m"
 						tone="flat"
 					/>
 				</div>
-				<div class="sg__row sg__surface--pink sg__pad">
-					<Drop size="s" tone="white" /><Drop size="m" tone="white" />
+				<Text size="s" class="sg__muted">size: s · m · l — tone: gradient · flat</Text>
+			</div>
+
+			<div class="sg__demo">
+				<Heading level={3} size="heading-3">Button</Heading>
+				<div class="sg__row">
+					<Button href="#atoms" size="m">Primary m</Button>
+					<Button href="#atoms" size="l">Primary l</Button>
 				</div>
-				<Text size="s" class="sg__muted">size: s · m · l — tone: gradient · flat · white (on pink)</Text>
+				<div class="sg__row sg__surface--pink">
+					<Button href="#atoms" variant="inverse" size="m">Inverse m</Button>
+					<Button href="#atoms" variant="inverse" size="l">Inverse l</Button>
+				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Button</Heading>
-				<Text size="s" class="sg__muted">See “Button sizes” above for all sizes and variants.</Text>
+				<Heading level={3} size="heading-3">Pill</Heading>
+				<div class="sg__row sg__surface--pink"><Pill>€500</Pill></div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Link</Heading>
+				<Heading level={3} size="heading-3">Link</Heading>
 				<div class="sg__row">
 					<Link href="#atoms">Inline aqua</Link>
 					<Link href="#atoms" variant="nav">Nav</Link>
 					<Link href="#atoms" variant="arrow" tone="white">Arrow white</Link>
 				</div>
-				<div class="sg__row sg__surface--aqua sg__pad">
+				<div class="sg__row sg__surface--aqua">
 					<Link href="#atoms" variant="arrow" tone="navy">Arrow navy</Link>
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Heading</Heading>
-				<Heading level={4} size="l">Size l — section titles</Heading>
-				<Heading level={4} size="m">Size m — names</Heading>
-				<Heading level={4} size="s">Size s — card titles</Heading>
+				<Heading level={3} size="heading-3">Heading</Heading>
+				<Heading level={4} size="display-l">display-l</Heading>
+				<Heading level={4} size="heading-1">heading-1</Heading>
+				<Heading level={4} size="heading-2">heading-2</Heading>
+				<Heading level={4} size="heading-3">heading-3</Heading>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Text and Highlight</Heading>
-				<Text size="l">Text l (lead) with a <Highlight>highlighted phrase</Highlight>.</Text>
-				<Text>Text m (body) regular</Text>
-				<Text weight="semibold">Text m semibold</Text>
+				<Heading level={3} size="heading-3">Text and Highlight</Heading>
+				<Text size="xl">Text xl with a <Highlight>highlighted phrase</Highlight>.</Text>
+				<Text size="l" weight="bold">Text l bold</Text>
+				<Text>Text m regular</Text>
 				<Text italic>Text m italic</Text>
-				<Text size="s">Text s (small)</Text>
+				<Text size="s" weight="semibold">Text s semibold</Text>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Eyebrow</Heading>
+				<Heading level={3} size="heading-3">Eyebrow</Heading>
 				<Eyebrow>The Offer</Eyebrow>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Avatar</Heading>
+				<Heading level={3} size="heading-3">Avatar</Heading>
 				<div class="sg__row sg__row--top">
 					<Avatar alt="Team member" shape="drop" size="team" />
-					<Avatar alt="Client Name" shape="circle" size="testimonial" />
+					<Avatar alt="Client" shape="circle" size="testimonial" />
 				</div>
 				<Text size="s" class="sg__muted">
-					Placeholders until photos are added (label on team, initials on testimonial). shape: drop ·
-					circle — size: team · testimonial
+					Shown as placeholders until photos are added. shape: drop · circle — size: team · testimonial
 				</Text>
 			</div>
 		</section>
 
 		<!-- Molecules -->
 		<section class="sg__section" aria-labelledby="molecules">
-			<Heading level={2} size="l" id="molecules">Molecules</Heading>
+			<Heading level={2} size="heading-1" id="molecules">Molecules</Heading>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">NavMenu</Heading>
+				<Heading level={3} size="heading-3">NavMenu</Heading>
 				<NavMenu
 					links={[
 						{ label: 'Blogfolio', href: '#molecules' },
@@ -296,11 +260,10 @@ const shadows = ['card', 'raised', 'glass'];
 					]}
 					cta={{ label: 'Connect With Us', href: '#molecules' }}
 				/>
-				<Text size="s" class="sg__muted">On mobile the links fold into a 44px menu icon button.</Text>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">PersonCard</Heading>
+				<Heading level={3} size="heading-3">PersonCard</Heading>
 				<div class="sg__narrow">
 					<PersonCard
 						name="Daniela Contessa"
@@ -313,8 +276,8 @@ const shadows = ['card', 'raised', 'glass'];
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">FeatureCard</Heading>
-				<div class="sg__grid sg__surface--pink sg__pad">
+				<Heading level={3} size="heading-3">FeatureCard</Heading>
+				<div class="sg__grid sg__surface--pink">
 					<FeatureCard title="Standard">Takes one column of its grid.</FeatureCard>
 					<FeatureCard title="Standard">Takes one column of its grid.</FeatureCard>
 					<FeatureCard title="Wide" wide>Spans every column (wide).</FeatureCard>
@@ -322,7 +285,7 @@ const shadows = ['card', 'raised', 'glass'];
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">GlassCard</Heading>
+				<Heading level={3} size="heading-3">GlassCard</Heading>
 				<div class="sg__surface--aqua sg__pad">
 					<GlassCard title="What’s Covered">
 						Pipeline &amp; CRM, Funnel, Product Design, Product Delivery, and Operations.
@@ -331,34 +294,34 @@ const shadows = ['card', 'raised', 'glass'];
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">StatQuote</Heading>
+				<Heading level={3} size="heading-3">StatQuote</Heading>
 				<div class="sg__narrow">
 					<StatQuote source="(Source name)">"A statistic worth quoting, in bold."</StatQuote>
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">Testimonial</Heading>
-				<div class="sg__surface--aqua sg__pad sg__grid">
-					<Testimonial name="Client Name" href="#molecules" role="Role, Company">
-						“A short quote.”
+				<Heading level={3} size="heading-3">Testimonial</Heading>
+				<div class="sg__surface--aqua sg__pad sg__stack">
+					<Testimonial name="Client name" href="#molecules" role="Role, Company">
+						“Short quote, size l.”
 					</Testimonial>
-					<Testimonial name="Client Name" href="#molecules" role="Role, Company">
-						“A longer quote. Cards in the same row stretch to the same height, so the author rows
-						line up at the bottom.”
+					<Testimonial name="Client name" href="#molecules" role="Role, Company" quoteSize="s">
+						“A longer quote uses size s so it stays readable and the card does not grow too tall
+						on smaller screens.”
 					</Testimonial>
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">FooterLink</Heading>
+				<Heading level={3} size="heading-3">FooterLink</Heading>
 				<div class="sg__surface--teal sg__pad">
 					<FooterLink href="#molecules">Our Story</FooterLink>
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="s">AnimatedBackdrop</Heading>
+				<Heading level={3} size="heading-3">AnimatedBackdrop</Heading>
 				<AnimatedBackdrop>
 					<div class="sg__backdrop-demo">
 						<Text align="center" class="sg__on-light">
@@ -371,7 +334,7 @@ const shadows = ['card', 'raised', 'glass'];
 
 		<!-- Organisms -->
 		<section class="sg__section" aria-labelledby="organisms">
-			<Heading level={2} size="l" id="organisms">Organisms</Heading>
+			<Heading level={2} size="heading-1" id="organisms">Organisms</Heading>
 			<Text>
 				SiteHeader and SiteFooter are part of the page layout and appear at the top and bottom of
 				this page. The rest are shown below at full width.
@@ -379,10 +342,10 @@ const shadows = ['card', 'raised', 'glass'];
 		</section>
 	</div>
 
-	<div class="sg__label container"><code>Hero</code></div>
+	<div class="sg__label"><code>Hero</code></div>
 	<Hero>Intro paragraph with a <Highlight>highlighted phrase</Highlight>.</Hero>
 
-	<div class="sg__label container"><code>TeamSection</code></div>
+	<div class="sg__label"><code>TeamSection</code></div>
 	<TeamSection>
 		<PersonCard
 			name="Team member"
@@ -400,10 +363,10 @@ const shadows = ['card', 'raised', 'glass'];
 		/>
 	</TeamSection>
 
-	<div class="sg__label container"><code>InfoBand</code></div>
+	<div class="sg__label"><code>InfoBand</code></div>
 	<InfoBand>One centred line of text.</InfoBand>
 
-	<div class="sg__label container"><code>OfferSection</code></div>
+	<div class="sg__label"><code>OfferSection</code></div>
 	<OfferSection
 		eyebrow="Eyebrow"
 		title="Offer title"
@@ -418,46 +381,47 @@ const shadows = ['card', 'raised', 'glass'];
 		<GlassCard slot="after" title="Extra card">Optional card under the offer.</GlassCard>
 	</OfferSection>
 
-	<div class="sg__label container"><code>SplitSection</code> × 2 (the second shares the gap)</div>
-	<SplitSection title="Section title" id="sg-split-1">
-		<Text size="l">Content on the right.</Text>
+	<div class="sg__label"><code>SplitSection</code> · headingSize display-l</div>
+	<SplitSection title="Big title" id="sg-split-1">
+		<Text size="xl">Content on the right.</Text>
 	</SplitSection>
-	<SplitSection title="A second section title" id="sg-split-2" align="center">
+	<div class="sg__label"><code>SplitSection</code> · headingSize heading-1, align center</div>
+	<SplitSection title="A longer question as the heading?" id="sg-split-2" headingSize="heading-1" align="center">
 		<StatQuote source="(Source)">"Any content, such as a StatQuote."</StatQuote>
 	</SplitSection>
 
-	<div class="sg__label container"><code>TestimonialsSection</code></div>
+	<div class="sg__label"><code>TestimonialsSection</code></div>
 	<TestimonialsSection>
-		<Testimonial name="Client One" href="#organisms" role="Role, Company">“Quote one.”</Testimonial>
-		<Testimonial name="Client Two" href="#organisms" role="Role, Company">“Quote two.”</Testimonial>
-		<Testimonial name="Client Three" href="#organisms" role="Role, Company">“Quote three.”</Testimonial>
+		<Testimonial name="Client name" href="#organisms" role="Role, Company">“Quote.”</Testimonial>
 	</TestimonialsSection>
 </BaseLayout>
 
 <style>
 	.sg {
-		padding-top: var(--space-9);
+		max-width: var(--layout-container-max);
+		margin-inline: auto;
+		padding: var(--space-9) var(--layout-gutter) 0;
 	}
 	.sg__intro {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-4);
+		gap: var(--space-5);
 	}
 	.sg__toc {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-2) var(--space-5);
+		gap: var(--space-3) var(--space-5);
 	}
 	.sg__section {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-5);
-		margin-top: var(--space-9);
-		padding-top: var(--space-9);
+		gap: var(--space-6);
+		padding-block: var(--space-9);
 		border-top: var(--border-width-thin) solid var(--color-control-teal);
+		margin-top: var(--space-9);
 	}
 	.sg code {
-		font-size: var(--font-size-small);
+		font-size: var(--font-size-body-s);
 	}
 	.sg__muted {
 		color: var(--color-glass-aqua);
@@ -465,9 +429,8 @@ const shadows = ['card', 'raised', 'glass'];
 
 	.sg__swatches {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-10) * 2), 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-11) * 1.5), 1fr));
 		gap: var(--space-5);
-		font-size: var(--font-size-small);
 	}
 	.sg__swatch {
 		display: flex;
@@ -476,7 +439,7 @@ const shadows = ['card', 'raised', 'glass'];
 	}
 	.sg__chip {
 		display: block;
-		height: var(--space-9);
+		height: var(--space-10);
 		margin-bottom: var(--space-2);
 		border: var(--border-width-thin) solid var(--color-control-teal);
 		border-radius: var(--radius-s);
@@ -484,28 +447,23 @@ const shadows = ['card', 'raised', 'glass'];
 
 	.sg__type-row {
 		display: grid;
-		grid-template-columns: minmax(calc(var(--space-10) * 2.5), 1fr) 2fr;
+		grid-template-columns: minmax(calc(var(--space-11) * 1.5), 1fr) 3fr;
 		gap: var(--space-5);
-		align-items: center;
+		align-items: baseline;
 		padding-block: var(--space-4);
 		border-bottom: var(--border-width-thin) solid var(--color-control-teal);
+		overflow: hidden;
 	}
 	.sg__type-meta {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-1);
-		font-size: var(--font-size-small);
+		font-size: var(--font-size-body-s);
 	}
 	.sg__type-sample {
 		min-width: 0;
 		white-space: nowrap;
 		overflow: hidden;
-	}
-	.sg__chip-pink {
-		display: inline-flex;
-		padding: var(--space-3);
-		background: var(--color-surface-pink);
-		border-radius: var(--radius-s);
 	}
 
 	.sg__spaces {
@@ -515,7 +473,7 @@ const shadows = ['card', 'raised', 'glass'];
 	}
 	.sg__space {
 		display: grid;
-		grid-template-columns: calc(var(--space-10) * 1.5) 1fr;
+		grid-template-columns: var(--space-11) 1fr;
 		align-items: center;
 	}
 	.sg__bar {
@@ -526,7 +484,13 @@ const shadows = ['card', 'raised', 'glass'];
 	.sg__boxes {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-8);
+		gap: var(--space-7);
+	}
+	.sg__boxes--light {
+		padding: var(--space-7);
+		background: var(--color-surface-aqua);
+		border-radius: var(--radius-m);
+		color: var(--color-text-on-light);
 	}
 	.sg__box-item {
 		display: flex;
@@ -536,8 +500,8 @@ const shadows = ['card', 'raised', 'glass'];
 	}
 	.sg__box {
 		display: block;
-		width: var(--space-10);
-		height: var(--space-10);
+		width: var(--space-11);
+		height: var(--space-11);
 		background: var(--color-bloom-pink);
 	}
 	.sg__box--shadow {
@@ -549,7 +513,7 @@ const shadows = ['card', 'raised', 'glass'];
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-4);
-		padding: var(--space-card);
+		padding: var(--space-6);
 		border: var(--border-width-thin) solid var(--color-control-teal);
 		border-radius: var(--radius-m);
 	}
@@ -562,19 +526,27 @@ const shadows = ['card', 'raised', 'glass'];
 	.sg__row--top {
 		align-items: flex-start;
 	}
-	.sg__clip {
+	.sg__scaled {
 		overflow: hidden;
 	}
 	.sg__narrow {
-		max-width: var(--layout-text-max);
+		max-width: var(--layout-card-max);
 	}
 	.sg__grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-grid);
+		gap: var(--space-3);
 	}
-	.sg__pad {
-		padding: var(--space-card-s);
+	.sg__stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+	.sg__pad,
+	.sg__row.sg__surface--pink,
+	.sg__row.sg__surface--aqua,
+	.sg__grid {
+		padding: var(--space-6);
 		border-radius: var(--radius-m);
 	}
 	.sg__surface--pink {
@@ -597,9 +569,10 @@ const shadows = ['card', 'raised', 'glass'];
 		color: var(--color-text-on-light);
 	}
 	.sg__label {
-		margin-top: var(--space-9);
+		max-width: var(--layout-container-max);
+		margin: var(--space-9) auto var(--space-4);
+		padding-inline: var(--layout-gutter);
 		color: var(--color-glass-aqua);
-		font-size: var(--font-size-small);
 	}
 
 	@media (max-width: 48rem) {

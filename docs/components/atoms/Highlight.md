@@ -8,7 +8,7 @@ A bold phrase with a thick pink underline.
 
 ## When to use it
 
-To stress the key words of a paragraph, like “outgrow their DIY phase”. At most once per paragraph.
+To stress the key words of a paragraph, like “outgrow their DIY phase” in the hero. Use it once per paragraph at most.
 
 ## Props
 
@@ -18,7 +18,7 @@ To stress the key words of a paragraph, like “outgrow their DIY phase”. At m
 
 ## Variants
 
-One style. The underline runs straight through descenders (g, p, y).
+One style. The underline runs straight through letters that dip below the line (g, p, y).
 
 ## Tokens used
 

@@ -13,7 +13,7 @@ const { title, level = 3 } = Astro.props;
 ---
 
 <div class="glass-card">
-	<Heading level={level} size="s">{title}</Heading>
+	<Heading level={level} size="heading-3">{title}</Heading>
 	<Text><slot /></Text>
 </div>
 
@@ -21,8 +21,8 @@ const { title, level = 3 } = Astro.props;
 	.glass-card {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-2);
-		padding: var(--space-card);
+		gap: var(--space-3);
+		padding: var(--space-8);
 		background: var(--color-glass-fill);
 		border: var(--border-width-thin) solid var(--color-glass-edge);
 		border-radius: var(--radius-l);
@@ -30,5 +30,11 @@ const { title, level = 3 } = Astro.props;
 		backdrop-filter: blur(var(--blur-glass));
 		-webkit-backdrop-filter: blur(var(--blur-glass));
 		color: var(--color-text-on-light);
+	}
+
+	@media (max-width: 48rem) {
+		.glass-card {
+			padding: var(--space-6);
+		}
 	}
 </style>

@@ -4,26 +4,26 @@
 
 ## What it is
 
-A team member: drop-shaped photo, name, role with a linked organisation, nationality with a flag.
+A team member: drop-shaped photo, name, role with a linked organisation, and nationality with a flag.
 
 ## When to use it
 
-In TeamSection, one per founder.
+In TeamSection, one card per founder.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `name` | text | — | Full name (also the photo description). |
-| `photo` | image path | — | Leave out for a placeholder. |
+| `name` | text | — | Full name (also used as the photo description). |
+| `photo` | image path | — | Leave out to show a placeholder. |
 | `role` | text | — | Job title before the organisation. |
 | `org` | { label, href } | — | Linked organisation, e.g. @HappyCow. |
-| `nationality` | text | — | Shown in semibold. |
-| `flag` | emoji | — | Before the nationality; hidden from screen readers. |
+| `nationality` | text | — | Shown in bold. |
+| `flag` | emoji | — | Shown before the nationality; hidden from screen readers. |
 
 ## Variants
 
-One centred layout. Name uses Heading `m`.
+One layout, centred.
 
 ## Tokens used
 
@@ -37,6 +37,6 @@ One centred layout. Name uses Heading `m`.
 
 ## Notes
 
-Uses atoms: Avatar, Heading, Text, Link.
+Uses atoms: Avatar, Heading (`heading-2`), Text, Link.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

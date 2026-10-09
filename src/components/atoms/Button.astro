@@ -1,12 +1,11 @@
 ---
 // Pill-shaped button. Renders a link when `href` is given, otherwise a <button>.
 // variant: 'primary' (aqua with navy text) or 'inverse' (white with pink text)
-// size: 's' compact, desktop only · 'm' default (header, footer) ·
-//       'l' the single main action on a page
+// size: 'm' (header) or 'l' (footer, offer card)
 interface Props {
 	href?: string;
 	variant?: 'primary' | 'inverse';
-	size?: 's' | 'm' | 'l';
+	size?: 'm' | 'l';
 	type?: 'button' | 'submit';
 	class?: string;
 }
@@ -35,7 +34,6 @@ const classes = ['button', `button--${variant}`, `button--${size}`, className];
 		border: 0;
 		border-radius: var(--radius-pill);
 		font-family: var(--font-body);
-		font-weight: var(--font-weight-semibold);
 		line-height: var(--line-height-ui);
 		text-decoration: none;
 		white-space: nowrap;
@@ -46,24 +44,24 @@ const classes = ['button', `button--${variant}`, `button--${size}`, className];
 	.button:hover {
 		transform: translateY(calc(var(--space-1) * -0.5));
 	}
-	.button--s {
-		min-height: var(--button-height-s);
-		padding-inline: var(--button-padding-s);
-		font-size: var(--font-size-small);
-	}
 	.button--m {
-		min-height: var(--button-height-m);
-		padding-inline: var(--button-padding-m);
-		font-size: var(--font-size-ui);
+		padding: var(--space-4) var(--space-5);
+		font-size: var(--font-size-body-s);
+		font-weight: var(--font-weight-medium);
 	}
 	.button--l {
-		min-height: var(--button-height-l);
-		padding-inline: var(--button-padding-l);
-		font-size: var(--font-size-body);
+		padding: var(--space-5) var(--space-8);
+		font-size: var(--font-size-body-m);
+		font-weight: var(--font-weight-bold);
 	}
 	.button--primary {
 		background: var(--color-aqua-glow);
 		color: var(--color-midnight-navy);
+	}
+	@media (max-width: 48rem) {
+		.button--m {
+			padding: var(--space-3);
+		}
 	}
 	.button--inverse {
 		background: var(--color-white);

@@ -4,11 +4,11 @@
 
 ## What it is
 
-The founders side by side. Has a heading (“Our team”) only screen readers hear.
+The founders shown side by side.
 
 ## When to use it
 
-Right after the hero, on the same background, so it adds space only below itself.
+Below the hero. Put one PersonCard per person inside. It has a heading (“Our team”) that only screen readers hear, because the design shows no visible title here.
 
 ## Props
 
@@ -18,11 +18,11 @@ Right after the hero, on the same background, so it adds space only below itself
 
 ## Variants
 
-Two columns (352px max each, 64px apart); one column on phones.
+Two columns; one column on phones.
 
 ## Tokens used
 
-`--layout-team-column`, `--space-8`, `--space-9`, `--space-section`
+`--layout-container-max`, `--layout-gutter`, `--layout-team-column`, `--space-9`
 
 ## Example
 

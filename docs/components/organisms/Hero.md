@@ -4,7 +4,7 @@
 
 ## What it is
 
-The opening section: the two-tone “Kodamas” wordmark (the page’s h1) with a pink drop tucked behind the K, then the intro paragraph. The K and the paragraph share the container’s left edge; the drop sits in the page margin.
+The opening section: the giant two-tone “Kodamas” wordmark (the page’s h1) with a pink drop tucked behind the K, then the intro paragraph.
 
 ## When to use it
 
@@ -14,15 +14,15 @@ Once, at the top of the homepage.
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| (content) | text | — | Intro paragraph (lead size, max 640px wide). Can include a Highlight. |
+| (content) | text | — | The intro paragraph. Can include a Highlight. |
 
 ## Variants
 
-Wordmark 72–200px; drop shrinks on tablet and mobile.
+On phones the paragraph loses its indent and the drop gets smaller.
 
 ## Tokens used
 
-`--layout-gutter`, `--layout-text-max`, `--overlap-hero-drop`, `--space-6`, `--space-8`, `--space-section`
+`--indent-hero-intro`, `--layout-header-gutter`, `--layout-page-max`, `--layout-text-max`, `--overlap-hero-drop`, `--space-10`, `--space-7`, `--space-9`
 
 ## Example
 
@@ -32,6 +32,6 @@ Wordmark 72–200px; drop shrinks on tablet and mobile.
 
 ## Notes
 
-Uses: Wordmark (`xl`, two-tone), Drop (`l`), Text (`l`).
+Uses: Wordmark (`xl`, two-tone), Drop (`l`), Text (`xl`).
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

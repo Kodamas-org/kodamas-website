@@ -4,14 +4,12 @@ import Text from '../atoms/Text.astro';
 ---
 
 <aside class="info-band">
-	<div class="container">
-		<Text align="center"><slot /></Text>
-	</div>
+	<Text size="xl" align="center"><slot /></Text>
 </aside>
 
 <style>
 	.info-band {
-		padding-block: var(--space-4);
+		padding: var(--space-4) var(--layout-gutter);
 		background: var(--color-surface-band);
 		color: var(--color-text-on-dark);
 	}

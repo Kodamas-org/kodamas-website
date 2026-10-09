@@ -8,22 +8,22 @@ The header navigation: text links and a call-to-action button.
 
 ## When to use it
 
-Inside SiteHeader. On phones (768px and below) the text links fold into a 44px menu icon button that opens a small panel; the button stays visible.
+Inside SiteHeader. On phones (below 768px) the text links fold into a “Menu” button that opens a small panel; the call-to-action stays visible.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `links` | list of { label, href } | — | Text links, in order. |
-| `cta` | { label, href } | — | The button (size `m`). |
+| `links` | list of { label, href } | — | The text links, in order. |
+| `cta` | { label, href } | — | The button. |
 
 ## Variants
 
-Desktop/tablet: one row. Mobile: menu icon + button; each link in the panel is at least 44px tall.
+Desktop/tablet: everything in one row. Mobile: Menu toggle + button.
 
 ## Tokens used
 
-`--border-width-thin`, `--color-aqua-glow`, `--color-midnight-navy`, `--radius-pill`, `--radius-s`, `--size-icon`, `--size-tap-min`, `--space-2`, `--space-3`, `--space-5`, `--space-6`
+`--border-width-thin`, `--color-aqua-glow`, `--color-midnight-navy`, `--font-size-body-s`, `--radius-pill`, `--radius-s`, `--space-2`, `--space-3`, `--space-4`, `--space-5`
 
 ## Example
 

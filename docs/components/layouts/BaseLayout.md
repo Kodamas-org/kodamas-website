@@ -4,7 +4,7 @@
 
 ## What it is
 
-The page template: document head, fonts, tokens and base styles, a “Skip to content” link for keyboard users, and the page between SiteHeader and SiteFooter.
+The page template. It sets up the document (language, title, description), loads the fonts, tokens and base styles, adds a “Skip to content” link for keyboard users, and wraps the page between SiteHeader and SiteFooter.
 
 ## When to use it
 
@@ -16,13 +16,13 @@ Every page starts with it.
 |---|---|---|---|
 | `title` | text | — | Browser tab title. |
 | `description` | text | — | Search-result description. |
-| `noindex` | true / false | false | Hide from search engines (styleguide). |
+| `noindex` | true / false | false | Hide the page from search engines (used by the styleguide). |
 | (content) | page sections | — | Goes inside `<main>`. |
 | slot "footer" | a `<footer>` | — | Optional. Replaces the standard SiteFooter (used by the Test Home concept). |
 
 ## Variants
 
-One template. Also provides the shared `.container` class (from global.css) for the page width and margins.
+One template.
 
 ## Tokens used
 
@@ -36,6 +36,6 @@ One template. Also provides the shared `.container` class (from global.css) for 
 
 ## Notes
 
-Lives in `src/layouts/`.
+Lives in `src/layouts/` (Astro’s standard place for templates).
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

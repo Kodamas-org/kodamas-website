@@ -4,11 +4,11 @@
 
 ## What it is
 
-A footer navigation item: a small pink drop and an arrow link.
+A footer navigation item: a small pink drop followed by an arrow link.
 
 ## When to use it
 
-In the footer link list.
+In the footer’s link list.
 
 ## Props
 
@@ -19,11 +19,11 @@ In the footer link list.
 
 ## Variants
 
-One style; each item is at least 44px tall for touch.
+One style, white text.
 
 ## Tokens used
 
-`--font-size-body`, `--line-height-ui`, `--size-tap-min`, `--space-3`
+`--font-size-body-xl`, `--line-height-ui`, `--space-5`
 
 ## Example
 

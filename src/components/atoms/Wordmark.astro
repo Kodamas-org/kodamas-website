@@ -1,9 +1,9 @@
 ---
 // The "Kodamas" name set in Funnel Display.
-// size: 's' (header), 'm' (footer), 'xl' (hero)
+// size: 's' (header), 'l' (footer), 'xl' (hero)
 // tone: 'aqua', 'white', or 'two-tone' (white "Ko" + aqua "damas", hero only)
 interface Props {
-	size?: 's' | 'm' | 'xl';
+	size?: 's' | 'l' | 'xl';
 	tone?: 'aqua' | 'white' | 'two-tone';
 	as?: 'span' | 'p' | 'h1';
 }
@@ -33,13 +33,13 @@ const { size = 's', tone = 'aqua', as: Tag = 'span' } = Astro.props;
 		line-height: var(--line-height-none);
 	}
 	.wordmark--s {
-		font-size: var(--font-size-logo-s);
+		font-size: var(--font-size-wordmark-s);
 	}
-	.wordmark--m {
-		font-size: var(--font-size-logo-m);
+	.wordmark--l {
+		font-size: var(--font-size-display-l);
 	}
 	.wordmark--xl {
-		font-size: var(--font-size-display);
+		font-size: var(--font-size-display-xl);
 	}
 	.wordmark--aqua {
 		color: var(--color-aqua-glow);

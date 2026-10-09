@@ -4,11 +4,11 @@
 
 ## What it is
 
-Client testimonials as a grid of equal cards on the animated aqua background. Has a heading (“What people say about us”) only screen readers hear.
+A stack of client testimonials on the animated aqua background.
 
 ## When to use it
 
-Near the end of the homepage. Put Testimonial components inside.
+Near the end of the homepage. Put Testimonial components inside. It has a heading (“What people say about us”) that only screen readers hear.
 
 ## Props
 
@@ -18,11 +18,11 @@ Near the end of the homepage. Put Testimonial components inside.
 
 ## Variants
 
-Three columns on desktop; two plus one full-width on tablet; one column on phones.
+Cards stack with a small gap; more space between them on phones.
 
 ## Tokens used
 
-`--space-grid`, `--space-section`
+`--layout-container-max`, `--layout-gutter`, `--space-11`, `--space-3`, `--space-7`, `--space-9`
 
 ## Example
 

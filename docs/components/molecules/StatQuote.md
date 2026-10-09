@@ -8,14 +8,14 @@ A quoted statistic in an outlined card, with a pink drop on its top-left corner 
 
 ## When to use it
 
-To back a claim with a figure from a credible source.
+To back up a claim with a figure from a credible source (the Forrester quote).
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `source` | text | — | Shown under the quote. |
-| (content) | text | — | The quote, in bold lead size. |
+| `source` | text | — | Who said it, shown under the quote. |
+| (content) | text | — | The quote, shown in bold. |
 
 ## Variants
 
@@ -23,7 +23,7 @@ One style.
 
 ## Tokens used
 
-`--border-width-medium`, `--color-glass-edge`, `--font-size-body`, `--font-size-lead`, `--font-weight-bold`, `--font-weight-regular`, `--line-height-lead`, `--radius-m`, `--size-drop-m`, `--space-3`, `--space-4`, `--space-card`, `--z-raised`
+`--border-width-medium`, `--color-glass-edge`, `--font-size-body-l`, `--font-weight-bold`, `--font-weight-regular`, `--line-height-relaxed`, `--radius-m`, `--size-drop-m`, `--space-10`, `--space-5`, `--space-7`, `--space-8`, `--space-9`, `--z-raised`
 
 ## Example
 

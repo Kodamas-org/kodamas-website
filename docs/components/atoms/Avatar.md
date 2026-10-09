@@ -8,25 +8,25 @@ A portrait photo cropped to a shape.
 
 ## When to use it
 
-Team members (drop shape, 240px; 200 on mobile) and testimonial authors (circle, 56px). Without a photo it shows a dashed placeholder: “Photo needed: Name” on team avatars, the person’s initials on small ones.
+Team members (drop shape, large) and testimonial authors (circle, smaller). Until a real photo is provided it shows a dashed placeholder that says which photo is needed.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `src` | image path | — | The photo. Leave out to show the placeholder. |
-| `alt` | text | — | The person’s name, for screen readers (required). |
+| `src` | image path | — | The photo. Leave it out to show the placeholder. |
+| `alt` | text | — | Describes the person, for screen readers (required). |
 | `shape` | `drop` · `circle` | `circle` | Crop shape. |
-| `size` | `team` · `testimonial` | `testimonial` | Width; photos should be square. |
+| `size` | `team` · `testimonial` | `testimonial` | Width; the photo is always square before cropping. |
 | `class` | text | — | Extra class. |
 
 ## Variants
 
-2 shapes × 2 sizes.
+Shrinks on tablet and mobile through the size tokens.
 
 ## Tokens used
 
-`--border-width-medium`, `--color-aqua-glow`, `--color-control-teal`, `--color-white`, `--font-size-small`, `--font-weight-semibold`, `--line-height-ui`, `--radius-drop`, `--radius-round`, `--size-avatar-team`, `--size-avatar-testimonial`, `--space-2`
+`--border-width-medium`, `--color-aqua-glow`, `--color-control-teal`, `--color-white`, `--font-size-body-s`, `--line-height-ui`, `--radius-drop`, `--radius-round`, `--size-avatar-team`, `--size-avatar-testimonial`, `--space-5`
 
 ## Example
 
