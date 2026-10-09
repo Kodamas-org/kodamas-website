@@ -170,7 +170,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 					<p class="c-stat__fig c-stat__fig--accent">
 						<span data-count="400">400</span>%
 					</p>
-					<p class="c-stat__cap"><svg class="c-stat__icon c-stat__icon--aqua" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>ROI</p>
+					<p class="c-stat__cap"><svg class="c-stat__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>ROI</p>
 				</div>
 				<div class="c-stat" data-reveal>
 					<p class="c-stat__fig">&lt;<span data-count="6">6</span></p>
@@ -703,6 +703,10 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		color: var(--color-midnight-navy);
 		--focus-color: var(--color-focus-on-light);
 	}
+	.c-offer .c-index {
+		padding-top: 0;
+		border-top: 0;
+	}
 	.c-offer .c-index__num {
 		color: var(--color-pink-deep);
 	}
@@ -849,9 +853,6 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		width: var(--space-5);
 		height: var(--space-5);
 		color: var(--color-highlight-pink);
-	}
-	.c-stat__icon--aqua {
-		color: var(--color-aqua-glow);
 	}
 	.c-proof__source {
 		display: flex;
@@ -1001,6 +1002,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-person__frame {
 		position: relative;
 		width: 100%;
+		max-width: var(--layout-team-column);
 		margin-bottom: var(--space-5);
 	}
 	.c-person :global(.c-person__photo) {
@@ -1290,7 +1292,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		.c-team__grid {
 			grid-template-columns: minmax(0, var(--layout-team-column));
 		}
-		.c-person :global(.c-person__photo) {
+		.c-person__frame {
 			max-width: calc(var(--size-avatar-team) * 1.25);
 		}
 		.c-footer__bar {
