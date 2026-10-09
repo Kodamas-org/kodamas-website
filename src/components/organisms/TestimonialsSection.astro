@@ -1,14 +1,15 @@
 ---
-// Stack of client testimonials on the animated aqua background.
-// Pass Testimonial components in the slot. The heading is for screen readers
-// only; the design has no visible title here.
+// Client testimonials as a grid of equal cards on the animated aqua
+// background: three across on desktop, two plus one full-width on tablet,
+// stacked on mobile. Pass Testimonial components in the slot.
+// The heading is for screen readers only; the design has no visible title.
 import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
 ---
 
 <AnimatedBackdrop>
-	<section class="testimonials" aria-labelledby="testimonials-title">
+	<section class="testimonials container" aria-labelledby="testimonials-title">
 		<h2 id="testimonials-title" class="visually-hidden">What people say about us</h2>
-		<div class="testimonials__list">
+		<div class="testimonials__grid">
 			<slot />
 		</div>
 	</section>
@@ -16,22 +17,25 @@ import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
 
 <style>
 	.testimonials {
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: var(--space-11) var(--layout-gutter);
+		padding-block: var(--space-section);
 	}
-	.testimonials__list {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
+	.testimonials__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-grid);
 	}
 
-	@media (max-width: 48rem) {
-		.testimonials {
-			padding-block: var(--space-9);
+	@media (max-width: 64rem) {
+		.testimonials__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
-		.testimonials__list {
-			gap: var(--space-7);
+		.testimonials__grid > :global(:last-child:nth-child(odd)) {
+			grid-column: 1 / -1;
+		}
+	}
+	@media (max-width: 48rem) {
+		.testimonials__grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

@@ -2,7 +2,8 @@
 // Portrait photo.
 // shape: 'drop' (team) or 'circle' (testimonials)
 // size: 'team' or 'testimonial'
-// Without `src` it shows a labelled placeholder until the real photo arrives.
+// Without `src` it shows a labelled placeholder until the real photo arrives
+// (the full label on large avatars, initials on small ones).
 interface Props {
 	src?: string;
 	alt: string;
@@ -13,17 +14,29 @@ interface Props {
 
 const { src, alt, shape = 'circle', size = 'testimonial', class: className } = Astro.props;
 const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
+const initials = alt
+	.split(/\s+/)
+	.map((word) => word[0])
+	.join('')
+	.slice(0, 2)
+	.toUpperCase();
 ---
 
 {
 	src ? (
 		<img src={src} alt={alt} class:list={classes} loading="lazy" decoding="async" />
 	) : (
-		<div class:list={[...classes, 'avatar--placeholder']} role="img" aria-label={alt}>
+		<div class:list={[...classes, 'avatar--placeholder']} role="img" aria-label={`${alt} (photo needed)`}>
 			<span class="avatar__label" aria-hidden="true">
-				Photo needed:
-				<br />
-				{alt}
+				{size === 'team' ? (
+					<>
+						Photo needed:
+						<br />
+						{alt}
+					</>
+				) : (
+					initials
+				)}
 			</span>
 		</div>
 	)
@@ -51,14 +64,15 @@ const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
 	.avatar--placeholder {
 		display: grid;
 		place-items: center;
-		padding: var(--space-5);
 		background: var(--color-control-teal);
 		border: var(--border-width-medium) dashed var(--color-aqua-glow);
 		color: var(--color-white);
 		text-align: center;
 	}
 	.avatar__label {
-		font-size: var(--font-size-body-s);
+		padding: var(--space-2);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
 		line-height: var(--line-height-ui);
 	}
 </style>

@@ -4,30 +4,29 @@
 
 ## What it is
 
-A client quote in a pink card, with a round photo overlapping the card’s left edge, the author’s name as a link, and their role.
+A client quote card: a small white drop as the quote mark, the quote in body text, then a row with a 56px round photo, the author’s name (link) and role.
 
 ## When to use it
 
-In TestimonialsSection. Use `quoteSize="s"` for long quotes (more than about 30 words) so the card stays compact.
+Inside TestimonialsSection. Cards in a row stretch to the same height so the author rows line up.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `name` | text | — | Author name (linked). |
-| `href` | URL | — | Where the name links to (e.g. their LinkedIn). |
-| `role` | text | — | Author role and company. |
-| `photo` | image path | — | Leave out to show a placeholder. |
-| `quoteSize` | `l` · `s` | `l` | Quote size. |
-| (content) | text | — | The quote, including the “curly” quotation marks. |
+| `name` | text | — | Author name (linked, 16px semibold). |
+| `href` | URL | — | Where the name links to. |
+| `role` | text | — | Role and company (14px). |
+| `photo` | image path | — | Leave out for an initials placeholder. |
+| (content) | text | — | The quote, with its “curly” quotation marks. |
 
 ## Variants
 
-Desktop: photo on the left overlapping the card. Mobile: photo on top, overlapping the card’s top edge. The quote uses Funnel Display with a slanted (synthesised) italic, as agreed.
+One style. Replaces the old wide card with a large overlapping photo and faux-italic quote.
 
 ## Tokens used
 
-`--color-focus-on-light`, `--color-surface-pink`, `--color-white`, `--font-display`, `--font-size-body-m`, `--font-size-heading-2`, `--font-size-quote-s`, `--font-weight-bold`, `--indent-testimonial-text`, `--line-height-heading`, `--line-height-snug`, `--overlap-testimonial-card`, `--radius-l`, `--shadow-card`, `--size-avatar-testimonial`, `--space-10`, `--space-3`, `--space-5`, `--space-6`, `--space-7`, `--z-raised`
+`--color-focus-on-light`, `--color-surface-pink`, `--color-white`, `--font-size-body`, `--font-size-small`, `--font-size-ui`, `--font-weight-semibold`, `--line-height-body`, `--line-height-ui`, `--radius-m`, `--shadow-card`, `--space-1`, `--space-4`, `--space-5`, `--space-card`
 
 ## Example
 
@@ -37,6 +36,6 @@ Desktop: photo on the left overlapping the card. Mobile: photo on top, overlappi
 
 ## Notes
 
-Uses atoms: Avatar (circle), Link (white).
+Uses atoms: Drop (white), Avatar (circle), Link (white).
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

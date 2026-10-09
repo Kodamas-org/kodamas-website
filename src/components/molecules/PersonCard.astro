@@ -19,12 +19,12 @@ const { name, photo, role, org, nationality, flag } = Astro.props;
 ---
 
 <article class="person-card">
-	<Avatar src={photo} alt={name} shape="drop" size="team" />
-	<Heading level={3} size="heading-2" align="center">{name}</Heading>
-	<Text align="center" class="person-card__role">
+	<Avatar src={photo} alt={name} shape="drop" size="team" class="person-card__photo" />
+	<Heading level={3} size="m" align="center">{name}</Heading>
+	<Text align="center">
 		{role}{' '}<Link href={org.href} tone="aqua">{org.label}</Link>
 	</Text>
-	<Text align="center" weight="bold">
+	<Text align="center" weight="semibold">
 		<span aria-hidden="true">{flag}</span>{' '}{nationality}
 	</Text>
 </article>
@@ -34,12 +34,9 @@ const { name, photo, role, org, nationality, flag } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--space-4);
+		gap: var(--space-2);
 	}
-	.person-card :global(.avatar) {
+	.person-card :global(.person-card__photo) {
 		margin-bottom: var(--space-4);
-	}
-	.person-card__role {
-		margin-top: var(--space-2);
 	}
 </style>

@@ -4,11 +4,11 @@
 
 ## What it is
 
-The top bar: small aqua wordmark (links home) on the left, navigation on the right.
+The top bar: small aqua wordmark (links home) on the left, navigation on the right, aligned to the page container.
 
 ## When to use it
 
-Once per page; it is already included in BaseLayout. It sticks to the top of the window, slides away while scrolling down, and comes back as soon as the visitor scrolls up or tabs into it.
+Once per page; included in BaseLayout. Sticks to the top, slides away while scrolling down, comes back on scroll up or keyboard focus.
 
 ## Props
 
@@ -20,7 +20,7 @@ No props. Links live in `src/data/links.ts`.
 
 ## Tokens used
 
-`--color-surface-page`, `--duration-base`, `--ease-standard`, `--layout-header-gutter`, `--space-3`, `--space-5`, `--z-header`
+`--color-surface-page`, `--duration-base`, `--ease-standard`, `--space-4`, `--space-5`, `--z-header`
 
 ## Example
 

@@ -4,17 +4,17 @@
 
 ## What it is
 
-A full-width teal strip with one centred line of text.
+A full-width teal strip with one centred line of body text.
 
 ## When to use it
 
-For a short standalone statement between sections (“Based in Italy and Japan, working globally 🌏.”).
+For a short standalone statement between sections.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| (content) | text | — | The line of text. |
+| (content) | text | — | The line. |
 
 ## Variants
 
@@ -22,7 +22,7 @@ One style.
 
 ## Tokens used
 
-`--color-surface-band`, `--color-text-on-dark`, `--layout-gutter`, `--space-4`
+`--color-surface-band`, `--color-text-on-dark`, `--space-4`
 
 ## Example
 
@@ -32,6 +32,6 @@ One style.
 
 ## Notes
 
-Uses: Text (`xl`).
+Uses: Text.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

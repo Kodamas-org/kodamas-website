@@ -5,7 +5,7 @@ Marketing site for Kodamas. `CLAUDE.md` is a symlink to this file.
 ## Stack
 
 - **Astro** (static site), plain `.astro` components and CSS. No CSS framework, no UI framework.
-- **Fonts:** self-hosted via Fontsource — `@fontsource-variable/funnel-display` (titles, headings, wordmark, testimonial quotes) and `@fontsource-variable/inter` (body and UI, including real italic). Do not add or substitute fonts.
+- **Fonts:** self-hosted via Fontsource — `@fontsource-variable/funnel-display` (wordmark and headings) and `@fontsource-variable/inter` (body and UI, including real italic). Do not add or substitute fonts.
 - **Git:** GitHub `Kodamas-org/kodamas-website`, branch `main`. `archive/old-site` keeps the previous site.
 - **Hosting:** Netlify site `hello-kodamas` (https://hello-kodamas.netlify.app), deploys automatically on every push to `main`. Build settings live in the Netlify dashboard (no `netlify.toml`): `npm run build`, publish `dist`.
 
@@ -44,6 +44,13 @@ reference/               screenshots of the old Squarespace site (content and br
 
 - The screenshots in `reference/` are the reference for **content, brand and the purpose of each section** — not a layout specification. Do not copy Squarespace layout quirks (sizes, spacing, proportions); follow standard UI/UX practice instead.
 - Keep each section's content, purpose, order and brand feel. Layout, sizing and spacing should come from the token system (consistent spacing scale, restrained type scale, defined button sizes), not from pixel-matching the screenshot.
+- **Fix problems at the token level first**, so corrections apply everywhere. No one-off values in components.
+- **Type:** seven sizes only (`display`, `h2`, `h3`, `lead`, `body`, `ui`, `small`). Do not add sizes; pick the closest one. Section titles all use Heading `l`.
+- **Buttons:** `s` 40px (desktop-only compact), `m` 48px (default), `l` 56px (the one main action per page — currently “Book a call”). “Connect With Us” and “Book a call” are separate actions; keep both.
+- **Spacing:** sections use `--space-section` (96/80/64); cards use `--space-card` / `--space-card-s`; grids use `--space-grid`. Sections on the same background share one gap.
+- **Layout:** every section uses the shared `.container` (1200px + gutter), so all content shares one left edge. Paragraphs max `--layout-text-max` (about 65 characters per line).
+- **Touch:** interactive elements are at least 44px (`--size-tap-min`) on mobile.
+- Check every change at mobile (390px), tablet (820px) and desktop (1440px).
 
 ## Naming
 

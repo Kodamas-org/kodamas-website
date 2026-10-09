@@ -4,27 +4,27 @@
 
 ## What it is
 
-A frosted, see-through card that lets the animated background show through.
+A frosted, see-through card that lets the animated background show through. Navy text for contrast.
 
 ## When to use it
 
-On the aqua background, for supporting information under a main card (“What’s Covered”). Text is navy so it stays readable on the light glass.
+On the aqua background, for supporting information under a main card (“What’s Covered”).
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `title` | text | — | Card title. |
-| `level` | `2` · `3` | `3` | Heading level of the title. |
+| `title` | text | — | Card title (Heading `s`). |
+| `level` | `2` · `3` | `3` | Heading level. |
 | (content) | text | — | The description. |
 
 ## Variants
 
-One style. Padding shrinks on phones.
+One style; same padding and corners as the offer card so they read as a pair.
 
 ## Tokens used
 
-`--blur-glass`, `--border-width-thin`, `--color-glass-edge`, `--color-glass-fill`, `--color-text-on-light`, `--radius-l`, `--shadow-glass`, `--space-3`, `--space-6`, `--space-8`
+`--blur-glass`, `--border-width-thin`, `--color-glass-edge`, `--color-glass-fill`, `--color-text-on-light`, `--radius-l`, `--shadow-glass`, `--space-2`, `--space-card`
 
 ## Example
 
@@ -34,6 +34,6 @@ One style. Padding shrinks on phones.
 
 ## Notes
 
-Uses atoms: Heading (`heading-3`), Text.
+Uses atoms: Heading, Text.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

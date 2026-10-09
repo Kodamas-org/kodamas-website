@@ -22,7 +22,7 @@ body {
 	background: var(--color-surface-page);
 	color: var(--color-text-on-dark);
 	font-family: var(--font-body);
-	font-size: var(--font-size-body-m);
+	font-size: var(--font-size-body);
 	line-height: var(--line-height-body);
 	letter-spacing: var(--letter-spacing-body);
 	-webkit-font-smoothing: antialiased;
@@ -53,6 +53,14 @@ ul[role='list'] {
 :focus-visible {
 	outline: var(--border-width-focus) solid var(--focus-color);
 	outline-offset: var(--focus-offset);
+}
+
+/* Shared page container: same max width and side margins everywhere */
+.container {
+	width: 100%;
+	max-width: var(--layout-container-max);
+	margin-inline: auto;
+	padding-inline: var(--layout-gutter);
 }
 
 /* Hidden visually, still read by screen readers */

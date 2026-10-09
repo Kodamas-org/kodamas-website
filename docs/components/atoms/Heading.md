@@ -4,34 +4,34 @@
 
 ## What it is
 
-A title. Its level (h1–h6, which gives the page its outline for screen readers and search engines) is chosen separately from how big it looks.
+A title in Funnel Display Bold. Its level (h1–h6, the page outline for screen readers and search engines) is chosen separately from its size.
 
 ## When to use it
 
-For every title on the page. Pick `level` by structure (one h1 per page, then h2 for sections, h3 inside them) and `size` by design.
+Every title. Pick `level` by structure (one h1 per page, h2 for sections, h3 inside them) and `size` by importance.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `level` | `1`–`6` | — | The heading level (required). |
-| `size` | `display-l` · `heading-1` · `heading-2` · `heading-3` | `heading-1` | The look. The first three use Funnel Display; `heading-3` uses Inter Semibold. |
-| `align` | `start` · `center` | `start` | Text alignment. |
-| `id` | text | — | Lets a section point to its heading for screen readers. |
+| `level` | `1`–`6` | — | Heading level (required). |
+| `size` | `l` · `m` · `s` | `l` | `l` section titles 32–40px · `m` names 20–24px · `s` card titles 18–20px. |
+| `align` | `start` · `center` | `start` | Alignment. |
+| `id` | text | — | Lets a section point to its heading. |
 | `class` | text | — | Extra class. |
 
 ## Variants
 
-`display-l` “Keep Going” · `heading-1` section titles · `heading-2` names · `heading-3` card titles.
+All section titles use `l`, so no section shouts louder than another.
 
 ## Tokens used
 
-`--font-body`, `--font-display`, `--font-size-display-l`, `--font-size-heading-1`, `--font-size-heading-2`, `--font-size-heading-3`, `--font-weight-bold`, `--font-weight-semibold`, `--letter-spacing-display`, `--line-height-body`, `--line-height-heading`, `--line-height-snug`, `--line-height-tight`
+`--font-display`, `--font-size-h2`, `--font-size-h3`, `--font-size-lead`, `--font-weight-bold`, `--line-height-heading`, `--line-height-snug`
 
 ## Example
 
 ```astro
-<Heading level={2} size="display-l">Keep Going</Heading>
+<Heading level={2} size="l">Keep Going</Heading>
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

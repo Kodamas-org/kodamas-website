@@ -1,22 +1,21 @@
 ---
-// Two-column section on the navy background: a large heading on the left
+// Two-column section on the navy background: a section title on the left
 // and content on the right. Stacks on tablet and mobile.
-// headingSize: 'display-l' ("Keep Going") or 'heading-1' ("Why is…")
+// Two SplitSections in a row share one section gap instead of doubling it.
 // align: vertical alignment of the two columns
 import Heading from '../atoms/Heading.astro';
 
 interface Props {
 	title: string;
 	id: string;
-	headingSize?: 'display-l' | 'heading-1';
 	align?: 'start' | 'center';
 }
 
-const { title, id, headingSize = 'display-l', align = 'start' } = Astro.props;
+const { title, id, align = 'start' } = Astro.props;
 ---
 
-<section class:list={['split', `split--${align}`]} aria-labelledby={id}>
-	<Heading level={2} size={headingSize} id={id}>{title}</Heading>
+<section class:list={['split', 'container', `split--${align}`]} aria-labelledby={id}>
+	<Heading level={2} size="l" id={id}>{title}</Heading>
 	<div class="split__body">
 		<slot />
 	</div>
@@ -26,11 +25,12 @@ const { title, id, headingSize = 'display-l', align = 'start' } = Astro.props;
 	.split {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		column-gap: var(--space-10);
-		row-gap: var(--space-7);
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: var(--space-10) var(--layout-gutter);
+		column-gap: var(--space-9);
+		row-gap: var(--space-6);
+		padding-block: var(--space-section);
+	}
+	.split + .split {
+		padding-top: 0;
 	}
 	.split--center {
 		align-items: center;
@@ -39,16 +39,12 @@ const { title, id, headingSize = 'display-l', align = 'start' } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-4);
+		max-width: var(--layout-text-max);
 	}
 
 	@media (max-width: 64rem) {
 		.split {
 			grid-template-columns: 1fr;
-		}
-	}
-	@media (max-width: 48rem) {
-		.split {
-			padding-block: var(--space-9);
 		}
 	}
 </style>

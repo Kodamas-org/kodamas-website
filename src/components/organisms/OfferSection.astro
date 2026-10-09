@@ -1,12 +1,12 @@
 ---
-// The offer: a pink card with the price, the included items and a booking
-// button, followed by a glass card, all on the animated aqua background.
+// The offer: a pink card with eyebrow, title, duration and price, note,
+// included items, a closing line and the page's main call to action,
+// followed by optional extra cards, on the animated aqua background.
 // Slots: default = the items (FeatureCard), "footer" = closing line,
 //        "after" = cards shown under the offer card (GlassCard)
 import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
 import Eyebrow from '../atoms/Eyebrow.astro';
 import Heading from '../atoms/Heading.astro';
-import Pill from '../atoms/Pill.astro';
 import Text from '../atoms/Text.astro';
 import Button from '../atoms/Button.astro';
 
@@ -23,19 +23,14 @@ const { eyebrow, title, price, duration, note, cta } = Astro.props;
 ---
 
 <AnimatedBackdrop>
-	<section class="offer" aria-labelledby="offer-title">
+	<section class="offer container" aria-labelledby="offer-title">
 		<article class="offer__card">
 			<header class="offer__header">
-				<div class="offer__heading">
-					<Eyebrow>{eyebrow}</Eyebrow>
-					<Heading level={2} size="heading-1" id="offer-title">{title}</Heading>
-				</div>
-				<Pill><span class="visually-hidden">Price: </span>{price}</Pill>
+				<Eyebrow>{eyebrow}</Eyebrow>
+				<Heading level={2} size="l" id="offer-title">{title}</Heading>
+				<Text size="l" weight="semibold">{duration} · {price}</Text>
+				<Text size="s" italic>{note}</Text>
 			</header>
-			<div class="offer__meta">
-				<Text weight="bold">{duration}</Text>
-				<Text italic>{note}</Text>
-			</div>
 			<div class="offer__items">
 				<slot />
 			</div>
@@ -50,62 +45,40 @@ const { eyebrow, title, price, duration, note, cta } = Astro.props;
 	.offer {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-3);
-		max-width: calc(var(--layout-card-max) + 2 * var(--layout-gutter));
-		margin-inline: auto;
-		padding: var(--space-10) var(--layout-gutter);
+		gap: var(--space-4);
+		max-width: calc(var(--layout-narrow-max) + 2 * var(--layout-gutter));
+		padding-block: var(--space-section);
 	}
 	.offer__card {
 		display: flex;
 		flex-direction: column;
-		padding: var(--space-8);
+		gap: var(--space-6);
+		padding: var(--space-card);
 		background: var(--color-surface-pink);
 		border-radius: var(--radius-l);
-		box-shadow: var(--shadow-glow);
+		box-shadow: var(--shadow-raised);
 		color: var(--color-white);
 		--focus-color: var(--color-focus-on-light);
 	}
 	.offer__header {
 		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: var(--space-5);
-	}
-	.offer__heading {
-		display: flex;
 		flex-direction: column;
 		gap: var(--space-2);
-	}
-	.offer__meta {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		margin-top: var(--space-4);
 	}
 	.offer__items {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-3);
-		margin-top: var(--space-3);
+		gap: var(--space-4);
 	}
 	.offer :global(.offer__closing) {
-		max-width: var(--layout-narrow-text);
-		margin: var(--space-7) auto var(--space-6);
+		max-width: var(--layout-text-max);
+		margin-inline: auto;
 	}
 	.offer :global(.offer__cta) {
 		align-self: center;
 	}
 
 	@media (max-width: 48rem) {
-		.offer {
-			padding-block: var(--space-9);
-		}
-		.offer__card {
-			padding: var(--space-6) var(--space-5);
-		}
-		.offer__header {
-			flex-direction: column-reverse;
-		}
 		.offer__items {
 			grid-template-columns: 1fr;
 		}

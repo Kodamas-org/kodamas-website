@@ -4,7 +4,7 @@
 
 ## What it is
 
-The offer: a pink card with eyebrow, title, price, duration, note, included items, a closing line and a booking button, followed by optional extra cards, all on the animated aqua background.
+The offer: a pink card with eyebrow, title, “duration · price” line, note, included items, closing line and the page’s main call to action, then optional extra cards, on the animated aqua background. Max width 720px.
 
 ## When to use it
 
@@ -15,22 +15,22 @@ For presenting a product or package.
 | Prop | Options | Default | What it does |
 |---|---|---|---|
 | `eyebrow` | text | — | Small label above the title. |
-| `title` | text | — | Offer name (an h2). |
-| `price` | text | — | Shown in a Pill. |
-| `duration` | text | — | Shown in bold. |
-| `note` | text | — | Shown in italic. |
-| `cta` | { label, href } | — | The inverse button. |
-| (default slot) | FeatureCards | — | The included items. |
+| `title` | text | — | Offer name (h2, Heading `l`). |
+| `price` | text | — | Shown after the duration. |
+| `duration` | text | — | Shown as “duration · price” in lead semibold. |
+| `note` | text | — | Small italic line. |
+| `cta` | { label, href } | — | The `l` inverse button. |
+| (default slot) | FeatureCards | — | Included items. |
 | slot "footer" | text | — | Closing line above the button. |
-| slot "after" | GlassCard(s) | — | Cards shown under the offer card. |
+| slot "after" | GlassCard(s) | — | Cards under the offer card, 16px below. |
 
 ## Variants
 
-Desktop: items in two columns, price on the right of the title. Mobile: items stack, price moves above the eyebrow.
+Items in two columns; one column on phones.
 
 ## Tokens used
 
-`--color-focus-on-light`, `--color-surface-pink`, `--color-white`, `--layout-card-max`, `--layout-gutter`, `--layout-narrow-text`, `--radius-l`, `--shadow-glow`, `--space-10`, `--space-2`, `--space-3`, `--space-4`, `--space-5`, `--space-6`, `--space-7`, `--space-8`, `--space-9`
+`--color-focus-on-light`, `--color-surface-pink`, `--color-white`, `--layout-gutter`, `--layout-narrow-max`, `--layout-text-max`, `--radius-l`, `--shadow-raised`, `--space-2`, `--space-4`, `--space-6`, `--space-card`, `--space-section`
 
 ## Example
 
@@ -40,6 +40,6 @@ Desktop: items in two columns, price on the right of the title. Mobile: items st
 
 ## Notes
 
-Uses: AnimatedBackdrop, Eyebrow, Heading, Pill, Text, Button, plus the FeatureCards and GlassCards you pass in.
+Uses: AnimatedBackdrop, Eyebrow, Heading, Text, Button, plus the FeatureCards and GlassCards you pass in.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

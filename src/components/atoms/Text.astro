@@ -1,10 +1,10 @@
 ---
 // Body text in Inter.
-// size: 'xl' (lead paragraphs), 'l' (quotes), 'm' (default), 's' (small UI)
+// size: 'l' (lead: intro paragraphs) · 'm' (default body) · 's' (small: captions, legal)
 // weight: 'regular', 'semibold', 'bold'
 interface Props {
 	as?: 'p' | 'span' | 'div';
-	size?: 'xl' | 'l' | 'm' | 's';
+	size?: 'l' | 'm' | 's';
 	weight?: 'regular' | 'semibold' | 'bold';
 	italic?: boolean;
 	align?: 'start' | 'center';
@@ -36,21 +36,17 @@ const {
 	.text {
 		font-family: var(--font-body);
 	}
-	.text--xl {
-		font-size: var(--font-size-body-xl);
-		line-height: var(--line-height-body);
-	}
 	.text--l {
-		font-size: var(--font-size-body-l);
-		line-height: var(--line-height-relaxed);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
 	}
 	.text--m {
-		font-size: var(--font-size-body-m);
+		font-size: var(--font-size-body);
 		line-height: var(--line-height-body);
 	}
 	.text--s {
-		font-size: var(--font-size-body-s);
-		line-height: var(--line-height-body);
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
 	}
 	.text--regular {
 		font-weight: var(--font-weight-regular);

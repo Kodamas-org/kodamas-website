@@ -1,9 +1,10 @@
 ---
-// The two founders side by side. Pass PersonCard components in the slot.
+// The founders side by side. Pass PersonCard components in the slot.
 // The heading is for screen readers only; the design has no visible title here.
+// Follows the hero on the same background, so it only adds space below.
 ---
 
-<section class="team" aria-labelledby="team-title">
+<section class="team container" aria-labelledby="team-title">
 	<h2 id="team-title" class="visually-hidden">Our team</h2>
 	<div class="team__grid">
 		<slot />
@@ -12,21 +13,19 @@
 
 <style>
 	.team {
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: 0 var(--layout-gutter) var(--space-9);
+		padding-bottom: var(--space-section);
 	}
 	.team__grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, var(--layout-team-column)));
 		justify-content: center;
-		column-gap: var(--space-9);
-		row-gap: var(--space-9);
+		gap: var(--space-9);
 	}
 
 	@media (max-width: 48rem) {
 		.team__grid {
 			grid-template-columns: minmax(0, var(--layout-team-column));
+			gap: var(--space-8);
 		}
 	}
 </style>
