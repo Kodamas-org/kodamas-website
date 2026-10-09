@@ -3,6 +3,7 @@
 
 export const links = {
 	home: '/',
+	testHome: '/test-home',
 	blogfolio: '#',
 	ourStory: '#',
 	connect: '#',

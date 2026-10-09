@@ -1,6 +1,7 @@
 ---
 // Page template: document head, fonts, tokens, header and footer.
 // Each page passes its title and description and fills the main slot.
+// A page can replace the standard footer by filling the "footer" slot.
 import '@fontsource-variable/funnel-display';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/inter/wght-italic.css';
@@ -33,7 +34,7 @@ const { title, description, noindex = false } = Astro.props;
 		<main id="main">
 			<slot />
 		</main>
-		<SiteFooter />
+		{Astro.slots.has('footer') ? <slot name="footer" /> : <SiteFooter />}
 	</body>
 </html>
 

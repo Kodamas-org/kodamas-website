@@ -18,6 +18,7 @@ Every page starts with it.
 | `description` | text | — | Search-result description. |
 | `noindex` | true / false | false | Hide from search engines (styleguide). |
 | (content) | page sections | — | Goes inside `<main>`. |
+| slot "footer" | a `<footer>` | — | Optional. Replaces the standard SiteFooter (used by the Test Home concept). |
 
 ## Variants
 

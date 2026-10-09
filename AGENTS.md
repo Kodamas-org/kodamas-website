@@ -32,7 +32,7 @@ src/
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
-  pages/                 routes: index.astro, styleguide.astro
+  pages/                 routes: index.astro, styleguide.astro, test-home.astro (design concept)
   data/links.ts          every link URL on the site
 docs/
   design-tokens.md       every token, with values and usage
@@ -51,6 +51,10 @@ reference/               screenshots of the old Squarespace site (content and br
 - **Layout:** every section uses the shared `.container` (1200px + gutter), so all content shares one left edge. Paragraphs max `--layout-text-max` (about 65 characters per line).
 - **Touch:** interactive elements are at least 44px (`--size-tap-min`) on mobile.
 - Check every change at mobile (390px), tablet (820px) and desktop (1440px).
+
+## Test Home concept
+
+`src/pages/test-home.astro` is an art-direction experiment: same fonts, palette and copy, new layout. Its layout values are page-scoped (`--c-*`) on top of the global tokens and it does not use the atomic components except Avatar. If it is adopted, move its values into `tokens.css`, split it into documented components, and remove the "Test Home" nav link.
 
 ## Naming
 

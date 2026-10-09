@@ -1,0 +1,824 @@
+---
+// TEST HOME — a from-scratch art direction of the homepage.
+// Keeps only the brand fonts, the colour palette and the existing copy.
+// Everything else (story order, grid, scale, motifs) is redesigned.
+//
+// Story: promise → offer → proof → voices → people → next step.
+// Grid: 12 columns, 1280px max. Colour fields set the rhythm:
+// navy (promise) → aqua (offer) → navy (proof) → teal (voices) →
+// navy (people) → pink (next step) → navy (signature footer).
+//
+// This page is an experiment: its layout values are page-scoped
+// (--c-*), built on the global colour and font tokens. If adopted, they
+// move into tokens.css and the parts become documented components.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Avatar from '../components/atoms/Avatar.astro';
+import { links } from '../data/links';
+
+const items = [
+	{
+		title: 'Product UI/UX and operations audit',
+		text: "Find what's quietly killing your conversion and team sanity.",
+	},
+	{ title: 'Marketing & Sales audit', text: 'Find where your revenue is leaking, KPI by KPI.' },
+	{ title: 'Combined 90-day roadmap', text: 'Both audits compared with initiatives ranked by impact' },
+];
+const covered = ['Pipeline & CRM', 'Funnel', 'Product Design', 'Product Delivery', 'Operations'];
+const team = [
+	{ name: 'Daniela Contessa', role: 'Former Head of Product', org: links.happyCowDaniela, nationality: 'Italian', flag: '🇮🇹' },
+	{ name: 'Emma Cebuliak', role: 'Former Head of Business Growth', org: links.happyCowEmma, nationality: 'Canadian', flag: '🇨🇦' },
+];
+const voices = [
+	{
+		name: 'Samyukta Kartik',
+		href: links.samyuktaKartik,
+		role: 'Marketing & Communications Consultant',
+		quote: '“Emma created a thriving environment where every team member had the space to grow into their unique strengths. Her insights helped me and contributed to some of our best team achievements.”',
+	},
+	{
+		name: 'Martin Kubler',
+		href: links.martinKubler,
+		role: 'Founder of The Gluttonous Sloth',
+		quote: '“Emma has managed to create a great team culture with the right balance of goal-hungriness and market realism. Furthermore, creating a great product with limited resources takes great skill, yet somehow Daniela manages this effortlessly.”',
+	},
+];
+const footerLinks = [
+	{ label: 'Our Story', href: links.ourStory },
+	{ label: 'Blogfolio', href: links.blogfolio },
+	{ label: 'Emma’s LinkedIn', href: links.emmaLinkedIn },
+	{ label: 'Daniela’s LinkedIn', href: links.danielaLinkedIn },
+];
+---
+
+<BaseLayout
+	title="Test Home · Kodamas"
+	description="When your app and team outgrow their DIY phase, we build the tools and processes that keep your people happy and product & growth moving together."
+	noindex
+>
+	<div class="c">
+		<!-- 1. PROMISE -->
+		<section class="c-hero c-wrap" aria-labelledby="c-hero-title">
+			<div class="c-hero__shapes" aria-hidden="true">
+				<span class="c-shape c-shape--pink"></span>
+				<span class="c-shape c-shape--outline"></span>
+				<span class="c-shape c-shape--aqua"></span>
+			</div>
+			<h1 id="c-hero-title" class="c-hero__title">
+				When your app and team <em>outgrow their DIY&nbsp;phase</em>, we build the tools and processes
+				that keep your people happy and product &amp; growth moving together.
+			</h1>
+			<div class="c-hero__actions">
+				<a class="c-btn c-btn--aqua" href={links.bookCall}>Book a call</a>
+				<a class="c-textlink" href="#c-offer">The Offer <span aria-hidden="true">↓</span></a>
+			</div>
+		</section>
+
+		<!-- 2. OFFER -->
+		<section id="c-offer" class="c-offer" aria-labelledby="c-offer-title">
+			<div class="c-wrap c-offer__grid">
+				<div class="c-offer__aside">
+					<p class="c-label">The Offer</p>
+					<h2 id="c-offer-title" class="c-h2">The Founder Reset Sprint 🚀</h2>
+					<p class="c-price">
+						<span class="c-price__amount">€500</span>
+						<span class="c-price__meta">
+							<strong>1 week</strong>
+							<em>Limited-offer launch pricing</em>
+						</span>
+					</p>
+					<a class="c-btn c-btn--navy" href={links.bookCall}>Book a call</a>
+				</div>
+
+				<div class="c-offer__main">
+					<ol class="c-items" role="list">
+						{
+							items.map((item, i) => (
+								<li class="c-item" data-reveal>
+									<span class="c-item__num" aria-hidden="true">
+										{String(i + 1).padStart(2, '0')}
+									</span>
+									<div>
+										<h3 class="c-h3">{item.title}</h3>
+										<p>{item.text}</p>
+									</div>
+								</li>
+							))
+						}
+					</ol>
+					<div class="c-covered" data-reveal>
+						<h3 class="c-label">What’s Covered</h3>
+						<ul class="c-tags" role="list">
+							{covered.map((tag) => <li class="c-tag">{tag}</li>)}
+						</ul>
+					</div>
+				</div>
+
+				<p class="c-statement" data-reveal>
+					Most consultants give you one half of this. We give you both, prioritized and sequenced.
+				</p>
+			</div>
+		</section>
+
+		<!-- 3. PROOF -->
+		<section class="c-proof c-wrap" aria-labelledby="c-proof-title">
+			<h2 id="c-proof-title" class="c-h2 c-proof__title" data-reveal>
+				Why is streamlining processes early on a good idea?
+			</h2>
+			<figure class="c-proof__figure" data-reveal>
+				<p class="c-proof__number" aria-hidden="true">400%</p>
+				<blockquote>
+					<p>
+						"Fixing usability issues before launch has been shown to deliver over 400% ROI with
+						payback in under six months, driven largely by a 7.2% lift in conversion rate."
+					</p>
+				</blockquote>
+				<figcaption>(Forrester Consulting)</figcaption>
+			</figure>
+		</section>
+
+		<!-- 4. VOICES -->
+		<section class="c-voices" aria-labelledby="c-voices-title">
+			<div class="c-wrap">
+				<h2 id="c-voices-title" class="visually-hidden">What people say about us</h2>
+				<figure class="c-feature" data-reveal>
+					<span class="c-quote-mark" aria-hidden="true"></span>
+					<blockquote>
+						<p>
+							“Daniela sets clear priorities and drives cross-functional teams to deliver on time and
+							to a high standard.”
+						</p>
+					</blockquote>
+					<figcaption class="c-byline">
+						<Avatar alt="Geoff Hucker" shape="circle" size="testimonial" />
+						<span>
+							<a href={links.geoffHucker}>Geoff Hucker</a>
+							<span>Work for Impact CEO &amp; Founder</span>
+						</span>
+					</figcaption>
+				</figure>
+				<div class="c-voices__grid">
+					{
+						voices.map((v) => (
+							<figure class="c-voice" data-reveal>
+								<blockquote>
+									<p>{v.quote}</p>
+								</blockquote>
+								<figcaption class="c-byline">
+									<Avatar alt={v.name} shape="circle" size="testimonial" />
+									<span>
+										<a href={v.href}>{v.name}</a>
+										<span>{v.role}</span>
+									</span>
+								</figcaption>
+							</figure>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- 5. PEOPLE -->
+		<section class="c-team c-wrap" aria-labelledby="c-team-title">
+			<h2 id="c-team-title" class="visually-hidden">Our team</h2>
+			<p class="c-team__lead" data-reveal>Based in Italy and Japan, working globally 🌏.</p>
+			<div class="c-team__grid">
+				{
+					team.map((p) => (
+						<article class="c-person" data-reveal>
+							<Avatar alt={p.name} shape="drop" size="team" class="c-person__photo" />
+							<h3 class="c-h3">{p.name}</h3>
+							<p>
+								{p.role}{' '}<a href={p.org}>@HappyCow</a>
+							</p>
+							<p class="c-person__nat">
+								<span aria-hidden="true">{p.flag}</span>{' '}{p.nationality}
+							</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- 6. NEXT STEP -->
+		<section class="c-wrap" aria-labelledby="c-next-title">
+			<div class="c-next" data-reveal>
+				<span class="c-next__shape" aria-hidden="true"></span>
+				<h2 id="c-next-title" class="c-next__title">Keep Going</h2>
+				<div class="c-next__body">
+					<p>The Sprint gives you the roadmap.</p>
+					<p>
+						If you want help executing it, work with us ongoing on either lateral, product or
+						marketing/sales, or both.
+					</p>
+					<a class="c-btn c-btn--aqua" href={links.connect}>Connect With Us</a>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- 7. SIGNATURE FOOTER -->
+	<footer slot="footer" class="c-footer">
+		<div class="c-wrap c-footer__top">
+			<nav aria-label="Footer">
+				<ul class="c-footer__links" role="list">
+					{
+						footerLinks.map((l) => (
+							<li>
+								<a href={l.href}>
+									{l.label}{' '}<span aria-hidden="true">→</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+			<div class="c-footer__legal">
+				<a href={links.privacyTerms}>Privacy Policy &amp; Terms of Service</a>
+				<span>All rights reserved 2026 ©</span>
+			</div>
+		</div>
+		<p class="c-footer__mark" aria-hidden="true">Kodamas</p>
+	</footer>
+</BaseLayout>
+
+<script>
+	// Gentle fade-up as sections enter the screen. Content is visible
+	// without JavaScript and for visitors who prefer reduced motion.
+	const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+	const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (!calm && 'IntersectionObserver' in window) {
+		document.documentElement.classList.add('c-js');
+		const io = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add('is-in');
+						io.unobserve(e.target);
+					}
+				});
+			},
+			{ rootMargin: '0px 0px -10% 0px' },
+		);
+		targets.forEach((t) => io.observe(t));
+	}
+</script>
+
+<style>
+	/* ---------- Page-scoped layout tokens (built on global tokens) ---------- */
+	.c,
+	.c-footer {
+		--c-max: 80rem;
+		--c-gutter: clamp(1.25rem, 0.5rem + 3.5vw, 3rem);
+		--c-section: clamp(5rem, 3rem + 7vw, 10rem);
+		--c-col-gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+		--c-size-statement: clamp(2.5rem, 1.2rem + 4.6vw, 5.25rem);
+		--c-size-h2: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
+		--c-size-h3: clamp(1.25rem, 1.05rem + 0.6vw, 1.625rem);
+		--c-size-quote: clamp(1.75rem, 1rem + 2.4vw, 3rem);
+		--c-size-number: clamp(6rem, 3rem + 12vw, 15rem);
+		--c-size-mark: clamp(4.5rem, 20.5vw, 20rem);
+		--c-size-cluster: clamp(8rem, 3rem + 16vw, 18rem);
+		--c-measure-quote: 52rem;
+		--c-reveal: 700ms;
+		--c-label-tracking: 0.14em;
+		--c-rule: color-mix(in srgb, currentColor 22%, transparent);
+	}
+
+	.c-wrap {
+		max-width: calc(var(--c-max) + 2 * var(--c-gutter));
+		margin-inline: auto;
+		padding-inline: var(--c-gutter);
+	}
+
+	/* ---------- Shared type ---------- */
+	.c-h2 {
+		font-family: var(--font-display);
+		font-size: var(--c-size-h2);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
+	}
+	.c-h3 {
+		font-family: var(--font-display);
+		font-size: var(--c-size-h3);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-snug);
+	}
+	.c-label {
+		font-family: var(--font-body);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--c-label-tracking);
+		text-transform: uppercase;
+	}
+
+	/* ---------- Buttons and links ---------- */
+	.c-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--button-height-l);
+		padding-inline: var(--button-padding-l);
+		border-radius: var(--radius-pill);
+		font-size: var(--font-size-body);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: none;
+		white-space: nowrap;
+		transition:
+			transform var(--duration-fast) var(--ease-standard),
+			box-shadow var(--duration-fast) var(--ease-standard);
+	}
+	.c-btn:hover {
+		transform: translateY(calc(var(--space-1) * -0.5));
+		box-shadow: var(--shadow-card);
+	}
+	.c-btn--aqua {
+		background: var(--color-aqua-glow);
+		color: var(--color-midnight-navy);
+	}
+	.c-btn--navy {
+		background: var(--color-midnight-navy);
+		color: var(--color-white);
+	}
+	.c-textlink {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--size-tap-min);
+		color: var(--color-aqua-glow);
+		font-weight: var(--font-weight-semibold);
+		text-underline-offset: var(--size-underline-offset);
+	}
+
+	/* ---------- 1. Promise ---------- */
+	.c-hero {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--c-col-gap);
+		padding-block: var(--c-section);
+	}
+	.c-hero__title {
+		position: relative;
+		z-index: var(--z-raised);
+		grid-column: 1 / span 9;
+		font-family: var(--font-display);
+		font-size: var(--c-size-statement);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
+	}
+	.c-hero__title em {
+		font-style: normal;
+		color: var(--color-aqua-glow);
+		text-decoration-line: underline;
+		text-decoration-color: var(--color-highlight-pink);
+		text-decoration-thickness: 0.08em;
+		text-underline-offset: 0.12em;
+		text-decoration-skip-ink: none;
+	}
+	.c-hero__actions {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-5) var(--space-6);
+		margin-top: var(--space-8);
+	}
+
+	/* Composed drop cluster, top right */
+	.c-hero__shapes {
+		position: absolute;
+		top: calc(var(--c-section) * 0.5);
+		right: var(--c-gutter);
+		width: var(--c-size-cluster);
+		aspect-ratio: 1;
+		pointer-events: none;
+	}
+	.c-shape {
+		position: absolute;
+		border-radius: var(--radius-drop);
+	}
+	.c-shape--pink {
+		inset: 0 0 18% 18%;
+		background: var(--gradient-drop);
+		transform: rotate(180deg);
+		opacity: 0.9;
+	}
+	.c-shape--outline {
+		inset: 30% 30% 0 0;
+		border: var(--border-width-medium) solid var(--color-aqua-glow);
+	}
+	.c-shape--aqua {
+		width: 16%;
+		aspect-ratio: 1;
+		left: 6%;
+		top: 4%;
+		background: var(--color-aqua-glow);
+	}
+
+	/* ---------- 2. Offer ---------- */
+	.c-offer {
+		padding-block: var(--c-section);
+		background: var(--color-aqua-glow);
+		color: var(--color-midnight-navy);
+		--focus-color: var(--color-focus-on-light);
+	}
+	.c-offer__grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--c-col-gap);
+		row-gap: var(--space-9);
+	}
+	.c-offer__aside {
+		grid-column: 1 / span 5;
+		align-self: start;
+		position: sticky;
+		top: var(--space-10);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-5);
+	}
+	.c-price {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		padding-block: var(--space-4);
+		border-block: var(--border-width-thin) solid var(--c-rule);
+		width: 100%;
+	}
+	.c-price__amount {
+		font-family: var(--font-display);
+		font-size: var(--c-size-h2);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-none);
+	}
+	.c-price__meta {
+		display: flex;
+		flex-direction: column;
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
+	}
+	.c-offer__main {
+		grid-column: 7 / -1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
+	.c-items {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+	.c-item {
+		display: grid;
+		grid-template-columns: var(--space-9) 1fr;
+		gap: var(--space-4);
+		padding-block: var(--space-6);
+		border-top: var(--border-width-thin) solid var(--c-rule);
+	}
+	.c-item:last-child {
+		border-bottom: var(--border-width-thin) solid var(--c-rule);
+	}
+	.c-item__num {
+		font-family: var(--font-display);
+		font-size: var(--c-size-h3);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-snug);
+		color: var(--color-pink-deep);
+	}
+	.c-item p {
+		margin-top: var(--space-2);
+	}
+	.c-covered {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+	.c-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+	.c-tag {
+		padding: var(--space-2) var(--space-4);
+		border: var(--border-width-thin) solid var(--color-midnight-navy);
+		border-radius: var(--radius-pill);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+	}
+	.c-statement {
+		grid-column: 1 / -1;
+		max-width: 22ch;
+		font-family: var(--font-display);
+		font-size: var(--c-size-h2);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
+	}
+
+	/* ---------- 3. Proof ---------- */
+	.c-proof {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--c-col-gap);
+		row-gap: var(--space-8);
+		align-items: end;
+		padding-block: var(--c-section);
+	}
+	.c-proof__title {
+		grid-column: 1 / span 5;
+		align-self: start;
+	}
+	.c-proof__figure {
+		grid-column: 7 / -1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+	.c-proof__number {
+		font-family: var(--font-display);
+		font-size: var(--c-size-number);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-display);
+		color: var(--color-aqua-glow);
+	}
+	.c-proof__figure figcaption {
+		font-size: var(--font-size-small);
+		color: var(--color-glass-aqua);
+	}
+
+	/* ---------- 4. Voices ---------- */
+	.c-voices {
+		padding-block: var(--c-section);
+		background: var(--color-deep-teal);
+		color: var(--color-white);
+	}
+	.c-feature {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+		max-width: var(--c-measure-quote);
+	}
+	.c-quote-mark {
+		width: var(--size-drop-m);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
+	}
+	.c-feature blockquote {
+		font-family: var(--font-display);
+		font-size: var(--c-size-quote);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+	}
+	.c-voices__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-9) var(--c-col-gap);
+		margin-top: var(--space-10);
+	}
+	.c-voice {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--space-6);
+		padding-top: var(--space-6);
+		border-top: var(--border-width-thin) solid var(--c-rule);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+	.c-byline {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
+	}
+	.c-byline > span {
+		display: flex;
+		flex-direction: column;
+	}
+	.c-byline a {
+		font-size: var(--font-size-ui);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-white);
+		text-underline-offset: var(--size-underline-offset);
+	}
+
+	/* ---------- 5. People ---------- */
+	.c-team {
+		padding-block: var(--c-section);
+	}
+	.c-team__lead {
+		max-width: 18ch;
+		font-family: var(--font-display);
+		font-size: var(--c-size-h2);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+	}
+	.c-team__grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--c-col-gap);
+		margin-top: var(--space-9);
+	}
+	.c-person {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+	.c-person:first-child {
+		grid-column: 2 / span 4;
+	}
+	/* Staggered: the second portrait sits lower, like an editorial spread */
+	.c-person:last-child {
+		grid-column: 8 / span 4;
+		margin-top: var(--space-10);
+	}
+	.c-person :global(.c-person__photo) {
+		width: 100%;
+		max-width: var(--layout-team-column);
+		margin-bottom: var(--space-4);
+	}
+	.c-person a {
+		color: var(--color-aqua-glow);
+		text-underline-offset: var(--size-underline-offset);
+	}
+	.c-person__nat {
+		font-weight: var(--font-weight-semibold);
+	}
+
+	/* ---------- 6. Next step ---------- */
+	.c-next {
+		position: relative;
+		overflow: hidden;
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--c-col-gap);
+		row-gap: var(--space-6);
+		margin-bottom: var(--c-section);
+		padding: clamp(2.5rem, 1rem + 5vw, 6rem);
+		background: var(--color-pink-deep);
+		border-radius: var(--radius-l);
+		color: var(--color-white);
+		--focus-color: var(--color-white);
+	}
+	.c-next__shape {
+		position: absolute;
+		top: -35%;
+		right: -10%;
+		width: 38%;
+		aspect-ratio: 1;
+		border: var(--border-width-medium) solid color-mix(in srgb, var(--color-white) 35%, transparent);
+		border-radius: var(--radius-drop);
+		pointer-events: none;
+	}
+	.c-next__title {
+		position: relative;
+		grid-column: 1 / span 6;
+		font-family: var(--font-display);
+		font-size: var(--c-size-number);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-display);
+	}
+	.c-next__body {
+		position: relative;
+		grid-column: 8 / -1;
+		align-self: end;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-4);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+	.c-next__body .c-btn {
+		margin-top: var(--space-4);
+	}
+
+	/* ---------- 7. Signature footer ---------- */
+	.c-footer {
+		overflow: hidden;
+		padding-top: var(--space-9);
+		border-top: var(--border-width-thin) solid var(--color-control-teal);
+	}
+	.c-footer__top {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: var(--space-6);
+	}
+	.c-footer__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2) var(--space-6);
+	}
+	.c-footer__links a,
+	.c-footer__legal a {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--size-tap-min);
+		color: var(--color-white);
+		text-decoration: none;
+	}
+	.c-footer__links a:hover,
+	.c-footer__legal a:hover {
+		color: var(--color-aqua-glow);
+		text-decoration: underline;
+	}
+	.c-footer__legal {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		font-size: var(--font-size-small);
+		color: var(--color-glass-aqua);
+	}
+	.c-footer__mark {
+		margin-top: var(--space-9);
+		font-family: var(--font-display);
+		font-size: var(--c-size-mark);
+		font-weight: var(--font-weight-bold);
+		line-height: 0.78;
+		letter-spacing: var(--letter-spacing-display);
+		text-align: center;
+		color: var(--color-aqua-glow);
+		white-space: nowrap;
+	}
+
+	/* ---------- Reveal motion ---------- */
+	:global(.c-js) [data-reveal] {
+		opacity: 0;
+		transform: translateY(var(--space-5));
+		transition:
+			opacity var(--c-reveal) var(--ease-standard),
+			transform var(--c-reveal) var(--ease-standard);
+	}
+	:global(.c-js) [data-reveal].is-in {
+		opacity: 1;
+		transform: none;
+	}
+
+	/* ---------- Tablet ---------- */
+	@media (max-width: 64rem) {
+		.c-hero__title {
+			grid-column: 1 / -1;
+			padding-top: var(--c-size-cluster);
+		}
+		.c-hero__shapes {
+			top: var(--space-6);
+		}
+		.c-offer__aside,
+		.c-offer__main,
+		.c-proof__title,
+		.c-proof__figure {
+			grid-column: 1 / -1;
+		}
+		.c-offer__aside {
+			position: static;
+		}
+		.c-person:first-child {
+			grid-column: 1 / span 6;
+		}
+		.c-person:last-child {
+			grid-column: 7 / -1;
+		}
+		.c-next__title,
+		.c-next__body {
+			grid-column: 1 / -1;
+		}
+	}
+
+	/* ---------- Mobile ---------- */
+	@media (max-width: 48rem) {
+		.c-voices__grid {
+			grid-template-columns: 1fr;
+			margin-top: var(--space-9);
+		}
+		.c-person:first-child,
+		.c-person:last-child {
+			grid-column: 1 / -1;
+		}
+		.c-person:last-child {
+			margin-top: var(--space-9);
+		}
+		.c-person :global(.c-person__photo) {
+			max-width: calc(var(--size-avatar-team) * 1.25);
+		}
+		.c-footer__legal {
+			align-items: flex-start;
+		}
+	}
+</style>
