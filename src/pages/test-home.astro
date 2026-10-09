@@ -77,11 +77,6 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 
 		<!-- HERO -->
 		<section class="c-hero c-wrap" aria-labelledby="c-hero-title">
-			<div class="c-hero__symbol" aria-hidden="true">
-				<span class="c-shape c-shape--pink"></span>
-				<span class="c-shape c-shape--outline"></span>
-				<span class="c-shape c-shape--aqua"></span>
-			</div>
 			<h1 id="c-hero-title" class="c-mark">
 				<span class="visually-hidden">Kodamas</span>
 				<span class="c-mark__letters" aria-hidden="true">
@@ -95,13 +90,20 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 				</span>
 			</h1>
 			<div class="c-hero__foot">
-				<p class="c-hero__intro">
-					When your app and team <em>outgrow their DIY phase</em>, we build the tools and processes
-					that keep your people happy and product &amp; growth moving together.
-				</p>
-				<div class="c-hero__actions">
-					<a class="c-btn c-btn--aqua" href={links.bookCall}>Book a call</a>
-					<a class="c-textlink" href="#c-offer">The Offer <span aria-hidden="true">↓</span></a>
+				<div class="c-hero__text">
+					<p class="c-hero__intro">
+						When your app and team <em>outgrow their DIY phase</em>, we build the tools and processes
+						that keep your people happy and product &amp; growth moving together.
+					</p>
+					<div class="c-hero__actions">
+						<a class="c-btn c-btn--aqua" href={links.bookCall}>Book a call</a>
+						<a class="c-textlink" href="#c-offer">The Offer <span aria-hidden="true">↓</span></a>
+					</div>
+				</div>
+				<div class="c-hero__symbol" aria-hidden="true">
+					<span class="c-shape c-shape--pink"></span>
+					<span class="c-shape c-shape--outline"></span>
+					<span class="c-shape c-shape--aqua"></span>
 				</div>
 			</div>
 		</section>
@@ -168,15 +170,15 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 					<p class="c-stat__fig c-stat__fig--accent">
 						<span data-count="400">400</span>%
 					</p>
-					<p class="c-stat__cap">ROI</p>
+					<p class="c-stat__cap"><svg class="c-stat__icon c-stat__icon--aqua" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>ROI</p>
 				</div>
 				<div class="c-stat" data-reveal>
 					<p class="c-stat__fig">&lt;<span data-count="6">6</span></p>
-					<p class="c-stat__cap">payback in under six months</p>
+					<p class="c-stat__cap"><svg class="c-stat__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4l2.5 2.5M9 2h6M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>payback in under six months</p>
 				</div>
 				<div class="c-stat" data-reveal>
 					<p class="c-stat__fig"><span data-count="7.2" data-decimals="1">7.2</span>%</p>
-					<p class="c-stat__cap">lift in conversion rate</p>
+					<p class="c-stat__cap"><svg class="c-stat__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M12 20V10M19 20V4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>lift in conversion rate</p>
 				</div>
 			</div>
 			<figure class="c-proof__source" data-reveal>
@@ -236,9 +238,9 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 			<h2 id="c-team-title" class="visually-hidden">Our team</h2>
 			<p class="c-display-light c-team__lead" data-reveal>
 				Based in <span class="c-nowrap">Italy<span class="c-clock" data-clock="Europe/Rome" aria-hidden="true"
-					><span class="c-clock__dot"></span><span class="c-clock__time"></span></span
+					><svg class="c-clock__icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="c-clock__time"></span></span
 				></span> and <span class="c-nowrap">Japan<span class="c-clock" data-clock="Asia/Tokyo" aria-hidden="true"
-					><span class="c-clock__dot"></span><span class="c-clock__time"></span></span
+					><svg class="c-clock__icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="c-clock__time"></span></span
 				>,</span> working globally 🌏.
 			</p>
 			<div class="c-team__grid">
@@ -297,7 +299,18 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 				<div class="c-next__cta" data-reveal>
 					<a class="c-btn c-btn--aqua" href={links.connect}>Connect With Us</a>
 					<button class="c-pause" type="button" aria-label="Pause animation" data-marquee-toggle>
-						<span class="c-pause__icon" aria-hidden="true"></span>
+						<svg class="c-pause__icon c-pause__icon--pause" viewBox="0 0 12 12" aria-hidden="true"
+							><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"></rect><rect
+								x="7"
+								y="1"
+								width="3"
+								height="10"
+								rx="1"
+								fill="currentColor"></rect></svg
+						>
+						<svg class="c-pause__icon c-pause__icon--play" viewBox="0 0 12 12" aria-hidden="true"
+							><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"></path></svg
+						>
 					</button>
 				</div>
 			</div>
@@ -434,7 +447,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-footer {
 		--c-max: 80rem;
 		--c-gutter: clamp(1.25rem, 0.5rem + 3.5vw, 3rem);
-		--c-section: clamp(6rem, 4rem + 8vw, 12rem);
+		--c-section: clamp(4rem, 2.5rem + 4.5vw, 7.5rem); /* 64 → 120: the one gap between sections */
 		--c-col-gap: clamp(1rem, 0.5rem + 2vw, 2rem);
 		--c-size-light: clamp(2rem, 1.1rem + 3.4vw, 4.25rem);
 		--c-size-intro: clamp(1.375rem, 1.05rem + 1.1vw, 2.125rem);
@@ -520,7 +533,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		align-items: baseline;
 		gap: var(--space-5);
 		padding-top: var(--space-4);
-		margin-bottom: var(--space-9);
+		margin-bottom: var(--space-8);
 		border-top: var(--border-width-thin) solid var(--c-rule);
 		font-size: var(--font-size-small);
 		font-weight: var(--font-weight-semibold);
@@ -578,10 +591,12 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		padding-top: var(--space-8);
 		padding-bottom: var(--c-section);
 	}
+	/* Desktop: the symbol sits beside the intro, so the wordmark starts
+	   right under the header with no empty band above it. */
 	.c-hero__symbol {
-		position: absolute;
-		top: var(--space-6);
-		right: var(--c-gutter);
+		position: relative;
+		grid-column: 10 / -1;
+		justify-self: end;
 		width: var(--c-size-cluster);
 		aspect-ratio: 1;
 		pointer-events: none;
@@ -617,7 +632,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-mark {
 		position: relative;
 		container-type: inline-size;
-		margin-top: calc(var(--c-size-cluster) * 0.82);
+		margin-top: var(--space-6);
 	}
 	.c-mark__letters {
 		display: block;
@@ -648,11 +663,16 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		column-gap: var(--c-col-gap);
 		row-gap: var(--space-6);
-		align-items: end;
-		margin-top: var(--space-9);
+		align-items: center;
+		margin-top: var(--space-8);
+	}
+	.c-hero__text {
+		grid-column: 1 / span 8;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-7);
 	}
 	.c-hero__intro {
-		grid-column: 1 / span 8;
 		font-family: var(--font-display);
 		font-size: var(--c-size-intro);
 		font-weight: var(--c-weight-light);
@@ -670,11 +690,10 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		text-decoration-skip-ink: none;
 	}
 	.c-hero__actions {
-		grid-column: 10 / -1;
 		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		gap: var(--space-3);
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3) var(--space-6);
 	}
 
 	/* ---------- 01 Offer ---------- */
@@ -785,7 +804,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 
 	/* ---------- 02 Proof ---------- */
 	.c-proof {
-		padding-block: var(--c-section);
+		padding-top: var(--c-section);
 	}
 	.c-proof .c-display-light {
 		max-width: 20ch;
@@ -793,7 +812,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-stats {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		margin-top: var(--space-10);
+		margin-top: var(--space-8);
 		border-top: var(--border-width-thin) solid var(--c-rule);
 	}
 	.c-stat {
@@ -819,16 +838,27 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		color: var(--color-aqua-glow);
 	}
 	.c-stat__cap {
-		max-width: 16ch;
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
 		font-size: var(--font-size-body);
 		color: var(--color-glass-aqua);
+	}
+	.c-stat__icon {
+		flex-shrink: 0;
+		width: var(--space-5);
+		height: var(--space-5);
+		color: var(--color-highlight-pink);
+	}
+	.c-stat__icon--aqua {
+		color: var(--color-aqua-glow);
 	}
 	.c-proof__source {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-2);
 		max-width: var(--layout-text-max);
-		margin-top: var(--space-10);
+		margin-top: var(--space-8);
 		font-size: var(--font-size-small);
 		line-height: var(--line-height-lead);
 		color: var(--color-glass-aqua);
@@ -836,7 +866,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 
 	/* ---------- 03 Voices ---------- */
 	.c-voices {
-		padding-block: var(--c-section);
+		padding-top: var(--c-section);
 	}
 	.c-voices__grid {
 		display: grid;
@@ -872,7 +902,7 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		grid-column: 4 / -1;
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-10);
+		gap: var(--space-9);
 	}
 	.c-voice {
 		display: flex;
@@ -919,10 +949,14 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 
 	/* ---------- 04 People ---------- */
 	.c-team {
-		padding-block: var(--c-section);
+		padding-top: var(--c-section);
+	}
+	/* One centred line on desktop, sized to the container */
+	.c-team {
+		container-type: inline-size;
 	}
 	.c-team__lead {
-		max-width: 22ch;
+		text-align: center;
 	}
 	.c-clock {
 		display: inline-flex;
@@ -946,38 +980,27 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-clock:not(.is-set) {
 		display: none;
 	}
-	.c-clock__dot {
-		width: var(--space-2);
-		aspect-ratio: 1;
-		border-radius: var(--radius-round);
-		background: var(--color-aqua-glow);
-		animation: c-pulse 2s ease-in-out infinite;
-	}
-	@keyframes c-pulse {
-		50% {
-			opacity: 0.3;
-		}
+	.c-clock__icon {
+		width: var(--space-4);
+		height: var(--space-4);
 	}
 	.c-team__grid {
 		display: grid;
-		grid-template-columns: repeat(12, minmax(0, 1fr));
-		column-gap: var(--c-col-gap);
-		margin-top: var(--space-10);
+		grid-template-columns: repeat(2, minmax(0, var(--layout-team-column)));
+		justify-content: center;
+		gap: var(--space-8) var(--space-10);
+		margin-top: var(--space-8);
 	}
 	.c-person {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: var(--space-2);
-	}
-	.c-person:first-child {
-		grid-column: 4 / span 4;
-	}
-	.c-person:last-child {
-		grid-column: 9 / span 4;
-		margin-top: var(--space-10);
+		text-align: center;
 	}
 	.c-person__frame {
 		position: relative;
+		width: 100%;
 		margin-bottom: var(--space-5);
 	}
 	.c-person :global(.c-person__photo) {
@@ -1104,14 +1127,13 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 	.c-pause__icon {
 		width: var(--space-3);
 		height: var(--space-3);
-		border-inline: var(--space-1) solid currentColor;
 	}
-	.c-next[data-paused] .c-pause__icon {
-		border: 0;
-		border-left: var(--space-3) solid currentColor;
-		border-block: calc(var(--space-3) / 2) solid transparent;
-		height: 0;
-		width: 0;
+	.c-pause__icon--play,
+	.c-next[data-paused] .c-pause__icon--pause {
+		display: none;
+	}
+	.c-next[data-paused] .c-pause__icon--play {
+		display: block;
 	}
 
 	/* ---------- Footer ---------- */
@@ -1200,16 +1222,21 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 
 	@media (prefers-reduced-motion: reduce) {
 		.c-hero__symbol,
-		.c-mark__l,
-		.c-clock__dot {
+		.c-mark__l {
 			animation: none;
+		}
+	}
+
+	@media (min-width: 64.0625rem) {
+		.c-team__lead {
+			font-size: 3.3cqi;
+			white-space: nowrap;
 		}
 	}
 
 	/* ---------- Tablet ---------- */
 	@media (max-width: 64rem) {
-		.c-hero__intro,
-		.c-hero__actions,
+		.c-hero__text,
 		.c-offer__aside,
 		.c-offer__main,
 		.c-voices__aside,
@@ -1218,30 +1245,31 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 		.c-next__cta {
 			grid-column: 1 / -1;
 		}
-		.c-hero__actions {
-			flex-direction: row;
-			align-items: center;
+		/* Tablet and mobile: the symbol returns above the wordmark */
+		.c-hero__symbol {
+			position: absolute;
+			top: var(--space-6);
+			right: var(--c-gutter);
 		}
-		.c-offer__aside,
-		.c-voices__aside {
+		.c-mark {
+			margin-top: calc(var(--c-size-cluster) * 0.82);
+		}
+		.c-offer__aside {
 			position: static;
 		}
+		/* The counter sticks while the quotes are on screen, then leaves with the section */
 		.c-voices__aside {
+			z-index: var(--z-raised);
+			top: 0;
 			flex-direction: row;
 			align-items: center;
-			margin-bottom: var(--space-8);
+			margin-bottom: var(--space-6);
+			padding-block: var(--space-4);
+			background: var(--color-midnight-navy);
+			border-bottom: var(--border-width-thin) solid var(--c-rule);
 		}
 		.c-voices__mark {
 			width: var(--size-drop-s);
-		}
-		.c-voices__list {
-			gap: var(--space-10);
-		}
-		.c-person:first-child {
-			grid-column: 1 / span 6;
-		}
-		.c-person:last-child {
-			grid-column: 7 / -1;
 		}
 		.c-next__cta {
 			justify-content: flex-start;
@@ -1259,12 +1287,8 @@ const letters = ['K', 'o', 'd', 'a', 'm', 'a', 's'];
 			border-left: 0;
 			border-bottom: var(--border-width-thin) solid var(--c-rule);
 		}
-		.c-person:first-child,
-		.c-person:last-child {
-			grid-column: 1 / -1;
-		}
-		.c-person:last-child {
-			margin-top: var(--space-9);
+		.c-team__grid {
+			grid-template-columns: minmax(0, var(--layout-team-column));
 		}
 		.c-person :global(.c-person__photo) {
 			max-width: calc(var(--size-avatar-team) * 1.25);
