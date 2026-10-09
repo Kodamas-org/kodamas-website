@@ -16,7 +16,7 @@ None.
 
 ## Variants
 
-No props. Nav items: Blogfolio, Our Story, Test Home (temporary link to the `/test-home` concept), plus the “Connect With Us” button. URLs live in `src/data/links.ts`.
+No props. Nav items: Blogfolio, Our Story, Test Home (link to `/test-home`, the chosen design direction; removed once it becomes the homepage), plus the “Connect With Us” button. URLs live in `src/data/links.ts`.
 
 ## Tokens used
 

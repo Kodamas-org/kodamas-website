@@ -10,5 +10,6 @@ npm run build   # output in dist/
 
 - Design tokens: [`docs/design-tokens.md`](docs/design-tokens.md)
 - Components: [`docs/components/`](docs/components/README.md)
-- Live styleguide: `/styleguide`
+- Live styleguide: `/styleguide` (currently documents the temporary Squarespace-style components)
+- Design direction: `/test-home` (see AGENTS.md)
 - Project conventions: [`AGENTS.md`](AGENTS.md) (also `CLAUDE.md`)

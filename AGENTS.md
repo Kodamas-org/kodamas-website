@@ -32,7 +32,7 @@ src/
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
-  pages/                 routes: index.astro, styleguide.astro, test-home.astro (design concept)
+  pages/                 routes: test-home.astro (design direction), index.astro (temporary Squarespace-style homepage), styleguide.astro
   data/links.ts          every link URL on the site
 docs/
   design-tokens.md       every token, with values and usage
@@ -40,15 +40,28 @@ docs/
 reference/               screenshots of the old Squarespace site (content and brand reference)
 ```
 
-## Design principles
+## Design direction (decided)
 
-- **Current state (owner's decision):** the main homepage (`index.astro`) and its components intentionally follow the reference screenshot closely. The new design direction is being explored separately on Test Home. Do not restyle the main homepage unless asked.
-- The screenshots in `reference/` are the reference for **content, brand and the purpose of each section** — not a layout specification. Do not copy Squarespace layout quirks (sizes, spacing, proportions); follow standard UI/UX practice instead.
-- Keep each section's content, purpose, order and brand feel. Layout, sizing and spacing should come from the token system (consistent spacing scale, restrained type scale, defined button sizes), not from pixel-matching the screenshot.
+**Test Home (`src/pages/test-home.astro`) is the design direction for the whole site.** All new pages must be built in its style and from its parts. Key traits:
 
-## Test Home concept
+- One dark navy canvas; aqua is reserved for a single bright moment per page (on the homepage, the offer). Do not alternate section background colours.
+- Typography: Funnel Display Light for large statements against Bold/Heavy for emphasis; Inter for body and UI. Key phrases highlighted in aqua bold.
+- Editorial details: small pink section numbers (01, 02…) on hairline rules, generous negative space, an asymmetric 12-column grid (1280px max), a subtle grain texture.
+- The drop shape as the visual system (symbol cluster, portrait masks, quote marks).
+- Motion with meaning (count-ups, focus on the quote being read, kinetic type, live clocks), always pausable and off for reduced motion.
+- One consistent gap between sections (`--c-section`, 64 → 120px).
 
-`src/pages/test-home.astro` is an art-direction experiment: same fonts, palette and copy, new layout. It uses only the global colour, font, timing and basic spacing tokens; its sizing values are page-scoped copies (`--c-*`) and it draws its own photo placeholders, so it does not change when the main design system changes. It uses no atomic components. If it is adopted, move its values into `tokens.css`, split it into documented components, and remove the "Test Home" nav link.
+**Before building a new page,** turn Test Home into the shared system: move its page-scoped values (`--c-*`) into `src/styles/tokens.css`, split its sections into documented atoms/molecules/organisms, add them to `/styleguide` and `docs/`, and rebuild Test Home from those parts. Then build the new page from them.
+
+## Temporary: Squarespace-style homepage
+
+The current main homepage (`index.astro`) and the components it uses (`src/components/`, documented in `docs/components/`, shown on `/styleguide`) deliberately follow the old Squarespace screenshot. They are **kept only until the owner has shown them to Emma**, then they will be deleted and Test Home will become the homepage (`/`). Do not restyle or extend them, and do not use them for new pages. Do not delete them until the owner says so.
+
+When that happens: move Test Home to `index.astro`, remove the "Test Home" nav link and `links.testHome`, delete the unused old components, docs and styleguide entries, and update this file.
+
+## Reference screenshots
+
+The screenshots in `reference/` are the reference for **content, brand and the purpose of each section**, not a layout specification. Keep the copy word for word; do not copy Squarespace layout.
 
 ## Naming
 
