@@ -37,8 +37,13 @@ src/
 docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level
-reference/               design screenshots (source of truth for the look)
+reference/               screenshots of the old Squarespace site (content and brand reference)
 ```
+
+## Design principles
+
+- The screenshots in `reference/` are the reference for **content, brand and the purpose of each section** — not a layout specification. Do not copy Squarespace layout quirks (sizes, spacing, proportions); follow standard UI/UX practice instead.
+- Keep each section's content, purpose, order and brand feel. Layout, sizing and spacing should come from the token system (consistent spacing scale, restrained type scale, defined button sizes), not from pixel-matching the screenshot.
 
 ## Naming
 
@@ -64,7 +69,7 @@ reference/               design screenshots (source of truth for the look)
 
 ## Content rules
 
-- Copy comes from the reference screenshot or from the owner, word for word. Never invent copy; if text is missing or unreadable, ask.
+- Copy comes from the reference screenshots or from the owner, word for word. Never invent copy; if text is missing or unreadable, ask.
 - Missing photos use the `Avatar` placeholder; missing URLs stay `'#'` in `src/data/links.ts`.
 
 ## Documentation rule
