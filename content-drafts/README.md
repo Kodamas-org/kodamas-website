@@ -29,5 +29,8 @@ tags:
   - "product management"
 author: "Daniela Contessa"
 status: draft # draft | final
+why: "Why we are writing this article"
+relevance: "Why it matters to the reader now"
+learning: "What the reader learns or can do after reading"
 ---
 ```

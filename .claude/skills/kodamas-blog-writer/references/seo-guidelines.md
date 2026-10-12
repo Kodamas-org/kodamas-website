@@ -97,6 +97,12 @@ When the article is final, save `content-drafts/articles/<slug>.schema.json`. Fi
 
 Run this before showing a draft, fix anything that fails, then show Daniela the SEO part as a short ticked list.
 
+**Usefulness**
+- [ ] `why`, `relevance` and `learning` filled in the frontmatter
+- [ ] The opening makes clear why this article exists and why it matters to the reader
+- [ ] The reader leaves with something concrete they can apply
+- [ ] No padding: every section serves the why, relevance or learning
+
 **Voice**
 - [ ] Zero em dashes (`—`) and no en dashes (`–`) as punctuation (search the file)
 - [ ] No banned words or patterns from `voice.md`
