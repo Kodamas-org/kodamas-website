@@ -38,6 +38,8 @@ docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level
 reference/               screenshots of the old Squarespace site (content and brand reference)
+content-drafts/          blog articles, interview notes and LinkedIn posts (never published, outside src/)
+.claude/skills/          project skills (kodamas-blog-writer: writes the content-drafts articles)
 ```
 
 ## Design direction (decided)
