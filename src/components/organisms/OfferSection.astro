@@ -1,113 +1,105 @@
 ---
-// The offer: a pink card with the price, the included items and a booking
-// button, followed by a glass card, all on the animated aqua background.
-// Slots: default = the items (FeatureCard), "footer" = closing line,
-//        "after" = cards shown under the offer card (GlassCard)
-import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
-import Eyebrow from '../atoms/Eyebrow.astro';
+// The offer: the page's one bright (aqua) section. Left, sticky on desktop:
+// title, price and booking button. Right: the numbered items, the covered
+// topics as tags, and a closing statement on a heavier rule.
+// Slot "statement": the closing line (put the conclusion in <strong>).
+import Section from '../molecules/Section.astro';
 import Heading from '../atoms/Heading.astro';
-import Pill from '../atoms/Pill.astro';
-import Text from '../atoms/Text.astro';
 import Button from '../atoms/Button.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Tag from '../atoms/Tag.astro';
+import Price from '../molecules/Price.astro';
+import NumberedItem from '../molecules/NumberedItem.astro';
 
 interface Props {
-	eyebrow: string;
+	id?: string;
+	num: string;
+	label: string;
 	title: string;
-	price: string;
-	duration: string;
-	note: string;
+	price: { amount: string; duration: string; note?: string };
 	cta: { label: string; href: string };
+	items: { title: string; text: string }[];
+	coveredLabel: string;
+	covered: string[];
 }
 
-const { eyebrow, title, price, duration, note, cta } = Astro.props;
+const { id = 'offer', num, label, title, price, cta, items, coveredLabel, covered } = Astro.props;
+const titleId = `${id}-title`;
 ---
 
-<AnimatedBackdrop>
-	<section class="offer" aria-labelledby="offer-title">
-		<article class="offer__card">
-			<header class="offer__header">
-				<div class="offer__heading">
-					<Eyebrow>{eyebrow}</Eyebrow>
-					<Heading level={2} size="heading-1" id="offer-title">{title}</Heading>
-				</div>
-				<Pill><span class="visually-hidden">Price: </span>{price}</Pill>
-			</header>
-			<div class="offer__meta">
-				<Text weight="bold">{duration}</Text>
-				<Text italic>{note}</Text>
+<Section id={id} labelledby={titleId} tone="bright" spacing="block" num={num} label={label}>
+	<div class="offer">
+		<div class="offer__aside">
+			<Heading level={2} size="l" id={titleId}>{title}</Heading>
+			<Price {...price} />
+			<Button href={cta.href} variant="navy">{cta.label}</Button>
+		</div>
+		<div class="offer__main">
+			<ol class="offer__items" role="list">
+				{items.map((item, i) => <NumberedItem num={i + 1} title={item.title}>{item.text}</NumberedItem>)}
+			</ol>
+			<div class="offer__covered" data-reveal>
+				<Eyebrow as="h3">{coveredLabel}</Eyebrow>
+				<ul class="offer__tags" role="list">
+					{covered.map((t) => <Tag>{t}</Tag>)}
+				</ul>
 			</div>
-			<div class="offer__items">
-				<slot />
-			</div>
-			<Text align="center" class="offer__closing"><slot name="footer" /></Text>
-			<Button href={cta.href} variant="inverse" size="l" class="offer__cta">{cta.label}</Button>
-		</article>
-		<slot name="after" />
-	</section>
-</AnimatedBackdrop>
+			<p class="offer__statement" data-reveal><slot name="statement" /></p>
+		</div>
+	</div>
+</Section>
 
 <style>
 	.offer {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-9);
+	}
+	.offer__aside {
+		grid-column: 1 / span 5;
+		align-self: start;
+		position: sticky;
+		top: var(--layout-sticky-top);
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-3);
-		max-width: calc(var(--layout-card-max) + 2 * var(--layout-gutter));
-		margin-inline: auto;
-		padding: var(--space-10) var(--layout-gutter);
-	}
-	.offer__card {
-		display: flex;
-		flex-direction: column;
-		padding: var(--space-8);
-		background: var(--color-surface-pink);
-		border-radius: var(--radius-l);
-		box-shadow: var(--shadow-glow);
-		color: var(--color-white);
-		--focus-color: var(--color-focus-on-light);
-	}
-	.offer__header {
-		display: flex;
-		justify-content: space-between;
 		align-items: flex-start;
-		gap: var(--space-5);
+		gap: var(--space-6);
 	}
-	.offer__heading {
+	.offer__main {
+		grid-column: 7 / -1;
 		display: flex;
 		flex-direction: column;
+		gap: var(--space-9);
+	}
+	.offer__covered {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+	.offer__tags {
+		display: flex;
+		flex-wrap: wrap;
 		gap: var(--space-2);
 	}
-	.offer__meta {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		margin-top: var(--space-4);
+	.offer__statement {
+		padding-top: var(--space-6);
+		border-top: var(--border-width-medium) solid currentColor;
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-3);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-snug);
 	}
-	.offer__items {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-3);
-		margin-top: var(--space-3);
+	.offer__statement :global(strong) {
+		font-weight: var(--font-weight-bold);
 	}
-	.offer :global(.offer__closing) {
-		max-width: var(--layout-narrow-text);
-		margin: var(--space-7) auto var(--space-6);
-	}
-	.offer :global(.offer__cta) {
-		align-self: center;
-	}
-
-	@media (max-width: 48rem) {
-		.offer {
-			padding-block: var(--space-9);
+	@media (max-width: 64rem) {
+		.offer__aside,
+		.offer__main {
+			grid-column: 1 / -1;
 		}
-		.offer__card {
-			padding: var(--space-6) var(--space-5);
-		}
-		.offer__header {
-			flex-direction: column-reverse;
-		}
-		.offer__items {
-			grid-template-columns: 1fr;
+		.offer__aside {
+			position: static;
 		}
 	}
 </style>

@@ -1,51 +1,54 @@
 ---
-// Heading with the level (for document structure) and the look (size)
-// chosen separately, so the outline stays correct whatever the design needs.
-// size: 'display-l', 'heading-1', 'heading-2', 'heading-3'
+// A title in Funnel Display.
+// level: the heading level (choose by page structure)
+// size: 'statement' (large Light line; <em> inside turns aqua bold),
+//       'l' (section title, Bold), 'm' (item title, Bold)
+// tone: 'inherit' (text colour of the surface) or 'aqua'
 interface Props {
-	level: 1 | 2 | 3 | 4 | 5 | 6;
-	size?: 'display-l' | 'heading-1' | 'heading-2' | 'heading-3';
-	align?: 'start' | 'center';
-	class?: string;
+	level?: 1 | 2 | 3 | 4;
+	size?: 'statement' | 'l' | 'm';
+	tone?: 'inherit' | 'aqua';
 	id?: string;
+	class?: string;
+	reveal?: boolean;
 }
 
-const { level, size = 'heading-1', align = 'start', class: className, id } = Astro.props;
-const Tag = `h${level}` as const;
+const { level = 2, size = 'l', tone = 'inherit', id, class: className, reveal = false } = Astro.props;
+const Tag = `h${level}` as 'h2';
 ---
 
-<Tag id={id} class:list={['heading', `heading--${size}`, `heading--${align}`, className]}><slot /></Tag>
+<Tag id={id} class:list={['heading', `heading--${size}`, `heading--${tone}`, className]} data-reveal={reveal || undefined}>
+	<slot />
+</Tag>
 
 <style>
 	.heading {
-		font-weight: var(--font-weight-bold);
-	}
-	.heading--display-l {
 		font-family: var(--font-display);
-		font-size: var(--font-size-display-l);
-		line-height: var(--line-height-tight);
 		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
 	}
-	.heading--heading-1 {
-		font-family: var(--font-display);
-		font-size: var(--font-size-heading-1);
+	.heading--statement {
+		font-size: var(--font-size-statement);
+		font-weight: var(--font-weight-light);
 		line-height: var(--line-height-heading);
 	}
-	.heading--heading-2 {
-		font-family: var(--font-display);
+	.heading--statement :global(em) {
+		font-style: normal;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-accent);
+	}
+	.heading--l {
 		font-size: var(--font-size-heading-2);
-		line-height: var(--line-height-snug);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
 	}
-	.heading--heading-3 {
-		font-family: var(--font-body);
+	.heading--m {
 		font-size: var(--font-size-heading-3);
-		line-height: var(--line-height-body);
-		font-weight: var(--font-weight-semibold);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-snug);
+		letter-spacing: var(--letter-spacing-body);
 	}
-	.heading--start {
-		text-align: start;
-	}
-	.heading--center {
-		text-align: center;
+	.heading--aqua {
+		color: var(--color-accent);
 	}
 </style>

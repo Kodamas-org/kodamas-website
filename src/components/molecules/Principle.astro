@@ -1,0 +1,102 @@
+---
+// One principle of a manifesto: a pink drop and the principle as a heading
+// in aqua, then two columns of text. In the right column, a first paragraph
+// in Funnel Display reads as a pull statement (put the key words in
+// <Highlight variant="pink">).
+// Slots: "title", "left", "right"
+import Drop from '../atoms/Drop.astro';
+
+interface Props {
+	level?: 3 | 4;
+}
+
+const { level = 3 } = Astro.props;
+const Tag = `h${level}` as 'h3';
+---
+
+<article class="principle">
+	<div class="principle__head" data-reveal>
+		<span class="principle__drop"><Drop size="s" tone="pink" /></span>
+		<Tag class="principle__title"><slot name="title" /></Tag>
+	</div>
+	<div class="principle__col" data-reveal><slot name="left" /></div>
+	<div class="principle__col principle__col--right" data-reveal><slot name="right" /></div>
+</article>
+
+<style>
+	.principle {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-7);
+		padding-top: var(--space-6);
+		border-top: var(--border-width-thin) solid var(--color-rule);
+	}
+	.principle__head {
+		grid-column: 1 / span 10;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-4);
+	}
+	.principle__drop {
+		padding-top: var(--space-2);
+	}
+	.principle__title {
+		font-family: var(--font-display);
+		font-size: var(--font-size-intro);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-snug);
+		letter-spacing: var(--letter-spacing-display);
+		color: var(--color-accent);
+		text-wrap: balance;
+	}
+	.principle__col {
+		grid-column: 1 / span 5;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-4);
+		max-width: var(--layout-text-max);
+	}
+	.principle__col--right {
+		grid-column: 7 / -1;
+	}
+	.principle__col--right > :global(p:first-child) {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-3);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-snug);
+	}
+	.principle__col :global(ul) {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: 0;
+		list-style: none;
+	}
+	.principle__col :global(li) {
+		position: relative;
+		padding-left: var(--space-6);
+	}
+	/* Bullets are small drops */
+	.principle__col :global(li)::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: var(--space-2);
+		width: var(--size-icon-s);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
+	}
+	.principle__col :global(.button) {
+		margin-top: var(--space-5);
+	}
+	@media (max-width: 64rem) {
+		.principle__head,
+		.principle__col,
+		.principle__col--right {
+			grid-column: 1 / -1;
+		}
+	}
+</style>

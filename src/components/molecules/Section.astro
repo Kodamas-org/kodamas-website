@@ -1,0 +1,66 @@
+---
+// A page section on the 12-column grid, with its section number.
+// tone: 'navy' (the page canvas) or 'bright' (aqua with navy text: the one
+//       bright moment per page)
+// spacing: 'top' (gap above only, the default between navy sections) or
+//          'block' (gap above and below: bright sections, the last section)
+// num / label / rule: passed to SectionIndex (omit num for no index)
+// Slots: default (inside the grid container, after the index),
+//        "full" (full-bleed, after the container),
+//        "after" (a second container after the full-bleed content)
+import Container from '../atoms/Container.astro';
+import SectionIndex from '../atoms/SectionIndex.astro';
+
+interface Props {
+	id?: string;
+	labelledby?: string;
+	tone?: 'navy' | 'bright';
+	spacing?: 'top' | 'block';
+	num?: string;
+	label?: string;
+	rule?: boolean;
+	class?: string;
+}
+
+const {
+	id,
+	labelledby,
+	tone = 'navy',
+	spacing = 'top',
+	num,
+	label,
+	rule = tone === 'navy',
+	class: className,
+} = Astro.props;
+---
+
+<section id={id} aria-labelledby={labelledby} class:list={['section', `section--${tone}`, `section--${spacing}`, className]}>
+	<Container>
+		{num && <SectionIndex num={num} label={label} rule={rule} />}
+		<slot />
+	</Container>
+	<slot name="full" />
+	{
+		Astro.slots.has('after') && (
+			<Container>
+				<slot name="after" />
+			</Container>
+		)
+	}
+</section>
+
+<style>
+	.section--top {
+		padding-top: var(--layout-section);
+	}
+	.section--block {
+		padding-block: var(--layout-section);
+	}
+	.section--bright {
+		background: var(--color-surface-bright);
+		color: var(--color-text-on-light);
+		--color-number: var(--color-number-on-light);
+		--color-accent: var(--color-midnight-navy);
+		--focus-color: var(--color-focus-on-light);
+	}
+</style>

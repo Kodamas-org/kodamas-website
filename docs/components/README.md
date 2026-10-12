@@ -2,43 +2,57 @@
 
 One page per component, in plain language. Components follow atomic design: **atoms** are the smallest pieces, **molecules** combine atoms, **organisms** are full page sections, and the **template** wraps a whole page.
 
-All of them are shown live, with their variants, at `/styleguide` on the site. Token values are listed in [design-tokens.md](../design-tokens.md).
+The system comes from the approved homepage design (formerly Test Home): one navy canvas with a single bright aqua moment per page, Funnel Display Light against Bold, editorial section numbers, the drop as the visual system, and motion with meaning that is always pausable and off for reduced motion.
+
+All components are shown live at `/styleguide`, except Hero and NameHero, which hold a page’s h1 and are shown on `/` and `/about`. Token values are listed in [design-tokens.md](../design-tokens.md).
 
 ## Atoms
 
-- [Wordmark](atoms/Wordmark.md) — The word “Kodamas” set in Funnel Display Bold.
-- [Drop](atoms/Drop.md) — The Kodamas drop: a shape with one square corner (top left) and three rounded corners.
-- [Button](atoms/Button.md) — A pill-shaped call to action.
-- [Pill](atoms/Pill.md) — A small outlined capsule for a short label, such as a price.
-- [Link](atoms/Link.md) — A text link.
-- [Heading](atoms/Heading.md) — A title.
+- [Container](atoms/Container.md) — Centres content on the 12-column grid: 1280px wide at most, plus the fluid side gutters.
+- [SectionIndex](atoms/SectionIndex.md) — The editorial section number (01, 02…) with an optional uppercase label, on a hairline.
+- [Heading](atoms/Heading.md) — A title in Funnel Display.
 - [Text](atoms/Text.md) — Body text in Inter.
-- [Highlight](atoms/Highlight.md) — A bold phrase with a thick pink underline.
-- [Avatar](atoms/Avatar.md) — A portrait photo cropped to a shape.
-- [Eyebrow](atoms/Eyebrow.md) — A small semibold label that sits above a title to introduce it.
+- [Highlight](atoms/Highlight.md) — Emphasis for a key phrase inside a sentence (renders `<em>`).
+- [Eyebrow](atoms/Eyebrow.md) — A small uppercase semibold label that introduces a group.
+- [Button](atoms/Button.md) — A pill-shaped call to action. A link when `href` is given, otherwise a `<button>`.
+- [Link](atoms/Link.md) — A text link.
+- [Tag](atoms/Tag.md) — An outlined capsule for a short topic label. Renders an `<li>`.
+- [Drop](atoms/Drop.md) — The Kodamas drop: one square corner (top left), three rounded. Decorative, hidden from screen readers.
+- [Wordmark](atoms/Wordmark.md) — The name “Kodamas” in Funnel Display, in aqua.
+- [Avatar](atoms/Avatar.md) — A portrait: the photo cropped to a shape, or a dashed placeholder saying a photo is needed.
+- [Clock](atoms/Clock.md) — A live local-time pill with a clock icon (e.g. Italy, Japan).
+- [PauseButton](atoms/PauseButton.md) — A small round pause/play button for a looping animation.
+- [Grain](atoms/Grain.md) — A fine noise texture fixed over the whole page for depth. Decorative.
 
 ## Molecules
 
 - [NavMenu](molecules/NavMenu.md) — The header navigation: text links and a call-to-action button.
-- [PersonCard](molecules/PersonCard.md) — A team member: drop-shaped photo, name, role with a linked organisation, and nationality with a flag.
-- [FeatureCard](molecules/FeatureCard.md) — An outlined card with a title and a short description.
-- [GlassCard](molecules/GlassCard.md) — A frosted, see-through card that lets the animated background show through.
-- [StatQuote](molecules/StatQuote.md) — A quoted statistic in an outlined card, with a pink drop on its top-left corner and the source underneath.
-- [Testimonial](molecules/Testimonial.md) — A client quote in a pink card, with a round photo overlapping the card’s left edge, the author’s name as a link, and their role.
-- [FooterLink](molecules/FooterLink.md) — A footer navigation item: a small pink drop followed by an arrow link.
-- [AnimatedBackdrop](molecules/AnimatedBackdrop.md) — The aqua background with soft teal glows that drift slowly, plus a small round pause/play button in the bottom-right corner.
+- [Section](molecules/Section.md) — A page section on the 12-column grid with its section number and the one consistent section gap.
+- [NumberedItem](molecules/NumberedItem.md) — A numbered list item: big number, title and short text between hairlines. Renders an `<li>`.
+- [Price](molecules/Price.md) — A price between two hairlines: the amount large, duration in bold and a note in italic beside it.
+- [Stat](molecules/Stat.md) — A big figure that counts up when scrolled into view, with a caption and a pink icon.
+- [Citation](molecules/Citation.md) — A sourced quotation in small muted text with the source underneath.
+- [Testimonial](molecules/Testimonial.md) — A client quote set large in Funnel Display Light (key phrase in `<em>` turns aqua bold) with a byline: round photo, linked name and role.
+- [PersonCard](molecules/PersonCard.md) — A team member, centred: drop-shaped portrait (turns round on hover) with a flag badge, name, role with linked organisation, and nationality.
+- [Profile](molecules/Profile.md) — A founder profile: large drop portrait on one side; name (Heavy) with a live clock, a personal motto set large and light, a short bio and a profile link on the other.
+- [Principle](molecules/Principle.md) — One manifesto principle: a pink drop and the principle as an aqua heading, then two columns. A first paragraph in the right column reads as a pull statement; list bullets are small drops.
+- [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
+- [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.
+- [FooterLink](molecules/FooterLink.md) — A footer navigation row: the label large in Funnel Display Light with ↗ on the right, between hairlines. Slides in and turns aqua on hover. Renders an `<li>`.
 
 ## Organisms
 
-- [SiteHeader](organisms/SiteHeader.md) — The top bar: small aqua wordmark (links home) on the left, navigation on the right.
-- [Hero](organisms/Hero.md) — The opening section: the giant two-tone “Kodamas” wordmark (the page’s h1) with a pink drop tucked behind the K, then the intro paragraph.
-- [TeamSection](organisms/TeamSection.md) — The founders shown side by side.
-- [InfoBand](organisms/InfoBand.md) — A full-width teal strip with one centred line of text.
-- [OfferSection](organisms/OfferSection.md) — The offer: a pink card with eyebrow, title, price, duration, note, included items, a closing line and a booking button, followed by optional extra cards, all on the animated aqua background.
-- [SplitSection](organisms/SplitSection.md) — A two-column section on the navy background: a large heading on the left and content on the right.
-- [TestimonialsSection](organisms/TestimonialsSection.md) — A stack of client testimonials on the animated aqua background.
-- [SiteFooter](organisms/SiteFooter.md) — The page footer: a teal card with the white wordmark, copyright line, “Connect With Us” button and four footer links, then an aqua strip with the legal link.
+- [SiteHeader](organisms/SiteHeader.md) — The top bar: aqua wordmark (links home) and NavMenu. Sticks to the top, slides away when scrolling down and returns when scrolling up.
+- [Hero](organisms/Hero.md) — The homepage opening. The giant wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
+- [NameHero](organisms/NameHero.md) — The Our Story opening: the name as an equation. Two terms (word + meaning) joined by pink drops with + and =, then the result as the giant wordmark; the final letter drops in last, in pink, with its note. Then the intro paragraph.
+- [OfferSection](organisms/OfferSection.md) — The offer, on the bright surface: sticky aside with title, price and button; numbered items, covered tags and a closing statement on the right.
+- [ProofSection](organisms/ProofSection.md) — Evidence: a large statement question, a row of counting figures between hairlines, and the sourced quotation.
+- [TestimonialsSection](organisms/TestimonialsSection.md) — Client voices with a sticky aside (pink drop and 01 / 03 counter). The quote in the middle of the screen is in focus; the others step back.
+- [TeamSection](organisms/TeamSection.md) — The founders: a statement line with live clocks (one line across the grid on desktop), then PersonCards side by side.
+- [ClosingSection](organisms/ClosingSection.md) — The closing: a full-width kinetic Marquee, then a short message and the call to action with the marquee’s PauseButton.
+- [CallToActionSection](organisms/CallToActionSection.md) — A closing invitation on the bright surface: large title on the left, message and navy button on the right.
+- [SiteFooter](organisms/SiteFooter.md) — The footer: large FooterLink rows, then a bar with the sign-off wordmark, copyright and the legal link.
 
 ## Template
 
-- [BaseLayout](layouts/BaseLayout.md) — The page template.
+- [BaseLayout](layouts/BaseLayout.md) — The page template: head, fonts, tokens, grain, header, footer and the fade-up reveal.

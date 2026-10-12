@@ -1,57 +1,56 @@
 # Design tokens
 
-Every visual value on the site — colours, fonts, sizes, spacing, corners, shadows, timing — is a token: a named CSS custom property defined once in `src/styles/tokens.css`. Components use only these names, never raw values, so changing a token updates the whole site.
+Every visual value on the site — colours, fonts, sizes, spacing, corners, timing, layers — is a token: a named CSS custom property defined once in `src/styles/tokens.css`. Components use only these names, never raw values, so changing a token updates the whole site.
 
-All values are rendered live at `/styleguide`. In code, write `var(--token-name)`.
+The values come from the approved homepage design (formerly Test Home). All values are rendered live at `/styleguide`. In code, write `var(--token-name)`.
 
-## Colour palette
+## Contrast
 
-| Name | Hex | Token | Used for |
-|---|---|---|---|
-| midnight-navy | `#1A2231` | `--color-midnight-navy` | Page background, header, button text, text on light surfaces |
-| aqua-glow | `#5CEFEC` | `--color-aqua-glow` | Aqua backgrounds, “-damas” in the hero, nav links, primary buttons, inline links on dark |
-| deep-teal | `#0E7A94` | `--color-deep-teal` | Info band, footer card, glows in the animated background |
-| bloom-pink | `#E864A0` | `--color-bloom-pink` | Footer link drops (decorative) |
-| pink-deep | `#C64585` | `--color-pink-deep` | Offer and testimonial cards, “Book a call” text. Darker than the original pink so white text passes contrast |
-| drop-pink-light | `#D45D9F` | `--color-drop-pink-light` | Top of the drop gradient |
-| drop-pink-dark | `#BF4689` | `--color-drop-pink-dark` | Bottom of the drop gradient |
-| highlight-pink | `#FB6AAA` | `--color-highlight-pink` | Underline under highlighted phrases |
-| glass-aqua | `#55C6C8` | `--color-glass-aqua` | Glass card fill (see-through), muted labels in the styleguide |
-| glass-edge | `#66F4F2` | `--color-glass-edge` | Outline of the glass card and the statistic quote card |
-| control-teal | `#1F5D62` | `--color-control-teal` | Pause/play button, photo placeholders |
-| white | `#FFFFFF` | `--color-white` | Text on dark and pink surfaces, inverse button |
+Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 
-### Contrast decisions
+| Text | Background | Ratio |
+|---|---|---|
+| white | midnight-navy | 15.9:1 |
+| aqua-glow | midnight-navy | 11.4:1 |
+| glass-aqua (muted) | midnight-navy | 7.8:1 |
+| highlight-pink | midnight-navy | 5.9:1 |
+| midnight-navy | aqua-glow | 11.4:1 |
+| pink-ink (numbers on aqua) | aqua-glow | 4.8:1 |
+| white | navy button | 15.9:1 |
 
-The reference design had a few text/background pairs below the WCAG AA minimum (4.5:1 for normal text). These were adjusted with your approval:
 
-| Where | Reference | Now | Ratio now |
-|---|---|---|---|
-| White text on offer and testimonial cards | `#E864A0` / `#ED6FA8` | `pink-deep` `#C64585` | 4.6:1 |
-| Testimonial author names | aqua on pink (2.0:1) | white, underlined | 4.6:1 |
-| “What’s Covered” text on glass | white (2.0:1) | `midnight-navy` | 7.8:1 |
-| “Book a call” button text | `#E864A0` on white (3.1:1) | `pink-deep` on white | 4.6:1 |
-| Legal link on aqua strip | teal (3.6:1) | `midnight-navy` | 11.4:1 |
+## Colour: palette
 
-Muted (semi-transparent) white text on pink was replaced by full white, because transparency lowered contrast further.
+| Token | Value | Note |
+|---|---|---|
+| `--color-midnight-navy` | `#1a2231` | The canvas: page background, header, text on aqua |
+| `--color-aqua-glow` | `#5cefec` | The one bright surface, accents, key phrases, buttons, focus on navy |
+| `--color-pink-ink` | `#a03269` | Numbers on the aqua surface (4.8:1) |
+| `--color-drop-pink-light` | `#d45d9f` | Top of the drop gradient |
+| `--color-drop-pink-dark` | `#bf4689` | Bottom of the drop gradient |
+| `--color-highlight-pink` | `#fb6aaa` | Section numbers and icons on navy, pink underlines, the final “s” on Our Story |
+| `--color-glass-aqua` | `#55c6c8` | Muted text on navy (captions, meta, counters) |
+| `--color-control-teal` | `#1f5d62` | Photo placeholders |
+| `--color-white` | `#ffffff` | Text on navy |
 
-## Colour roles (what a colour is for)
+## Colour: roles
 
 | Token | Value | Note |
 |---|---|---|
 | `--color-surface-page` | `var(--color-midnight-navy)` |  |
-| `--color-surface-band` | `var(--color-deep-teal)` |  |
-| `--color-surface-aqua` | `var(--color-aqua-glow)` |  |
-| `--color-surface-pink` | `var(--color-pink-deep)` |  |
+| `--color-surface-bright` | `var(--color-aqua-glow)` | the one bright moment per page |
 | `--color-text-on-dark` | `var(--color-white)` |  |
 | `--color-text-on-light` | `var(--color-midnight-navy)` |  |
+| `--color-text-muted` | `var(--color-glass-aqua)` |  |
 | `--color-accent` | `var(--color-aqua-glow)` |  |
+| `--color-number` | `var(--color-highlight-pink)` | section numbers, list numbers, icons |
+| `--color-number-on-light` | `var(--color-pink-ink)` | 4.8:1 on aqua |
+| `--color-placeholder` | `var(--color-control-teal)` |  |
 | `--color-focus-on-dark` | `var(--color-aqua-glow)` |  |
 | `--color-focus-on-light` | `var(--color-midnight-navy)` |  |
+| `--color-rule` | `color-mix(in srgb, currentColor 18%, transparent)` | hairlines, follow the text colour |
+| `--color-button-glow` | `color-mix(in srgb, var(--color-aqua-glow) 18%, transparent)` |  |
 | `--gradient-drop` | `linear-gradient(160deg, var(--color-drop-pink-light), var(--color-drop-pink-dark))` |  |
-| `--color-glass-fill` | `color-mix(in srgb, var(--color-glass-aqua) 85%, transparent)` |  |
-| `--color-glow` | `color-mix(in srgb, var(--color-deep-teal) 85%, transparent)` |  |
-| `--color-shade` | `color-mix(in srgb, var(--color-midnight-navy) 25%, transparent)` |  |
 
 ## Typography: families
 
@@ -64,25 +63,32 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 
 | Token | Value | Note |
 |---|---|---|
+| `--font-weight-light` | `300` |  |
 | `--font-weight-regular` | `400` |  |
 | `--font-weight-medium` | `500` |  |
 | `--font-weight-semibold` | `600` |  |
 | `--font-weight-bold` | `700` |  |
+| `--font-weight-heavy` | `800` |  |
 
-## Typography: sizes (fluid between mobile and 1440px)
+## Typography: sizes (fluid)
 
 | Token | Value | Note |
 |---|---|---|
-| `--font-size-display-xl` | `clamp(4.5rem, 16.5vw, 15rem)` |  |
-| `--font-size-display-l` | `clamp(3rem, 6.7vw, 6rem)` |  |
-| `--font-size-heading-1` | `clamp(2rem, 3.4vw, 3rem)` |  |
-| `--font-size-heading-2` | `clamp(1.75rem, 2.5vw, 2.25rem)` |  |
-| `--font-size-heading-3` | `clamp(1.25rem, 1.8vw, 1.625rem)` |  |
-| `--font-size-quote-s` | `clamp(1.25rem, 1.8vw, 1.625rem)` |  |
-| `--font-size-body-xl` | `clamp(1.125rem, 1.8vw, 1.625rem)` |  |
-| `--font-size-body-l` | `clamp(1.125rem, 1.7vw, 1.5rem)` |  |
-| `--font-size-body-m` | `1.125rem` |  |
-| `--font-size-body-s` | `1rem` |  |
+| `--font-size-mark` | `22.6cqi` | "Kodamas" fills its container exactly |
+| `--font-size-marquee` | `clamp(5rem, 2rem + 12vw, 14rem)` |  |
+| `--font-size-stat` | `clamp(4rem, 2rem + 7vw, 9rem)` |  |
+| `--font-size-statement` | `clamp(2rem, 1.1rem + 3.4vw, 4.25rem)` |  |
+| `--font-size-statement-fit` | `3.3cqi` | one-line statement sized to its container (desktop) |
+| `--font-size-heading-2` | `clamp(2rem, 1.25rem + 2.6vw, 3.5rem)` |  |
+| `--font-size-footer-link` | `clamp(1.75rem, 1rem + 2.6vw, 3.5rem)` |  |
+| `--font-size-quote` | `clamp(1.625rem, 1rem + 2vw, 2.75rem)` |  |
+| `--font-size-quote-long` | `clamp(1.375rem, 0.95rem + 1.4vw, 2.125rem)` |  |
+| `--font-size-intro` | `clamp(1.375rem, 1.05rem + 1.1vw, 2.125rem)` |  |
+| `--font-size-heading-3` | `clamp(1.25rem, 1.05rem + 0.6vw, 1.625rem)` |  |
+| `--font-size-lead` | `clamp(1.125rem, 1rem + 0.3vw, 1.25rem)` |  |
+| `--font-size-body` | `clamp(1rem, 0.9rem + 0.25vw, 1.125rem)` |  |
+| `--font-size-ui` | `1rem` |  |
+| `--font-size-small` | `0.875rem` |  |
 | `--font-size-nav` | `1.1875rem` |  |
 | `--font-size-wordmark-s` | `1.375rem` |  |
 
@@ -90,20 +96,23 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 
 | Token | Value | Note |
 |---|---|---|
+| `--line-height-mark` | `0.8` |  |
 | `--line-height-none` | `1` |  |
-| `--line-height-tight` | `1.05` |  |
-| `--line-height-snug` | `1.15` |  |
-| `--line-height-heading` | `1.2` |  |
+| `--line-height-heading` | `1.15` |  |
+| `--line-height-tight` | `1.25` |  |
+| `--line-height-snug` | `1.3` |  |
 | `--line-height-ui` | `1.4` |  |
-| `--line-height-body` | `1.55` |  |
-| `--line-height-relaxed` | `1.65` |  |
+| `--line-height-lead` | `1.5` |  |
+| `--line-height-body` | `1.6` |  |
 
 ## Typography: letter spacing
 
 | Token | Value | Note |
 |---|---|---|
+| `--letter-spacing-tight` | `-0.035em` |  |
 | `--letter-spacing-display` | `-0.02em` |  |
 | `--letter-spacing-body` | `0.01em` |  |
+| `--letter-spacing-label` | `0.14em` |  |
 
 ## Spacing
 
@@ -115,49 +124,42 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 | `--space-4` | `1rem` | 16 |
 | `--space-5` | `1.5rem` | 24 |
 | `--space-6` | `2rem` | 32 |
-| `--space-7` | `3rem` | 48 |
-| `--space-8` | `3.5rem` | 56 |
+| `--space-7` | `2.5rem` | 40 |
+| `--space-8` | `3rem` | 48 |
 | `--space-9` | `4rem` | 64 |
 | `--space-10` | `6rem` | 96 |
-| `--space-11` | `8rem` | 128 |
 
 ## Layout
 
 | Token | Value | Note |
 |---|---|---|
-| `--layout-gutter` | `var(--space-10)` |  |
-| `--layout-header-gutter` | `var(--space-7)` |  |
-| `--layout-section-padding` | `var(--space-11)` |  |
-| `--layout-content-max` | `77.5rem` | 1240 |
-| `--layout-text-max` | `70rem` | hero paragraph |
-| `--layout-card-max` | `49rem` | offer + glass cards |
-| `--layout-narrow-text` | `32rem` | short centred lines |
-| `--layout-page-max` | `90rem` | 1440, hero |
-| `--layout-team-column` | `28rem` |  |
-| `--layout-container-max` | `calc(var(--layout-content-max) + 2 * var(--layout-gutter))` |  |
+| `--layout-max` | `80rem` | 1280, the 12-column grid |
+| `--layout-gutter` | `clamp(1.25rem, 0.5rem + 3.5vw, 3rem)` |  |
+| `--layout-header-gutter` | `var(--space-8)` |  |
+| `--layout-section` | `clamp(4rem, 2.5rem + 4.5vw, 7.5rem)` | 64 → 120: the one gap between sections |
+| `--layout-col-gap` | `clamp(1rem, 0.5rem + 2vw, 2rem)` |  |
+| `--layout-text-max` | `40rem` |  |
+| `--layout-team-column` | `22rem` |  |
+| `--layout-sticky-top` | `var(--space-10)` |  |
 
 ## Sizes
 
 | Token | Value | Note |
 |---|---|---|
-| `--size-avatar-team` | `24rem` |  |
-| `--size-avatar-testimonial` | `17rem` |  |
-| `--size-drop-s` | `1.75rem` |  |
-| `--size-drop-m` | `6.5rem` |  |
-| `--size-drop-l` | `9.25rem` |  |
-| `--size-control` | `1.875rem` |  |
-| `--size-control-icon` | `0.75rem` |  |
-| `--size-underline` | `0.1875rem` |  |
+| `--size-button-l` | `3.5rem` |  |
+| `--size-tap-min` | `2.75rem` |  |
+| `--size-drop-xs` | `1rem` |  |
+| `--size-drop-s` | `1.25rem` |  |
+| `--size-drop-m` | `4.5rem` |  |
+| `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
+| `--size-avatar-s` | `3.5rem` |  |
+| `--size-avatar-l` | `15rem` |  |
+| `--size-icon-s` | `var(--space-3)` |  |
+| `--size-icon-m` | `var(--space-4)` |  |
+| `--size-icon-l` | `var(--space-5)` |  |
 | `--size-underline-offset` | `0.25rem` |  |
-
-## Overlaps (how far shapes tuck under or over each other)
-
-| Token | Value | Note |
-|---|---|---|
-| `--overlap-hero-drop` | `calc(var(--size-drop-l) * 0.45)` | drop peeks out above/left of the K |
-| `--indent-hero-intro` | `calc(var(--size-drop-l) * 0.75)` | intro paragraph indent |
-| `--overlap-testimonial-card` | `calc(var(--size-avatar-testimonial) * 0.42)` | card starts under the photo |
-| `--indent-testimonial-text` | `calc(var(--size-avatar-testimonial) * 0.58 + var(--space-9))` |  |
+| `--size-highlight-thickness` | `0.09em` |  |
+| `--size-highlight-offset` | `0.14em` |  |
 
 ## Borders
 
@@ -172,21 +174,18 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 
 | Token | Value | Note |
 |---|---|---|
-| `--radius-s` | `1.25rem` | 20 |
-| `--radius-m` | `2rem` | 32 |
-| `--radius-l` | `3rem` | 48 |
+| `--radius-s` | `1.25rem` |  |
 | `--radius-pill` | `9999px` |  |
 | `--radius-round` | `50%` |  |
 | `--radius-drop` | `0 50% 50% 50%` | square top-left corner |
 
-## Shadows and effects
+## Texture and effects
 
 | Token | Value | Note |
 |---|---|---|
-| `--shadow-card` | `0 1rem 2.5rem color-mix(in srgb, var(--color-deep-teal) 35%, transparent)` |  |
-| `--shadow-glow` | `0 0 12rem 6rem var(--color-glow)` |  |
-| `--shadow-glass` | `0 0.5rem 2rem color-mix(in srgb, var(--color-midnight-navy) 12%, transparent)` |  |
-| `--blur-glass` | `12px` |  |
+| `--texture-grain` | `SVG fractal noise (data URI)` |  |
+| `--opacity-grain` | `0.05` |  |
+| `--opacity-dim` | `0.55` |  |
 
 ## Motion
 
@@ -194,7 +193,12 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 |---|---|---|
 | `--duration-fast` | `150ms` |  |
 | `--duration-base` | `300ms` |  |
-| `--duration-backdrop` | `24s` |  |
+| `--duration-reveal` | `800ms` |  |
+| `--duration-rise` | `1.1s` |  |
+| `--duration-count` | `1600ms` |  |
+| `--duration-float` | `9s` |  |
+| `--duration-marquee` | `40s` |  |
+| `--stagger` | `60ms` |  |
 | `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` |  |
 | `--ease-drift` | `ease-in-out` |  |
 
@@ -205,36 +209,22 @@ Muted (semi-transparent) white text on pink was replaced by full white, because 
 | `--z-base` | `0` |  |
 | `--z-raised` | `1` |  |
 | `--z-header` | `100` |  |
+| `--z-grain` | `101` |  |
 
-## Responsive changes
+## Responsive overrides
 
-Some tokens take different values on smaller screens, so components adapt without their own breakpoints for sizes.
+At the bottom of `tokens.css`:
 
-**Breakpoints** (CSS media queries cannot use tokens, so these two numbers are the only fixed widths in component code):
+| Breakpoint | Token | Value |
+|---|---|---|
+| Tablet (≤ 64rem) | `--layout-header-gutter` | `var(--space-6)` |
+| Mobile (≤ 48rem) | `--layout-header-gutter` | `var(--space-4)` |
+| Mobile (≤ 48rem) | `--size-avatar-l` | `12.5rem` |
+| Mobile (≤ 48rem) | `--size-drop-m` | `3.5rem` |
 
-- **Tablet:** 1024px and below (`max-width: 64rem`)
-- **Mobile:** 768px and below (`max-width: 48rem`)
+Most sizes are fluid (`clamp()`), so they need no overrides.
 
-Type sizes are fluid (`clamp`): they scale smoothly between their mobile and 1440px values.
+## Surfaces
 
-| Token | Desktop | Tablet (≤1024px) | Mobile (≤768px) |
-|---|---|---|---|
-| `--layout-gutter` | `var(--space-10)` | `var(--space-7)` | `var(--space-5)` |
-| `--layout-header-gutter` | `var(--space-7)` | `var(--space-6)` | `var(--space-4)` |
-| `--layout-section-padding` | `var(--space-11)` | `var(--space-10)` | `var(--space-9)` |
-| `--radius-l` | `3rem` | `—` | `2rem` |
-| `--size-avatar-team` | `24rem` | `18rem` | `16rem` |
-| `--size-avatar-testimonial` | `17rem` | `12rem` | `8rem` |
-| `--size-drop-l` | `9.25rem` | `6rem` | `3.5rem` |
-| `--size-drop-m` | `6.5rem` | `—` | `4.5rem` |
+`Section tone="bright"` switches the role tokens for the aqua surface: `--color-number` → `--color-number-on-light`, `--color-accent` → navy, `--focus-color` → `--color-focus-on-light`. Components that read the role tokens adapt without variants. `--color-rule` uses `currentColor`, so hairlines follow the text colour on any surface.
 
-## Exceptions
-
-- **Animated background:** the position, size and drift of the glows in `AnimatedBackdrop` are the shape of that artwork, so they stay as percentages inside the component. Their colours and timing are tokens (`--color-glow`, `--color-shade`, `--duration-backdrop`).
-- **Icons:** the pause/play SVG icons use their own drawing coordinates.
-
-## Adding or changing a token
-
-1. Change it in `src/styles/tokens.css`.
-2. Update this file (the tables above) and check `/styleguide`.
-3. Commit both together.

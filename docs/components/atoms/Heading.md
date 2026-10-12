@@ -4,34 +4,34 @@
 
 ## What it is
 
-A title. Its level (h1–h6, which gives the page its outline for screen readers and search engines) is chosen separately from how big it looks.
+A title in Funnel Display.
 
 ## When to use it
 
-For every title on the page. Pick `level` by structure (one h1 per page, then h2 for sections, h3 inside them) and `size` by design.
+Any heading. Choose `level` by page structure and `size` by design.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `level` | `1`–`6` | — | The heading level (required). |
-| `size` | `display-l` · `heading-1` · `heading-2` · `heading-3` | `heading-1` | The look. The first three use Funnel Display; `heading-3` uses Inter Semibold. |
-| `align` | `start` · `center` | `start` | Text alignment. |
-| `id` | text | — | Lets a section point to its heading for screen readers. |
-| `class` | text | — | Extra class. |
+| `level` | 1–4 | 2 | Heading level. |
+| `size` | `statement` · `l` · `m` | `l` | Statement: large Light line where `<em>` turns aqua bold. l: section title, Bold. m: item title, Bold. |
+| `tone` | `inherit` · `aqua` | `inherit` | Text colour. |
+| `id` | text | — | For `aria-labelledby`. |
+| `reveal` | true / false | false | Fades up when scrolled into view. |
 
 ## Variants
 
-`display-l` “Keep Going” · `heading-1` section titles · `heading-2` names · `heading-3` card titles.
+Three sizes, two tones.
 
 ## Tokens used
 
-`--font-body`, `--font-display`, `--font-size-display-l`, `--font-size-heading-1`, `--font-size-heading-2`, `--font-size-heading-3`, `--font-weight-bold`, `--font-weight-semibold`, `--letter-spacing-display`, `--line-height-body`, `--line-height-heading`, `--line-height-snug`, `--line-height-tight`
+`--color-accent`, `--font-display`, `--font-size-heading-2`, `--font-size-heading-3`, `--font-size-statement`, `--font-weight-bold`, `--font-weight-light`, `--letter-spacing-body`, `--letter-spacing-display`, `--line-height-heading`, `--line-height-snug`
 
 ## Example
 
 ```astro
-<Heading level={2} size="display-l">Keep Going</Heading>
+<Heading level={2} size="statement">Our <em>Manifesto</em></Heading>
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

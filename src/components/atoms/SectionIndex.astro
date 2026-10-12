@@ -1,0 +1,38 @@
+---
+// The editorial section number (01, 02…) with an optional label, sitting on
+// a hairline. Numbers are pink; on the bright surface they turn pink-ink.
+// rule: false removes the hairline (first section after the hero, or on aqua)
+interface Props {
+	num: string;
+	label?: string;
+	rule?: boolean;
+}
+
+const { num, label, rule = true } = Astro.props;
+---
+
+<div class:list={['section-index', { 'section-index--rule': rule }]}>
+	<span class="section-index__num">{num}</span>
+	{label && <p class="section-index__label">{label}</p>}
+</div>
+
+<style>
+	.section-index {
+		display: flex;
+		align-items: baseline;
+		gap: var(--space-5);
+		margin-bottom: var(--space-8);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+	}
+	.section-index--rule {
+		padding-top: var(--space-4);
+		border-top: var(--border-width-thin) solid var(--color-rule);
+	}
+	.section-index__num {
+		font-variant-numeric: tabular-nums;
+		color: var(--color-number);
+	}
+</style>

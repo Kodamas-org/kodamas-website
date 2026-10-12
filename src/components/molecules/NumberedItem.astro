@@ -1,0 +1,48 @@
+---
+// One item of a numbered list: a large number, a title and a short text,
+// between hairlines. Renders an <li>; place it in an <ol role="list">.
+// level: heading level of the title
+interface Props {
+	num: number;
+	title: string;
+	level?: 3 | 4;
+}
+
+const { num, title, level = 3 } = Astro.props;
+const Tag = `h${level}` as 'h3';
+---
+
+<li class="numbered-item" data-reveal>
+	<span class="numbered-item__num" aria-hidden="true">{String(num).padStart(2, '0')}</span>
+	<div>
+		<Tag class="numbered-item__title">{title}</Tag>
+		<p class="numbered-item__text"><slot /></p>
+	</div>
+</li>
+
+<style>
+	.numbered-item {
+		display: grid;
+		grid-template-columns: var(--space-9) 1fr;
+		gap: var(--space-4);
+		padding-block: var(--space-6);
+		border-top: var(--border-width-thin) solid var(--color-rule);
+	}
+	.numbered-item:last-child {
+		border-bottom: var(--border-width-thin) solid var(--color-rule);
+	}
+	.numbered-item__num,
+	.numbered-item__title {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-3);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-snug);
+	}
+	.numbered-item__num {
+		font-variant-numeric: tabular-nums;
+		color: var(--color-number);
+	}
+	.numbered-item__text {
+		margin-top: var(--space-2);
+	}
+</style>

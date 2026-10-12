@@ -1,14 +1,21 @@
 ---
-// Small label that introduces a block, such as "The Offer".
+// A small uppercase label that introduces a group ("What’s Covered").
+interface Props {
+	as?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
+	id?: string;
+}
+
+const { as: Tag = 'p', id } = Astro.props;
 ---
 
-<p class="eyebrow"><slot /></p>
+<Tag class="eyebrow" id={id}><slot /></Tag>
 
 <style>
 	.eyebrow {
 		font-family: var(--font-body);
-		font-size: var(--font-size-body-m);
+		font-size: var(--font-size-small);
 		font-weight: var(--font-weight-semibold);
-		line-height: var(--line-height-ui);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
 	}
 </style>

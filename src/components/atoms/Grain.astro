@@ -1,0 +1,18 @@
+---
+// A fine noise texture fixed over the whole page for depth. Decorative.
+// BaseLayout includes it once.
+---
+
+<div class="grain" aria-hidden="true"></div>
+
+<style>
+	.grain {
+		position: fixed;
+		inset: 0;
+		z-index: var(--z-grain);
+		pointer-events: none;
+		opacity: var(--opacity-grain);
+		mix-blend-mode: soft-light;
+		background-image: var(--texture-grain);
+	}
+</style>

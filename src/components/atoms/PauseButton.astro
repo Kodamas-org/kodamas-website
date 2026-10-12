@@ -1,0 +1,68 @@
+---
+// A small round pause/play button for a looping animation.
+// target: the id of the element to pause. The button toggles a
+// `data-paused` attribute on it; that element's styles pause the animation.
+// Starts paused when the visitor prefers reduced motion.
+interface Props {
+	target: string;
+}
+
+const { target } = Astro.props;
+---
+
+<button class="pause-button" type="button" aria-label="Pause animation" aria-controls={target} data-pause-target={target}>
+	<svg class="pause-button__icon pause-button__icon--pause" viewBox="0 0 12 12" aria-hidden="true"
+		><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"></rect><rect
+			x="7"
+			y="1"
+			width="3"
+			height="10"
+			rx="1"
+			fill="currentColor"></rect></svg
+	>
+	<svg class="pause-button__icon pause-button__icon--play" viewBox="0 0 12 12" aria-hidden="true"
+		><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"></path></svg
+	>
+</button>
+
+<script>
+	const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	document.querySelectorAll<HTMLButtonElement>('[data-pause-target]').forEach((button) => {
+		const target = document.getElementById(button.dataset.pauseTarget ?? '');
+		if (!target) return;
+		const setPaused = (paused: boolean) => {
+			target.toggleAttribute('data-paused', paused);
+			button.toggleAttribute('data-paused', paused);
+			button.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+		};
+		setPaused(calm);
+		button.addEventListener('click', () => setPaused(!target.hasAttribute('data-paused')));
+	});
+</script>
+
+<style>
+	.pause-button {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		width: var(--size-tap-min);
+		height: var(--size-tap-min);
+		padding: 0;
+		background: none;
+		border: var(--border-width-thin) solid var(--color-rule);
+		border-radius: var(--radius-round);
+		color: inherit;
+		cursor: pointer;
+	}
+	.pause-button__icon {
+		width: var(--size-icon-s);
+		height: var(--size-icon-s);
+	}
+	.pause-button__icon--play,
+	.pause-button[data-paused] .pause-button__icon--pause {
+		display: none;
+	}
+	.pause-button[data-paused] .pause-button__icon--play {
+		display: block;
+	}
+</style>

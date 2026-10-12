@@ -1,7 +1,7 @@
 ---
-// Page template: document head, fonts, tokens, header and footer.
+// Page template: document head, fonts, tokens, grain, header and footer.
 // Each page passes its title and description and fills the main slot.
-// A page can replace the standard footer by filling the "footer" slot.
+// It also runs the fade-up reveal for every [data-reveal] element.
 import '@fontsource-variable/funnel-display';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/inter/wght-italic.css';
@@ -9,6 +9,7 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import SiteHeader from '../components/organisms/SiteHeader.astro';
 import SiteFooter from '../components/organisms/SiteFooter.astro';
+import Grain from '../components/atoms/Grain.astro';
 
 interface Props {
 	title: string;
@@ -30,20 +31,40 @@ const { title, description, noindex = false } = Astro.props;
 	</head>
 	<body>
 		<a href="#main" class="skip-link">Skip to content</a>
+		<Grain />
 		<SiteHeader />
 		<main id="main">
 			<slot />
 		</main>
-		{Astro.slots.has('footer') ? <slot name="footer" /> : <SiteFooter />}
+		<SiteFooter />
 	</body>
 </html>
+
+<script>
+	// Fade-up reveal. Content stays visible without JS or with reduced motion.
+	const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (!calm && 'IntersectionObserver' in window) {
+		document.documentElement.classList.add('js-reveal');
+		const io = new IntersectionObserver(
+			(entries) =>
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add('is-in');
+						io.unobserve(e.target);
+					}
+				}),
+			{ rootMargin: '0px 0px -10% 0px' },
+		);
+		document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+	}
+</script>
 
 <style>
 	.skip-link {
 		position: absolute;
 		top: var(--space-2);
 		left: var(--space-2);
-		z-index: calc(var(--z-header) + 1);
+		z-index: calc(var(--z-grain) + 1);
 		padding: var(--space-2) var(--space-4);
 		background: var(--color-aqua-glow);
 		color: var(--color-midnight-navy);

@@ -4,39 +4,39 @@
 
 ## What it is
 
-A team member: drop-shaped photo, name, role with a linked organisation, and nationality with a flag.
+A team member, centred: drop-shaped portrait (turns round on hover) with a flag badge, name, role with linked organisation, and nationality.
 
 ## When to use it
 
-In TeamSection, one card per founder.
+In TeamSection.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `name` | text | — | Full name (also used as the photo description). |
-| `photo` | image path | — | Leave out to show a placeholder. |
-| `role` | text | — | Job title before the organisation. |
-| `org` | { label, href } | — | Linked organisation, e.g. @HappyCow. |
-| `nationality` | text | — | Shown in bold. |
-| `flag` | emoji | — | Shown before the nationality; hidden from screen readers. |
+| `name` | text | — | Name. |
+| `role` | text | — | Role. |
+| `org` | { label, href } | — | Linked organisation. |
+| `nationality` | text | — | Shown uppercase. |
+| `flag` | emoji | — | Flag badge (decorative). |
+| `photo` | URL | — | Photo; placeholder without it. |
 
 ## Variants
 
-One layout, centred.
+One.
 
 ## Tokens used
 
-`--space-2`, `--space-4`
+`--color-accent`, `--color-midnight-navy`, `--color-text-muted`, `--font-display`, `--font-size-heading-3`, `--font-size-lead`, `--font-size-small`, `--font-weight-bold`, `--font-weight-semibold`, `--layout-team-column`, `--letter-spacing-label`, `--line-height-snug`, `--radius-round`, `--size-avatar-l`, `--size-tap-min`, `--size-underline-offset`, `--space-2`, `--space-5`
 
 ## Example
 
 ```astro
-<PersonCard name="Daniela Contessa" role="Former Head of Product" org={{ label: "@HappyCow", href: "…" }} nationality="Italian" flag="🇮🇹" />
+<PersonCard name="Daniela Contessa" role="Former Head of Product" org={{ label: "@HappyCow", href: "#" }} nationality="Italian" flag="🇮🇹" />
 ```
 
 ## Notes
 
-Uses atoms: Avatar, Heading (`heading-2`), Text, Link.
+Uses atoms: Avatar.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -1,73 +1,41 @@
 ---
 // Body text in Inter.
-// size: 'xl' (lead paragraphs), 'l' (quotes), 'm' (default), 's' (small UI)
-// weight: 'regular', 'semibold', 'bold'
+// size: 'body' (default), 'lead' (larger paragraph), 'small'
+// tone: 'inherit' or 'muted' (aqua-grey for captions and meta on navy)
+// Links inside are underlined in the accent colour.
 interface Props {
 	as?: 'p' | 'span' | 'div';
-	size?: 'xl' | 'l' | 'm' | 's';
-	weight?: 'regular' | 'semibold' | 'bold';
-	italic?: boolean;
-	align?: 'start' | 'center';
+	size?: 'body' | 'lead' | 'small';
+	tone?: 'inherit' | 'muted';
 	class?: string;
 }
 
-const {
-	as: Tag = 'p',
-	size = 'm',
-	weight = 'regular',
-	italic = false,
-	align = 'start',
-	class: className,
-} = Astro.props;
+const { as: Tag = 'p', size = 'body', tone = 'inherit', class: className } = Astro.props;
 ---
 
-<Tag
-	class:list={[
-		'text',
-		`text--${size}`,
-		`text--${weight}`,
-		`text--${align}`,
-		{ 'text--italic': italic },
-		className,
-	]}><slot /></Tag
->
+<Tag class:list={['text', `text--${size}`, `text--${tone}`, className]}><slot /></Tag>
 
 <style>
-	.text {
-		font-family: var(--font-body);
-	}
-	.text--xl {
-		font-size: var(--font-size-body-xl);
+	.text--body {
+		font-size: var(--font-size-body);
 		line-height: var(--line-height-body);
 	}
-	.text--l {
-		font-size: var(--font-size-body-l);
-		line-height: var(--line-height-relaxed);
+	.text--lead {
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
 	}
-	.text--m {
-		font-size: var(--font-size-body-m);
-		line-height: var(--line-height-body);
+	.text--small {
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
 	}
-	.text--s {
-		font-size: var(--font-size-body-s);
-		line-height: var(--line-height-body);
+	.text--muted {
+		color: var(--color-text-muted);
 	}
-	.text--regular {
-		font-weight: var(--font-weight-regular);
+	.text :global(a) {
+		color: var(--color-accent);
+		text-underline-offset: var(--size-underline-offset);
 	}
-	.text--semibold {
-		font-weight: var(--font-weight-semibold);
-	}
-	.text--bold {
+	.text :global(strong) {
 		font-weight: var(--font-weight-bold);
-	}
-	.text--italic {
-		font-style: italic;
-	}
-	.text--start {
-		text-align: start;
-	}
-	.text--center {
-		text-align: center;
 	}
 </style>

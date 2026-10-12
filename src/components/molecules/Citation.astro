@@ -1,0 +1,28 @@
+---
+// A sourced quotation in small muted text, with the source underneath.
+// The quote goes in the default slot.
+interface Props {
+	source: string;
+}
+
+const { source } = Astro.props;
+---
+
+<figure class="citation" data-reveal>
+	<blockquote>
+		<p><slot /></p>
+	</blockquote>
+	<figcaption>{source}</figcaption>
+</figure>
+
+<style>
+	.citation {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		max-width: var(--layout-text-max);
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
+		color: var(--color-text-muted);
+	}
+</style>

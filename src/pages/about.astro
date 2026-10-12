@@ -1,0 +1,159 @@
+---
+// Our Story (About). Built from the shared system, in the homepage's design
+// direction. Copy from reference/kodamas-about-page.png, word for word.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NameHero from '../components/organisms/NameHero.astro';
+import CallToActionSection from '../components/organisms/CallToActionSection.astro';
+import Section from '../components/molecules/Section.astro';
+import Profile from '../components/molecules/Profile.astro';
+import Principle from '../components/molecules/Principle.astro';
+import Heading from '../components/atoms/Heading.astro';
+import Highlight from '../components/atoms/Highlight.astro';
+import Button from '../components/atoms/Button.astro';
+import { links } from '../data/links';
+---
+
+<BaseLayout
+	title="Our Story · Kodamas"
+	description="These meanings mirror Daniela’s Italian heritage and Emma’s expat experience in Japan."
+>
+	<NameHero
+		title="Our Story"
+		terms={[
+			{ word: 'Ko', meaning: '“co” meaning together' },
+			{ word: 'Dama', meaning: '“lady” in Italian' },
+		]}
+		word="Kodama"
+		final="s"
+	>
+		<Fragment slot="meaning">in Japanese, the <Highlight>spirit of the tree</Highlight></Fragment>
+		<Fragment slot="note">+ an “S”, because we are two : )</Fragment>
+		These meanings mirror <Highlight>Daniela’s Italian heritage</Highlight> and <Highlight
+			>Emma’s expat experience in Japan</Highlight
+		>. Interestingly, “ko” is also an essential rule in the game of “Go”, preventing the immediate recapture of a stone to
+		avoid infinite repetition - something that we find fundamental to continued progress, learning and growth.
+	</NameHero>
+
+	<Section labelledby="founders-title" num="01">
+		<h2 id="founders-title" class="visually-hidden">Our team</h2>
+		<div class="founders">
+			<Profile
+				name="Emma"
+				fullName="Emma Cebuliak"
+				zone="Asia/Tokyo"
+				link={{ label: 'Visit LinkedIn Profile', href: links.emmaLinkedIn }}
+			>
+				<Fragment slot="quote">Business requires empathy; it’s <em>the most underrated and unseen skill</em></Fragment>
+				<p>
+					From the Canadian Rocky Mountains 🏔️ 12 years in Japan.<br />
+					Director of Business Growth at <a href={links.happyCowEmma}>HappyCow</a> (6+ years).
+				</p>
+			</Profile>
+			<Profile
+				name="Dani"
+				fullName="Daniela Contessa"
+				zone="Europe/Rome"
+				link={{ label: 'Visit LinkedIn Profile', href: links.danielaLinkedIn }}
+				reverse
+			>
+				<Fragment slot="quote">How your team works internally <em>always reflects on your end users.</em></Fragment>
+				<p>
+					From some of the biggest cities in the world to the countryside growing her own vegetables 🥕🥦🧅. Fractional
+					Head of Product, Delivery Manager &amp; Design Lead, at <a href={links.happyCowDaniela}>HappyCow</a> and <a
+						href={links.workForImpactDaniela}>Work for Impact</a
+					>.
+				</p>
+			</Profile>
+		</div>
+	</Section>
+
+	<Section labelledby="manifesto-title" num="02">
+		<Heading level={2} size="statement" id="manifesto-title" reveal>Our <em>Manifesto</em></Heading>
+		<div class="manifesto">
+			<Principle>
+				<Fragment slot="title">People + process = consistent delivery</Fragment>
+				<Fragment slot="left">
+					<p>
+						Companies that have a purpose shouldn’t be thinking only about the mission of the company, they should also be
+						concerned about the well-being of their people and culture - first and foremost.
+					</p>
+					<p>
+						Better workflows, less stress, clear and structured patterns for work - these generate more calm and focus,
+						and ultimately help your people to truly fulfil your mission - not merely generate higher productivity at a
+						high cost.
+					</p>
+				</Fragment>
+				<Fragment slot="right">
+					<p>
+						<Highlight variant="pink">We don’t buy into the belief that the ends justify the means;</Highlight> we know
+						that the product reflects how it’s built.
+					</p>
+					<p>
+						Particularly in our current epoch, the narrative is reflected by “How can AI help me make more money by
+						cutting the number of people who work for me?” That viewpoint contains a big fallacy, because it sets up
+						productivity to defy the very people it’s supposed to support in the first place.
+					</p>
+				</Fragment>
+			</Principle>
+			<Principle>
+				<Fragment slot="title">
+					AI should help you be more successful by making your people more successful. More, not less.
+				</Fragment>
+				<Fragment slot="left">
+					<p>
+						Therefore, we are all for helping companies that want to incorporate technology (including AI) thoroughly, but
+						in an ethical way.
+					</p>
+					<ul>
+						<li>We are not going to help you reduce your team with AI.</li>
+						<li>
+							If you’re looking for someone to cut your costs by reducing the number of people on your team, you should
+							leave this page now.
+						</li>
+						<li>The mark of a good company is being able to support people, not to get rid of them.</li>
+					</ul>
+				</Fragment>
+				<Fragment slot="right">
+					<p><Highlight variant="pink">Delivery isn’t about control; it’s about clarity.</Highlight></p>
+					<p>
+						We build lean, empathetic frameworks that help ambitious teams focus on what matters, anticipate what’s next,
+						and ship with confidence - in a way that empowers, not diminish.
+					</p>
+					<Button href={links.blogfolio}>Read Our Blogfolio 📝</Button>
+				</Fragment>
+			</Principle>
+		</div>
+	</Section>
+
+	<div class="cta-gap">
+		<CallToActionSection
+			num="03"
+			title="Want to optimize your internal workflows?"
+			cta={{ label: 'Connect With Us', href: links.connect }}
+		>
+			<p>
+				At <strong>Kodamas</strong>, we help teams design scalable systems that reduce friction, improve communication, and
+				make collaboration effortless.
+			</p>
+			<p>If your bug reporting or internal ops feel like chaos, let’s turn them into clarity.</p>
+		</CallToActionSection>
+	</div>
+</BaseLayout>
+
+<style>
+	.founders {
+		display: flex;
+		flex-direction: column;
+		gap: var(--layout-section);
+	}
+	.manifesto {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-10);
+		margin-top: var(--space-8);
+	}
+	/* The bright section follows a navy one: keep the one section gap above it */
+	.cta-gap {
+		margin-top: var(--layout-section);
+	}
+</style>

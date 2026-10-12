@@ -4,32 +4,33 @@
 
 ## What it is
 
-The Kodamas drop: a shape with one square corner (top left) and three rounded corners. It is purely decorative.
+The Kodamas drop: one square corner (top left), three rounded. Decorative, hidden from screen readers.
 
 ## When to use it
 
-Behind the hero “K”, on the corner of the statistic quote card, and next to each footer link. Screen readers skip it.
+Markers, the name equation operators, anywhere the brand shape is used as a small element.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `size` | `s` · `m` · `l` | `m` | Small (footer links), medium (quote card), large (hero). |
-| `tone` | `gradient` · `flat` | `gradient` | Pink gradient, or solid pink (footer). |
-| `class` | text | — | Extra class so a parent can position it. |
+| `size` | `xs` · `s` · `m` | `s` | 1rem, 1.25rem, 4.5rem (3.5rem on mobile). |
+| `tone` | `pink` · `aqua` · `outline` | `pink` | Pink gradient, solid aqua, or aqua outline. |
+| `symbol` | `+` · `=` | — | A white symbol drawn inside. |
+| `class` | text | — | Global class for positioning. |
 
 ## Variants
 
-`gradient` fades from light to dark pink; `flat` is solid `bloom-pink`.
+Three tones, optional symbol.
 
 ## Tokens used
 
-`--color-bloom-pink`, `--gradient-drop`, `--radius-drop`, `--size-drop-l`, `--size-drop-m`, `--size-drop-s`
+`--border-width-medium`, `--color-aqua-glow`, `--color-white`, `--gradient-drop`, `--radius-drop`, `--size-drop-m`, `--size-drop-s`, `--size-drop-xs`
 
 ## Example
 
 ```astro
-<Drop size="s" tone="flat" />
+<Drop size="m" symbol="+" />
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

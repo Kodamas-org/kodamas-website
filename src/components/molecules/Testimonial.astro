@@ -1,96 +1,74 @@
 ---
-// Client quote in a pink card, with a round photo overlapping the left edge,
-// the author's name as a link and their role.
-// quoteSize: 'l' for short quotes, 's' for long ones.
+// A client quote set large in Funnel Display Light, with the key phrase in
+// aqua bold (wrap it in <em> in the slot), then a byline: round photo, name
+// (linked) and role.
+// long: a smaller size for longer quotes
+// index: position in a TestimonialsSection (used for its focus effect)
 import Avatar from '../atoms/Avatar.astro';
-import Link from '../atoms/Link.astro';
 
 interface Props {
 	name: string;
 	href: string;
 	role: string;
 	photo?: string;
-	quoteSize?: 'l' | 's';
+	long?: boolean;
+	index?: number;
 }
 
-const { name, href, role, photo, quoteSize = 'l' } = Astro.props;
+const { name, href, role, photo, long = false, index } = Astro.props;
 ---
 
-<figure class="testimonial">
-	<Avatar src={photo} alt={name} shape="circle" size="testimonial" class="testimonial__photo" />
-	<div class="testimonial__card">
-		<blockquote class:list={['testimonial__quote', `testimonial__quote--${quoteSize}`]}>
-			<p><slot /></p>
-		</blockquote>
-		<figcaption class="testimonial__author">
-			<Link href={href} tone="white">{name}</Link>
-			<span class="testimonial__role">{role}</span>
-		</figcaption>
-	</div>
+<figure class:list={['testimonial', { 'testimonial--long': long }]} data-voice={index}>
+	<blockquote>
+		<p><slot /></p>
+	</blockquote>
+	<figcaption class="testimonial__byline">
+		<Avatar name={name} src={photo} shape="round" size="s" />
+		<span>
+			<a href={href}>{name}</a>
+			<span>{role}</span>
+		</span>
+	</figcaption>
 </figure>
 
 <style>
 	.testimonial {
-		position: relative;
-		display: grid;
-		grid-template-columns: var(--size-avatar-testimonial) 1fr;
-		align-items: center;
-	}
-	.testimonial :global(.testimonial__photo) {
-		grid-column: 1;
-		grid-row: 1;
-		position: relative;
-		z-index: var(--z-raised);
-	}
-	.testimonial__card {
-		grid-column: 1 / -1;
-		grid-row: 1;
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-7);
-		margin-left: var(--overlap-testimonial-card);
-		padding: var(--space-7) var(--space-10) var(--space-7) var(--indent-testimonial-text);
-		background: var(--color-surface-pink);
-		border-radius: var(--radius-l);
-		box-shadow: var(--shadow-card);
-		color: var(--color-white);
-		--focus-color: var(--color-focus-on-light);
+		gap: var(--space-6);
+		transition: opacity var(--duration-reveal) var(--ease-standard);
 	}
-	.testimonial__quote {
+	.testimonial blockquote {
 		font-family: var(--font-display);
-		font-weight: var(--font-weight-bold);
-		font-style: italic;
-	}
-	.testimonial__quote--l {
-		font-size: var(--font-size-heading-2);
+		font-size: var(--font-size-quote);
+		font-weight: var(--font-weight-light);
 		line-height: var(--line-height-snug);
+		letter-spacing: var(--letter-spacing-display);
 	}
-	.testimonial__quote--s {
-		font-size: var(--font-size-quote-s);
-		line-height: var(--line-height-heading);
+	.testimonial--long blockquote {
+		font-size: var(--font-size-quote-long);
 	}
-	.testimonial__author {
+	.testimonial :global(em) {
+		font-style: normal;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-accent);
+	}
+	.testimonial__byline {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-lead);
+		color: var(--color-text-muted);
+	}
+	.testimonial__byline > span {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		gap: var(--space-3);
-		font-size: var(--font-size-body-m);
 	}
-
-	@media (max-width: 48rem) {
-		.testimonial {
-			grid-template-columns: 1fr;
-			justify-items: start;
-		}
-		.testimonial :global(.testimonial__photo) {
-			margin-left: var(--space-5);
-		}
-		.testimonial__card {
-			grid-row: 2;
-			margin-left: 0;
-			margin-top: calc(var(--size-avatar-testimonial) / -2);
-			padding: calc(var(--size-avatar-testimonial) / 2 + var(--space-5)) var(--space-5) var(--space-6);
-			gap: var(--space-5);
-		}
+	.testimonial__byline a {
+		font-size: var(--font-size-ui);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-text-on-dark);
+		text-underline-offset: var(--size-underline-offset);
 	}
 </style>

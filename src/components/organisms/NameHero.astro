@@ -1,0 +1,192 @@
+---
+// The About page opening: the name explained as an equation.
+// Two terms (each a word with its meaning underneath) joined by pink drops
+// carrying + and =, then the result as the giant wordmark that fills the
+// grid. The letters rise in one after another and the final letter arrives
+// last, in pink, with its own note. Below, the intro paragraph.
+// The page's h1 is the small label above (e.g. "Our Story").
+// terms: the two parts of the name; colour 'white' or 'aqua'
+// word: the result word, without the final letter; final: the added letter
+// Slots: "meaning" (what the word means, under the wordmark),
+//        "note" (the note for the final letter), default (intro paragraph)
+import Container from '../atoms/Container.astro';
+import Drop from '../atoms/Drop.astro';
+
+interface Props {
+	title: string;
+	terms: [{ word: string; meaning: string }, { word: string; meaning: string }];
+	word: string;
+	final: string;
+	lead?: number;
+}
+
+const { title, terms, word, final, lead = 2 } = Astro.props;
+const letters = [...word];
+---
+
+<div class="name-hero">
+	<Container>
+		<h1 class="name-hero__title">{title}</h1>
+		<div class="name-hero__equation">
+			<p class="name-hero__term" style="--i: 0">
+				<span class="name-hero__word">{terms[0].word}</span>
+				<span class="name-hero__meaning">{terms[0].meaning}</span>
+			</p>
+			<span class="name-hero__op" style="--i: 1">
+				<Drop size="m" symbol="+" /><span class="visually-hidden">plus</span>
+			</span>
+			<p class="name-hero__term name-hero__term--aqua" style="--i: 2">
+				<span class="name-hero__word">{terms[1].word}</span>
+				<span class="name-hero__meaning">{terms[1].meaning}</span>
+			</p>
+			<span class="name-hero__op" style="--i: 3">
+				<Drop size="m" symbol="=" /><span class="visually-hidden">equals</span>
+			</span>
+		</div>
+		<div class="name-hero__result">
+			<p class="name-hero__mark">
+				<span class="visually-hidden">{word}{final}</span>
+				<span class="name-hero__letters" aria-hidden="true">
+					{
+						letters.map((l, i) => (
+							<span class:list={['name-hero__letter', { 'name-hero__letter--lead': i < lead }]} style={`--i: ${i + 4}`}>
+								{l}
+							</span>
+						))
+					}<span class="name-hero__letter name-hero__letter--final" style={`--i: ${letters.length + 8}`}>{final}</span>
+				</span>
+			</p>
+			<div class="name-hero__caption">
+				<p class="name-hero__meaning-line"><slot name="meaning" /></p>
+				<p class="name-hero__note" style={`--i: ${letters.length + 9}`}><slot name="note" /></p>
+			</div>
+		</div>
+		<p class="name-hero__intro" data-reveal><slot /></p>
+	</Container>
+</div>
+
+<style>
+	.name-hero {
+		padding-top: var(--space-8);
+		padding-bottom: var(--layout-section);
+	}
+	.name-hero__title {
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+		color: var(--color-number);
+	}
+
+	/* ---------- Equation ---------- */
+	.name-hero__equation {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-5) var(--layout-col-gap);
+		margin-top: var(--space-8);
+	}
+	.name-hero__term {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+	.name-hero__word {
+		font-family: var(--font-display);
+		font-size: var(--font-size-statement);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-tight);
+	}
+	.name-hero__term--aqua .name-hero__word {
+		color: var(--color-aqua-glow);
+	}
+	.name-hero__meaning {
+		font-size: var(--font-size-body);
+		color: var(--color-text-muted);
+	}
+
+	/* ---------- Result ---------- */
+	.name-hero__result {
+		container-type: inline-size;
+		margin-top: var(--space-8);
+	}
+	.name-hero__letters {
+		display: block;
+		font-family: var(--font-display);
+		font-size: var(--font-size-mark);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-mark);
+		letter-spacing: var(--letter-spacing-tight);
+		color: var(--color-aqua-glow);
+		white-space: nowrap;
+	}
+	.name-hero__letter--lead {
+		color: var(--color-white);
+	}
+	.name-hero__letter--final {
+		color: var(--color-highlight-pink);
+	}
+	.name-hero__caption {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--space-3) var(--space-6);
+		margin-top: var(--space-6);
+	}
+	.name-hero__meaning-line {
+		font-family: var(--font-display);
+		font-size: var(--font-size-intro);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-snug);
+	}
+	.name-hero__note {
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-highlight-pink);
+	}
+	.name-hero__intro {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-9);
+		margin-left: auto;
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+		text-wrap: pretty;
+	}
+
+	/* ---------- Motion: the equation builds, then the name rises ---------- */
+	.name-hero__term,
+	.name-hero__op,
+	.name-hero__letter,
+	.name-hero__note {
+		animation: name-hero-rise var(--duration-rise) var(--ease-standard) both;
+		animation-delay: calc(var(--i) * var(--stagger) * 2);
+	}
+	.name-hero__letter {
+		display: inline-block;
+	}
+	.name-hero__letter--final {
+		animation-name: name-hero-drop-in;
+	}
+	@keyframes name-hero-rise {
+		from {
+			opacity: 0;
+			transform: translateY(30%);
+		}
+	}
+	@keyframes name-hero-drop-in {
+		from {
+			opacity: 0;
+			transform: translateY(-60%) rotate(-12deg);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.name-hero__term,
+		.name-hero__op,
+		.name-hero__letter,
+		.name-hero__note {
+			animation: none;
+		}
+	}
+</style>

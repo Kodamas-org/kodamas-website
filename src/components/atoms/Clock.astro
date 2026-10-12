@@ -1,0 +1,68 @@
+---
+// A live local-time pill (for example Italy or Japan). Hidden until the
+// script has set the time, and hidden from screen readers (decorative).
+// zone: an IANA time zone, e.g. 'Europe/Rome'
+interface Props {
+	zone: string;
+}
+
+const { zone } = Astro.props;
+---
+
+<span class="clock" data-clock={zone} aria-hidden="true"
+	><svg class="clock__icon" viewBox="0 0 24 24"
+		><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle><path
+			d="M12 7v5l3 2"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"></path></svg
+	><span class="clock__time"></span></span
+>
+
+<script>
+	const clocks = document.querySelectorAll<HTMLElement>('[data-clock]');
+	const setTimes = () =>
+		clocks.forEach((c) => {
+			const time = new Intl.DateTimeFormat('en-GB', {
+				hour: '2-digit',
+				minute: '2-digit',
+				timeZone: c.dataset.clock,
+			}).format(new Date());
+			const out = c.querySelector('.clock__time');
+			if (out) out.textContent = time;
+			c.classList.add('is-set');
+		});
+	if (clocks.length) {
+		setTimes();
+		setInterval(setTimes, 30000);
+	}
+</script>
+
+<style>
+	.clock {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-inline-start: var(--space-3);
+		padding: var(--space-1) var(--space-3);
+		border: var(--border-width-thin) solid var(--color-rule);
+		border-radius: var(--radius-pill);
+		font-family: var(--font-body);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		font-variant-numeric: tabular-nums;
+		letter-spacing: var(--letter-spacing-body);
+		line-height: var(--line-height-body);
+		vertical-align: middle;
+		color: var(--color-aqua-glow);
+	}
+	.clock:not(.is-set) {
+		display: none;
+	}
+	.clock__icon {
+		width: var(--size-icon-m);
+		height: var(--size-icon-m);
+	}
+</style>

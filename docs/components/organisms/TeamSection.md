@@ -4,30 +4,37 @@
 
 ## What it is
 
-The founders shown side by side.
+The founders: a statement line with live clocks (one line across the grid on desktop), then PersonCards side by side.
 
 ## When to use it
 
-Below the hero. Put one PersonCard per person inside. It has a heading (“Our team”) that only screen readers hear, because the design shows no visible title here.
+Homepage.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
+| `num` | text | — | Section number. |
+| `title` | text | — | Visually hidden h2. |
+| slot "lead" | content | — | The statement (with Clock; wrap a word and its clock in `<span class="nowrap">`). |
 | (content) | PersonCards | — | The people. |
 
 ## Variants
 
-Two columns; one column on phones.
+Cards stack on mobile.
 
 ## Tokens used
 
-`--layout-container-max`, `--layout-gutter`, `--layout-team-column`, `--space-9`
+`--font-display`, `--font-size-statement`, `--font-size-statement-fit`, `--font-weight-light`, `--layout-team-column`, `--letter-spacing-display`, `--line-height-heading`, `--space-10`, `--space-8`
 
 ## Example
 
 ```astro
-<TeamSection><PersonCard … /><PersonCard … /></TeamSection>
+<TeamSection num="04" title="Our team">…</TeamSection>
 ```
+
+## Notes
+
+Uses: Section, PersonCard, Clock.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

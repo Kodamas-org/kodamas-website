@@ -8,27 +8,27 @@ The header navigation: text links and a call-to-action button.
 
 ## When to use it
 
-Inside SiteHeader. On phones (below 768px) the text links fold into a “Menu” button that opens a small panel; the call-to-action stays visible.
+Inside SiteHeader. On phones the links fold into a “Menu” toggle; the button stays visible. The link to the current page is marked as current.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `links` | list of { label, href } | — | The text links, in order. |
+| `links` | list of { label, href } | — | Text links, in order. |
 | `cta` | { label, href } | — | The button. |
 
 ## Variants
 
-Desktop/tablet: everything in one row. Mobile: Menu toggle + button.
+Desktop/tablet: one row. Mobile: Menu toggle + button.
 
 ## Tokens used
 
-`--border-width-thin`, `--color-aqua-glow`, `--color-midnight-navy`, `--font-size-body-s`, `--radius-pill`, `--radius-s`, `--space-2`, `--space-3`, `--space-4`, `--space-5`
+`--border-width-thin`, `--color-aqua-glow`, `--color-midnight-navy`, `--font-size-ui`, `--radius-pill`, `--radius-s`, `--space-2`, `--space-3`, `--space-4`, `--space-5`
 
 ## Example
 
 ```astro
-<NavMenu links={[{ label: "Blogfolio", href: "/blog" }]} cta={{ label: "Connect With Us", href: "/contact" }} />
+<NavMenu links={[{ label: "Blogfolio", href: "#" }]} cta={{ label: "Connect With Us", href: "#" }} />
 ```
 
 ## Notes

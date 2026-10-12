@@ -4,34 +4,37 @@
 
 ## What it is
 
-A stack of client testimonials on the animated aqua background.
+Client voices with a sticky aside (pink drop and 01 / 03 counter). The quote in the middle of the screen is in focus; the others step back.
 
 ## When to use it
 
-Near the end of the homepage. Put Testimonial components inside. It has a heading (“What people say about us”) that only screen readers hear.
+Homepage.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| (content) | Testimonials | — | The quotes, in order. |
+| `num` | text | — | Section number. |
+| `title` | text | — | Visually hidden h2. |
+| `count` | number | — | Number of quotes. |
+| (content) | Testimonials | — | Each with `index={1…n}`. |
 
 ## Variants
 
-Cards stack with a small gap; more space between them on phones.
+On tablet and mobile the counter is a slim sticky bar.
 
 ## Tokens used
 
-`--layout-container-max`, `--layout-gutter`, `--space-11`, `--space-3`, `--space-7`, `--space-9`
+`--border-width-thin`, `--color-rule`, `--color-surface-page`, `--color-text-muted`, `--font-display`, `--font-size-heading-3`, `--font-weight-bold`, `--font-weight-light`, `--gradient-drop`, `--layout-col-gap`, `--layout-sticky-top`, `--opacity-dim`, `--radius-drop`, `--size-drop-m`, `--size-drop-s`, `--space-4`, `--space-5`, `--space-6`, `--space-9`, `--z-raised`
 
 ## Example
 
 ```astro
-<TestimonialsSection><Testimonial …>“…”</Testimonial></TestimonialsSection>
+<TestimonialsSection num="03" title="What people say about us" count={3}>…</TestimonialsSection>
 ```
 
 ## Notes
 
-Uses: AnimatedBackdrop.
+Uses: Section, Testimonial.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

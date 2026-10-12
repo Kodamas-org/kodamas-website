@@ -1,53 +1,134 @@
 ---
-// Opening section: the large two-tone "Kodamas" wordmark with a pink drop
-// tucked behind the K, followed by the intro paragraph.
-import Wordmark from '../atoms/Wordmark.astro';
-import Drop from '../atoms/Drop.astro';
-import Text from '../atoms/Text.astro';
+// The homepage opening. The giant wordmark (the page's h1) fills the grid
+// width exactly, its letters rising in one after another; the first letters
+// are white, the rest aqua. Below it the intro statement and actions on the
+// left, the floating drop cluster on the right (above the wordmark on
+// tablet and mobile).
+// word / lead: the wordmark and how many leading letters are white
+// Slots: default (the intro statement; wrap the key phrase in
+//        <Highlight variant="underline">), "actions" (button and link)
+import Container from '../atoms/Container.astro';
+import DropCluster from '../molecules/DropCluster.astro';
+
+interface Props {
+	word?: string;
+	lead?: number;
+}
+
+const { word = 'Kodamas', lead = 2 } = Astro.props;
+const letters = [...word];
 ---
 
-<section class="hero" aria-labelledby="hero-title">
-	<div class="hero__title">
-		<Drop size="l" class="hero__drop" />
-		<h1 id="hero-title" class="hero__wordmark"><Wordmark size="xl" tone="two-tone" /></h1>
-	</div>
-	<Text size="xl" class="hero__intro"><slot /></Text>
-</section>
+<div class="hero">
+	<Container>
+		<h1 class="hero__mark">
+			<span class="visually-hidden">{word}</span>
+			<span class="hero__letters" aria-hidden="true">
+				{
+					letters.map((l, i) => (
+						<span class:list={['hero__letter', { 'hero__letter--lead': i < lead }]} style={`--i: ${i}`}>
+							{l}
+						</span>
+					))
+				}
+			</span>
+		</h1>
+		<div class="hero__foot">
+			<div class="hero__text">
+				<p class="hero__intro"><slot /></p>
+				<div class="hero__actions"><slot name="actions" /></div>
+			</div>
+			<div class="hero__symbol">
+				<DropCluster />
+			</div>
+		</div>
+	</Container>
+</div>
 
 <style>
 	.hero {
-		max-width: var(--layout-page-max);
-		margin-inline: auto;
-		padding: var(--space-10) var(--layout-header-gutter) var(--space-10);
-	}
-	.hero__title {
 		position: relative;
-		padding-left: var(--overlap-hero-drop);
-		padding-top: var(--overlap-hero-drop);
+		padding-top: var(--space-8);
+		padding-bottom: var(--layout-section);
 	}
-	.hero :global(.hero__drop) {
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.hero__wordmark {
+	.hero__mark {
 		position: relative;
-		font-size: inherit;
+		container-type: inline-size;
+		margin-top: var(--space-6);
 	}
-	.hero :global(.hero__intro) {
-		max-width: var(--layout-text-max);
-		margin-top: var(--space-10);
-		padding-left: var(--indent-hero-intro);
+	.hero__letters {
+		display: block;
+		font-family: var(--font-display);
+		font-size: var(--font-size-mark);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-mark);
+		letter-spacing: var(--letter-spacing-tight);
+		color: var(--color-aqua-glow);
+		white-space: nowrap;
+	}
+	.hero__letter {
+		display: inline-block;
+		animation: hero-rise var(--duration-rise) var(--ease-standard) both;
+		animation-delay: calc(var(--i) * var(--stagger));
+	}
+	.hero__letter--lead {
+		color: var(--color-white);
+	}
+	@keyframes hero-rise {
+		from {
+			opacity: 0;
+			transform: translateY(30%);
+		}
+	}
+	.hero__foot {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-6);
+		align-items: center;
+		margin-top: var(--space-8);
+	}
+	.hero__text {
+		grid-column: 1 / span 8;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-7);
+	}
+	.hero__intro {
+		font-family: var(--font-display);
+		font-size: var(--font-size-intro);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-snug);
+		text-wrap: pretty;
+	}
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3) var(--space-6);
+	}
+	.hero__symbol {
+		grid-column: 10 / -1;
+		justify-self: end;
 	}
 
-	@media (max-width: 48rem) {
-		.hero {
-			padding-top: var(--space-9);
-			padding-bottom: var(--space-10);
+	@media (prefers-reduced-motion: reduce) {
+		.hero__letter {
+			animation: none;
 		}
-		.hero :global(.hero__intro) {
-			margin-top: var(--space-7);
-			padding-left: 0;
+	}
+	@media (max-width: 64rem) {
+		.hero__text {
+			grid-column: 1 / -1;
+		}
+		/* The symbol returns above the wordmark */
+		.hero__symbol {
+			position: absolute;
+			top: var(--space-6);
+			right: var(--layout-gutter);
+		}
+		.hero__mark {
+			margin-top: calc(var(--size-drop-cluster) * 0.82);
 		}
 	}
 </style>

@@ -4,32 +4,30 @@
 
 ## What it is
 
-The word “Kodamas” set in Funnel Display Bold. It is the brand name used as a logo.
+The name “Kodamas” in Funnel Display, in aqua.
 
 ## When to use it
 
-In the header (small, aqua), in the footer (large, white) and as the giant hero title (two-tone). Use it anywhere the brand name should look like the logo rather than normal text.
+Header (links home) and the footer bar.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `size` | `s` · `l` · `xl` | `s` | How big it is: header, footer, hero. |
-| `tone` | `aqua` · `white` · `two-tone` | `aqua` | Colour. `two-tone` makes “Ko” white and “damas” aqua (hero only). |
-| `as` | `span` · `p` · `h1` | `span` | Which HTML element it renders as. Use `p` in the footer. |
+| `variant` | `header` · `signoff` | `header` | header: Bold. signoff: Heavy with a small pink drop before it. |
 
 ## Variants
 
-Three sizes × three tones. The hero uses `xl` + `two-tone`; the header uses `s` + `aqua`; the footer uses `l` + `white`.
+Two variants.
 
 ## Tokens used
 
-`--color-aqua-glow`, `--color-white`, `--font-display`, `--font-size-display-l`, `--font-size-display-xl`, `--font-size-wordmark-s`, `--font-weight-bold`, `--letter-spacing-display`, `--line-height-none`
+`--color-aqua-glow`, `--font-display`, `--font-size-wordmark-s`, `--font-weight-bold`, `--font-weight-heavy`, `--gradient-drop`, `--letter-spacing-display`, `--line-height-none`, `--radius-drop`, `--size-drop-xs`, `--space-2`
 
 ## Example
 
 ```astro
-<Wordmark size="l" tone="white" as="p" />
+<Wordmark variant="signoff" />
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

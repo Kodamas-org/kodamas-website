@@ -1,37 +1,114 @@
 ---
-// Stack of client testimonials on the animated aqua background.
-// Pass Testimonial components in the slot. The heading is for screen readers
-// only; the design has no visible title here.
-import AnimatedBackdrop from '../molecules/AnimatedBackdrop.astro';
+// Client voices. A sticky aside shows a pink drop and a counter (01 / 03);
+// as the visitor scrolls, the quote in the middle of the screen is in
+// focus and the others step back. On tablet and mobile the counter becomes
+// a slim bar that sticks to the top while the quotes are on screen.
+// Default slot: Testimonial components, each with index={1…n}.
+import Section from '../molecules/Section.astro';
+
+interface Props {
+	num: string;
+	title: string;
+	count: number;
+}
+
+const { num, title, count } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
-<AnimatedBackdrop>
-	<section class="testimonials" aria-labelledby="testimonials-title">
-		<h2 id="testimonials-title" class="visually-hidden">What people say about us</h2>
-		<div class="testimonials__list">
+<Section labelledby="voices-title" num={num}>
+	<h2 id="voices-title" class="visually-hidden">{title}</h2>
+	<div class="voices" data-voices>
+		<div class="voices__aside" aria-hidden="true">
+			<span class="voices__mark"></span>
+			<p class="voices__count">
+				<span data-voice-current>01</span><span class="voices__total"> / {pad(count)}</span>
+			</p>
+		</div>
+		<div class="voices__list">
 			<slot />
 		</div>
-	</section>
-</AnimatedBackdrop>
+	</div>
+</Section>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-voices]').forEach((section) => {
+		if (!('IntersectionObserver' in window)) return;
+		section.classList.add('is-live');
+		const current = section.querySelector('[data-voice-current]');
+		const quotes = section.querySelectorAll<HTMLElement>('[data-voice]');
+		const io = new IntersectionObserver(
+			(entries) =>
+				entries.forEach((e) => {
+					if (!e.isIntersecting) return;
+					quotes.forEach((q) => q.classList.toggle('is-active', q === e.target));
+					if (current) current.textContent = String((e.target as HTMLElement).dataset.voice).padStart(2, '0');
+				}),
+			{ rootMargin: '-45% 0px -45% 0px' },
+		);
+		quotes.forEach((q) => io.observe(q));
+		quotes[0]?.classList.add('is-active');
+	});
+</script>
 
 <style>
-	.testimonials {
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: var(--space-11) var(--layout-gutter);
+	.voices {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
 	}
-	.testimonials__list {
+	.voices__aside {
+		grid-column: 1 / span 3;
+		align-self: start;
+		position: sticky;
+		top: var(--layout-sticky-top);
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-3);
+		gap: var(--space-5);
 	}
-
-	@media (max-width: 48rem) {
-		.testimonials {
-			padding-block: var(--space-9);
+	.voices__mark {
+		width: var(--size-drop-m);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
+	}
+	.voices__count {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-3);
+		font-weight: var(--font-weight-bold);
+		font-variant-numeric: tabular-nums;
+	}
+	.voices__total {
+		color: var(--color-text-muted);
+		font-weight: var(--font-weight-light);
+	}
+	.voices__list {
+		grid-column: 4 / -1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-9);
+	}
+	.voices.is-live :global(.testimonial:not(.is-active)) {
+		opacity: var(--opacity-dim);
+	}
+	@media (max-width: 64rem) {
+		.voices__aside,
+		.voices__list {
+			grid-column: 1 / -1;
 		}
-		.testimonials__list {
-			gap: var(--space-7);
+		/* The counter sticks while the quotes are on screen, then leaves with the section */
+		.voices__aside {
+			z-index: var(--z-raised);
+			top: 0;
+			flex-direction: row;
+			align-items: center;
+			margin-bottom: var(--space-6);
+			padding-block: var(--space-4);
+			background: var(--color-surface-page);
+			border-bottom: var(--border-width-thin) solid var(--color-rule);
+		}
+		.voices__mark {
+			width: var(--size-drop-s);
 		}
 	}
 </style>

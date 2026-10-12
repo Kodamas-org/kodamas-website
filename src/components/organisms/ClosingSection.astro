@@ -1,0 +1,77 @@
+---
+// The closing section: a full-width kinetic marquee, then a short message on
+// the left and the call to action with the marquee's pause button on the right.
+// Slot default: the message (first <p> is set larger as a lead-in)
+import Section from '../molecules/Section.astro';
+import Marquee from '../molecules/Marquee.astro';
+import Button from '../atoms/Button.astro';
+import PauseButton from '../atoms/PauseButton.astro';
+
+interface Props {
+	num: string;
+	title: string;
+	words: { outline: string; fill: string };
+	cta: { label: string; href: string };
+}
+
+const { num, title, words, cta } = Astro.props;
+---
+
+<Section labelledby="closing-title" spacing="block" num={num} class="closing">
+	<h2 id="closing-title" class="visually-hidden">{title}</h2>
+	<div slot="full" class="closing__marquee">
+		<Marquee id="closing-marquee" {...words} />
+	</div>
+	<div slot="after" class="closing__grid">
+		<div class="closing__body" data-reveal>
+			<slot />
+		</div>
+		<div class="closing__cta" data-reveal>
+			<Button href={cta.href}>{cta.label}</Button>
+			<PauseButton target="closing-marquee" />
+		</div>
+	</div>
+</Section>
+
+<style>
+	.closing__marquee {
+		overflow: hidden;
+	}
+	.closing__grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-7);
+		align-items: end;
+		margin-top: var(--space-9);
+	}
+	.closing__body {
+		grid-column: 1 / span 6;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+	.closing__body > :global(p:first-child) {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-3);
+		font-weight: var(--font-weight-bold);
+	}
+	.closing__cta {
+		grid-column: 9 / -1;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--space-4);
+	}
+	@media (max-width: 64rem) {
+		.closing__body,
+		.closing__cta {
+			grid-column: 1 / -1;
+		}
+		.closing__cta {
+			justify-content: flex-start;
+		}
+	}
+</style>

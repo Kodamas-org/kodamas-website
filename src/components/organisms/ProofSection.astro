@@ -1,0 +1,82 @@
+---
+// Evidence: a large statement question, a row of counting figures divided
+// by hairlines, and the sourced quotation they come from.
+// The figures are hidden from screen readers because the quotation says
+// the same thing in full.
+// Slots: "title" (the statement; <em> turns aqua bold), default (the
+//        quotation text)
+import Section from '../molecules/Section.astro';
+import Stat from '../molecules/Stat.astro';
+import Citation from '../molecules/Citation.astro';
+
+interface Props {
+	num: string;
+	stats: {
+		value: number;
+		decimals?: number;
+		prefix?: string;
+		suffix?: string;
+		caption: string;
+		icon?: 'trend' | 'timer' | 'bars';
+		accent?: boolean;
+	}[];
+	source: string;
+}
+
+const { num, stats, source } = Astro.props;
+---
+
+<Section labelledby="proof-title" num={num} rule={false}>
+	<h2 id="proof-title" class="proof__title" data-reveal><slot name="title" /></h2>
+	<div class="proof__stats" aria-hidden="true">
+		{stats.map((s) => <Stat {...s} />)}
+	</div>
+	<div class="proof__source">
+		<Citation source={source}><slot /></Citation>
+	</div>
+</Section>
+
+<style>
+	.proof__title {
+		max-width: 20ch;
+		font-family: var(--font-display);
+		font-size: var(--font-size-statement);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
+	}
+	.proof__title :global(em) {
+		font-style: normal;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-accent);
+	}
+	.proof__stats {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-top: var(--space-8);
+		border-top: var(--border-width-thin) solid var(--color-rule);
+	}
+	.proof__stats > :global(.stat) {
+		padding: var(--space-6) var(--layout-col-gap) 0;
+		border-left: var(--border-width-thin) solid var(--color-rule);
+	}
+	.proof__stats > :global(.stat:first-child) {
+		padding-left: 0;
+		border-left: 0;
+	}
+	.proof__source {
+		margin-top: var(--space-8);
+	}
+	@media (max-width: 48rem) {
+		.proof__stats {
+			grid-template-columns: 1fr;
+		}
+		.proof__stats > :global(.stat),
+		.proof__stats > :global(.stat:first-child) {
+			padding: var(--space-5) 0;
+			border-left: 0;
+			border-bottom: var(--border-width-thin) solid var(--color-rule);
+		}
+	}
+</style>

@@ -1,6 +1,7 @@
 ---
 // Header navigation: text links plus a call-to-action button.
 // On small screens the text links fold into a "Menu" toggle.
+// The link whose href matches the current page is marked as current.
 import Link from '../atoms/Link.astro';
 import Button from '../atoms/Button.astro';
 
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const { links, cta } = Astro.props;
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <nav class="nav-menu" aria-label="Main">
@@ -20,14 +22,14 @@ const { links, cta } = Astro.props;
 		{
 			links.map((link) => (
 				<li>
-					<Link href={link.href} variant="nav" tone="aqua">
+					<Link href={link.href} variant="nav" tone="aqua" current={link.href === here}>
 						{link.label}
 					</Link>
 				</li>
 			))
 		}
 	</ul>
-	<Button href={cta.href} variant="primary" size="m">{cta.label}</Button>
+	<Button href={cta.href} variant="aqua" size="m">{cta.label}</Button>
 </nav>
 
 <script>
@@ -59,7 +61,7 @@ const { links, cta } = Astro.props;
 		border: var(--border-width-thin) solid var(--color-aqua-glow);
 		border-radius: var(--radius-pill);
 		color: var(--color-aqua-glow);
-		font-size: var(--font-size-body-s);
+		font-size: var(--font-size-ui);
 		cursor: pointer;
 	}
 

@@ -4,19 +4,21 @@
 
 ## What it is
 
-The top bar: small aqua wordmark (links home) on the left, navigation on the right.
+The top bar: aqua wordmark (links home) and NavMenu. Sticks to the top, slides away when scrolling down and returns when scrolling up.
 
 ## When to use it
 
-Once per page; it is already included in BaseLayout. It sticks to the top of the window, slides away while scrolling down, and comes back as soon as the visitor scrolls up or tabs into it.
+Every page (BaseLayout).
 
 ## Props
 
-None.
+| Prop | Options | Default | What it does |
+|---|---|---|---|
+| — | — | — | No props. Links come from `src/data/links.ts`. |
 
 ## Variants
 
-No props. Nav items: Blogfolio, Our Story, Test Home (link to `/test-home`, the chosen design direction; removed once it becomes the homepage), plus the “Connect With Us” button. URLs live in `src/data/links.ts`.
+One.
 
 ## Tokens used
 

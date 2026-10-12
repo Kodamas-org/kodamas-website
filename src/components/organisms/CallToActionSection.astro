@@ -1,0 +1,63 @@
+---
+// A closing invitation on the bright (aqua) surface: the page's one bright
+// moment when it has no offer. Large title on the left; the message and a
+// navy button on the right.
+// Slot default: the message paragraphs (<strong> for the brand name)
+import Section from '../molecules/Section.astro';
+import Heading from '../atoms/Heading.astro';
+import Button from '../atoms/Button.astro';
+
+interface Props {
+	id?: string;
+	num: string;
+	label?: string;
+	title: string;
+	cta: { label: string; href: string };
+}
+
+const { id = 'cta', num, label, title, cta } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<Section id={id} labelledby={titleId} tone="bright" spacing="block" num={num} label={label}>
+	<div class="cta">
+		<div class="cta__title" data-reveal>
+			<Heading level={2} size="l" id={titleId}>{title}</Heading>
+		</div>
+		<div class="cta__body" data-reveal>
+			<slot />
+			<Button href={cta.href} variant="navy">{cta.label}</Button>
+		</div>
+	</div>
+</Section>
+
+<style>
+	.cta {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-7);
+		align-items: start;
+	}
+	.cta__title {
+		grid-column: 1 / span 6;
+	}
+	.cta__body {
+		grid-column: 8 / -1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-4);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+	.cta__body :global(.button) {
+		margin-top: var(--space-4);
+	}
+	@media (max-width: 64rem) {
+		.cta__title,
+		.cta__body {
+			grid-column: 1 / -1;
+		}
+	}
+</style>

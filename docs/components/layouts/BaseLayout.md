@@ -4,7 +4,7 @@
 
 ## What it is
 
-The page template. It sets up the document (language, title, description), loads the fonts, tokens and base styles, adds a “Skip to content” link for keyboard users, and wraps the page between SiteHeader and SiteFooter.
+The page template. It sets up the document (language, title, description), loads the fonts, tokens and base styles, adds a “Skip to content” link for keyboard users, lays the Grain texture over the page, and wraps the page between SiteHeader and SiteFooter. It also runs the fade-up reveal: any element with `data-reveal` fades up when scrolled into view (only when motion is allowed; content stays visible otherwise).
 
 ## When to use it
 
@@ -18,7 +18,6 @@ Every page starts with it.
 | `description` | text | — | Search-result description. |
 | `noindex` | true / false | false | Hide the page from search engines (used by the styleguide). |
 | (content) | page sections | — | Goes inside `<main>`. |
-| slot "footer" | a `<footer>` | — | Optional. Replaces the standard SiteFooter (used by Test Home). |
 
 ## Variants
 
@@ -26,7 +25,7 @@ One template.
 
 ## Tokens used
 
-`--color-aqua-glow`, `--color-midnight-navy`, `--color-white`, `--radius-pill`, `--space-2`, `--space-4`, `--z-header`
+`--color-aqua-glow`, `--color-midnight-navy`, `--color-white`, `--radius-pill`, `--space-2`, `--space-4`, `--z-grain`
 
 ## Example
 

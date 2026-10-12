@@ -8,13 +8,12 @@ import { links } from '../../data/links';
 
 <header class="site-header" data-site-header>
 	<a href={links.home} class="site-header__home" aria-label="Kodamas, home">
-		<Wordmark size="s" tone="aqua" />
+		<Wordmark />
 	</a>
 	<NavMenu
 		links={[
 			{ label: 'Blogfolio', href: links.blogfolio },
 			{ label: 'Our Story', href: links.ourStory },
-			{ label: 'Test Home', href: links.testHome },
 		]}
 		cta={{ label: 'Connect With Us', href: links.connect }}
 	/>

@@ -1,20 +1,25 @@
 ---
 // Text link.
-// variant: 'inline' (underlined, inside text), 'nav' (header, no underline),
-//          'arrow' (underlined with a trailing →)
+// variant: 'inline' (underlined, inside text), 'nav' (header, underline on hover),
+//          'action' (semibold, underlined, tall enough to tap,
+//          optional trailing arrow), 'legal' (small underlined, tap height)
 // tone: 'aqua', 'white' or 'navy'
+// arrow: '→', '↓' or '↗' after the text ('action' only)
+// current: marks the link to the page being viewed (underlined, aria-current)
 interface Props {
 	href: string;
-	variant?: 'inline' | 'nav' | 'arrow';
+	variant?: 'inline' | 'nav' | 'action' | 'legal';
 	tone?: 'aqua' | 'white' | 'navy';
+	arrow?: '→' | '↓' | '↗';
+	current?: boolean;
 	class?: string;
 }
 
-const { href, variant = 'inline', tone = 'aqua', class: className } = Astro.props;
+const { href, variant = 'inline', tone = 'aqua', arrow, current = false, class: className } = Astro.props;
 ---
 
-<a href={href} class:list={['link', `link--${variant}`, `link--${tone}`, className]}
-	><slot />{variant === 'arrow' && <span class="link__arrow" aria-hidden="true"> →</span>}</a
+<a href={href} aria-current={current ? 'page' : undefined} class:list={['link', `link--${variant}`, `link--${tone}`, className]}
+	><slot />{arrow && <span class="link__arrow" aria-hidden="true">{arrow}</span>}</a
 >
 
 <style>
@@ -23,8 +28,11 @@ const { href, variant = 'inline', tone = 'aqua', class: className } = Astro.prop
 		text-decoration-thickness: var(--border-width-thin);
 		transition: color var(--duration-fast) var(--ease-standard);
 	}
+	.link:hover {
+		text-decoration-thickness: var(--border-width-medium);
+	}
 	.link--inline,
-	.link--arrow {
+	.link--legal {
 		text-decoration-line: underline;
 	}
 	.link--nav {
@@ -32,8 +40,27 @@ const { href, variant = 'inline', tone = 'aqua', class: className } = Astro.prop
 		font-size: var(--font-size-nav);
 		line-height: var(--line-height-ui);
 	}
-	.link--nav:hover {
+	.link--nav:hover,
+	.link--nav[aria-current='page'] {
 		text-decoration-line: underline;
+	}
+	.link--action {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--size-tap-min);
+		font-weight: var(--font-weight-semibold);
+	}
+	.link--legal {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--size-tap-min);
+	}
+	.link__arrow {
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.link--action:hover .link__arrow {
+		transform: translateX(var(--space-1));
 	}
 	.link--aqua {
 		color: var(--color-aqua-glow);
@@ -43,8 +70,5 @@ const { href, variant = 'inline', tone = 'aqua', class: className } = Astro.prop
 	}
 	.link--navy {
 		color: var(--color-midnight-navy);
-	}
-	.link:hover {
-		text-decoration-thickness: var(--border-width-medium);
 	}
 </style>

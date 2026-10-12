@@ -1,0 +1,52 @@
+---
+// The brand symbol: a large pink drop, an aqua outline drop and a small aqua
+// drop, overlapping and floating slowly. Decorative. The float stops for
+// reduced motion. Its size comes from --size-drop-cluster.
+// The inset percentages are the symbol's fixed geometry.
+---
+
+<div class="drop-cluster" aria-hidden="true">
+	<span class="drop-cluster__shape drop-cluster__shape--pink"></span>
+	<span class="drop-cluster__shape drop-cluster__shape--outline"></span>
+	<span class="drop-cluster__shape drop-cluster__shape--aqua"></span>
+</div>
+
+<style>
+	.drop-cluster {
+		position: relative;
+		width: var(--size-drop-cluster);
+		aspect-ratio: 1;
+		pointer-events: none;
+		animation: drop-cluster-float var(--duration-float) var(--ease-drift) infinite alternate;
+	}
+	.drop-cluster__shape {
+		position: absolute;
+		border-radius: var(--radius-drop);
+	}
+	.drop-cluster__shape--pink {
+		inset: 0 0 18% 18%;
+		background: var(--gradient-drop);
+		transform: rotate(180deg);
+	}
+	.drop-cluster__shape--outline {
+		inset: 30% 30% 0 0;
+		border: var(--border-width-medium) solid var(--color-aqua-glow);
+	}
+	.drop-cluster__shape--aqua {
+		width: 16%;
+		aspect-ratio: 1;
+		left: 6%;
+		top: 4%;
+		background: var(--color-aqua-glow);
+	}
+	@keyframes drop-cluster-float {
+		to {
+			transform: translateY(calc(var(--space-4) * -1)) rotate(-4deg);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.drop-cluster {
+			animation: none;
+		}
+	}
+</style>

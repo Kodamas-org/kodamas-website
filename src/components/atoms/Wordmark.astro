@@ -1,60 +1,38 @@
 ---
-// The "Kodamas" name set in Funnel Display.
-// size: 's' (header), 'l' (footer), 'xl' (hero)
-// tone: 'aqua', 'white', or 'two-tone' (white "Ko" + aqua "damas", hero only)
+// The name "Kodamas" in Funnel Display, in aqua.
+// variant: 'header' (Bold, top bar) or 'signoff' (Heavy, with a small pink
+//          drop before it, footer bar)
 interface Props {
-	size?: 's' | 'l' | 'xl';
-	tone?: 'aqua' | 'white' | 'two-tone';
-	as?: 'span' | 'p' | 'h1';
+	variant?: 'header' | 'signoff';
 }
 
-const { size = 's', tone = 'aqua', as: Tag = 'span' } = Astro.props;
+const { variant = 'header' } = Astro.props;
 ---
 
-<Tag class:list={['wordmark', `wordmark--${size}`, `wordmark--${tone}`]}>
-	{
-		tone === 'two-tone' ? (
-			<>
-				<span class="wordmark__lead">Ko</span>
-				<span class="wordmark__tail">damas</span>
-			</>
-		) : (
-			'Kodamas'
-		)
-	}
-</Tag>
+<span class:list={['wordmark', `wordmark--${variant}`]}>
+	{variant === 'signoff' && <span class="wordmark__drop" aria-hidden="true" />}Kodamas
+</span>
 
 <style>
 	.wordmark {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
 		font-family: var(--font-display);
+		font-size: var(--font-size-wordmark-s);
 		font-weight: var(--font-weight-bold);
 		letter-spacing: var(--letter-spacing-display);
 		line-height: var(--line-height-none);
-	}
-	.wordmark--s {
-		font-size: var(--font-size-wordmark-s);
-	}
-	.wordmark--l {
-		font-size: var(--font-size-display-l);
-	}
-	.wordmark--xl {
-		font-size: var(--font-size-display-xl);
-	}
-	.wordmark--aqua {
 		color: var(--color-aqua-glow);
 	}
-	.wordmark--white {
-		color: var(--color-white);
+	.wordmark--signoff {
+		font-weight: var(--font-weight-heavy);
+		line-height: inherit;
 	}
-	.wordmark--two-tone .wordmark__lead {
-		color: var(--color-white);
-	}
-	.wordmark--two-tone .wordmark__tail {
-		color: var(--color-aqua-glow);
-	}
-	.wordmark__lead,
-	.wordmark__tail {
-		display: inline;
+	.wordmark__drop {
+		width: var(--size-drop-xs);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
 	}
 </style>

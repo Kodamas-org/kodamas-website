@@ -1,16 +1,16 @@
 ---
 // Pill-shaped button. Renders a link when `href` is given, otherwise a <button>.
-// variant: 'primary' (aqua with navy text) or 'inverse' (white with pink text)
-// size: 'm' (header) or 'l' (footer, offer card)
+// variant: 'aqua' (aqua with navy text, on navy) or 'navy' (on the aqua surface)
+// size: 'm' (header) or 'l' (page calls to action)
 interface Props {
 	href?: string;
-	variant?: 'primary' | 'inverse';
+	variant?: 'aqua' | 'navy';
 	size?: 'm' | 'l';
 	type?: 'button' | 'submit';
 	class?: string;
 }
 
-const { href, variant = 'primary', size = 'm', type = 'button', class: className } = Astro.props;
+const { href, variant = 'aqua', size = 'l', type = 'button', class: className } = Astro.props;
 const classes = ['button', `button--${variant}`, `button--${size}`, className];
 ---
 
@@ -34,38 +34,42 @@ const classes = ['button', `button--${variant}`, `button--${size}`, className];
 		border: 0;
 		border-radius: var(--radius-pill);
 		font-family: var(--font-body);
-		line-height: var(--line-height-ui);
 		text-decoration: none;
 		white-space: nowrap;
 		cursor: pointer;
-		transition: transform var(--duration-fast) var(--ease-standard);
-		--focus-color: var(--color-focus-on-dark);
+		transition:
+			transform var(--duration-fast) var(--ease-standard),
+			box-shadow var(--duration-base) var(--ease-standard);
 	}
 	.button:hover {
 		transform: translateY(calc(var(--space-1) * -0.5));
 	}
 	.button--m {
 		padding: var(--space-4) var(--space-5);
-		font-size: var(--font-size-body-s);
+		font-size: var(--font-size-ui);
 		font-weight: var(--font-weight-medium);
+		line-height: var(--line-height-ui);
 	}
 	.button--l {
-		padding: var(--space-5) var(--space-8);
-		font-size: var(--font-size-body-m);
-		font-weight: var(--font-weight-bold);
+		min-height: var(--size-button-l);
+		padding-inline: var(--space-6);
+		font-size: var(--font-size-body);
+		font-weight: var(--font-weight-semibold);
 	}
-	.button--primary {
+	.button--aqua {
 		background: var(--color-aqua-glow);
 		color: var(--color-midnight-navy);
+	}
+	.button--aqua.button--l:hover {
+		box-shadow: 0 0 0 var(--space-2) var(--color-button-glow);
+	}
+	.button--navy {
+		background: var(--color-midnight-navy);
+		color: var(--color-white);
 	}
 	@media (max-width: 48rem) {
 		.button--m {
 			padding: var(--space-3);
 		}
-	}
-	.button--inverse {
-		background: var(--color-white);
-		color: var(--color-pink-deep);
-		--focus-color: var(--color-white);
 	}
 </style>

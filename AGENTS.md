@@ -32,7 +32,7 @@ src/
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
-  pages/                 routes: test-home.astro (design direction), index.astro (temporary Squarespace-style homepage), styleguide.astro
+  pages/                 routes: index.astro (home), about.astro (Our Story), styleguide.astro
   data/links.ts          every link URL on the site
 docs/
   design-tokens.md       every token, with values and usage
@@ -44,22 +44,16 @@ content-drafts/          blog articles, interview notes and LinkedIn posts (neve
 
 ## Design direction (decided)
 
-**Test Home (`src/pages/test-home.astro`) is the design direction for the whole site.** All new pages must be built in its style and from its parts. Key traits:
+The homepage (formerly Test Home) is the design direction for the whole site, and it is now built from the shared system: tokens in `src/styles/tokens.css`, components in `src/components/`, documented in `docs/` and shown on `/styleguide`. Build every new page from these parts (see `about.astro` for a page built entirely from them). Key traits:
 
-- One dark navy canvas; aqua is reserved for a single bright moment per page (on the homepage, the offer). Do not alternate section background colours.
+- One dark navy canvas; aqua is reserved for a single bright moment per page (`Section tone="bright"`: the offer on the homepage, the call to action on Our Story). Do not alternate section background colours.
 - Typography: Funnel Display Light for large statements against Bold/Heavy for emphasis; Inter for body and UI. Key phrases highlighted in aqua bold.
 - Editorial details: small pink section numbers (01, 02…) on hairline rules, generous negative space, an asymmetric 12-column grid (1280px max), a subtle grain texture.
-- The drop shape as the visual system (symbol cluster, portrait masks, quote marks).
-- Motion with meaning (count-ups, focus on the quote being read, kinetic type, live clocks), always pausable and off for reduced motion.
-- One consistent gap between sections (`--c-section`, 64 → 120px).
+- The drop shape as the visual system (symbol cluster, portrait masks, markers, bullets).
+- Motion with meaning (count-ups, focus on the quote being read, kinetic type, live clocks, the name equation), always pausable and off for reduced motion.
+- One consistent gap between sections (`--layout-section`, 64 → 120px), applied by `Section`.
 
-**Before building a new page,** turn Test Home into the shared system: move its page-scoped values (`--c-*`) into `src/styles/tokens.css`, split its sections into documented atoms/molecules/organisms, add them to `/styleguide` and `docs/`, and rebuild Test Home from those parts. Then build the new page from them.
-
-## Temporary: Squarespace-style homepage
-
-The current main homepage (`index.astro`) and the components it uses (`src/components/`, documented in `docs/components/`, shown on `/styleguide`) deliberately follow the old Squarespace screenshot. They are **kept only until the owner has shown them to Emma**, then they will be deleted and Test Home will become the homepage (`/`). Do not restyle or extend them, and do not use them for new pages. Do not delete them until the owner says so.
-
-When that happens: move Test Home to `index.astro`, remove the "Test Home" nav link and `links.testHome`, delete the unused old components, docs and styleguide entries, and update this file.
+If a new page needs something the system lacks, add it as a documented component (and tokens) first, then use it.
 
 ## Reference screenshots
 
@@ -68,21 +62,22 @@ The screenshots in `reference/` are the reference for **content, brand and the p
 ## Naming
 
 - Components: PascalCase file names (`PersonCard.astro`), one component per file, placed in the folder of its atomic level.
-- CSS classes: BEM-style, prefixed with the component name (`.person-card`, `.person-card__role`, `.button--primary`).
-- Variant props use short lowercase values (`size="m"`, `tone="aqua"`, `variant="inverse"`).
-- Tokens: `--{category}-{name}`, e.g. `--color-aqua-glow`, `--font-size-heading-1`, `--space-5`, `--radius-l`. Colour palette names are descriptive (`midnight-navy`, `pink-deep`); role tokens describe purpose (`--color-surface-pink`, `--color-text-on-light`).
+- Styles are scoped per component (Astro's attribute strategy): a parent cannot style a class it passes to a child. Use a wrapper element, or `.parent :global(.child)`.
+- CSS classes: BEM-style, prefixed with the component name (`.person-card`, `.person-card__name`, `.button--navy`).
+- Variant props use short lowercase values (`size="m"`, `tone="bright"`, `variant="navy"`).
+- Tokens: `--{category}-{name}`, e.g. `--color-aqua-glow`, `--font-size-heading-2`, `--space-5`, `--radius-drop`. Colour palette names are descriptive (`midnight-navy`, `pink-ink`); role tokens describe purpose (`--color-surface-bright`, `--color-text-on-light`).
 
 ## Token rules
 
 - Components use **tokens only**: every colour, font, size, space, radius, shadow, duration and z-index is a `var(--…)` from `src/styles/tokens.css`. Never write hex values, px/rem sizes or durations in a component.
 - Need a new value? Add a token to `tokens.css` first, then use it.
-- Allowed exceptions: the two breakpoints in media queries (`64rem` tablet, `48rem` mobile — media queries cannot read tokens), structural values (`0`, `100%`, `1fr`, `auto`), SVG icon coordinates, and the glow geometry inside `AnimatedBackdrop`.
+- Allowed exceptions: the two breakpoints in media queries (`64rem` tablet, `48rem` mobile — media queries cannot read tokens), structural values (`0`, `100%`, `1fr`, `auto`), SVG icon coordinates, the fixed shape geometry inside `DropCluster`, and animation keyframe offsets (percentages and rotations).
 - Responsive size changes go in the tablet/mobile overrides at the bottom of `tokens.css` where possible.
 
 ## Accessibility rules
 
 - One `h1` per page; headings in order. Choose `Heading` `level` by structure and `size` by design.
-- Text must meet WCAG AA contrast (4.5:1 normal, 3:1 large). Pink surfaces carrying text use `--color-surface-pink` (`pink-deep`). Check new pairings before using them.
+- Text must meet WCAG AA contrast (4.5:1 normal, 3:1 large). Checked pairings are listed in `docs/design-tokens.md`; check new pairings before using them.
 - Every interactive element keeps the global `:focus-visible` outline. Surfaces set `--focus-color` (`--color-focus-on-dark` or `--color-focus-on-light`).
 - Images need meaningful `alt`; decorative shapes get `aria-hidden="true"`.
 - Motion must be pausable and respect `prefers-reduced-motion`.

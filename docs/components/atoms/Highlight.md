@@ -4,30 +4,30 @@
 
 ## What it is
 
-A bold phrase with a thick pink underline.
+Emphasis for a key phrase inside a sentence (renders `<em>`).
 
 ## When to use it
 
-To stress the key words of a paragraph, like “outgrow their DIY phase” in the hero. Use it once per paragraph at most.
+One key phrase per block: the hero phrase, highlighted words in an intro, highlighted sentences in the manifesto.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| (content) | text | — | The words to highlight. |
+| `variant` | `accent` · `underline` · `pink` | `accent` | accent: aqua bold. underline: aqua bold with a thick pink underline (hero). pink: pink underline only, keeps the text colour. |
 
 ## Variants
 
-One style. The underline runs straight through letters that dip below the line (g, p, y).
+Three variants.
 
 ## Tokens used
 
-`--color-highlight-pink`, `--font-weight-bold`, `--size-underline`, `--size-underline-offset`
+`--color-accent`, `--color-highlight-pink`, `--font-weight-bold`, `--size-highlight-offset`, `--size-highlight-thickness`
 
 ## Example
 
 ```astro
-When your app and team <Highlight>outgrow their DIY phase</Highlight>, we build…
+<Highlight variant="underline">outgrow their DIY phase</Highlight>
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

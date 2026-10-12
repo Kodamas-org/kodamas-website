@@ -1,0 +1,45 @@
+# Profile
+
+**Level:** Molecule · **File:** `src/components/molecules/Profile.astro`
+
+## What it is
+
+A founder profile: large drop portrait on one side; name (Heavy) with a live clock, a personal motto set large and light, a short bio and a profile link on the other.
+
+## When to use it
+
+Our Story. Alternate `reverse` between profiles.
+
+## Props
+
+| Prop | Options | Default | What it does |
+|---|---|---|---|
+| `name` | text | — | Display name (heading). |
+| `fullName` | text | name | Used for the photo placeholder and alt. |
+| `photo` | URL | — | Photo; placeholder without it. |
+| `zone` | IANA time zone | — | Clock next to the name. |
+| `link` | { label, href } | — | Profile link with →. |
+| `reverse` | true / false | false | Portrait on the right. |
+| `level` | 2 · 3 | 3 | Name heading level. |
+| slot "quote" | text | — | The motto, without quotation marks; `<em>` for the key phrase. |
+| (content) | paragraphs | — | The bio. |
+
+## Variants
+
+Normal or reversed. Stacks on mobile.
+
+## Tokens used
+
+`--color-accent`, `--font-display`, `--font-size-heading-2`, `--font-size-quote-long`, `--font-weight-bold`, `--font-weight-heavy`, `--font-weight-light`, `--layout-col-gap`, `--layout-text-max`, `--letter-spacing-display`, `--line-height-none`, `--line-height-snug`, `--radius-round`, `--size-avatar-l`, `--size-underline-offset`, `--space-3`, `--space-5`, `--space-6`
+
+## Example
+
+```astro
+<Profile name="Emma" zone="Asia/Tokyo" link={{ label: "Visit LinkedIn Profile", href: "#" }}>…</Profile>
+```
+
+## Notes
+
+Uses atoms: Avatar, Clock, Link.
+
+See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -1,0 +1,118 @@
+---
+// A founder profile: a large drop-shaped portrait on one side; on the other,
+// the name in Funnel Display Heavy with a live clock for where they are, a
+// personal motto set large and light (key phrase in <em> turns aqua bold),
+// a short bio and a link to their profile.
+// reverse: portrait on the right instead of the left (alternate profiles)
+// zone: IANA time zone for the clock (omit for no clock)
+// Slots: "quote" (the motto, without quotation marks), default (the bio)
+import Avatar from '../atoms/Avatar.astro';
+import Clock from '../atoms/Clock.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props {
+	name: string;
+	fullName?: string;
+	photo?: string;
+	zone?: string;
+	link: { label: string; href: string };
+	reverse?: boolean;
+	level?: 2 | 3;
+}
+
+const { name, fullName = name, photo, zone, link, reverse = false, level = 3 } = Astro.props;
+const Tag = `h${level}` as 'h3';
+---
+
+<article class:list={['profile', { 'profile--reverse': reverse }]}>
+	<div class="profile__photo" data-reveal>
+		<Avatar name={fullName} src={photo} shape="drop" size="l" />
+	</div>
+	<div class="profile__body" data-reveal>
+		<Tag class="profile__name">{name}{zone && <Clock zone={zone} />}</Tag>
+		<blockquote class="profile__quote">
+			<p>“<slot name="quote" />”</p>
+		</blockquote>
+		<div class="profile__bio"><slot /></div>
+		<Link href={link.href} variant="action" arrow="→">{link.label}</Link>
+	</div>
+</article>
+
+<style>
+	.profile {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-6);
+		align-items: center;
+	}
+	.profile__photo {
+		grid-column: 1 / span 5;
+	}
+	.profile__photo > :global(.avatar) {
+		max-width: none;
+	}
+	.profile:hover .profile__photo > :global(.avatar) {
+		border-radius: var(--radius-round);
+	}
+	.profile__body {
+		grid-column: 7 / -1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-5);
+	}
+	.profile--reverse .profile__photo {
+		grid-column: 8 / -1;
+		grid-row: 1;
+	}
+	.profile--reverse .profile__body {
+		grid-column: 1 / span 6;
+		grid-row: 1;
+	}
+	.profile__name {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-2);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-display);
+	}
+	.profile__quote {
+		font-family: var(--font-display);
+		font-size: var(--font-size-quote-long);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-snug);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: pretty;
+	}
+	.profile__quote :global(em) {
+		font-style: normal;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-accent);
+	}
+	.profile__bio {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		max-width: var(--layout-text-max);
+	}
+	.profile__bio :global(a) {
+		color: var(--color-accent);
+		text-underline-offset: var(--size-underline-offset);
+	}
+	@media (max-width: 48rem) {
+		.profile__photo,
+		.profile--reverse .profile__photo,
+		.profile__body,
+		.profile--reverse .profile__body {
+			grid-column: 1 / -1;
+			grid-row: auto;
+		}
+		.profile__photo {
+			max-width: calc(var(--size-avatar-l) * 1.25);
+		}
+	}
+</style>

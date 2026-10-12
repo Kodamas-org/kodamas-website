@@ -1,0 +1,78 @@
+---
+// Kinetic type: two words in huge Funnel Display Heavy (the first outlined,
+// the second filled aqua) with a pink drop, scrolling sideways forever.
+// Decorative (the real heading sits next to it, visually hidden).
+// id: needed so a PauseButton can pause it (target={id}); a paused marquee
+//     has a `data-paused` attribute. Starts paused for reduced motion.
+interface Props {
+	id: string;
+	outline: string;
+	fill: string;
+}
+
+const { id, outline, fill } = Astro.props;
+---
+
+<div class="marquee" id={id} aria-hidden="true">
+	<div class="marquee__track">
+		{
+			[0, 1].map(() => (
+				<div class="marquee__group">
+					{[0, 1].map(() => (
+						<>
+							<span class="marquee__word">{outline}</span>
+							<span class="marquee__word marquee__word--fill">{fill}</span>
+							<span class="marquee__drop" />
+						</>
+					))}
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.marquee {
+		overflow: hidden;
+		padding-block: var(--space-4);
+	}
+	.marquee__track {
+		display: flex;
+		width: max-content;
+		animation: marquee-scroll var(--duration-marquee) linear infinite;
+	}
+	.marquee[data-paused] .marquee__track {
+		animation-play-state: paused;
+	}
+	.marquee__group {
+		display: flex;
+		align-items: center;
+		gap: var(--space-6);
+		padding-right: var(--space-6);
+	}
+	.marquee__word {
+		font-family: var(--font-display);
+		font-size: var(--font-size-marquee);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-tight);
+		color: transparent;
+		-webkit-text-stroke: var(--border-width-medium) var(--color-white);
+	}
+	.marquee__word--fill {
+		color: var(--color-aqua-glow);
+		-webkit-text-stroke: 0;
+	}
+	.marquee__drop {
+		flex-shrink: 0;
+		width: calc(var(--font-size-marquee) * 0.45);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
+	}
+	@keyframes marquee-scroll {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+</style>

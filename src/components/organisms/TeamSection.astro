@@ -1,29 +1,57 @@
 ---
-// The two founders side by side. Pass PersonCard components in the slot.
-// The heading is for screen readers only; the design has no visible title here.
+// The founders. A statement line (on desktop sized to fit one line across
+// the grid) with live clocks, then the PersonCards side by side (stacked on
+// mobile).
+// Slots: "lead" (the statement, with Clock atoms), default (PersonCards)
+import Section from '../molecules/Section.astro';
+
+interface Props {
+	num: string;
+	title: string;
+}
+
+const { num, title } = Astro.props;
 ---
 
-<section class="team" aria-labelledby="team-title">
-	<h2 id="team-title" class="visually-hidden">Our team</h2>
-	<div class="team__grid">
-		<slot />
+<Section labelledby="team-title" num={num}>
+	<div class="team">
+		<h2 id="team-title" class="visually-hidden">{title}</h2>
+		<p class="team__lead" data-reveal><slot name="lead" /></p>
+		<div class="team__grid">
+			<slot />
+		</div>
 	</div>
-</section>
+</Section>
 
 <style>
 	.team {
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: 0 var(--layout-gutter) var(--space-9);
+		container-type: inline-size;
+	}
+	.team__lead {
+		font-family: var(--font-display);
+		font-size: var(--font-size-statement);
+		font-weight: var(--font-weight-light);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-align: center;
+		text-wrap: balance;
+	}
+	.team__lead :global(.nowrap) {
+		white-space: nowrap;
 	}
 	.team__grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, var(--layout-team-column)));
 		justify-content: center;
-		column-gap: var(--space-9);
-		row-gap: var(--space-9);
+		gap: var(--space-8) var(--space-10);
+		margin-top: var(--space-8);
 	}
-
+	@media (min-width: 64.0625rem) {
+		.team__lead {
+			font-size: var(--font-size-statement-fit);
+			white-space: nowrap;
+		}
+	}
 	@media (max-width: 48rem) {
 		.team__grid {
 			grid-template-columns: minmax(0, var(--layout-team-column));

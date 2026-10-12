@@ -4,34 +4,34 @@
 
 ## What it is
 
-A portrait photo cropped to a shape.
+A portrait: the photo cropped to a shape, or a dashed placeholder saying a photo is needed.
 
 ## When to use it
 
-Team members (drop shape, large) and testimonial authors (circle, smaller). Until a real photo is provided it shows a dashed placeholder that says which photo is needed.
+Testimonial bylines, team cards, profiles. Missing photos use the placeholder automatically (leave `src` out).
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `src` | image path | — | The photo. Leave it out to show the placeholder. |
-| `alt` | text | — | Describes the person, for screen readers (required). |
-| `shape` | `drop` · `circle` | `circle` | Crop shape. |
-| `size` | `team` · `testimonial` | `testimonial` | Width; the photo is always square before cropping. |
-| `class` | text | — | Extra class. |
+| `name` | text | — | Used for the alt text, initials and placeholder label. |
+| `src` | URL | — | The photo. Without it, the placeholder shows. |
+| `alt` | text | name | Alt text when a photo is given. |
+| `shape` | `round` · `drop` | `round` | Crop shape. |
+| `size` | `s` · `l` | `s` | s: 3.5rem byline. l: fills its column up to the team width. |
 
 ## Variants
 
-Shrinks on tablet and mobile through the size tokens.
+Placeholder shows initials (s) or “Photo needed: Name” (l).
 
 ## Tokens used
 
-`--border-width-medium`, `--color-aqua-glow`, `--color-control-teal`, `--color-white`, `--font-size-body-s`, `--line-height-ui`, `--radius-drop`, `--radius-round`, `--size-avatar-team`, `--size-avatar-testimonial`, `--space-5`
+`--border-width-medium`, `--color-aqua-glow`, `--color-placeholder`, `--color-white`, `--duration-base`, `--ease-standard`, `--font-size-small`, `--font-weight-semibold`, `--layout-team-column`, `--line-height-tight`, `--radius-drop`, `--radius-round`, `--size-avatar-s`, `--space-2`
 
 ## Example
 
 ```astro
-<Avatar src="/photos/daniela.jpg" alt="Daniela Contessa" shape="drop" size="team" />
+<Avatar name="Emma Cebuliak" shape="drop" size="l" />
 ```
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -1,35 +1,46 @@
 ---
 // Living styleguide: tokens and every component with its variants.
 // Colours are read straight from tokens.css so they can never drift.
+// Hero and NameHero contain a page h1, so they are shown on their pages
+// (/ and /about) instead of here.
 import tokensCss from '../styles/tokens.css?raw';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import Wordmark from '../components/atoms/Wordmark.astro';
-import Drop from '../components/atoms/Drop.astro';
-import Button from '../components/atoms/Button.astro';
-import Pill from '../components/atoms/Pill.astro';
-import Link from '../components/atoms/Link.astro';
+import Container from '../components/atoms/Container.astro';
+import SectionIndex from '../components/atoms/SectionIndex.astro';
 import Heading from '../components/atoms/Heading.astro';
 import Text from '../components/atoms/Text.astro';
 import Highlight from '../components/atoms/Highlight.astro';
-import Avatar from '../components/atoms/Avatar.astro';
 import Eyebrow from '../components/atoms/Eyebrow.astro';
+import Button from '../components/atoms/Button.astro';
+import Link from '../components/atoms/Link.astro';
+import Tag from '../components/atoms/Tag.astro';
+import Drop from '../components/atoms/Drop.astro';
+import Wordmark from '../components/atoms/Wordmark.astro';
+import Avatar from '../components/atoms/Avatar.astro';
+import Clock from '../components/atoms/Clock.astro';
+import PauseButton from '../components/atoms/PauseButton.astro';
 
 import NavMenu from '../components/molecules/NavMenu.astro';
-import PersonCard from '../components/molecules/PersonCard.astro';
-import FeatureCard from '../components/molecules/FeatureCard.astro';
-import GlassCard from '../components/molecules/GlassCard.astro';
-import StatQuote from '../components/molecules/StatQuote.astro';
+import Section from '../components/molecules/Section.astro';
+import NumberedItem from '../components/molecules/NumberedItem.astro';
+import Price from '../components/molecules/Price.astro';
+import Stat from '../components/molecules/Stat.astro';
+import Citation from '../components/molecules/Citation.astro';
 import Testimonial from '../components/molecules/Testimonial.astro';
+import PersonCard from '../components/molecules/PersonCard.astro';
+import Profile from '../components/molecules/Profile.astro';
+import Principle from '../components/molecules/Principle.astro';
+import DropCluster from '../components/molecules/DropCluster.astro';
+import Marquee from '../components/molecules/Marquee.astro';
 import FooterLink from '../components/molecules/FooterLink.astro';
-import AnimatedBackdrop from '../components/molecules/AnimatedBackdrop.astro';
 
-import Hero from '../components/organisms/Hero.astro';
-import TeamSection from '../components/organisms/TeamSection.astro';
-import InfoBand from '../components/organisms/InfoBand.astro';
 import OfferSection from '../components/organisms/OfferSection.astro';
-import SplitSection from '../components/organisms/SplitSection.astro';
+import ProofSection from '../components/organisms/ProofSection.astro';
 import TestimonialsSection from '../components/organisms/TestimonialsSection.astro';
+import TeamSection from '../components/organisms/TeamSection.astro';
+import ClosingSection from '../components/organisms/ClosingSection.astro';
+import CallToActionSection from '../components/organisms/CallToActionSection.astro';
 
 // Palette: every "--color-name: #hex;" line in tokens.css
 const palette = [...tokensCss.matchAll(/--color-([a-z-]+):\s*(#[0-9a-fA-F]{6});/g)].map(([, name, hex]) => ({
@@ -38,48 +49,49 @@ const palette = [...tokensCss.matchAll(/--color-([a-z-]+):\s*(#[0-9a-fA-F]{6});/
 }));
 
 const typeScale = [
-	{ token: 'display-xl', family: 'display', weight: 'bold', leading: 'none', sample: 'Kodamas', use: 'Hero wordmark' },
-	{ token: 'display-l', family: 'display', weight: 'bold', leading: 'tight', sample: 'Keep Going', use: 'Big section titles, footer wordmark' },
-	{ token: 'heading-1', family: 'display', weight: 'bold', leading: 'heading', sample: 'The Founder Reset Sprint', use: 'Section headings' },
-	{ token: 'heading-2', family: 'display', weight: 'bold', leading: 'snug', sample: 'Daniela Contessa', use: 'Names, short quotes' },
-	{ token: 'heading-3', family: 'body', weight: 'semibold', leading: 'body', sample: 'Combined 90-day roadmap', use: 'Card titles' },
-	{ token: 'quote-s', family: 'display', weight: 'bold', leading: 'heading', sample: '“A longer testimonial quote”', use: 'Long quotes', italic: true },
-	{ token: 'body-xl', family: 'body', weight: 'regular', leading: 'body', sample: 'The Sprint gives you the roadmap.', use: 'Lead paragraphs, footer links' },
-	{ token: 'body-l', family: 'body', weight: 'bold', leading: 'relaxed', sample: 'Fixing usability issues before launch…', use: 'Statistic quote' },
-	{ token: 'body-m', family: 'body', weight: 'regular', leading: 'body', sample: 'Find where your revenue is leaking, KPI by KPI.', use: 'Default body, card text, buttons' },
-	{ token: 'body-s', family: 'body', weight: 'medium', leading: 'body', sample: 'Connect With Us', use: 'Small UI text' },
+	{ token: 'marquee', family: 'display', weight: 'heavy', leading: 'none', sample: 'Keep Going', use: 'Kinetic marquee' },
+	{ token: 'stat', family: 'display', weight: 'heavy', leading: 'none', sample: '400%', use: 'Counting figures' },
+	{ token: 'statement', family: 'display', weight: 'light', leading: 'heading', sample: 'Why is streamlining processes early on a good idea?', use: 'Section statements, equation words (Heavy)' },
+	{ token: 'heading-2', family: 'display', weight: 'bold', leading: 'heading', sample: 'The Founder Reset Sprint', use: 'Section titles, price, profile names (Heavy)' },
+	{ token: 'footer-link', family: 'display', weight: 'light', leading: 'heading', sample: 'Our Story', use: 'Footer navigation rows' },
+	{ token: 'quote', family: 'display', weight: 'light', leading: 'snug', sample: '“Daniela sets clear priorities”', use: 'Short testimonials' },
+	{ token: 'quote-long', family: 'display', weight: 'light', leading: 'snug', sample: '“Emma created a thriving environment”', use: 'Long testimonials, profile mottos' },
+	{ token: 'intro', family: 'display', weight: 'light', leading: 'snug', sample: 'When your app and team outgrow their DIY phase', use: 'Hero intro, principle titles (Bold)' },
+	{ token: 'heading-3', family: 'display', weight: 'bold', leading: 'snug', sample: 'Combined 90-day roadmap', use: 'Item titles, pull statements (Light)' },
+	{ token: 'lead', family: 'body', weight: 'regular', leading: 'lead', sample: 'The Sprint gives you the roadmap.', use: 'Lead paragraphs' },
+	{ token: 'body', family: 'body', weight: 'regular', leading: 'body', sample: 'Find where your revenue is leaking, KPI by KPI.', use: 'Default body' },
+	{ token: 'ui', family: 'body', weight: 'medium', leading: 'ui', sample: 'Connect With Us', use: 'Header button, byline names' },
 	{ token: 'nav', family: 'body', weight: 'regular', leading: 'ui', sample: 'Blogfolio', use: 'Header links' },
+	{ token: 'small', family: 'body', weight: 'semibold', leading: 'lead', sample: 'WHAT’S COVERED', use: 'Labels, captions, tags' },
 	{ token: 'wordmark-s', family: 'display', weight: 'bold', leading: 'none', sample: 'Kodamas', use: 'Header wordmark' },
 ];
 
-const spaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-const radii = ['s', 'm', 'l', 'pill', 'drop'];
-const shadows = ['card', 'glow', 'glass'];
+const spaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+const radii = ['s', 'pill', 'drop'];
 ---
 
 <BaseLayout title="Styleguide · Kodamas" description="Kodamas design tokens and components." noindex>
-	<div class="sg">
+	<Container>
 		<header class="sg__intro">
-			<Heading level={1} size="display-l">Styleguide</Heading>
-			<Text size="xl">
-				Design tokens and every component, rendered live. Values come from
-				<code>src/styles/tokens.css</code>.
+			<Heading level={1} size="statement">Styleguide</Heading>
+			<Text size="lead">
+				Design tokens and every component, rendered live. Values come from <code>src/styles/tokens.css</code>.
 			</Text>
 			<nav aria-label="Styleguide sections">
 				<ul class="sg__toc" role="list">
-					<li><Link href="#colours" tone="aqua">Colours</Link></li>
-					<li><Link href="#type" tone="aqua">Type scale</Link></li>
-					<li><Link href="#spacing" tone="aqua">Spacing, radii, shadows</Link></li>
-					<li><Link href="#atoms" tone="aqua">Atoms</Link></li>
-					<li><Link href="#molecules" tone="aqua">Molecules</Link></li>
-					<li><Link href="#organisms" tone="aqua">Organisms</Link></li>
+					<li><Link href="#colours">Colours</Link></li>
+					<li><Link href="#type">Type scale</Link></li>
+					<li><Link href="#spacing">Spacing and radii</Link></li>
+					<li><Link href="#atoms">Atoms</Link></li>
+					<li><Link href="#molecules">Molecules</Link></li>
+					<li><Link href="#organisms">Organisms</Link></li>
 				</ul>
 			</nav>
 		</header>
 
 		<!-- Colours -->
 		<section class="sg__section" aria-labelledby="colours">
-			<Heading level={2} size="heading-1" id="colours">Colours</Heading>
+			<Heading level={2} id="colours">Colours</Heading>
 			<ul class="sg__swatches" role="list">
 				{
 					palette.map((c) => (
@@ -92,11 +104,14 @@ const shadows = ['card', 'glow', 'glass'];
 					))
 				}
 			</ul>
+			<Text size="small" tone="muted">
+				One navy canvas; aqua (<code>--color-surface-bright</code>) is the single bright moment per page.
+			</Text>
 		</section>
 
 		<!-- Type -->
 		<section class="sg__section" aria-labelledby="type">
-			<Heading level={2} size="heading-1" id="type">Type scale</Heading>
+			<Heading level={2} id="type">Type scale</Heading>
 			<ul class="sg__type" role="list">
 				{
 					typeScale.map((t) => (
@@ -104,14 +119,13 @@ const shadows = ['card', 'glow', 'glass'];
 							<div class="sg__type-meta">
 								<code>--font-size-{t.token}</code>
 								<span class="sg__muted">
-									{t.family === 'display' ? 'Funnel Display' : 'Inter'} · {t.weight} · line height{' '}
-									{t.leading}
+									{t.family === 'display' ? 'Funnel Display' : 'Inter'} · {t.weight} · line height {t.leading}
 								</span>
 								<span class="sg__muted">{t.use}</span>
 							</div>
 							<p
 								class="sg__type-sample"
-								style={`font-family: var(--font-${t.family}); font-size: var(--font-size-${t.token}); font-weight: var(--font-weight-${t.weight}); line-height: var(--line-height-${t.leading});${t.italic ? ' font-style: italic;' : ''}`}
+								style={`font-family: var(--font-${t.family}); font-size: var(--font-size-${t.token}); font-weight: var(--font-weight-${t.weight}); line-height: var(--line-height-${t.leading});`}
 							>
 								{t.sample}
 							</p>
@@ -121,10 +135,9 @@ const shadows = ['card', 'glow', 'glass'];
 			</ul>
 		</section>
 
-		<!-- Spacing, radii, shadows -->
+		<!-- Spacing and radii -->
 		<section class="sg__section" aria-labelledby="spacing">
-			<Heading level={2} size="heading-1" id="spacing">Spacing, radii, shadows</Heading>
-			<Heading level={3} size="heading-3">Spacing</Heading>
+			<Heading level={2} id="spacing">Spacing and radii</Heading>
 			<ul class="sg__spaces" role="list">
 				{
 					spaces.map((s) => (
@@ -134,278 +147,280 @@ const shadows = ['card', 'glow', 'glass'];
 						</li>
 					))
 				}
+				<li class="sg__space">
+					<code>--layout-section</code>
+					<span class="sg__bar" style="width: var(--layout-section)"></span>
+				</li>
 			</ul>
-			<Heading level={3} size="heading-3">Radii</Heading>
-			<ul class="sg__boxes" role="list">
+			<div class="sg__row">
 				{
 					radii.map((r) => (
-						<li class="sg__box-item">
+						<div class="sg__box-item">
 							<span class="sg__box" style={`border-radius: var(--radius-${r})`} />
 							<code>--radius-{r}</code>
-						</li>
+						</div>
 					))
 				}
-			</ul>
-			<Heading level={3} size="heading-3">Shadows</Heading>
-			<ul class="sg__boxes sg__boxes--light" role="list">
-				{
-					shadows.map((s) => (
-						<li class="sg__box-item">
-							<span class="sg__box sg__box--shadow" style={`box-shadow: var(--shadow-${s})`} />
-							<code>--shadow-{s}</code>
-						</li>
-					))
-				}
-			</ul>
+			</div>
 		</section>
 
 		<!-- Atoms -->
 		<section class="sg__section" aria-labelledby="atoms">
-			<Heading level={2} size="heading-1" id="atoms">Atoms</Heading>
+			<Heading level={2} id="atoms">Atoms</Heading>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Wordmark</Heading>
+				<Eyebrow as="h3">SectionIndex</Eyebrow>
+				<SectionIndex num="01" label="The Offer" />
+				<SectionIndex num="02" rule={false} />
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Heading</Eyebrow>
+				<Heading level={4} size="statement">Statement with <em>emphasis</em></Heading>
+				<Heading level={4} size="l">Size l</Heading>
+				<Heading level={4} size="m">Size m</Heading>
+				<Heading level={4} size="m" tone="aqua">Size m, aqua</Heading>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Text and Highlight</Eyebrow>
+				<Text size="lead">Lead: the Sprint gives you the roadmap.</Text>
+				<Text>Body with an <a href="#">inline link</a> and <Highlight>accent highlight</Highlight>.</Text>
+				<Text>Body with an <Highlight variant="underline">underline highlight</Highlight> and a <Highlight variant="pink">pink highlight</Highlight>.</Text>
+				<Text size="small" tone="muted">Small, muted caption.</Text>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Eyebrow</Eyebrow>
+				<Eyebrow>What’s Covered</Eyebrow>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Button</Eyebrow>
 				<div class="sg__row">
-					<Wordmark size="s" tone="aqua" />
-					<Wordmark size="l" tone="white" />
+					<Button href="#">Book a call</Button>
+					<Button href="#" size="m">Connect With Us</Button>
 				</div>
-				<div class="sg__scaled"><Wordmark size="xl" tone="two-tone" /></div>
-				<Text size="s" class="sg__muted">size: s · l · xl — tone: aqua · white · two-tone</Text>
+				<div class="sg__row sg__bright">
+					<Button href="#" variant="navy">Book a call</Button>
+				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Drop</Heading>
+				<Eyebrow as="h3">Link</Eyebrow>
 				<div class="sg__row">
-					<Drop size="s" /><Drop size="m" /><Drop size="l" /><Drop size="s" tone="flat" /><Drop
-						size="m"
-						tone="flat"
-					/>
+					<Link href="#">Inline</Link>
+					<Link href="#" variant="nav">Nav</Link>
+					<Link href="#" variant="nav" current>Nav (current)</Link>
+					<Link href="#" variant="action" arrow="↓">The Offer</Link>
+					<Link href="#" variant="action" arrow="→">Visit LinkedIn Profile</Link>
+					<Link href="#" variant="legal" tone="white">Privacy Policy &amp; Terms of Service</Link>
 				</div>
-				<Text size="s" class="sg__muted">size: s · m · l — tone: gradient · flat</Text>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Button</Heading>
+				<Eyebrow as="h3">Tag</Eyebrow>
+				<ul class="sg__row" role="list">
+					<Tag>Pipeline &amp; CRM</Tag>
+					<Tag>Funnel</Tag>
+				</ul>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Drop and Wordmark</Eyebrow>
 				<div class="sg__row">
-					<Button href="#atoms" size="m">Primary m</Button>
-					<Button href="#atoms" size="l">Primary l</Button>
+					<Drop size="xs" />
+					<Drop size="s" />
+					<Drop size="m" />
+					<Drop size="m" tone="aqua" />
+					<Drop size="m" tone="outline" />
+					<Drop size="m" symbol="+" />
+					<Drop size="m" symbol="=" />
 				</div>
-				<div class="sg__row sg__surface--pink">
-					<Button href="#atoms" variant="inverse" size="m">Inverse m</Button>
-					<Button href="#atoms" variant="inverse" size="l">Inverse l</Button>
-				</div>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Pill</Heading>
-				<div class="sg__row sg__surface--pink"><Pill>€500</Pill></div>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Link</Heading>
 				<div class="sg__row">
-					<Link href="#atoms">Inline aqua</Link>
-					<Link href="#atoms" variant="nav">Nav</Link>
-					<Link href="#atoms" variant="arrow" tone="white">Arrow white</Link>
-				</div>
-				<div class="sg__row sg__surface--aqua">
-					<Link href="#atoms" variant="arrow" tone="navy">Arrow navy</Link>
+					<Wordmark />
+					<Wordmark variant="signoff" />
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Heading</Heading>
-				<Heading level={4} size="display-l">display-l</Heading>
-				<Heading level={4} size="heading-1">heading-1</Heading>
-				<Heading level={4} size="heading-2">heading-2</Heading>
-				<Heading level={4} size="heading-3">heading-3</Heading>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Text and Highlight</Heading>
-				<Text size="xl">Text xl with a <Highlight>highlighted phrase</Highlight>.</Text>
-				<Text size="l" weight="bold">Text l bold</Text>
-				<Text>Text m regular</Text>
-				<Text italic>Text m italic</Text>
-				<Text size="s" weight="semibold">Text s semibold</Text>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Eyebrow</Heading>
-				<Eyebrow>The Offer</Eyebrow>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Avatar</Heading>
+				<Eyebrow as="h3">Avatar (placeholder until photos arrive)</Eyebrow>
 				<div class="sg__row sg__row--top">
-					<Avatar alt="Team member" shape="drop" size="team" />
-					<Avatar alt="Client" shape="circle" size="testimonial" />
+					<Avatar name="Geoff Hucker" />
+					<div class="sg__avatar-l"><Avatar name="Emma Cebuliak" shape="drop" size="l" /></div>
 				</div>
-				<Text size="s" class="sg__muted">
-					Shown as placeholders until photos are added. shape: drop · circle — size: team · testimonial
-				</Text>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Clock and PauseButton</Eyebrow>
+				<div class="sg__row">
+					<span>Italy<Clock zone="Europe/Rome" /></span>
+					<span>Japan<Clock zone="Asia/Tokyo" /></span>
+					<PauseButton target="sg-marquee" />
+					<Text size="small" tone="muted">pauses the marquee below</Text>
+				</div>
 			</div>
 		</section>
 
 		<!-- Molecules -->
 		<section class="sg__section" aria-labelledby="molecules">
-			<Heading level={2} size="heading-1" id="molecules">Molecules</Heading>
+			<Heading level={2} id="molecules">Molecules</Heading>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">NavMenu</Heading>
-				<NavMenu
-					links={[
-						{ label: 'Blogfolio', href: '#molecules' },
-						{ label: 'Our Story', href: '#molecules' },
-					]}
-					cta={{ label: 'Connect With Us', href: '#molecules' }}
-				/>
+				<Eyebrow as="h3">NavMenu</Eyebrow>
+				<NavMenu links={[{ label: 'Blogfolio', href: '#' }, { label: 'Our Story', href: '#' }]} cta={{ label: 'Connect With Us', href: '#' }} />
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">PersonCard</Heading>
+				<Eyebrow as="h3">Section</Eyebrow>
+				<Text size="small" tone="muted">
+					Wraps every section: grid container, section number and the one section gap. Shown in each organism below.
+				</Text>
+			</div>
+
+			<div class="sg__demo sg__bright">
+				<Eyebrow as="h3">NumberedItem and Price (on the bright surface)</Eyebrow>
+				<ol role="list">
+					<NumberedItem num={1} title="Marketing & Sales audit" level={4}>Find where your revenue is leaking, KPI by KPI.</NumberedItem>
+				</ol>
+				<Price amount="€500" duration="1 week" note="Limited-offer launch pricing" />
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Stat and Citation</Eyebrow>
+				<div class="sg__row sg__row--top">
+					<Stat value={400} suffix="%" caption="ROI" icon="trend" accent />
+					<Stat value={7.2} decimals={1} suffix="%" caption="lift in conversion rate" icon="bars" />
+				</div>
+				<Citation source="(Forrester Consulting)">"A sourced quotation in small muted text."</Citation>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Testimonial</Eyebrow>
+				<Testimonial name="Geoff Hucker" href="#" role="Work for Impact CEO & Founder">
+					“Daniela <em>sets clear priorities</em> and drives cross-functional teams.”
+				</Testimonial>
+				<Testimonial long name="Samyukta Kartik" href="#" role="Marketing & Communications Consultant">
+					“A long quote uses the smaller size, with <em>the key phrase</em> in aqua.”
+				</Testimonial>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">PersonCard</Eyebrow>
 				<div class="sg__narrow">
-					<PersonCard
-						name="Daniela Contessa"
-						role="Former Head of Product"
-						org={{ label: '@HappyCow', href: '#molecules' }}
-						nationality="Italian"
-						flag="🇮🇹"
-					/>
+					<PersonCard name="Daniela Contessa" role="Former Head of Product" org={{ label: '@HappyCow', href: '#' }} nationality="Italian" flag="🇮🇹" />
 				</div>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">FeatureCard</Heading>
-				<div class="sg__grid sg__surface--pink">
-					<FeatureCard title="Standard">Takes one column of its grid.</FeatureCard>
-					<FeatureCard title="Standard">Takes one column of its grid.</FeatureCard>
-					<FeatureCard title="Wide" wide>Spans every column (wide).</FeatureCard>
-				</div>
+				<Eyebrow as="h3">Profile</Eyebrow>
+				<Profile name="Emma" fullName="Emma Cebuliak" zone="Asia/Tokyo" link={{ label: 'Visit LinkedIn Profile', href: '#' }} level={4}>
+					<Fragment slot="quote">A motto with <em>the key phrase</em> in aqua</Fragment>
+					<p>A short bio with a <a href="#">link</a>.</p>
+				</Profile>
+				<Profile name="Dani" fullName="Daniela Contessa" link={{ label: 'Visit LinkedIn Profile', href: '#' }} reverse level={4}>
+					<Fragment slot="quote">Reversed: portrait on the right</Fragment>
+					<p>A short bio.</p>
+				</Profile>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">GlassCard</Heading>
-				<div class="sg__surface--aqua sg__pad">
-					<GlassCard title="What’s Covered">
-						Pipeline &amp; CRM, Funnel, Product Design, Product Delivery, and Operations.
-					</GlassCard>
-				</div>
+				<Eyebrow as="h3">Principle</Eyebrow>
+				<Principle level={4}>
+					<Fragment slot="title">A principle, set in aqua</Fragment>
+					<Fragment slot="left">
+						<p>Left column text.</p>
+						<ul>
+							<li>Bullets are small drops.</li>
+							<li>Another point.</li>
+						</ul>
+					</Fragment>
+					<Fragment slot="right">
+						<p><Highlight variant="pink">A pull statement opens the right column;</Highlight> then the text continues.</p>
+						<p>Right column text.</p>
+					</Fragment>
+				</Principle>
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">StatQuote</Heading>
-				<div class="sg__narrow">
-					<StatQuote source="(Source name)">"A statistic worth quoting, in bold."</StatQuote>
-				</div>
+				<Eyebrow as="h3">DropCluster</Eyebrow>
+				<DropCluster />
+			</div>
+
+			<div class="sg__demo sg__demo--bleed">
+				<Eyebrow as="h3">Marquee</Eyebrow>
+				<Marquee id="sg-marquee" outline="Keep" fill="Going" />
 			</div>
 
 			<div class="sg__demo">
-				<Heading level={3} size="heading-3">Testimonial</Heading>
-				<div class="sg__surface--aqua sg__pad sg__stack">
-					<Testimonial name="Client name" href="#molecules" role="Role, Company">
-						“Short quote, size l.”
-					</Testimonial>
-					<Testimonial name="Client name" href="#molecules" role="Role, Company" quoteSize="s">
-						“A longer quote uses size s so it stays readable and the card does not grow too tall
-						on smaller screens.”
-					</Testimonial>
-				</div>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">FooterLink</Heading>
-				<div class="sg__surface--teal sg__pad">
-					<FooterLink href="#molecules">Our Story</FooterLink>
-				</div>
-			</div>
-
-			<div class="sg__demo">
-				<Heading level={3} size="heading-3">AnimatedBackdrop</Heading>
-				<AnimatedBackdrop>
-					<div class="sg__backdrop-demo">
-						<Text align="center" class="sg__on-light">
-							Any content. Use the button bottom-right to pause.
-						</Text>
-					</div>
-				</AnimatedBackdrop>
+				<Eyebrow as="h3">FooterLink</Eyebrow>
+				<ul class="sg__footer-links" role="list">
+					<FooterLink href="#">Our Story</FooterLink>
+				</ul>
 			</div>
 		</section>
 
-		<!-- Organisms -->
 		<section class="sg__section" aria-labelledby="organisms">
-			<Heading level={2} size="heading-1" id="organisms">Organisms</Heading>
-			<Text>
-				SiteHeader and SiteFooter are part of the page layout and appear at the top and bottom of
-				this page. The rest are shown below at full width.
+			<Heading level={2} id="organisms">Organisms</Heading>
+			<Text tone="muted">
+				SiteHeader and SiteFooter frame this page. Hero is on <Link href="/">the homepage</Link> and NameHero on
+				<Link href="/about">Our Story</Link> (both hold the page’s h1). The rest follow, full width.
 			</Text>
 		</section>
-	</div>
+	</Container>
 
-	<div class="sg__label"><code>Hero</code></div>
-	<Hero>Intro paragraph with a <Highlight>highlighted phrase</Highlight>.</Hero>
-
-	<div class="sg__label"><code>TeamSection</code></div>
-	<TeamSection>
-		<PersonCard
-			name="Team member"
-			role="Role"
-			org={{ label: '@Company', href: '#organisms' }}
-			nationality="Nationality"
-			flag="🏳️"
-		/>
-		<PersonCard
-			name="Team member"
-			role="Role"
-			org={{ label: '@Company', href: '#organisms' }}
-			nationality="Nationality"
-			flag="🏳️"
-		/>
-	</TeamSection>
-
-	<div class="sg__label"><code>InfoBand</code></div>
-	<InfoBand>One centred line of text.</InfoBand>
-
-	<div class="sg__label"><code>OfferSection</code></div>
+	<p class="sg__label"><code>OfferSection</code></p>
 	<OfferSection
-		eyebrow="Eyebrow"
-		title="Offer title"
-		price="€000"
-		duration="Duration"
-		note="Short note"
-		cta={{ label: 'Call to action', href: '#organisms' }}
+		id="sg-offer"
+		num="01"
+		label="The Offer"
+		title="The Founder Reset Sprint 🚀"
+		price={{ amount: '€500', duration: '1 week', note: 'Limited-offer launch pricing' }}
+		cta={{ label: 'Book a call', href: '#' }}
+		items={[{ title: 'Product UI/UX and operations audit', text: "Find what's quietly killing your conversion and team sanity." }]}
+		coveredLabel="What’s Covered"
+		covered={['Funnel', 'Operations']}
 	>
-		<FeatureCard title="Item">Description.</FeatureCard>
-		<FeatureCard title="Item">Description.</FeatureCard>
-		<Fragment slot="footer">Closing line.</Fragment>
-		<GlassCard slot="after" title="Extra card">Optional card under the offer.</GlassCard>
+		<Fragment slot="statement">A closing line. <strong>The conclusion in bold.</strong></Fragment>
 	</OfferSection>
 
-	<div class="sg__label"><code>SplitSection</code> · headingSize display-l</div>
-	<SplitSection title="Big title" id="sg-split-1">
-		<Text size="xl">Content on the right.</Text>
-	</SplitSection>
-	<div class="sg__label"><code>SplitSection</code> · headingSize heading-1, align center</div>
-	<SplitSection title="A longer question as the heading?" id="sg-split-2" headingSize="heading-1" align="center">
-		<StatQuote source="(Source)">"Any content, such as a StatQuote."</StatQuote>
-	</SplitSection>
+	<p class="sg__label"><code>ProofSection</code></p>
+	<ProofSection num="02" stats={[{ value: 400, suffix: '%', caption: 'ROI', icon: 'trend', accent: true }, { value: 6, prefix: '<', caption: 'payback in under six months', icon: 'timer' }, { value: 7.2, decimals: 1, suffix: '%', caption: 'lift in conversion rate', icon: 'bars' }]} source="(Forrester Consulting)">
+		<Fragment slot="title">A statement with <em>emphasis</em>?</Fragment>
+		"The quotation the figures come from."
+	</ProofSection>
 
-	<div class="sg__label"><code>TestimonialsSection</code></div>
-	<TestimonialsSection>
-		<Testimonial name="Client name" href="#organisms" role="Role, Company">“Quote.”</Testimonial>
+	<p class="sg__label"><code>TestimonialsSection</code></p>
+	<TestimonialsSection num="03" title="What people say about us" count={2}>
+		<Testimonial index={1} name="Geoff Hucker" href="#" role="Work for Impact CEO & Founder">“The quote in the middle of the screen is <em>in focus</em>.”</Testimonial>
+		<Testimonial index={2} long name="Martin Kubler" href="#" role="Founder of The Gluttonous Sloth">“The others <em>step back</em> while you read.”</Testimonial>
 	</TestimonialsSection>
+
+	<p class="sg__label"><code>TeamSection</code></p>
+	<TeamSection num="04" title="Our team">
+		<Fragment slot="lead">Based in <span class="nowrap">Italy<Clock zone="Europe/Rome" /></span> and Japan.</Fragment>
+		<PersonCard name="Daniela Contessa" role="Former Head of Product" org={{ label: '@HappyCow', href: '#' }} nationality="Italian" flag="🇮🇹" />
+		<PersonCard name="Emma Cebuliak" role="Former Head of Business Growth" org={{ label: '@HappyCow', href: '#' }} nationality="Canadian" flag="🇨🇦" />
+	</TeamSection>
+
+	<p class="sg__label"><code>ClosingSection</code></p>
+	<ClosingSection num="05" title="Keep Going" words={{ outline: 'Keep', fill: 'Going' }} cta={{ label: 'Connect With Us', href: '#' }}>
+		<p>A lead-in line.</p>
+		<p>The message underneath.</p>
+	</ClosingSection>
+
+	<p class="sg__label"><code>CallToActionSection</code></p>
+	<CallToActionSection id="sg-cta" num="03" title="Want to optimize your internal workflows?" cta={{ label: 'Connect With Us', href: '#' }}>
+		<p>At <strong>Kodamas</strong>, the message goes here.</p>
+	</CallToActionSection>
 </BaseLayout>
 
 <style>
-	.sg {
-		max-width: var(--layout-container-max);
-		margin-inline: auto;
-		padding: var(--space-9) var(--layout-gutter) 0;
-	}
 	.sg__intro {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-5);
+		padding-top: var(--space-8);
 	}
 	.sg__toc {
 		display: flex;
@@ -416,20 +431,19 @@ const shadows = ['card', 'glow', 'glass'];
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-6);
-		padding-block: var(--space-9);
-		border-top: var(--border-width-thin) solid var(--color-control-teal);
 		margin-top: var(--space-9);
+		padding-top: var(--space-6);
+		border-top: var(--border-width-thin) solid var(--color-rule);
 	}
-	.sg code {
-		font-size: var(--font-size-body-s);
+	code {
+		font-size: var(--font-size-small);
 	}
 	.sg__muted {
-		color: var(--color-glass-aqua);
+		color: var(--color-text-muted);
 	}
-
 	.sg__swatches {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-11) * 1.5), 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-10) * 1.75), 1fr));
 		gap: var(--space-5);
 	}
 	.sg__swatch {
@@ -441,31 +455,29 @@ const shadows = ['card', 'glow', 'glass'];
 		display: block;
 		height: var(--space-10);
 		margin-bottom: var(--space-2);
-		border: var(--border-width-thin) solid var(--color-control-teal);
+		border: var(--border-width-thin) solid var(--color-rule);
 		border-radius: var(--radius-s);
 	}
-
 	.sg__type-row {
 		display: grid;
-		grid-template-columns: minmax(calc(var(--space-11) * 1.5), 1fr) 3fr;
+		grid-template-columns: minmax(calc(var(--space-10) * 2), 1fr) 3fr;
 		gap: var(--space-5);
 		align-items: baseline;
 		padding-block: var(--space-4);
-		border-bottom: var(--border-width-thin) solid var(--color-control-teal);
+		border-bottom: var(--border-width-thin) solid var(--color-rule);
 		overflow: hidden;
 	}
 	.sg__type-meta {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-1);
-		font-size: var(--font-size-body-s);
+		font-size: var(--font-size-small);
 	}
 	.sg__type-sample {
 		min-width: 0;
 		white-space: nowrap;
 		overflow: hidden;
 	}
-
 	.sg__spaces {
 		display: flex;
 		flex-direction: column;
@@ -473,24 +485,13 @@ const shadows = ['card', 'glow', 'glass'];
 	}
 	.sg__space {
 		display: grid;
-		grid-template-columns: var(--space-11) 1fr;
+		grid-template-columns: calc(var(--space-10) * 1.5) 1fr;
 		align-items: center;
 	}
 	.sg__bar {
 		display: block;
 		height: var(--space-4);
 		background: var(--color-aqua-glow);
-	}
-	.sg__boxes {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-7);
-	}
-	.sg__boxes--light {
-		padding: var(--space-7);
-		background: var(--color-surface-aqua);
-		border-radius: var(--radius-m);
-		color: var(--color-text-on-light);
 	}
 	.sg__box-item {
 		display: flex;
@@ -500,22 +501,18 @@ const shadows = ['card', 'glow', 'glass'];
 	}
 	.sg__box {
 		display: block;
-		width: var(--space-11);
-		height: var(--space-11);
-		background: var(--color-bloom-pink);
+		width: var(--space-10);
+		height: var(--space-10);
+		background: var(--gradient-drop);
 	}
-	.sg__box--shadow {
-		background: var(--color-white);
-		border-radius: var(--radius-m);
-	}
-
 	.sg__demo {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-4);
+		gap: var(--space-5);
 		padding: var(--space-6);
-		border: var(--border-width-thin) solid var(--color-control-teal);
-		border-radius: var(--radius-m);
+		border: var(--border-width-thin) solid var(--color-rule);
+		border-radius: var(--radius-s);
+		overflow: hidden;
 	}
 	.sg__row {
 		display: flex;
@@ -526,60 +523,31 @@ const shadows = ['card', 'glow', 'glass'];
 	.sg__row--top {
 		align-items: flex-start;
 	}
-	.sg__scaled {
-		overflow: hidden;
-	}
-	.sg__narrow {
-		max-width: var(--layout-card-max);
-	}
-	.sg__grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-3);
-	}
-	.sg__stack {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-	}
-	.sg__pad,
-	.sg__row.sg__surface--pink,
-	.sg__row.sg__surface--aqua,
-	.sg__grid {
+	.sg__bright {
 		padding: var(--space-6);
-		border-radius: var(--radius-m);
-	}
-	.sg__surface--pink {
-		background: var(--color-surface-pink);
-		color: var(--color-white);
+		background: var(--color-surface-bright);
+		color: var(--color-text-on-light);
+		border-radius: var(--radius-s);
+		--color-number: var(--color-number-on-light);
+		--color-accent: var(--color-midnight-navy);
 		--focus-color: var(--color-focus-on-light);
 	}
-	.sg__surface--aqua {
-		background: var(--color-surface-aqua);
-		color: var(--color-text-on-light);
-		--focus-color: var(--color-focus-on-light);
+	.sg__narrow,
+	.sg__avatar-l {
+		width: 100%;
+		max-width: var(--layout-team-column);
 	}
-	.sg__surface--teal {
-		background: var(--color-surface-band);
-	}
-	.sg__backdrop-demo {
-		padding: var(--space-10) var(--space-6);
-	}
-	.sg :global(.sg__on-light) {
-		color: var(--color-text-on-light);
+	.sg__footer-links {
+		border-top: var(--border-width-thin) solid var(--color-rule);
 	}
 	.sg__label {
-		max-width: var(--layout-container-max);
-		margin: var(--space-9) auto var(--space-4);
+		max-width: calc(var(--layout-max) + 2 * var(--layout-gutter));
+		margin: var(--space-9) auto 0;
 		padding-inline: var(--layout-gutter);
-		color: var(--color-glass-aqua);
+		color: var(--color-text-muted);
 	}
-
 	@media (max-width: 48rem) {
 		.sg__type-row {
-			grid-template-columns: 1fr;
-		}
-		.sg__grid {
 			grid-template-columns: 1fr;
 		}
 	}

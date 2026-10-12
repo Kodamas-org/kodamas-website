@@ -3,9 +3,8 @@
 
 export const links = {
 	home: '/',
-	testHome: '/test-home',
 	blogfolio: '#',
-	ourStory: '#',
+	ourStory: '/about',
 	connect: '#',
 	bookCall: '#',
 	happyCowDaniela: '#',
@@ -15,5 +14,6 @@ export const links = {
 	martinKubler: '#',
 	emmaLinkedIn: '#',
 	danielaLinkedIn: '#',
+	workForImpactDaniela: '#',
 	privacyTerms: '#',
 };

@@ -1,0 +1,113 @@
+---
+// A big figure that counts up when it scrolls into view, with a caption and
+// a small pink icon. The final number is in the HTML, so it reads correctly
+// without JavaScript and with reduced motion.
+// value: the number to count to; decimals: digits after the point
+// prefix / suffix: text around the number ('<', '%')
+// icon: 'trend', 'timer' or 'bars'
+// accent: the figure in aqua (use for the lead figure only)
+interface Props {
+	value: number;
+	decimals?: number;
+	prefix?: string;
+	suffix?: string;
+	caption: string;
+	icon?: 'trend' | 'timer' | 'bars';
+	accent?: boolean;
+}
+
+const { value, decimals = 0, prefix = '', suffix = '', caption, icon, accent = false } = Astro.props;
+---
+
+<div class="stat" data-reveal>
+	<p class:list={['stat__fig', { 'stat__fig--accent': accent }]}>
+		{prefix}<span data-count={value} data-decimals={decimals}>{value.toFixed(decimals)}</span>{suffix}
+	</p>
+	<p class="stat__cap">
+		{
+			icon === 'trend' && (
+				<svg class="stat__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M3 17l6-6 4 4 8-8M15 7h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			)
+		}
+		{
+			icon === 'timer' && (
+				<svg class="stat__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M12 9v4l2.5 2.5M9 2h6M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			)
+		}
+		{
+			icon === 'bars' && (
+				<svg class="stat__icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M5 20v-5M12 20V10M19 20V4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+				</svg>
+			)
+		}
+		{caption}
+	</p>
+</div>
+
+<script>
+	const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+	if (!calm && 'IntersectionObserver' in window && counters.length) {
+		const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--duration-count')) || 1600;
+		const run = (el: HTMLElement) => {
+			const to = Number(el.dataset.count);
+			const dec = Number(el.dataset.decimals ?? 0);
+			const start = performance.now();
+			const tick = (now: number) => {
+				const t = Math.min((now - start) / duration, 1);
+				const eased = 1 - Math.pow(1 - t, 4);
+				el.textContent = (to * eased).toFixed(dec);
+				if (t < 1) requestAnimationFrame(tick);
+			};
+			requestAnimationFrame(tick);
+		};
+		const io = new IntersectionObserver(
+			(entries) =>
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						run(e.target as HTMLElement);
+						io.unobserve(e.target);
+					}
+				}),
+			{ threshold: 0.6 },
+		);
+		counters.forEach((c) => io.observe(c));
+	}
+</script>
+
+<style>
+	.stat {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+	.stat__fig {
+		font-family: var(--font-display);
+		font-size: var(--font-size-stat);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-none);
+		letter-spacing: var(--letter-spacing-tight);
+		font-variant-numeric: tabular-nums;
+	}
+	.stat__fig--accent {
+		color: var(--color-accent);
+	}
+	.stat__cap {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		font-size: var(--font-size-body);
+		color: var(--color-text-muted);
+	}
+	.stat__icon {
+		flex-shrink: 0;
+		width: var(--size-icon-l);
+		height: var(--size-icon-l);
+		color: var(--color-number);
+	}
+</style>

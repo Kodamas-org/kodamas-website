@@ -1,16 +1,32 @@
 ---
-// Bold phrase with a pink underline, used to stress key words in a paragraph.
+// Emphasis for a key phrase inside a sentence.
+// variant: 'accent' (aqua bold), 'underline' (aqua bold with a pink underline,
+//          the hero phrase), 'pink' (pink underline only, keeps the text
+//          colour, for highlighted sentences in running text)
+interface Props {
+	variant?: 'accent' | 'underline' | 'pink';
+}
+
+const { variant = 'accent' } = Astro.props;
 ---
 
-<strong class="highlight"><slot /></strong>
+<em class:list={['highlight', `highlight--${variant}`]}><slot /></em>
 
 <style>
 	.highlight {
+		font-style: normal;
+	}
+	.highlight--accent,
+	.highlight--underline {
 		font-weight: var(--font-weight-bold);
+		color: var(--color-accent);
+	}
+	.highlight--underline,
+	.highlight--pink {
 		text-decoration-line: underline;
 		text-decoration-color: var(--color-highlight-pink);
-		text-decoration-thickness: var(--size-underline);
-		text-underline-offset: var(--size-underline-offset);
+		text-decoration-thickness: var(--size-highlight-thickness);
+		text-underline-offset: var(--size-highlight-offset);
 		text-decoration-skip-ink: none;
 	}
 </style>

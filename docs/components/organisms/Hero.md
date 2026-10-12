@@ -4,34 +4,37 @@
 
 ## What it is
 
-The opening section: the giant two-tone “Kodamas” wordmark (the page’s h1) with a pink drop tucked behind the K, then the intro paragraph.
+The homepage opening. The giant wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
 
 ## When to use it
 
-Once, at the top of the homepage.
+Homepage only (it holds the h1). Shown on `/`, not on the styleguide.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| (content) | text | — | The intro paragraph. Can include a Highlight. |
+| `word` | text | `Kodamas` | The wordmark. |
+| `lead` | number | 2 | How many leading letters are white. |
+| (content) | text | — | Intro statement; wrap the key phrase in `<Highlight variant="underline">`. |
+| slot "actions" | content | — | Button and link. |
 
 ## Variants
 
-On phones the paragraph loses its indent and the drop gets smaller.
+On tablet and mobile the symbol moves above the wordmark.
 
 ## Tokens used
 
-`--indent-hero-intro`, `--layout-header-gutter`, `--layout-page-max`, `--layout-text-max`, `--overlap-hero-drop`, `--space-10`, `--space-7`, `--space-9`
+`--color-aqua-glow`, `--color-white`, `--duration-rise`, `--ease-standard`, `--font-display`, `--font-size-intro`, `--font-size-mark`, `--font-weight-heavy`, `--font-weight-light`, `--layout-col-gap`, `--layout-gutter`, `--layout-section`, `--letter-spacing-tight`, `--line-height-mark`, `--line-height-snug`, `--size-drop-cluster`, `--space-3`, `--space-6`, `--space-7`, `--space-8`, `--stagger`
 
 ## Example
 
 ```astro
-<Hero>When your app and team <Highlight>outgrow their DIY phase</Highlight>, …</Hero>
+<Hero>…<Fragment slot="actions">…</Fragment></Hero>
 ```
 
 ## Notes
 
-Uses: Wordmark (`xl`, two-tone), Drop (`l`), Text (`xl`).
+Uses: Container, DropCluster.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

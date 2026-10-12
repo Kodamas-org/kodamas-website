@@ -1,0 +1,16 @@
+---
+// An outlined capsule for a short topic label, in a list of tags.
+// Renders an <li>, so place it inside a <ul role="list">.
+---
+
+<li class="tag"><slot /></li>
+
+<style>
+	.tag {
+		padding: var(--space-2) var(--space-4);
+		border: var(--border-width-thin) solid currentColor;
+		border-radius: var(--radius-pill);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+	}
+</style>

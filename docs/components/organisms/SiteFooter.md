@@ -4,23 +4,25 @@
 
 ## What it is
 
-The page footer: a teal card with the white wordmark, copyright line, “Connect With Us” button and four footer links, then an aqua strip with the legal link.
+The footer: large FooterLink rows, then a bar with the sign-off wordmark, copyright and the legal link.
 
 ## When to use it
 
-Once per page; already included in BaseLayout.
+Every page (BaseLayout).
 
 ## Props
 
-None.
+| Prop | Options | Default | What it does |
+|---|---|---|---|
+| — | — | — | No props. Links from `src/data/links.ts`. |
 
 ## Variants
 
-Two columns on desktop and tablet; one column on phones, where the card runs edge to edge.
+Bar stacks on mobile.
 
 ## Tokens used
 
-`--color-focus-on-light`, `--color-surface-aqua`, `--color-surface-band`, `--color-text-on-dark`, `--font-size-body-m`, `--layout-gutter`, `--layout-header-gutter`, `--radius-l`, `--space-10`, `--space-3`, `--space-4`, `--space-5`, `--space-7`, `--space-8`, `--space-9`
+`--border-width-thin`, `--color-rule`, `--color-text-muted`, `--font-size-small`, `--space-4`, `--space-6`, `--space-7`, `--space-9`
 
 ## Example
 
@@ -30,6 +32,6 @@ Two columns on desktop and tablet; one column on phones, where the card runs edg
 
 ## Notes
 
-Uses: Wordmark, Text, Button, Link, FooterLink. Links live in `src/data/links.ts`.
+Uses: Container, Wordmark, Link, FooterLink.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

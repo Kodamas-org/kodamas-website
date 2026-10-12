@@ -4,42 +4,42 @@
 
 ## What it is
 
-The offer: a pink card with eyebrow, title, price, duration, note, included items, a closing line and a booking button, followed by optional extra cards, all on the animated aqua background.
+The offer, on the bright surface: sticky aside with title, price and button; numbered items, covered tags and a closing statement on the right.
 
 ## When to use it
 
-For presenting a product or package.
+The homepage’s one bright moment.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `eyebrow` | text | — | Small label above the title. |
-| `title` | text | — | Offer name (an h2). |
-| `price` | text | — | Shown in a Pill. |
-| `duration` | text | — | Shown in bold. |
-| `note` | text | — | Shown in italic. |
-| `cta` | { label, href } | — | The inverse button. |
-| (default slot) | FeatureCards | — | The included items. |
-| slot "footer" | text | — | Closing line above the button. |
-| slot "after" | GlassCard(s) | — | Cards shown under the offer card. |
+| `id` | text | `offer` | Section id (anchor). |
+| num / label | text | — | Section index. |
+| `title` | text | — | h2. |
+| `price` | { amount, duration, note } | — | Price. |
+| `cta` | { label, href } | — | Navy button. |
+| `items` | list of { title, text } | — | Numbered items. |
+| `coveredLabel` | text | — | Tags title. |
+| `covered` | list of text | — | Tags. |
+| slot "statement" | text | — | Closing line (`<strong>` for the conclusion). |
 
 ## Variants
 
-Desktop: items in two columns, price on the right of the title. Mobile: items stack, price moves above the eyebrow.
+Aside stops being sticky below 1024px.
 
 ## Tokens used
 
-`--color-focus-on-light`, `--color-surface-pink`, `--color-white`, `--layout-card-max`, `--layout-gutter`, `--layout-narrow-text`, `--radius-l`, `--shadow-glow`, `--space-10`, `--space-2`, `--space-3`, `--space-4`, `--space-5`, `--space-6`, `--space-7`, `--space-8`, `--space-9`
+`--border-width-medium`, `--font-display`, `--font-size-heading-3`, `--font-weight-bold`, `--font-weight-light`, `--layout-col-gap`, `--layout-sticky-top`, `--line-height-snug`, `--space-2`, `--space-4`, `--space-6`, `--space-9`
 
 ## Example
 
 ```astro
-<OfferSection eyebrow="The Offer" title="The Founder Reset Sprint 🚀" price="€500" duration="1 week" note="Limited-offer launch pricing" cta={{ label: "Book a call", href: "…" }}>…</OfferSection>
+<OfferSection num="01" label="The Offer" …>…</OfferSection>
 ```
 
 ## Notes
 
-Uses: AnimatedBackdrop, Eyebrow, Heading, Pill, Text, Button, plus the FeatureCards and GlassCards you pass in.
+Uses: Section, Heading, Price, Button, NumberedItem, Eyebrow, Tag.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).
