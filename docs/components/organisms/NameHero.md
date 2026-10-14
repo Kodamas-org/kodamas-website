@@ -25,7 +25,7 @@ Our Story only (its small label is the h1). Shown on `/about`, not on the styleg
 
 ## Variants
 
-The equation reads in order, one beat (`--duration-beat`) per step: first term, +, second term, =, the word (its letters rising one after another, `--stagger`), its meaning, then the final letter together with its note, and finally the intro paragraph. No motion for reduced motion.
+The equation reads in order, one beat (`--duration-beat`) per step: both terms together, then + and then = (the drops fall in from above, like the final letter), the word (its letters rising one after another, `--stagger`), its meaning, then the final letter together with its note, and finally the intro paragraph. No motion for reduced motion.
 
 On mobile (≤ 48rem) the equation stays on one line (Ko + Dama =): a four-column grid packed to the left (the = sits right after the second term) where each meaning drops to `--font-size-small` and wraps under its own word, and the drops shrink via `--size-drop-equation`.
 
