@@ -1,8 +1,8 @@
 // The authors of Blogfolio articles, shown in the author block under each
 // article. An article's `author` can be a key below or the person's full
 // name (as the blog writer drafts use); anything else falls back to Kodamas.
-// Copy is taken from the site (Our Story); Kodamas' role was agreed with
-// the owners.
+// Emma's and Daniela's bios come from Our Story; Kodamas' role and bio
+// (from the manifesto, in the third person) were agreed with the owners.
 import type { ImageMetadata } from 'astro';
 import { links } from './links';
 import { photos } from './photos';
@@ -20,7 +20,7 @@ export const authors = {
 	kodamas: {
 		name: 'Kodamas',
 		role: 'Growth, product and operations consultancy for startups and small teams',
-		bio: 'Ko, “co” meaning together, + Dama, “lady” in Italian, = Kodama, in Japanese the spirit of the tree, + an “S”, because we are two : ) These meanings mirror Daniela’s Italian heritage and Emma’s expat experience in Japan.',
+		bio: 'Delivery isn’t about control; it’s about clarity. Kodamas builds lean, empathetic frameworks that help ambitious teams focus on what matters, anticipate what’s next, and ship with confidence - in a way that empowers, not diminishes.',
 		link: { label: 'Our Story', href: links.ourStory },
 	},
 	emma: {
