@@ -5,7 +5,8 @@
 // a short bio and a link to their profile.
 // reverse: portrait on the right instead of the left (alternate profiles)
 // zone: IANA time zone for the clock (omit for no clock)
-// Slots: "quote" (the motto, without quotation marks), default (the bio)
+// Slots: "quote" (the motto, without quotation marks), default (the bio),
+//        "more" (optional: a list opened by "Read more about {name}")
 import Avatar from '../atoms/Avatar.astro';
 import Clock from '../atoms/Clock.astro';
 import Link from '../atoms/Link.astro';
@@ -34,6 +35,19 @@ const Tag = `h${level}` as 'h3';
 			<p>“<slot name="quote" />”</p>
 		</blockquote>
 		<div class="profile__bio"><slot /></div>
+		{
+			Astro.slots.has('more') && (
+				<details class="profile__more">
+					<summary class="profile__more-toggle">
+						Read more about {name}
+						<span class="profile__more-icon" aria-hidden="true" />
+					</summary>
+					<div class="profile__more-body">
+						<slot name="more" />
+					</div>
+				</details>
+			)
+		}
 		<Link href={link.href} variant="action" arrow="→">{link.label}</Link>
 	</div>
 </article>
@@ -103,6 +117,81 @@ const Tag = `h${level}` as 'h3';
 		color: var(--color-accent);
 		text-underline-offset: var(--size-underline-offset);
 	}
+
+	/* ---------- Read more ---------- */
+	.profile__more {
+		width: 100%;
+		max-width: var(--layout-text-max);
+		border-block: var(--border-width-thin) solid var(--color-rule);
+	}
+	.profile__more-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: var(--size-tap-min);
+		padding-block: var(--space-3);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-accent);
+		cursor: pointer;
+		list-style: none;
+	}
+	.profile__more-toggle::-webkit-details-marker {
+		display: none;
+	}
+	/* A plus that turns into a cross when open */
+	.profile__more-icon {
+		position: relative;
+		flex-shrink: 0;
+		width: var(--size-icon-s);
+		aspect-ratio: 1;
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.profile__more-icon::before,
+	.profile__more-icon::after {
+		content: '';
+		position: absolute;
+		inset: 50% 0 auto;
+		height: var(--border-width-medium);
+		background: currentColor;
+		transform: translateY(-50%);
+	}
+	.profile__more-icon::after {
+		transform: translateY(-50%) rotate(90deg);
+	}
+	.profile__more[open] .profile__more-icon {
+		transform: rotate(45deg);
+	}
+	.profile__more-body {
+		padding-bottom: var(--space-5);
+	}
+	.profile__more-body :global(ul) {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: 0;
+		list-style: none;
+	}
+	.profile__more-body :global(li) {
+		position: relative;
+		padding-left: var(--space-6);
+	}
+	/* Bullets are small drops */
+	.profile__more-body :global(li)::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: var(--space-2);
+		width: var(--size-icon-s);
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+		background: var(--gradient-drop);
+	}
+	.profile__more-body :global(a) {
+		color: var(--color-accent);
+		text-underline-offset: var(--size-underline-offset);
+	}
+
 	@media (max-width: 48rem) {
 		.profile__photo,
 		.profile--reverse .profile__photo,

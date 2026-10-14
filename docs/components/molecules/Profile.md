@@ -23,6 +23,7 @@ Our Story. Alternate `reverse` between profiles.
 | `level` | 2 · 3 | 3 | Name heading level. |
 | slot "quote" | text | — | The motto, without quotation marks; `<em>` for the key phrase. |
 | (content) | paragraphs | — | The bio. |
+| slot "more" | a `<ul>` | — | Optional. Hidden behind “Read more about {name}” (a native `<details>` between hairlines, + turning into ×); bullets are small drops. |
 
 ## Variants
 
@@ -30,7 +31,7 @@ Normal or reversed. Stacks on mobile.
 
 ## Tokens used
 
-`--color-accent`, `--font-display`, `--font-size-heading-2`, `--font-size-quote-long`, `--font-weight-bold`, `--font-weight-heavy`, `--font-weight-light`, `--layout-col-gap`, `--layout-text-max`, `--letter-spacing-display`, `--line-height-none`, `--line-height-snug`, `--radius-round`, `--size-avatar-l`, `--size-underline-offset`, `--space-3`, `--space-5`, `--space-6`
+`--border-width-medium`, `--border-width-thin`, `--color-accent`, `--color-rule`, `--duration-base`, `--ease-standard`, `--font-display`, `--font-size-heading-2`, `--font-size-quote-long`, `--font-weight-bold`, `--font-weight-heavy`, `--font-weight-light`, `--font-weight-semibold`, `--gradient-drop`, `--layout-col-gap`, `--layout-text-max`, `--letter-spacing-display`, `--line-height-none`, `--line-height-snug`, `--radius-drop`, `--radius-round`, `--size-avatar-l`, `--size-icon-s`, `--size-tap-min`, `--size-underline-offset`, `--space-2`, `--space-3`, `--space-4`, `--space-5`, `--space-6`
 
 ## Example
 

@@ -14,6 +14,8 @@ export const links = {
 	bookCall: 'mailto:hello@kodamas.io',
 	happyCowDaniela: 'https://www.happycow.net/',
 	happyCowEmma: 'https://www.happycow.net/',
+	happyCowPartnerProgram: 'https://www.happycow.net/supporter',
+	wardaDaniela: 'https://www.seecommerce.it/en/how-it-works/',
 	geoffHucker: 'https://www.linkedin.com/in/geoff-hucker/',
 	samyuktaKartik: 'https://www.linkedin.com/in/samyukta-kartik-053601239/',
 	martinKubler: 'https://www.linkedin.com/in/martinkubler/',
