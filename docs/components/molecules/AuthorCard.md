@@ -33,6 +33,6 @@ With a photo (Emma, Daniela) or with the Kodamas symbol (Kodamas). Side by side 
 
 ## Notes
 
-Uses: Avatar, Link, DropCluster. To change a role or bio, edit `src/data/authors.ts`; the copy there comes from the homepage and Our Story.
+Uses: Avatar, Link, DropCluster. To change a role or bio, edit `src/data/authors.ts`; the bios come from Our Story; Kodamas’ role was agreed with the owners.
 
 See it live at `/styleguide` and under every article. Token values: [design-tokens.md](../../design-tokens.md).

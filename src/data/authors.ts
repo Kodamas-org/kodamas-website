@@ -1,7 +1,8 @@
 // The authors of Blogfolio articles, shown in the author block under each
 // article. An article's `author` can be a key below or the person's full
 // name (as the blog writer drafts use); anything else falls back to Kodamas.
-// Copy is taken from the site (homepage hero, Our Story).
+// Copy is taken from the site (Our Story); Kodamas' role was agreed with
+// the owners.
 import type { ImageMetadata } from 'astro';
 import { links } from './links';
 import { photos } from './photos';
@@ -18,7 +19,7 @@ export interface Author {
 export const authors = {
 	kodamas: {
 		name: 'Kodamas',
-		role: 'When your app and team outgrow their DIY phase, we build the tools and processes that keep your people happy and product & growth moving together.',
+		role: 'Growth, product and operations consultancy for startups and small teams',
 		bio: 'Ko, “co” meaning together, + Dama, “lady” in Italian, = Kodama, in Japanese the spirit of the tree, + an “S”, because we are two : ) These meanings mirror Daniela’s Italian heritage and Emma’s expat experience in Japan.',
 		link: { label: 'Our Story', href: links.ourStory },
 	},
