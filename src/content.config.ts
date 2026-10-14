@@ -23,6 +23,8 @@ const blog = defineCollection({
 			// Small label above the title (e.g. "Case_1")
 			label: z.string().optional(),
 			date: z.coerce.date().optional(),
+			// 'kodamas', 'emma', 'daniela' or a full name (src/data/authors.ts);
+			// missing or unknown means Kodamas
 			author: z.string().optional(),
 			tags: z.array(z.string()).optional(),
 			// Path relative to the Markdown file, e.g. ../../assets/blog/<slug>.jpg

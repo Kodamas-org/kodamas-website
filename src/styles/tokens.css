@@ -115,6 +115,7 @@
 	--size-spark: 0.1875rem;
 	--size-drop-cluster: clamp(7.5rem, 3rem + 15vw, 17rem);
 	--size-avatar-s: 3.5rem;
+	--size-avatar-m: 6rem; /* author block */
 	--size-avatar-l: 15rem;
 	--size-icon-s: var(--space-3);
 	--size-icon-m: var(--space-4);

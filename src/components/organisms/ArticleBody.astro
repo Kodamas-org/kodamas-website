@@ -4,7 +4,8 @@
 // mobile) beside the text set in Prose on columns 4–10.
 // headings: from render() or getHeadings() (the h2s become the contents)
 // tocLabel: the contents' title (TableOfContents default: "In this article")
-// Slot default: the rendered Markdown
+// Slots: default (the rendered Markdown), "after" (under the text in the same
+//        column, e.g. the author block)
 import Section from '../molecules/Section.astro';
 import Prose from '../molecules/Prose.astro';
 import TableOfContents from '../molecules/TableOfContents.astro';
@@ -24,6 +25,13 @@ const { headings, tocLabel } = Astro.props;
 		</aside>
 		<article class="article-body__text">
 			<Prose><slot /></Prose>
+			{
+				Astro.slots.has('after') && (
+					<div class="article-body__after">
+						<slot name="after" />
+					</div>
+				)
+			}
 		</article>
 	</div>
 </Section>
@@ -43,6 +51,9 @@ const { headings, tocLabel } = Astro.props;
 	}
 	.article-body__text {
 		grid-column: 4 / span 7;
+	}
+	.article-body__after {
+		margin-top: var(--space-10);
 	}
 	@media (max-width: 64rem) {
 		.article-body__toc,

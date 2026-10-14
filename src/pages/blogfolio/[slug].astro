@@ -1,13 +1,15 @@
 ---
 // A Blogfolio article (case study or blog post), one page per Markdown file
 // in src/content/blog/. Built from the shared system: PageIntro (title,
-// summary, meta), ArticleBody (contents beside the text), then the bright
-// call to action.
+// summary, meta), ArticleBody (contents beside the text, the author block
+// under it), then the bright call to action.
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/organisms/PageIntro.astro';
 import CallToActionSection from '../../components/organisms/CallToActionSection.astro';
 import ArticleBody from '../../components/organisms/ArticleBody.astro';
+import AuthorCard from '../../components/molecules/AuthorCard.astro';
+import { getAuthor } from '../../data/authors';
 import { links } from '../../data/links';
 import { inlineMarkdown } from '../../lib/inline-markdown';
 
@@ -28,7 +30,8 @@ const cta = data.cta ?? {
 	],
 };
 const date = data.date?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-const meta = [data.author, date].filter(Boolean).join(' · ');
+const author = getAuthor(data.author);
+const meta = [author.name, date].filter(Boolean).join(' · ');
 ---
 
 <BaseLayout title={`${data.seoTitle ?? data.title} · Kodamas`} description={data.description}>
@@ -38,7 +41,10 @@ const meta = [data.author, date].filter(Boolean).join(' · ');
 		{meta && <Fragment slot="meta">{meta}</Fragment>}
 	</PageIntro>
 
-	<ArticleBody headings={headings}><Content /></ArticleBody>
+	<ArticleBody headings={headings}>
+		<Content />
+		<AuthorCard slot="after" author={author} />
+	</ArticleBody>
 
 	<div class="cta-gap">
 		<CallToActionSection num="" title={cta.title} cta={{ label: 'Connect With Us', href: links.connect }}>

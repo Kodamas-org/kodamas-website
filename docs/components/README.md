@@ -39,6 +39,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [CaseStudy](molecules/CaseStudy.md) — A Blogfolio entry: drop-shaped photo on one side; case label with a pink drop, the title as an aqua link with an arrow, and a one-line summary on the other. The whole card is clickable.
 - [Prose](molecules/Prose.md) — Long-form article text from Markdown: numbered parts (h2 on a hairline with a pink 01, 02…), aqua bold, drop bullets, a large pull statement for quotes.
 - [TableOfContents](molecules/TableOfContents.md) — An article’s parts, numbered like Prose. Desktop: a sticky list in the left column with the part being read in aqua. Mobile: an accordion, closed by default.
+- [AuthorCard](molecules/AuthorCard.md) — The author block under an article: photo in a drop (or the Kodamas symbol), “Written by”, name, role, short bio and a link.
 - [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
 - [WispField](molecules/WispField.md) — Kodama wisps: white-aqua flames with a blue halo and twinkling sparks. They fade in when scrolled into view, flicker and drift, and rise away as the page scrolls. Decorative.
 - [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.

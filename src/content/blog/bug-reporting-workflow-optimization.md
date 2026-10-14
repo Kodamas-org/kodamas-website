@@ -11,6 +11,7 @@ photoFocus: '80% 50%'
 photoCredit:
   name: 'Utsav Srestha'
   href: 'https://unsplash.com/photos/nzGSgl9u3Ak'
+author: 'kodamas'
 order: 1
 cta:
   title: 'Want to optimize your internal workflows?'

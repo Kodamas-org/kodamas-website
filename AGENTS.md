@@ -40,6 +40,7 @@ src/
   lib/                   small helpers (inline-markdown.ts)
   data/links.ts          every link URL on the site
   data/photos.ts         every portrait, imported from assets/people/
+  data/authors.ts        article authors (Kodamas, Emma, Daniela) for the author block
   assets/                photos: people/ (portraits) and blog/ (article photos, named like the article)
 public/_redirects        Netlify redirects from the old Squarespace addresses
 public/_headers          Netlify cache headers (hashed /_astro/ files cached for a year)
@@ -127,6 +128,7 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 - Each article is a Markdown file in `src/content/blog/`; the file name is the slug, so `my-article.md` is published at `/blogfolio/my-article` and listed on `/blogfolio` automatically.
 - The frontmatter is the kodamas-blog-writer format (`content-drafts/README.md`); the fields the site uses are in `src/content.config.ts` (`title`, `description`, `summary`, `cardTitle`, `seoTitle`, `label`, `date`, `author`, `photo` (path to `src/assets/blog/<slug>.jpg`, relative to the Markdown file), `photoAlt`, `photoFocus`, `photoCredit` ({ name, href }: shown as “Photo by …” under the photo), `order`, `status`, `cta`). Other draft fields are ignored.
 - To publish a final draft: copy `content-drafts/articles/<slug>.md` into `src/content/blog/`, add `summary` (the line under the title), and turn `<!-- IMAGE: … -->` notes into real images or remove them. `status: draft` keeps an article out of the build.
+- `author` is `kodamas`, `emma`, `daniela` or a full name; missing or unknown means Kodamas. The author block under the article (name, role, bio, photo, link) comes from `src/data/authors.ts`.
 - Articles start at `##` (the page title is the h1); every `##` becomes a numbered part. A `>` quote is the pull statement.
 - When an old address changes, add a line to `public/_redirects`.
 

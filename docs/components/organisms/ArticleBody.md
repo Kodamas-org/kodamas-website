@@ -17,6 +17,7 @@ Every article (`/blogfolio/<slug>`) and the Privacy Policy & Terms of Service pa
 | `headings` | list of { depth, slug, text } | — | From `render(post)` or a Markdown import’s `getHeadings()`; the `h2`s become the contents. |
 | `tocLabel` | text | `In this article` | The contents’ title (`On this page` on the legal page). |
 | (content) | rendered Markdown | — | The text, starting at `h2`. |
+| slot "after" | content | — | Under the text, in the same column (the AuthorCard on articles). |
 
 ## Variants
 
@@ -24,7 +25,7 @@ One. Sticky contents on desktop; accordion below 1024px.
 
 ## Tokens used
 
-`--layout-col-gap`, `--layout-sticky-top`, `--layout-text-max`, `--space-8`
+`--layout-col-gap`, `--layout-sticky-top`, `--layout-text-max`, `--space-8`, `--space-10`
 
 ## Example
 

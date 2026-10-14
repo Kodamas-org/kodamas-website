@@ -10,6 +10,7 @@ photoFocus: '45% 50%'
 photoCredit:
   name: 'Andrey Tikhonovskiy'
   href: 'https://unsplash.com/photos/kcMWH-mvOTQ'
+author: 'kodamas'
 order: 2
 cta:
   title: 'Want to Launch a B2B Product That Sticks?'

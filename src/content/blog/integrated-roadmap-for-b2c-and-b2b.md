@@ -10,6 +10,7 @@ photoFocus: '60% 50%'
 photoCredit:
   name: 'Dmytro Koplyk'
   href: 'https://unsplash.com/photos/atTqc0mvIkI'
+author: 'kodamas'
 order: 3
 cta:
   title: 'Want to align your team around a unified roadmap?'

@@ -34,6 +34,8 @@ import Principle from '../components/molecules/Principle.astro';
 import CaseStudy from '../components/molecules/CaseStudy.astro';
 import Prose from '../components/molecules/Prose.astro';
 import TableOfContents from '../components/molecules/TableOfContents.astro';
+import AuthorCard from '../components/molecules/AuthorCard.astro';
+import { authors } from '../data/authors';
 import { photos } from '../data/photos';
 import DropCluster from '../components/molecules/DropCluster.astro';
 import WispField from '../components/molecules/WispField.astro';
@@ -383,6 +385,14 @@ const radii = ['s', 'pill', 'drop'];
 							{ depth: 2, slug: 'sg-part-3', text: 'Moral of the Story' },
 						]}
 					/>
+				</div>
+			</div>
+
+			<div class="sg__demo" id="sg-author">
+				<Eyebrow as="h3">AuthorCard</Eyebrow>
+				<div class="sg__prose">
+					<AuthorCard author={authors.emma} />
+					<AuthorCard author={authors.kodamas} />
 				</div>
 			</div>
 

@@ -158,6 +158,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-spark` | `0.1875rem` | A twinkling spark beside the wisps |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
 | `--size-avatar-s` | `3.5rem` |  |
+| `--size-avatar-m` | `6rem` | Author block |
 | `--size-avatar-l` | `15rem` |  |
 | `--size-icon-s` | `var(--space-3)` |  |
 | `--size-icon-m` | `var(--space-4)` |  |

@@ -4,7 +4,8 @@
 // it, a dashed placeholder that says a photo is still needed.
 // src: an imported image (optimised and resized by Astro) or a URL
 // shape: 'round' (testimonial byline) or 'drop' (portraits, case photos)
-// size: 's' (3.5rem byline) or 'l' (fills its column, up to the team width)
+// size: 's' (3.5rem byline), 'm' (6rem, author block) or 'l' (fills its
+//       column, up to the team width)
 // focus: which part of the photo stays in the crop, as an object-position
 //        (e.g. '70% 50%' for a subject on the right); default keeps faces
 // sizes: how wide the photo shows, so the browser picks the right file
@@ -18,7 +19,7 @@ interface Props {
 	src?: ImageMetadata | string;
 	alt?: string;
 	shape?: 'round' | 'drop';
-	size?: 's' | 'l';
+	size?: 's' | 'm' | 'l';
 	focus?: string;
 	sizes?: string;
 	priority?: boolean;
@@ -32,7 +33,7 @@ const {
 	shape = 'round',
 	size = 's',
 	focus,
-	sizes = size === 's' ? '3.5rem' : '(max-width: 48rem) 80vw, 32rem',
+	sizes = size === 's' ? '3.5rem' : size === 'm' ? '6rem' : '(max-width: 48rem) 80vw, 32rem',
 	priority = false,
 	class: className,
 } = Astro.props;
@@ -47,7 +48,7 @@ const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
 // Imported images get resized copies in AVIF (smallest) with a WebP
 // fallback: small for bylines, larger for columns. The largest width is
 // also the fallback src, so the original file is never sent.
-const widths = size === 's' ? [112, 168, 224] : [400, 640, 960, 1280];
+const widths = { s: [112, 168, 224], m: [192, 288, 384], l: [400, 640, 960, 1280] }[size];
 const variant = (format: 'avif' | 'webp') =>
 	getImage({ src: src as ImageMetadata, format, widths, width: Math.max(...widths), quality: 70 });
 const [avif, webp] =
@@ -74,7 +75,7 @@ const [avif, webp] =
 	) : (
 		<div class:list={[...classes, 'avatar--placeholder']} role="img" aria-label={`${name} (photo needed)`}>
 			<span aria-hidden="true">
-				{size === 's' ? (
+				{size !== 'l' ? (
 					initials
 				) : (
 					<>
@@ -125,6 +126,9 @@ const [avif, webp] =
 	}
 	.avatar--s {
 		width: var(--size-avatar-s);
+	}
+	.avatar--m {
+		width: var(--size-avatar-m);
 	}
 	.avatar--l {
 		width: 100%;
