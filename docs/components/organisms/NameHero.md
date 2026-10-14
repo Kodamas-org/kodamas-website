@@ -27,9 +27,11 @@ Our Story only (its small label is the h1). Shown on `/about`, not on the styleg
 
 The equation builds in sequence; no motion for reduced motion.
 
+On mobile (≤ 48rem) the equation stays on one line (Ko + Dama =): a four-column grid where each meaning drops to `--font-size-small` and wraps under its own word, and the drops shrink via `--size-drop-equation`.
+
 ## Tokens used
 
-`--color-aqua-glow`, `--color-highlight-pink`, `--color-number`, `--color-text-muted`, `--color-white`, `--duration-rise`, `--ease-standard`, `--font-display`, `--font-size-body`, `--font-size-intro`, `--font-size-lead`, `--font-size-mark`, `--font-size-small`, `--font-size-statement`, `--font-weight-heavy`, `--font-weight-light`, `--font-weight-semibold`, `--layout-col-gap`, `--layout-section`, `--layout-text-max`, `--letter-spacing-label`, `--letter-spacing-tight`, `--line-height-lead`, `--line-height-mark`, `--line-height-none`, `--line-height-snug`, `--space-2`, `--space-3`, `--space-5`, `--space-6`, `--space-8`, `--space-9`, `--stagger`
+`--color-aqua-glow`, `--color-highlight-pink`, `--color-number`, `--color-text-muted`, `--color-white`, `--duration-rise`, `--ease-standard`, `--font-display`, `--font-size-body`, `--font-size-intro`, `--font-size-lead`, `--font-size-mark`, `--font-size-small`, `--font-size-statement`, `--font-weight-heavy`, `--font-weight-light`, `--font-weight-semibold`, `--layout-col-gap`, `--layout-section`, `--layout-text-max`, `--letter-spacing-label`, `--letter-spacing-tight`, `--line-height-lead`, `--line-height-mark`, `--line-height-none`, `--line-height-snug`, `--size-drop-equation`, `--space-2`, `--space-3`, `--space-5`, `--space-6`, `--space-8`, `--space-9`, `--stagger`
 
 ## Example
 

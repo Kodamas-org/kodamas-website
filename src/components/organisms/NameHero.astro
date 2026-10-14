@@ -105,6 +105,21 @@ const letters = [...word];
 		font-size: var(--font-size-body);
 		color: var(--color-text-muted);
 	}
+	.name-hero__op :global(.drop) {
+		width: var(--size-drop-equation);
+	}
+	/* Mobile: the equation stays on one line; each meaning wraps under its word */
+	@media (max-width: 48rem) {
+		.name-hero__equation {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+			align-items: start;
+			gap: var(--space-3);
+		}
+		.name-hero__meaning {
+			font-size: var(--font-size-small);
+		}
+	}
 
 	/* ---------- Result ---------- */
 	.name-hero__result {

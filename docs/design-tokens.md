@@ -151,6 +151,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-drop-xs` | `1rem` |  |
 | `--size-drop-s` | `1.25rem` |  |
 | `--size-drop-m` | `4.5rem` |  |
+| `--size-drop-equation` | `var(--size-drop-m)` | The + and = drops in `NameHero` |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
 | `--size-avatar-s` | `3.5rem` |  |
 | `--size-avatar-l` | `15rem` |  |
@@ -221,6 +222,7 @@ At the bottom of `tokens.css`:
 | Mobile (≤ 48rem) | `--layout-header-gutter` | `var(--space-4)` |
 | Mobile (≤ 48rem) | `--size-avatar-l` | `12.5rem` |
 | Mobile (≤ 48rem) | `--size-drop-m` | `3.5rem` |
+| Mobile (≤ 48rem) | `--size-drop-equation` | `2.75rem` |
 
 Most sizes are fluid (`clamp()`), so they need no overrides.
 
