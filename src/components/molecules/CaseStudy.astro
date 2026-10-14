@@ -10,8 +10,7 @@
 // Slot default: the summary
 import type { ImageMetadata } from 'astro';
 import Avatar from '../atoms/Avatar.astro';
-import Drop from '../atoms/Drop.astro';
-import Eyebrow from '../atoms/Eyebrow.astro';
+import DropLabel from './DropLabel.astro';
 
 interface Props {
 	label?: string;
@@ -30,7 +29,7 @@ const { label, title, href, photo, alt = '', focus, credit, priority = false, re
 const Tag = `h${level}` as 'h2';
 ---
 
-<article class:list={['case-study', { 'case-study--reverse': reverse }]} data-reveal>
+<article class:list={['case-study', { 'case-study--reverse': reverse }]} data-reveal data-avatar-morph>
 	<div class="case-study__photo">
 		<Avatar
 			name={title}
@@ -38,6 +37,7 @@ const Tag = `h${level}` as 'h2';
 			alt={alt}
 			focus={focus}
 			priority={priority}
+			fill
 			sizes="(max-width: 48rem) 12.5rem, min(33vw, 26rem)"
 			shape="drop"
 			size="l"
@@ -53,10 +53,7 @@ const Tag = `h${level}` as 'h2';
 	<div class="case-study__body">
 		{
 			label && (
-				<p class="case-study__label">
-					<Drop size="s" />
-					<Eyebrow as="span">{label}</Eyebrow>
-				</p>
+				<DropLabel>{label}</DropLabel>
 			)
 		}
 		<Tag class="case-study__title">
@@ -77,12 +74,6 @@ const Tag = `h${level}` as 'h2';
 	}
 	.case-study__photo {
 		grid-column: 1 / span 4;
-	}
-	.case-study__photo > :global(.avatar) {
-		max-width: none;
-	}
-	.case-study:hover .case-study__photo > :global(.avatar) {
-		border-radius: var(--radius-round);
 	}
 	/* Above the card's link area, so the credit link stays clickable */
 	.case-study__credit {
@@ -113,12 +104,6 @@ const Tag = `h${level}` as 'h2';
 	.case-study--reverse .case-study__body {
 		grid-column: 1 / span 7;
 		grid-row: 1;
-	}
-	.case-study__label {
-		display: flex;
-		align-items: center;
-		gap: var(--space-3);
-		color: var(--color-number);
 	}
 	.case-study__title {
 		font-family: var(--font-display);

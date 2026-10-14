@@ -15,6 +15,7 @@ Every article (`/blogfolio/<slug>`) and the Privacy Policy & Terms of Service pa
 | Prop | Options | Default | What it does |
 |---|---|---|---|
 | `headings` | list of { depth, slug, text } | — | From `render(post)` or a Markdown import’s `getHeadings()`; the `h2`s become the contents. |
+| `last` | true / false | false | Nothing follows it on the page: keeps the section gap below too (the legal page). |
 | `tocLabel` | text | `In this article` | The contents’ title (`On this page` on the legal page). |
 | (content) | rendered Markdown | — | The text, starting at `h2`. |
 | slot "after" | content | — | Under the text, in the same column (the AuthorCard on articles). |

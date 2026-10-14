@@ -17,6 +17,7 @@ import Highlight from '../components/atoms/Highlight.astro';
 import Clock from '../components/atoms/Clock.astro';
 import { links } from '../data/links';
 import { photos } from '../data/photos';
+import { actions } from '../data/navigation';
 ---
 
 <BaseLayout
@@ -27,7 +28,7 @@ import { photos } from '../data/photos';
 		When your app and team <Highlight variant="underline">outgrow their DIY phase</Highlight>, we build the tools and
 		processes that keep your people happy and product &amp; growth moving together.
 		<Fragment slot="actions">
-			<Button href={links.bookCall}>Book a call</Button>
+			<Button href={actions.bookCall.href}>{actions.bookCall.label}</Button>
 			<Link href="#offer" variant="action" arrow="↓">The Offer</Link>
 		</Fragment>
 	</Hero>
@@ -37,7 +38,7 @@ import { photos } from '../data/photos';
 		label="The Offer"
 		title="The Founder Reset Sprint 🚀"
 		price={{ amount: '€500', duration: '1 week', note: 'Limited-offer launch pricing' }}
-		cta={{ label: 'Book a call', href: links.bookCall }}
+		cta={actions.bookCall}
 		items={[
 			{ title: 'Product UI/UX and operations audit', text: "Find what's quietly killing your conversion and team sanity." },
 			{ title: 'Marketing & Sales audit', text: 'Find where your revenue is leaking, KPI by KPI.' },
@@ -116,7 +117,7 @@ import { photos } from '../data/photos';
 		num="05"
 		title="Keep Going"
 		words={{ outline: 'Keep', fill: 'Going' }}
-		cta={{ label: 'Connect With Us', href: links.connect }}
+		cta={actions.connect}
 	>
 		<p>The Sprint gives you the roadmap.</p>
 		<p>

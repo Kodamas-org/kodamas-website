@@ -1,37 +1,48 @@
 ---
 // A closing invitation on the bright (aqua) surface: the page's one bright
 // moment when it has no offer. Large title on the left; the message and a
-// navy button on the right.
-// Slot default: the message paragraphs (<strong> for the brand name)
+// navy button on the right. It follows a navy section, so it keeps the one
+// section gap above itself.
+// title / body: usually spread from src/data/ctas.ts ({...ctas.workflows});
+//        body paragraphs are inline Markdown (**bold** for the brand name)
+// cta: the button (default: Connect With Us)
+// Slot default: the message as markup, instead of body
 import Section from '../molecules/Section.astro';
 import Heading from '../atoms/Heading.astro';
 import Button from '../atoms/Button.astro';
+import { actions } from '../../data/navigation';
+import { inlineMarkdown } from '../../lib/inline-markdown';
 
 interface Props {
 	id?: string;
-	num: string;
+	num?: string;
 	label?: string;
 	title: string;
-	cta: { label: string; href: string };
+	body?: string[];
+	cta?: { label: string; href: string };
 }
 
-const { id = 'cta', num, label, title, cta } = Astro.props;
+const { id = 'cta', num, label, title, body, cta = actions.connect } = Astro.props;
 const titleId = `${id}-title`;
 ---
 
-<Section id={id} labelledby={titleId} tone="bright" spacing="block" num={num} label={label}>
+<Section id={id} labelledby={titleId} tone="bright" spacing="block" num={num} label={label} class="cta-section">
 	<div class="cta">
 		<div class="cta__title" data-reveal>
 			<Heading level={2} size="l" id={titleId}>{title}</Heading>
 		</div>
 		<div class="cta__body" data-reveal>
-			<slot />
+			{body ? body.map((p) => <p set:html={inlineMarkdown(p)} />) : <slot />}
 			<Button href={cta.href} variant="navy">{cta.label}</Button>
 		</div>
 	</div>
 </Section>
 
 <style>
+	/* The bright section follows a navy one: keep the one section gap above it */
+	:global(.cta-section) {
+		margin-top: var(--layout-section);
+	}
 	.cta {
 		display: grid;
 		grid-template-columns: repeat(12, minmax(0, 1fr));

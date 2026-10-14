@@ -37,6 +37,8 @@ One.
 
 ## Notes
 
+The photo turns round on hover via `data-avatar-morph`.
+
 Uses atoms: Avatar.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

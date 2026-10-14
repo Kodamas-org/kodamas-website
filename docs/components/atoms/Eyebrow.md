@@ -16,14 +16,16 @@ A small uppercase semibold label that introduces a group.
 |---|---|---|---|
 | `as` | `p` · `h1` · `h2` · `h3` · `span` | `p` | Element (use a heading when it titles a group). |
 | `id` | text | — | Optional id. |
+| `tone` | `inherit` · `pink` | `inherit` | `pink` uses `--color-number`, the editorial pink (page labels, “Written by”, contents title, the Our Story h1). |
+| `class` | text | — | Extra class (the parent styles it with `:global()`). |
 
 ## Variants
 
-One.
+Inherit (the surface’s text colour) or pink.
 
 ## Tokens used
 
-`--font-body`, `--font-size-small`, `--font-weight-semibold`, `--letter-spacing-label`
+`--color-number`, `--font-body`, `--font-size-small`, `--font-weight-semibold`, `--letter-spacing-label`
 
 ## Example
 

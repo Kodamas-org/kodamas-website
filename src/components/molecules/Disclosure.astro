@@ -1,0 +1,82 @@
+---
+// A disclosure between two hairlines: a summary row with a plus that turns
+// into a cross, and content that opens below it. Built on the native
+// <details>, so it works with the keyboard and without JavaScript.
+// summary: the toggle text
+// variant: 'action' (aqua semibold, e.g. "Read more about Emma") or
+//          'label' (small pink uppercase, e.g. the article contents on mobile)
+// open: start open (default closed)
+// Slot default: the content shown when open
+import Eyebrow from '../atoms/Eyebrow.astro';
+
+interface Props {
+	summary: string;
+	variant?: 'action' | 'label';
+	open?: boolean;
+	class?: string;
+}
+
+const { summary, variant = 'action', open = false, class: className } = Astro.props;
+---
+
+<details class:list={['disclosure', `disclosure--${variant}`, className]} open={open}>
+	<summary class="disclosure__toggle">
+		{variant === 'label' ? <Eyebrow as="span" tone="pink">{summary}</Eyebrow> : summary}
+		<span class="disclosure__icon" aria-hidden="true"></span>
+	</summary>
+	<div class="disclosure__body">
+		<slot />
+	</div>
+</details>
+
+<style>
+	.disclosure {
+		border-block: var(--border-width-thin) solid var(--color-rule);
+	}
+	.disclosure__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: var(--size-tap-min);
+		padding-block: var(--space-3);
+		cursor: pointer;
+		list-style: none;
+	}
+	.disclosure__toggle::-webkit-details-marker {
+		display: none;
+	}
+	.disclosure--action .disclosure__toggle {
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-accent);
+	}
+	.disclosure--label .disclosure__toggle {
+		color: var(--color-number);
+	}
+	/* A plus that turns into a cross when open */
+	.disclosure__icon {
+		position: relative;
+		flex-shrink: 0;
+		width: var(--size-icon-s);
+		aspect-ratio: 1;
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.disclosure__icon::before,
+	.disclosure__icon::after {
+		content: '';
+		position: absolute;
+		inset: 50% 0 auto;
+		height: var(--border-width-medium);
+		background: currentColor;
+		transform: translateY(-50%);
+	}
+	.disclosure__icon::after {
+		transform: translateY(-50%) rotate(90deg);
+	}
+	.disclosure[open] .disclosure__icon {
+		transform: rotate(45deg);
+	}
+	.disclosure__body {
+		padding-bottom: var(--space-5);
+	}
+</style>

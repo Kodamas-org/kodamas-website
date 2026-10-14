@@ -12,11 +12,7 @@ photoCredit:
   href: 'https://unsplash.com/photos/kcMWH-mvOTQ'
 author: 'kodamas'
 order: 2
-cta:
-  title: 'Want to Launch a B2B Product That Sticks?'
-  body:
-    - 'At **Kodamas**, we help teams design scalable systems that reduce friction, improve communication, and make collaboration effortless.'
-    - 'If your bug reporting or internal ops feel like chaos, let’s turn them into clarity.'
+cta: 'b2b'
 ---
 
 ## Context: Boom or Bust

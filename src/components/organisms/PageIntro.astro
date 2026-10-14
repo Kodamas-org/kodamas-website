@@ -7,8 +7,7 @@
 // Slots: "title" (the h1 content), default (the intro paragraph),
 //        "meta" (optional small line under the intro: author, date…)
 import Container from '../atoms/Container.astro';
-import Drop from '../atoms/Drop.astro';
-import Eyebrow from '../atoms/Eyebrow.astro';
+import DropLabel from '../molecules/DropLabel.astro';
 import Heading from '../atoms/Heading.astro';
 
 interface Props {
@@ -30,10 +29,9 @@ const { label, back } = Astro.props;
 		}
 		{
 			label && (
-				<p class="page-intro__label" style="--step: 0">
-					<Drop size="s" />
-					<Eyebrow as="span">{label}</Eyebrow>
-				</p>
+				<div class="page-intro__label" style="--step: 0">
+					<DropLabel>{label}</DropLabel>
+				</div>
 			)
 		}
 		<div class="page-intro__title" style="--step: 1">
@@ -68,12 +66,6 @@ const { label, back } = Astro.props;
 		text-decoration: underline;
 		text-underline-offset: var(--size-underline-offset);
 	}
-	.page-intro__label {
-		display: flex;
-		align-items: center;
-		gap: var(--space-3);
-		color: var(--color-number);
-	}
 	.page-intro__title {
 		margin-top: var(--space-6);
 	}
@@ -100,14 +92,8 @@ const { label, back } = Astro.props;
 	.page-intro__title,
 	.page-intro__lead,
 	.page-intro__meta {
-		animation: page-intro-rise var(--duration-rise) var(--ease-standard) both;
+		animation: rise var(--duration-rise) var(--ease-standard) both;
 		animation-delay: calc(var(--step) * var(--duration-beat) / 2);
-	}
-	@keyframes page-intro-rise {
-		from {
-			opacity: 0;
-			transform: translateY(30%);
-		}
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.page-intro__back,

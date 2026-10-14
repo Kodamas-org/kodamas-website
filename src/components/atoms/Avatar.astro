@@ -11,6 +11,9 @@
 // sizes: how wide the photo shows, so the browser picks the right file
 //        (the parent knows its column; the defaults are safe upper bounds)
 // priority: true for a photo visible on load (loads first, not lazily)
+// fill: true to fill its column without the team-width cap ('l' only)
+// A card can make its drop photo turn round on hover: put
+// data-avatar-morph on the card (rule in global.css).
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 
@@ -23,6 +26,7 @@ interface Props {
 	focus?: string;
 	sizes?: string;
 	priority?: boolean;
+	fill?: boolean;
 	class?: string;
 }
 
@@ -35,6 +39,7 @@ const {
 	focus,
 	sizes = size === 's' ? '3.5rem' : size === 'm' ? '6rem' : '(max-width: 48rem) 80vw, 32rem',
 	priority = false,
+	fill = false,
 	class: className,
 } = Astro.props;
 const initials = name
@@ -43,7 +48,7 @@ const initials = name
 	.join('')
 	.slice(0, 2)
 	.toUpperCase();
-const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
+const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, { 'avatar--fill': fill }, className];
 
 // Imported images get resized copies in AVIF (smallest) with a WebP
 // fallback: small for bylines, larger for columns. The largest width is
@@ -133,6 +138,9 @@ const [avif, webp] =
 	.avatar--l {
 		width: 100%;
 		max-width: var(--layout-team-column);
+	}
+	.avatar--fill {
+		max-width: none;
 	}
 	.avatar--round {
 		border-radius: var(--radius-round);

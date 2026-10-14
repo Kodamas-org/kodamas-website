@@ -35,6 +35,8 @@ One. Columns stack below 1024px.
 
 ## Notes
 
+List bullets come from `.drop-list` (global.css), shared with Profile and Prose.
+
 Uses atoms: Drop.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

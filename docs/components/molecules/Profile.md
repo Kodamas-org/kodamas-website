@@ -41,6 +41,8 @@ Normal or reversed. Photo and text are top-aligned, so opening “Read more” o
 
 ## Notes
 
+“Read more” is a Disclosure; its list bullets come from `.drop-list` (global.css). The photo turns round on hover via `data-avatar-morph`.
+
 Uses atoms: Avatar, Clock, Link.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -68,17 +68,11 @@ const letters = [...word];
 	}
 	.hero__letter {
 		display: inline-block;
-		animation: hero-rise var(--duration-rise) var(--ease-standard) both;
+		animation: rise var(--duration-rise) var(--ease-standard) both;
 		animation-delay: calc(var(--i) * var(--stagger));
 	}
 	.hero__letter--lead {
 		color: var(--color-white);
-	}
-	@keyframes hero-rise {
-		from {
-			opacity: 0;
-			transform: translateY(30%);
-		}
 	}
 	.hero__foot {
 		display: grid;

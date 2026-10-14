@@ -6,6 +6,7 @@
 import type { ImageMetadata } from 'astro';
 import { links } from './links';
 import { photos } from './photos';
+import { pages } from './navigation';
 
 export interface Author {
 	name: string;
@@ -21,7 +22,7 @@ export const authors = {
 		name: 'Kodamas',
 		role: 'Growth, product and operations consultancy for startups and small teams',
 		bio: 'Delivery isn’t about control; it’s about clarity. Kodamas builds lean, empathetic frameworks that help ambitious teams focus on what matters, anticipate what’s next, and ship with confidence - in a way that empowers, not diminishes.',
-		link: { label: 'Our Story', href: links.ourStory },
+		link: pages.ourStory,
 	},
 	emma: {
 		name: 'Emma Cebuliak',

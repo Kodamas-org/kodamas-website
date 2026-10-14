@@ -32,6 +32,8 @@ One. The article page places it on columns 4–10 of the grid on desktop; full w
 
 ## Notes
 
+Bulleted lists use `.drop-list` (global.css), shared with Principle and Profile; numbered lists are styled here.
+
 Styles reach the Markdown through `:global()` inside `.prose`. Emoji at the start of a paragraph (the Impact lists) are kept as written.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -4,19 +4,14 @@
 import Wordmark from '../atoms/Wordmark.astro';
 import NavMenu from '../molecules/NavMenu.astro';
 import { links } from '../../data/links';
+import { mainNav, actions } from '../../data/navigation';
 ---
 
 <header class="site-header" data-site-header>
 	<a href={links.home} class="site-header__home" aria-label="Kodamas, home">
 		<Wordmark />
 	</a>
-	<NavMenu
-		links={[
-			{ label: 'Blogfolio', href: links.blogfolio },
-			{ label: 'Our Story', href: links.ourStory },
-		]}
-		cta={{ label: 'Connect With Us', short: 'Connect', href: links.connect }}
-	/>
+	<NavMenu links={mainNav} cta={actions.connect} />
 </header>
 
 <script>

@@ -35,6 +35,8 @@ On tablet and mobile the symbol moves above the wordmark.
 
 ## Notes
 
+The rise animation is the shared `rise` keyframes (global.css).
+
 Uses: Container, DropCluster.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

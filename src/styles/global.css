@@ -121,3 +121,43 @@ ol[role='list'] {
 		background-position: 7% 46%;
 	}
 }
+
+/* Lists whose bullets are small pink drops. Put .drop-list on the list, or
+   on a container whose lists should look like this (Principle columns,
+   Profile's Read more, Prose). The drop sits centred on the first line. */
+:is(ul.drop-list, .drop-list ul) {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	padding: 0;
+	list-style: none;
+}
+:is(ul.drop-list, .drop-list ul) > li {
+	position: relative;
+	padding-left: var(--space-6);
+}
+:is(ul.drop-list, .drop-list ul) > li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: calc(0.5lh - var(--size-icon-s) / 2);
+	width: var(--size-icon-s);
+	aspect-ratio: 1;
+	border-radius: var(--radius-drop);
+	background: var(--gradient-drop);
+}
+
+/* Rising into place on load (Hero, NameHero, PageIntro): each component
+   sets the duration and delay, and turns it off for reduced motion. */
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(30%);
+	}
+}
+
+/* A card with data-avatar-morph turns its drop photo (Avatar) round while
+   hovered (Profile, CaseStudy, PersonCard). Avatar sets the transition. */
+[data-avatar-morph]:hover .avatar--drop {
+	border-radius: var(--radius-round);
+}

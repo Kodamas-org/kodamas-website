@@ -13,11 +13,7 @@ photoCredit:
   href: 'https://unsplash.com/photos/nzGSgl9u3Ak'
 author: 'kodamas'
 order: 1
-cta:
-  title: 'Want to optimize your internal workflows?'
-  body:
-    - 'At **Kodamas**, we help teams design scalable systems that reduce friction, improve communication, and make collaboration effortless.'
-    - 'If your bug reporting or internal ops feel like chaos, let’s turn them into clarity.'
+cta: 'workflows'
 ---
 
 ## Context: When Bugs Become the Bug

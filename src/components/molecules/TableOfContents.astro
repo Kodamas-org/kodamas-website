@@ -5,6 +5,9 @@
 // an accordion above the article, closed by default.
 // headings: from Astro's render() (only depth 2 is listed)
 // label: the title of the list
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Disclosure from './Disclosure.astro';
+
 interface Props {
 	headings: { depth: number; slug: string; text: string }[];
 	label?: string;
@@ -19,7 +22,7 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
 	parts.length > 0 && (
 		<div class="toc" data-toc>
 			<nav class="toc__desktop" aria-label={label}>
-				<p class="toc__label">{label}</p>
+				<Eyebrow tone="pink" class="toc__label">{label}</Eyebrow>
 				<ol class="toc__list" role="list">
 					{parts.map((p, i) => (
 						<li>
@@ -31,24 +34,22 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
 					))}
 				</ol>
 			</nav>
-			<details class="toc__mobile">
-				<summary class="toc__toggle">
-					{label}
-					<span class="toc__icon" aria-hidden="true" />
-				</summary>
-				<nav aria-label={label}>
-					<ol class="toc__list" role="list">
-						{parts.map((p, i) => (
-							<li>
-								<a class="toc__link" href={`#${p.slug}`}>
-									<span class="toc__num">{num(i)}</span>
-									{p.text}
-								</a>
-							</li>
-						))}
-					</ol>
-				</nav>
-			</details>
+			<div class="toc__mobile">
+				<Disclosure summary={label} variant="label">
+					<nav aria-label={label}>
+						<ol class="toc__list" role="list">
+							{parts.map((p, i) => (
+								<li>
+									<a class="toc__link" href={`#${p.slug}`}>
+										<span class="toc__num">{num(i)}</span>
+										{p.text}
+									</a>
+								</li>
+							))}
+						</ol>
+					</nav>
+				</Disclosure>
+			</div>
 		</div>
 	)
 }
@@ -76,7 +77,7 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
 		headings.forEach((h) => io.observe(h));
 	});
 	// Close the mobile list after choosing a part
-	document.querySelectorAll<HTMLDetailsElement>('.toc__mobile').forEach((d) =>
+	document.querySelectorAll<HTMLDetailsElement>('.toc__mobile details').forEach((d) =>
 		d.addEventListener('click', (e) => {
 			if ((e.target as HTMLElement).closest('a')) d.open = false;
 		}),
@@ -84,13 +85,8 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
 </script>
 
 <style>
-	.toc__label {
+	.toc__desktop :global(.toc__label) {
 		margin-bottom: var(--space-4);
-		font-size: var(--font-size-small);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-label);
-		text-transform: uppercase;
-		color: var(--color-number);
 	}
 	.toc__list {
 		display: flex;
@@ -121,54 +117,9 @@ const num = (i: number) => String(i + 1).padStart(2, '0');
 		color: var(--color-number);
 	}
 
-	/* ---------- Mobile: an accordion, closed by default ---------- */
+	/* ---------- Mobile: an accordion (Disclosure), closed by default ---------- */
 	.toc__mobile {
 		display: none;
-		border-block: var(--border-width-thin) solid var(--color-rule);
-	}
-	.toc__toggle {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-4);
-		min-height: var(--size-tap-min);
-		padding-block: var(--space-3);
-		font-size: var(--font-size-small);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-label);
-		text-transform: uppercase;
-		color: var(--color-number);
-		cursor: pointer;
-		list-style: none;
-	}
-	.toc__toggle::-webkit-details-marker {
-		display: none;
-	}
-	/* A plus that turns into a cross when open */
-	.toc__icon {
-		position: relative;
-		flex-shrink: 0;
-		width: var(--size-icon-s);
-		aspect-ratio: 1;
-		transition: transform var(--duration-base) var(--ease-standard);
-	}
-	.toc__icon::before,
-	.toc__icon::after {
-		content: '';
-		position: absolute;
-		inset: 50% 0 auto;
-		height: var(--border-width-medium);
-		background: currentColor;
-		transform: translateY(-50%);
-	}
-	.toc__icon::after {
-		transform: translateY(-50%) rotate(90deg);
-	}
-	.toc__mobile[open] .toc__icon {
-		transform: rotate(45deg);
-	}
-	.toc__mobile .toc__list {
-		padding-bottom: var(--space-4);
 	}
 	.toc__mobile .toc__link {
 		min-height: var(--size-tap-min);

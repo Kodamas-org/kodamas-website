@@ -22,14 +22,5 @@ const updated = '14 October 2026';
 		<Fragment slot="meta">Last updated: {updated}</Fragment>
 	</PageIntro>
 
-	<div class="legal-gap">
-		<ArticleBody headings={getHeadings()} tocLabel="On this page"><Content /></ArticleBody>
-	</div>
+	<ArticleBody headings={getHeadings()} tocLabel="On this page" last><Content /></ArticleBody>
 </BaseLayout>
-
-<style>
-	/* The last section on the page: keep the one section gap below it too */
-	.legal-gap {
-		padding-bottom: var(--layout-section);
-	}
-</style>

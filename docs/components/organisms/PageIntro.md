@@ -39,6 +39,8 @@ Label, title and intro rise in turn, half a beat (`--duration-beat`) apart; no m
 
 ## Notes
 
+The label is a DropLabel. The rise animation is the shared `rise` keyframes (global.css).
+
 Uses: Container, Drop, Eyebrow, Heading.
 
 See it live at `/blogfolio`. Token values: [design-tokens.md](../../design-tokens.md).

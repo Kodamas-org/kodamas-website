@@ -6,11 +6,13 @@
 // reverse: portrait on the right instead of the left (alternate profiles)
 // zone: IANA time zone for the clock (omit for no clock)
 // Slots: "quote" (the motto, without quotation marks), default (the bio),
-//        "more" (optional: a list opened by "Read more about {name}")
+//        "more" (optional: a list opened by "Read more about {name}" in a
+//        Disclosure; its bullets are drops)
 import type { ImageMetadata } from 'astro';
 import Avatar from '../atoms/Avatar.astro';
 import Clock from '../atoms/Clock.astro';
 import Link from '../atoms/Link.astro';
+import Disclosure from './Disclosure.astro';
 
 interface Props {
 	name: string;
@@ -26,9 +28,9 @@ const { name, fullName = name, photo, zone, link, reverse = false, level = 3 } =
 const Tag = `h${level}` as 'h3';
 ---
 
-<article class:list={['profile', { 'profile--reverse': reverse }]}>
+<article class:list={['profile', { 'profile--reverse': reverse }]} data-avatar-morph>
 	<div class="profile__photo" data-reveal>
-		<Avatar name={fullName} src={photo} shape="drop" size="l" sizes="(max-width: 48rem) 16rem, min(40vw, 32rem)" />
+		<Avatar name={fullName} src={photo} shape="drop" size="l" fill sizes="(max-width: 48rem) 16rem, min(40vw, 32rem)" />
 	</div>
 	<div class="profile__body" data-reveal>
 		<Tag class="profile__name">{name}{zone && <Clock zone={zone} />}</Tag>
@@ -38,15 +40,13 @@ const Tag = `h${level}` as 'h3';
 		<div class="profile__bio"><slot /></div>
 		{
 			Astro.slots.has('more') && (
-				<details class="profile__more">
-					<summary class="profile__more-toggle">
-						Read more about {name}
-						<span class="profile__more-icon" aria-hidden="true" />
-					</summary>
-					<div class="profile__more-body">
-						<slot name="more" />
-					</div>
-				</details>
+				<div class="profile__more">
+					<Disclosure summary={`Read more about ${name}`}>
+						<div class="drop-list">
+							<slot name="more" />
+						</div>
+					</Disclosure>
+				</div>
 			)
 		}
 		<Link href={link.href} variant="action" arrow="→">{link.label}</Link>
@@ -65,12 +65,6 @@ const Tag = `h${level}` as 'h3';
 	}
 	.profile__photo {
 		grid-column: 1 / span 5;
-	}
-	.profile__photo > :global(.avatar) {
-		max-width: none;
-	}
-	.profile:hover .profile__photo > :global(.avatar) {
-		border-radius: var(--radius-round);
 	}
 	.profile__body {
 		grid-column: 7 / -1;
@@ -121,76 +115,12 @@ const Tag = `h${level}` as 'h3';
 		text-underline-offset: var(--size-underline-offset);
 	}
 
-	/* ---------- Read more ---------- */
+	/* ---------- Read more (Disclosure; bullets from .drop-list) ---------- */
 	.profile__more {
 		width: 100%;
 		max-width: var(--layout-text-max);
-		border-block: var(--border-width-thin) solid var(--color-rule);
 	}
-	.profile__more-toggle {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-4);
-		min-height: var(--size-tap-min);
-		padding-block: var(--space-3);
-		font-weight: var(--font-weight-semibold);
-		color: var(--color-accent);
-		cursor: pointer;
-		list-style: none;
-	}
-	.profile__more-toggle::-webkit-details-marker {
-		display: none;
-	}
-	/* A plus that turns into a cross when open */
-	.profile__more-icon {
-		position: relative;
-		flex-shrink: 0;
-		width: var(--size-icon-s);
-		aspect-ratio: 1;
-		transition: transform var(--duration-base) var(--ease-standard);
-	}
-	.profile__more-icon::before,
-	.profile__more-icon::after {
-		content: '';
-		position: absolute;
-		inset: 50% 0 auto;
-		height: var(--border-width-medium);
-		background: currentColor;
-		transform: translateY(-50%);
-	}
-	.profile__more-icon::after {
-		transform: translateY(-50%) rotate(90deg);
-	}
-	.profile__more[open] .profile__more-icon {
-		transform: rotate(45deg);
-	}
-	.profile__more-body {
-		padding-bottom: var(--space-5);
-	}
-	.profile__more-body :global(ul) {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		padding: 0;
-		list-style: none;
-	}
-	.profile__more-body :global(li) {
-		position: relative;
-		padding-left: var(--space-6);
-	}
-	/* Bullets are small drops */
-	.profile__more-body :global(li)::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: var(--space-2);
-		width: var(--size-icon-s);
-		aspect-ratio: 1;
-		border-radius: var(--radius-drop);
-		background: var(--gradient-drop);
-	}
-	.profile__more-body :global(a) {
+	.profile__more :global(a) {
 		color: var(--color-accent);
 		text-underline-offset: var(--size-underline-offset);
 	}

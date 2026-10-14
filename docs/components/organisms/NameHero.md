@@ -42,6 +42,8 @@ On mobile (≤ 48rem) the equation stays on one line (Ko + Dama =): a four-colum
 
 ## Notes
 
+The h1 is a pink Eyebrow. The rise animation is the shared `rise` keyframes (global.css).
+
 Uses: Container, Drop, WispField.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

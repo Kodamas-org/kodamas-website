@@ -18,6 +18,7 @@ Testimonial bylines, team cards, profiles. Missing photos use the placeholder au
 | `src` | imported image · URL | — | The photo. Imported images become a `<picture>`: AVIF with a WebP fallback, at 112–224px (s) or 400–1280px (l), quality 70; the original file is never sent. Without it, the placeholder shows. |
 | `sizes` | sizes attribute | s: `3.5rem`; l: `(max-width: 48rem) 80vw, 32rem` | How wide the photo shows, so the browser downloads the right file. Parents pass their column. |
 | `priority` | true / false | false | For a photo visible on load: loads first (`eager`, `fetchpriority=high`) instead of lazily. |
+| `fill` | true / false | false | Fill the column without the team-width cap (`l`; Profile and CaseStudy). |
 | `focus` | object-position | `--position-portrait` | Which part of the photo stays in the crop (e.g. `80% 50%` for a subject on the right). |
 | `alt` | text | name | Alt text when a photo is given. |
 | `shape` | `round` · `drop` | `round` | Crop shape. |
@@ -38,5 +39,9 @@ Photos carry a rough film grain (`--texture-grain-photo`, overlay at `--opacity-
 ```astro
 <Avatar name="Emma Cebuliak" shape="drop" size="l" />
 ```
+
+## Notes
+
+A card that should turn its drop photo round on hover sets `data-avatar-morph` on itself (rule in `global.css`): Profile, CaseStudy and PersonCard do.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

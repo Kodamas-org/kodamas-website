@@ -32,6 +32,8 @@ One.
 
 ## Notes
 
+Menu items and the Connect button come from `src/data/navigation.ts` (`mainNav`, `actions.connect`).
+
 Uses: Wordmark, NavMenu.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

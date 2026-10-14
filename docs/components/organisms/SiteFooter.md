@@ -32,6 +32,8 @@ Bar stacks on mobile.
 
 ## Notes
 
+Rows and the legal link come from `src/data/navigation.ts` (`footerNav`, `pages.privacyTerms`).
+
 Uses: Container, Wordmark, Link, FooterLink.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

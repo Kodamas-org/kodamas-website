@@ -9,7 +9,8 @@ import Section from '../../components/molecules/Section.astro';
 import CaseStudy from '../../components/molecules/CaseStudy.astro';
 import WispField from '../../components/molecules/WispField.astro';
 import { getCollection } from 'astro:content';
-import { links } from '../../data/links';
+import { ctas } from '../../data/ctas';
+import { articleHref } from '../../data/navigation';
 
 // Every final article, in Blogfolio order (order first, then newest first)
 const posts = (await getCollection('blog', ({ data }) => data.status === 'final')).sort(
@@ -41,7 +42,7 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 						<CaseStudy
 							label={data.label}
 							title={data.cardTitle ?? data.title}
-							href={`${links.blogfolio}/${id}`}
+							href={articleHref(id)}
 							photo={data.photo}
 							alt={data.photoAlt}
 							focus={data.photoFocus}
@@ -57,16 +58,7 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 		</ol>
 	</Section>
 
-	<div class="cta-gap">
-		<CallToActionSection
-			num="02"
-			title="Want your delivery management to be aligned and effortless?"
-			cta={{ label: 'Connect With Us', href: links.connect }}
-		>
-			<p>At <strong>Kodamas</strong>, we help teams move faster, collaborate better, and sale with ease.</p>
-			<p>If your internal delivery ops feel like chaos, let’s turn them into clarity.</p>
-		</CallToActionSection>
-	</div>
+	<CallToActionSection num="02" {...ctas.delivery} />
 </BaseLayout>
 
 <style>
@@ -109,9 +101,5 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 		display: flex;
 		flex-direction: column;
 		gap: var(--layout-section);
-	}
-	/* The bright section follows a navy one: keep the one section gap above it */
-	.cta-gap {
-		margin-top: var(--layout-section);
 	}
 </style>

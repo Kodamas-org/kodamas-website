@@ -1,14 +1,18 @@
 ---
 // A small uppercase label that introduces a group ("What’s Covered").
+// tone: 'inherit' (text colour of the surface) or 'pink' (the editorial
+//       pink of section numbers, --color-number)
 interface Props {
 	as?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
 	id?: string;
+	tone?: 'inherit' | 'pink';
+	class?: string;
 }
 
-const { as: Tag = 'p', id } = Astro.props;
+const { as: Tag = 'p', id, tone = 'inherit', class: className } = Astro.props;
 ---
 
-<Tag class="eyebrow" id={id}><slot /></Tag>
+<Tag class:list={['eyebrow', `eyebrow--${tone}`, className]} id={id}><slot /></Tag>
 
 <style>
 	.eyebrow {
@@ -17,5 +21,8 @@ const { as: Tag = 'p', id } = Astro.props;
 		font-weight: var(--font-weight-semibold);
 		letter-spacing: var(--letter-spacing-label);
 		text-transform: uppercase;
+	}
+	.eyebrow--pink {
+		color: var(--color-number);
 	}
 </style>

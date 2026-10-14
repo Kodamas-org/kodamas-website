@@ -12,6 +12,8 @@ import Highlight from '../components/atoms/Highlight.astro';
 import Button from '../components/atoms/Button.astro';
 import { links } from '../data/links';
 import { photos } from '../data/photos';
+import { ctas } from '../data/ctas';
+import { pages } from '../data/navigation';
 ---
 
 <BaseLayout
@@ -146,25 +148,13 @@ import { photos } from '../data/photos';
 						We build lean, empathetic frameworks that help ambitious teams focus on what matters, anticipate what’s next,
 						and ship with confidence - in a way that empowers, not diminish.
 					</p>
-					<Button href={links.blogfolio}>Read Our Blogfolio 📝</Button>
+					<Button href={pages.blogfolio.href}>Read Our Blogfolio 📝</Button>
 				</Fragment>
 			</Principle>
 		</div>
 	</Section>
 
-	<div class="cta-gap">
-		<CallToActionSection
-			num="03"
-			title="Want to optimize your internal workflows?"
-			cta={{ label: 'Connect With Us', href: links.connect }}
-		>
-			<p>
-				At <strong>Kodamas</strong>, we help teams design scalable systems that reduce friction, improve communication, and
-				make collaboration effortless.
-			</p>
-			<p>If your bug reporting or internal ops feel like chaos, let’s turn them into clarity.</p>
-		</CallToActionSection>
-	</div>
+	<CallToActionSection num="03" {...ctas.workflows} />
 </BaseLayout>
 
 <style>
@@ -178,9 +168,5 @@ import { photos } from '../data/photos';
 		flex-direction: column;
 		gap: var(--space-10);
 		margin-top: var(--space-8);
-	}
-	/* The bright section follows a navy one: keep the one section gap above it */
-	.cta-gap {
-		margin-top: var(--layout-section);
 	}
 </style>

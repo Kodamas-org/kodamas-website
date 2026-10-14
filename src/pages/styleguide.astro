@@ -35,6 +35,9 @@ import CaseStudy from '../components/molecules/CaseStudy.astro';
 import Prose from '../components/molecules/Prose.astro';
 import TableOfContents from '../components/molecules/TableOfContents.astro';
 import AuthorCard from '../components/molecules/AuthorCard.astro';
+import Disclosure from '../components/molecules/Disclosure.astro';
+import DropLabel from '../components/molecules/DropLabel.astro';
+import { ctas } from '../data/ctas';
 import { authors } from '../data/authors';
 import { photos } from '../data/photos';
 import DropCluster from '../components/molecules/DropCluster.astro';
@@ -200,6 +203,7 @@ const radii = ['s', 'pill', 'drop'];
 			<div class="sg__demo">
 				<Eyebrow as="h3">Eyebrow</Eyebrow>
 				<Eyebrow>What’s Covered</Eyebrow>
+				<Eyebrow tone="pink">Pink: In this article</Eyebrow>
 			</div>
 
 			<div class="sg__demo">
@@ -388,6 +392,24 @@ const radii = ['s', 'pill', 'drop'];
 				</div>
 			</div>
 
+			<div class="sg__demo">
+				<Eyebrow as="h3">DropLabel</Eyebrow>
+				<DropLabel>Case_1</DropLabel>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">Disclosure</Eyebrow>
+				<div class="sg__prose">
+					<Disclosure summary="Read more about Emma">
+						<ul class="drop-list">
+							<li>Content shown when open; bullets are drops.</li>
+							<li>Another point.</li>
+						</ul>
+					</Disclosure>
+					<Disclosure summary="In this article" variant="label"><p>The label variant.</p></Disclosure>
+				</div>
+			</div>
+
 			<div class="sg__demo" id="sg-author">
 				<Eyebrow as="h3">AuthorCard</Eyebrow>
 				<div class="sg__prose">
@@ -473,9 +495,7 @@ const radii = ['s', 'pill', 'drop'];
 	</ClosingSection>
 
 	<p class="sg__label"><code>CallToActionSection</code></p>
-	<CallToActionSection id="sg-cta" num="03" title="Want to optimize your internal workflows?" cta={{ label: 'Connect With Us', href: '#' }}>
-		<p>At <strong>Kodamas</strong>, the message goes here.</p>
-	</CallToActionSection>
+	<CallToActionSection id="sg-cta" num="03" {...ctas.workflows} />
 </BaseLayout>
 
 <style>

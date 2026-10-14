@@ -1,0 +1,28 @@
+---
+// A small pink label led by a pink drop: introduces a page or an entry
+// ("Welcome to our Blogfolio", "Case_1").
+// as: the element (default p)
+// Slot default: the label text
+import Drop from '../atoms/Drop.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+
+interface Props {
+	as?: 'p' | 'span' | 'div';
+	class?: string;
+}
+
+const { as: Tag = 'p', class: className } = Astro.props;
+---
+
+<Tag class:list={['drop-label', className]}>
+	<Drop size="s" />
+	<Eyebrow as="span" tone="pink"><slot /></Eyebrow>
+</Tag>
+
+<style>
+	.drop-label {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+	}
+</style>

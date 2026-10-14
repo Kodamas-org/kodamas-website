@@ -6,6 +6,15 @@ The system comes from the approved homepage design (formerly Test Home): one nav
 
 All components are shown live at `/styleguide`, except Hero, NameHero and PageIntro, which hold a page’s h1 and are shown on `/`, `/about` and `/blogfolio`, and ArticleBody, shown on the articles and the legal page. Token values are listed in [design-tokens.md](../design-tokens.md).
 
+## Shared data and styles
+
+Things that appear in several places live in one place, so a change there shows everywhere:
+
+- `src/data/navigation.ts`: page links with their labels (`pages`), the two actions (`actions.connect`, `actions.bookCall`), the header and footer menus, `articleHref()`.
+- `src/data/ctas.ts`: the closing calls to action, by key (pages spread them; articles name one in `cta`).
+- `src/data/authors.ts`, `src/data/photos.ts`, `src/data/links.ts`.
+- `src/styles/global.css`: `.drop-list` (drop bullets), `rise` (rising into place), `grain-shift` (moving film grain), `[data-avatar-morph]` (drop photo turns round on hover).
+
 ## Atoms
 
 - [Container](atoms/Container.md) — Centres content on the 12-column grid: 1280px wide at most, plus the fluid side gutters.
@@ -40,6 +49,8 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Prose](molecules/Prose.md) — Long-form article text from Markdown: numbered parts (h2 on a hairline with a pink 01, 02…), aqua bold, drop bullets, a large pull statement for quotes.
 - [TableOfContents](molecules/TableOfContents.md) — An article’s parts, numbered like Prose. Desktop: a sticky list in the left column with the part being read in aqua. Mobile: an accordion, closed by default.
 - [AuthorCard](molecules/AuthorCard.md) — The author block under an article: photo in a drop (or the Kodamas symbol), “Written by”, name, role, short bio and a link.
+- [Disclosure](molecules/Disclosure.md) — A native `<details>` between hairlines: summary row with a + that turns into ×, content below. Variants `action` (Read more) and `label` (contents on mobile).
+- [DropLabel](molecules/DropLabel.md) — A small pink label led by a pink drop (“Welcome to our Blogfolio”, “Case_1”).
 - [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
 - [WispField](molecules/WispField.md) — Kodama wisps: white-aqua flames with a blue halo and twinkling sparks. They fade in when scrolled into view, flicker and drift, and rise away as the page scrolls. Decorative.
 - [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.

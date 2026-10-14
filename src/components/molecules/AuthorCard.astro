@@ -6,6 +6,7 @@
 import type { Author } from '../../data/authors';
 import Avatar from '../atoms/Avatar.astro';
 import Link from '../atoms/Link.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
 import DropCluster from './DropCluster.astro';
 
 interface Props {
@@ -21,7 +22,7 @@ const { author, label = 'Written by' } = Astro.props;
 		{author.photo ? <Avatar name={author.name} src={author.photo} shape="drop" size="m" /> : <DropCluster />}
 	</div>
 	<div class="author-card__body">
-		<p class="author-card__label">{label}</p>
+		<Eyebrow tone="pink">{label}</Eyebrow>
 		<p class="author-card__name">{author.name}</p>
 		<p class="author-card__role">{author.role}</p>
 		<p class="author-card__bio">{author.bio}</p>
@@ -47,13 +48,6 @@ const { author, label = 'Written by' } = Astro.props;
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--space-2);
-	}
-	.author-card__label {
-		font-size: var(--font-size-small);
-		font-weight: var(--font-weight-semibold);
-		letter-spacing: var(--letter-spacing-label);
-		text-transform: uppercase;
-		color: var(--color-number);
 	}
 	.author-card__name {
 		font-family: var(--font-display);

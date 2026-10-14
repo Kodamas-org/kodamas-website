@@ -19,8 +19,8 @@ const Tag = `h${level}` as 'h3';
 		<span class="principle__drop"><Drop size="s" tone="pink" /></span>
 		<Tag class="principle__title"><slot name="title" /></Tag>
 	</div>
-	<div class="principle__col" data-reveal><slot name="left" /></div>
-	<div class="principle__col principle__col--right" data-reveal><slot name="right" /></div>
+	<div class="principle__col drop-list" data-reveal><slot name="left" /></div>
+	<div class="principle__col principle__col--right drop-list" data-reveal><slot name="right" /></div>
 </article>
 
 <style>
@@ -66,28 +66,6 @@ const Tag = `h${level}` as 'h3';
 		font-size: var(--font-size-heading-3);
 		font-weight: var(--font-weight-light);
 		line-height: var(--line-height-snug);
-	}
-	.principle__col :global(ul) {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		padding: 0;
-		list-style: none;
-	}
-	.principle__col :global(li) {
-		position: relative;
-		padding-left: var(--space-6);
-	}
-	/* Bullets are small drops */
-	.principle__col :global(li)::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: var(--space-2);
-		width: var(--size-icon-s);
-		aspect-ratio: 1;
-		border-radius: var(--radius-drop);
-		background: var(--gradient-drop);
 	}
 	.principle__col :global(.button) {
 		margin-top: var(--space-5);

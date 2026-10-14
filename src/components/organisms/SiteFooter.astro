@@ -5,27 +5,21 @@ import Container from '../atoms/Container.astro';
 import Wordmark from '../atoms/Wordmark.astro';
 import Link from '../atoms/Link.astro';
 import FooterLink from '../molecules/FooterLink.astro';
-import { links } from '../../data/links';
+import { footerNav, pages } from '../../data/navigation';
 
-const footerLinks = [
-	{ label: 'Our Story', href: links.ourStory },
-	{ label: 'Blogfolio', href: links.blogfolio },
-	{ label: 'Emma’s LinkedIn', href: links.emmaLinkedIn },
-	{ label: 'Daniela’s LinkedIn', href: links.danielaLinkedIn },
-];
 ---
 
 <footer class="site-footer">
 	<Container>
 		<nav aria-label="Footer">
 			<ul class="site-footer__list" role="list">
-				{footerLinks.map((l) => <FooterLink href={l.href}>{l.label}</FooterLink>)}
+				{footerNav.map((l) => <FooterLink href={l.href}>{l.label}</FooterLink>)}
 			</ul>
 		</nav>
 		<div class="site-footer__bar">
 			<span aria-hidden="true"><Wordmark variant="signoff" /></span>
 			<span>All rights reserved 2026 ©</span>
-			<Link href={links.privacyTerms} variant="legal" tone="white">Privacy Policy &amp; Terms of Service</Link>
+			<Link href={pages.privacyTerms.href} variant="legal" tone="white">{pages.privacyTerms.label}</Link>
 		</div>
 	</Container>
 </footer>

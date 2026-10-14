@@ -12,11 +12,7 @@ photoCredit:
   href: 'https://unsplash.com/photos/atTqc0mvIkI'
 author: 'kodamas'
 order: 3
-cta:
-  title: 'Want to align your team around a unified roadmap?'
-  body:
-    - 'At **Kodamas**, we help teams design scalable systems that reduce friction, improve communication, and make collaboration effortless.'
-    - 'If your plan for the future feels like chaos, let’s turn that into clarity.'
+cta: 'roadmap'
 ---
 
 ## Context: Floating at Sea

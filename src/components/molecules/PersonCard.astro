@@ -16,7 +16,7 @@ interface Props {
 const { name, role, org, nationality, flag, photo } = Astro.props;
 ---
 
-<article class="person-card" data-reveal>
+<article class="person-card" data-reveal data-avatar-morph>
 	<div class="person-card__frame">
 		<Avatar name={name} src={photo} shape="drop" size="l" sizes="(max-width: 48rem) 70vw, 22rem" />
 		<span class="person-card__flag" aria-hidden="true">{flag}</span>
@@ -39,9 +39,6 @@ const { name, role, org, nationality, flag, photo } = Astro.props;
 		width: 100%;
 		max-width: var(--layout-team-column);
 		margin-bottom: var(--space-5);
-	}
-	.person-card:hover .person-card__frame > :global(.avatar) {
-		border-radius: var(--radius-round);
 	}
 	.person-card__flag {
 		position: absolute;

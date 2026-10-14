@@ -41,6 +41,8 @@ src/
   data/links.ts          every link URL on the site
   data/photos.ts         every portrait, imported from assets/people/
   data/authors.ts        article authors (Kodamas, Emma, Daniela) for the author block
+  data/navigation.ts     page links with labels, the Connect / Book a call actions, header and footer menus
+  data/ctas.ts           the closing calls to action, by key
   assets/                photos: people/ (portraits) and blog/ (article photos, named like the article)
 public/_redirects        Netlify redirects from the old Squarespace addresses
 public/_headers          Netlify cache headers (hashed /_astro/ files cached for a year)
@@ -76,6 +78,14 @@ The screenshots in `reference/` are the reference for **content, brand and the p
 - CSS classes: BEM-style, prefixed with the component name (`.person-card`, `.person-card__name`, `.button--navy`).
 - Variant props use short lowercase values (`size="m"`, `tone="bright"`, `variant="navy"`).
 - Tokens: `--{category}-{name}`, e.g. `--color-aqua-glow`, `--font-size-heading-2`, `--space-5`, `--radius-drop`. Colour palette names are descriptive (`midnight-navy`, `pink-ink`); role tokens describe purpose (`--color-surface-bright`, `--color-text-on-light`).
+
+## Reuse rule
+
+Anything that appears in more than one place is written once:
+
+- **Markup and style**: a component (e.g. Disclosure, DropLabel, Eyebrow `tone="pink"`), or a shared rule in `global.css` (`.drop-list`, `rise`, `grain-shift`, `[data-avatar-morph]`) when it styles content a component doesn’t own (slots, Markdown).
+- **Copy and links**: `src/data/` (navigation, ctas, authors, photos, links). Pages and components import them; they don’t repeat labels or texts.
+- Before adding a second copy of something, turn the first into a component or a data entry. See “Shared data and styles” in `docs/components/README.md`.
 
 ## Token rules
 

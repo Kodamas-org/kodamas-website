@@ -34,6 +34,8 @@ const { Content, headings } = await render(post);
 
 ## Notes
 
+The title is a pink Eyebrow; on mobile the list sits in a Disclosure (`variant="label"`).
+
 The current part is marked with `aria-current`. Prose gives each `h2` a `scroll-margin-top` so a jump from the list leaves room above the heading.
 
 See it live at `/styleguide` and on any article. Token values: [design-tokens.md](../../design-tokens.md).

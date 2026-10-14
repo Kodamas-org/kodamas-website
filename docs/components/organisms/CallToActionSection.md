@@ -17,21 +17,22 @@ The one bright moment on pages without an offer (Our Story).
 | `id` | text | `cta` | Section id. |
 | num / label | text | — | Section index. |
 | `title` | text | — | h2. |
-| `cta` | { label, href } | — | Navy button. |
-| (content) | paragraphs | — | The message (`<strong>` for the brand name). |
+| `body` | list of inline-Markdown paragraphs | — | The message (`**Kodamas**` for the brand name). Usually spread with the title from `src/data/ctas.ts`: `{...ctas.workflows}`. |
+| `cta` | { label, href } | Connect With Us | Navy button (from `src/data/navigation.ts`). |
+| (content) | paragraphs | — | The message as markup, instead of `body`. |
 
 ## Variants
 
-Columns stack below 1024px.
+Columns stack below 1024px. It always follows a navy section, so it keeps the one section gap (`--layout-section`) above itself: pages don’t add a wrapper.
 
 ## Tokens used
 
-`--font-size-lead`, `--layout-col-gap`, `--line-height-lead`, `--space-4`, `--space-7`
+`--font-size-lead`, `--layout-col-gap`, `--layout-section`, `--line-height-lead`, `--space-4`, `--space-7`
 
 ## Example
 
 ```astro
-<CallToActionSection num="03" title="Want to optimize your internal workflows?" cta={…}>…</CallToActionSection>
+<CallToActionSection num="03" {...ctas.workflows} />
 ```
 
 ## Notes

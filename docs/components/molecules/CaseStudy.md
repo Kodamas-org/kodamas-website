@@ -44,6 +44,8 @@ Default (photo left, columns 1–4) and `reverse` (photo right, columns 9–12).
 
 ## Notes
 
+The label is a DropLabel. The photo fills its column (`fill`) and turns round on hover via `data-avatar-morph`.
+
 Uses atoms: Avatar, Drop, Eyebrow. Fades up on scroll (`data-reveal`).
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

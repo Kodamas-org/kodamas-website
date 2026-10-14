@@ -10,8 +10,8 @@ import CallToActionSection from '../../components/organisms/CallToActionSection.
 import ArticleBody from '../../components/organisms/ArticleBody.astro';
 import AuthorCard from '../../components/molecules/AuthorCard.astro';
 import { getAuthor } from '../../data/authors';
-import { links } from '../../data/links';
-import { inlineMarkdown } from '../../lib/inline-markdown';
+import { ctas } from '../../data/ctas';
+import { pages } from '../../data/navigation';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => data.status === 'final');
@@ -22,20 +22,15 @@ const { post } = Astro.props;
 const { data } = post;
 const { Content, headings } = await render(post);
 
-const cta = data.cta ?? {
-	title: 'Want your delivery management to be aligned and effortless?',
-	body: [
-		'At **Kodamas**, we help teams move faster, collaborate better, and sale with ease.',
-		'If your internal delivery ops feel like chaos, let’s turn them into clarity.',
-	],
-};
+// The closing call to action: a key from src/data/ctas.ts or the article's own
+const cta = typeof data.cta === 'string' ? ctas[data.cta] : (data.cta ?? ctas.delivery);
 const date = data.date?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const author = getAuthor(data.author);
 const meta = [author.name, date].filter(Boolean).join(' · ');
 ---
 
 <BaseLayout title={`${data.seoTitle ?? data.title} · Kodamas`} description={data.description}>
-	<PageIntro label={data.label} back={{ label: 'Blogfolio', href: links.blogfolio }}>
+	<PageIntro label={data.label} back={pages.blogfolio}>
 		<Fragment slot="title">{data.title}</Fragment>
 		{data.summary}
 		{meta && <Fragment slot="meta">{meta}</Fragment>}
@@ -46,16 +41,5 @@ const meta = [author.name, date].filter(Boolean).join(' · ');
 		<AuthorCard slot="after" author={author} />
 	</ArticleBody>
 
-	<div class="cta-gap">
-		<CallToActionSection num="" title={cta.title} cta={{ label: 'Connect With Us', href: links.connect }}>
-			{cta.body.map((p) => <p set:html={inlineMarkdown(p)} />)}
-		</CallToActionSection>
-	</div>
+	<CallToActionSection {...cta} />
 </BaseLayout>
-
-<style>
-	/* The bright section follows a navy one: keep the one section gap above it */
-	.cta-gap {
-		margin-top: var(--layout-section);
-	}
-</style>

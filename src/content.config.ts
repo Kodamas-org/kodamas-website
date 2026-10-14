@@ -38,12 +38,17 @@ const blog = defineCollection({
 			order: z.number().optional(),
 			// Drafts are not built
 			status: z.enum(['draft', 'final']).default('final'),
-			// The closing call to action (defaults to the general one)
+			// The closing call to action: a key from src/data/ctas.ts
+			// (workflows, b2b, roadmap, delivery) or its own { title, body };
+			// defaults to delivery
 			cta: z
-				.object({
-					title: z.string(),
-					body: z.array(z.string()),
-				})
+				.union([
+					z.enum(['workflows', 'b2b', 'roadmap', 'delivery']),
+					z.object({
+						title: z.string(),
+						body: z.array(z.string()),
+					}),
+				])
 				.optional(),
 		}),
 });
