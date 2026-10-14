@@ -4,7 +4,7 @@
 
 ## What it is
 
-Kodama wisps, the spirit lights from the forest that inspired the palette: small flames with a crisp white core turning aqua, a blue halo, and a few twinkling sparks around them. Each flame changes shape as it flickers, with a second thinner tongue of light out of phase, and drifts slowly upwards. Decorative (`aria-hidden`).
+Kodama wisps, the spirit lights from the forest that inspired the palette: small flames with a crisp white core glowing in the brand aqua (`--color-aqua-glow`, the colour of the buttons and the wordmark), a soft aqua halo, and a few twinkling sparks around them. Each flame changes shape as it flickers, with a second thinner tongue of light out of phase, and drifts slowly upwards. Decorative (`aria-hidden`).
 
 ## When to use it
 
@@ -20,7 +20,7 @@ A few times per page, in empty space, as a quiet touch of magic: never over text
 
 Motion, in order:
 
-1. **Fade in**: when scrolled into view the wisps appear slowly (`--duration-wisp-fade`), one after another, then the sparks.
+1. **Fade in**: on page load (or, further down the page, when scrolled into view) the wisps appear slowly (`--duration-wisp-fade`), one after another, then the sparks.
 2. **Life**: flicker (`--duration-flicker`), halo pulse and slow drift (`--duration-wisp-drift`). Paused while off screen.
 3. **Rise away**: once the field has travelled 40% of the viewport with the page, further scrolling makes it rise faster than the page and fade out over half a viewport. Fields near the top of the page start rising on the first scroll.
 
@@ -28,7 +28,7 @@ With reduced motion none of this runs: the wisps stay visible and still. Without
 
 ## Tokens used
 
-`--color-aqua-glow`, `--color-spirit-blue`, `--color-white`, `--duration-flicker`, `--duration-wisp-drift`, `--duration-wisp-fade`, `--ease-drift`, `--radius-round`, `--size-spark`, `--size-wisp`, `--size-wisp-blur`
+`--color-aqua-glow`, `--color-white`, `--duration-flicker`, `--duration-wisp-drift`, `--duration-wisp-fade`, `--ease-drift`, `--radius-round`, `--size-spark`, `--size-wisp`, `--size-wisp-blur`
 
 ## Example
 
@@ -39,6 +39,6 @@ With reduced motion none of this runs: the wisps stay visible and still. Without
 
 ## Notes
 
-The positions and scales of wisps and sparks are the field’s fixed geometry (an allowed exception, like DropCluster). Flames use `mix-blend-mode: screen` so they glow on navy.
+The positions and scales of wisps and sparks are the field’s fixed geometry (an allowed exception, like DropCluster). Flames use `mix-blend-mode: screen` so they glow on navy. An inline script marks `<html>` with `js-wisps` during parsing, so the wisps are hidden from the first paint and fade in rather than flashing.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

@@ -1,9 +1,10 @@
 ---
-// Kodama wisps: small spirit lights from the forest, a white-aqua flame
-// core with a blue halo, flickering and drifting slowly upwards, with a few
+// Kodama wisps: small spirit lights from the forest, a white flame core
+// glowing in the brand aqua with a soft aqua halo, flickering and drifting slowly upwards, with a few
 // twinkling sparks around them. Decorative. Fills its container (the parent
 // positions and sizes it).
-// They fade in slowly, one after another, when scrolled into view; as the
+// They fade in slowly, one after another, when the page loads or when
+// scrolled into view; as the
 // page scrolls on they rise faster than the page and fade away. Their motion
 // pauses off screen and stops entirely for reduced motion.
 // size: 'group' (four wisps) or 'pair' (two)
@@ -46,6 +47,13 @@ const geometry = {
 };
 const { wisps, sparks } = geometry[size];
 ---
+
+<script is:inline>
+	// Set during parsing, before the first paint, so the wisps start hidden
+	// and fade in instead of flashing (nothing for reduced motion or no JS)
+	if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window)
+		document.documentElement.classList.add('js-wisps');
+</script>
 
 <div class="wisp-field" aria-hidden="true" data-wisp-field>
 	<div class="wisp-field__inner">
@@ -110,10 +118,7 @@ const { wisps, sparks } = geometry[size];
 			}
 		};
 
-		fields.forEach((f) => {
-			f.setAttribute('data-armed', '');
-			io.observe(f);
-		});
+		fields.forEach((f) => io.observe(f));
 		measure();
 		update();
 		window.addEventListener('scroll', onScroll, { passive: true });
@@ -139,8 +144,8 @@ const { wisps, sparks } = geometry[size];
 	}
 
 	/* ---------- Fade in, one after another ---------- */
-	.wisp-field[data-armed] .wisp,
-	.wisp-field[data-armed] .wisp-field__sparks {
+	:global(.js-wisps) .wisp,
+	:global(.js-wisps) .wisp-field__sparks {
 		opacity: 0;
 		transition: opacity var(--duration-wisp-fade) var(--ease-drift);
 		transition-delay: calc(var(--i) * var(--duration-wisp-fade) / 3);
@@ -150,7 +155,7 @@ const { wisps, sparks } = geometry[size];
 		opacity: 1;
 	}
 	/* Pause the flicker and drift while off screen */
-	.wisp-field[data-armed]:not([data-visible]) * {
+	:global(.js-wisps) .wisp-field:not([data-visible]) * {
 		animation-play-state: paused;
 	}
 
@@ -171,8 +176,8 @@ const { wisps, sparks } = geometry[size];
 		border-radius: var(--radius-round);
 		background: radial-gradient(
 			closest-side,
-			color-mix(in srgb, var(--color-spirit-blue) 35%, transparent),
-			color-mix(in srgb, var(--color-spirit-blue) 10%, transparent) 55%,
+			color-mix(in srgb, var(--color-aqua-glow) 35%, transparent),
+			color-mix(in srgb, var(--color-aqua-glow) 10%, transparent) 55%,
 			transparent
 		);
 		animation: wisp-pulse calc(var(--duration-flicker) * 1.7) var(--ease-drift) infinite alternate;
@@ -186,7 +191,7 @@ const { wisps, sparks } = geometry[size];
 			ellipse 50% 50% at 50% 60%,
 			var(--color-white) 0 20%,
 			var(--color-aqua-glow) 40%,
-			color-mix(in srgb, var(--color-spirit-blue) 85%, transparent) 62%,
+			color-mix(in srgb, var(--color-aqua-glow) 85%, transparent) 62%,
 			transparent
 		);
 		filter: blur(var(--size-wisp-blur));
@@ -202,7 +207,7 @@ const { wisps, sparks } = geometry[size];
 		background: radial-gradient(
 			ellipse 50% 50% at 50% 70%,
 			var(--color-aqua-glow),
-			color-mix(in srgb, var(--color-spirit-blue) 60%, transparent) 55%,
+			color-mix(in srgb, var(--color-aqua-glow) 60%, transparent) 55%,
 			transparent
 		);
 		animation: wisp-flicker calc(var(--duration-flicker) * 0.7) var(--ease-drift) infinite alternate-reverse;
@@ -223,7 +228,7 @@ const { wisps, sparks } = geometry[size];
 		background: var(--color-white);
 		box-shadow:
 			0 0 var(--size-spark) var(--color-aqua-glow),
-			0 0 calc(var(--size-spark) * 4) var(--color-spirit-blue);
+			0 0 calc(var(--size-spark) * 4) var(--color-aqua-glow);
 		animation: wisp-twinkle var(--duration-flicker) var(--ease-drift) infinite alternate;
 		animation-delay: calc(var(--i) * var(--duration-flicker) / -4);
 	}

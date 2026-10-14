@@ -19,7 +19,7 @@ Our Story only (its small label is the h1). Shown on `/about`, not on the styleg
 | `word` | text | — | Result word without the final letter. |
 | `final` | text | — | The added letter (pink). |
 | `lead` | number | 2 | White leading letters. |
-| `wisps` | boolean | false | A pair of kodama wisps (WispField) right after the meaning; on mobile after the note. |
+| `wisps` | boolean | false | A pair of kodama wisps (WispField) below the meaning, under its first words; on mobile after the note. |
 | slot "meaning" | text | — | Under the wordmark. |
 | slot "note" | text | — | Note for the final letter. |
 | (content) | text | — | Intro paragraph. |

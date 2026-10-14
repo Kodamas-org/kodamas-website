@@ -169,16 +169,22 @@ const letters = [...word];
 		font-weight: var(--font-weight-light);
 		line-height: var(--line-height-snug);
 	}
+	/* Desktop: the wisps float below the meaning, under "in Japanese" */
+	.name-hero__caption {
+		position: relative;
+	}
 	.name-hero__wisps {
+		position: absolute;
+		top: calc(100% + var(--space-5));
+		left: 0;
 		width: calc(var(--size-wisp) * 5);
 		height: calc(var(--size-wisp) * 2);
-		margin-right: auto;
 	}
 	/* Mobile: the meaning takes the full line, so the wisps sit after the note */
 	@media (max-width: 48rem) {
 		.name-hero__wisps {
+			position: static;
 			order: 1;
-			margin-right: 0;
 		}
 	}
 	.name-hero__note {

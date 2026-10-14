@@ -32,7 +32,6 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--color-glass-aqua` | `#55c6c8` | Muted text on navy (captions, meta, counters) |
 | `--color-control-teal` | `#1f5d62` | Photo placeholders |
 | `--color-white` | `#ffffff` | Text on navy |
-| `--color-spirit-blue` | `#2ec5ff` | The halo of the kodama wisps (decorative only, never text) |
 
 ## Colour: roles
 
