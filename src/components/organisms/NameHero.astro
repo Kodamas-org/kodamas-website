@@ -2,8 +2,9 @@
 // The About page opening: the name explained as an equation.
 // Two terms (each a word with its meaning underneath) joined by pink drops
 // carrying + and =, then the result as the giant wordmark that fills the
-// grid. The letters rise in one after another and the final letter arrives
-// last, in pink, with its own note. Below, the intro paragraph.
+// grid. The equation reads in steps, one beat each: first term, +, second
+// term, =, the word (letters rising one after another) with its meaning,
+// then the final letter in pink with its note. Below, the intro paragraph.
 // The page's h1 is the small label above (e.g. "Our Story").
 // terms: the two parts of the name; colour 'white' or 'aqua'
 // word: the result word, without the final letter; final: the added letter
@@ -28,18 +29,18 @@ const letters = [...word];
 	<Container>
 		<h1 class="name-hero__title">{title}</h1>
 		<div class="name-hero__equation">
-			<p class="name-hero__term" style="--i: 0">
+			<p class="name-hero__term" style="--step: 0">
 				<span class="name-hero__word">{terms[0].word}</span>
 				<span class="name-hero__meaning">{terms[0].meaning}</span>
 			</p>
-			<span class="name-hero__op" style="--i: 1">
+			<span class="name-hero__op" style="--step: 1">
 				<Drop size="m" symbol="+" /><span class="visually-hidden">plus</span>
 			</span>
-			<p class="name-hero__term name-hero__term--aqua" style="--i: 2">
+			<p class="name-hero__term name-hero__term--aqua" style="--step: 2">
 				<span class="name-hero__word">{terms[1].word}</span>
 				<span class="name-hero__meaning">{terms[1].meaning}</span>
 			</p>
-			<span class="name-hero__op" style="--i: 3">
+			<span class="name-hero__op" style="--step: 3">
 				<Drop size="m" symbol="=" /><span class="visually-hidden">equals</span>
 			</span>
 		</div>
@@ -49,19 +50,19 @@ const letters = [...word];
 				<span class="name-hero__letters" aria-hidden="true">
 					{
 						letters.map((l, i) => (
-							<span class:list={['name-hero__letter', { 'name-hero__letter--lead': i < lead }]} style={`--i: ${i + 4}`}>
+							<span class:list={['name-hero__letter', { 'name-hero__letter--lead': i < lead }]} style={`--step: 4; --i: ${i}`}>
 								{l}
 							</span>
 						))
-					}<span class="name-hero__letter name-hero__letter--final" style={`--i: ${letters.length + 8}`}>{final}</span>
+					}<span class="name-hero__letter name-hero__letter--final" style="--step: 6">{final}</span>
 				</span>
 			</p>
 			<div class="name-hero__caption">
-				<p class="name-hero__meaning-line"><slot name="meaning" /></p>
-				<p class="name-hero__note" style={`--i: ${letters.length + 9}`}><slot name="note" /></p>
+				<p class="name-hero__meaning-line" style="--step: 5"><slot name="meaning" /></p>
+				<p class="name-hero__note" style="--step: 6"><slot name="note" /></p>
 			</div>
 		</div>
-		<p class="name-hero__intro" data-reveal><slot /></p>
+		<p class="name-hero__intro" style="--step: 7"><slot /></p>
 	</Container>
 </div>
 
@@ -112,7 +113,8 @@ const letters = [...word];
 	@media (max-width: 48rem) {
 		.name-hero__equation {
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+			grid-template-columns: repeat(4, auto);
+			justify-content: start;
 			align-items: start;
 			gap: var(--space-3);
 		}
@@ -170,13 +172,15 @@ const letters = [...word];
 		text-wrap: pretty;
 	}
 
-	/* ---------- Motion: the equation builds, then the name rises ---------- */
+	/* ---------- Motion: the equation reads step by step, one beat each ---------- */
 	.name-hero__term,
 	.name-hero__op,
 	.name-hero__letter,
-	.name-hero__note {
+	.name-hero__meaning-line,
+	.name-hero__note,
+	.name-hero__intro {
 		animation: name-hero-rise var(--duration-rise) var(--ease-standard) both;
-		animation-delay: calc(var(--i) * var(--stagger) * 2);
+		animation-delay: calc(var(--step) * var(--duration-beat) + var(--i, 0) * var(--stagger));
 	}
 	.name-hero__letter {
 		display: inline-block;
@@ -200,7 +204,9 @@ const letters = [...word];
 		.name-hero__term,
 		.name-hero__op,
 		.name-hero__letter,
-		.name-hero__note {
+		.name-hero__meaning-line,
+		.name-hero__note,
+		.name-hero__intro {
 			animation: none;
 		}
 	}

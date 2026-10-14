@@ -71,7 +71,7 @@ The screenshots in `reference/` are the reference for **content, brand and the p
 
 - Components use **tokens only**: every colour, font, size, space, radius, shadow, duration and z-index is a `var(--…)` from `src/styles/tokens.css`. Never write hex values, px/rem sizes or durations in a component.
 - Need a new value? Add a token to `tokens.css` first, then use it.
-- Allowed exceptions: the two breakpoints in media queries (`64rem` tablet, `48rem` mobile — media queries cannot read tokens), structural values (`0`, `100%`, `1fr`, `auto`), SVG icon coordinates, the fixed shape geometry inside `DropCluster`, and animation keyframe offsets (percentages and rotations).
+- Allowed exceptions: the breakpoints in media queries (`64rem` tablet, `48rem` mobile, `22.5rem` small phone — media queries cannot read tokens; use the small-phone one only for fixes that 320px screens need), structural values (`0`, `100%`, `1fr`, `auto`), SVG icon coordinates, the fixed shape geometry inside `DropCluster`, and animation keyframe offsets (percentages and rotations).
 - Responsive size changes go in the tablet/mobile overrides at the bottom of `tokens.css` where possible.
 
 ## Accessibility rules

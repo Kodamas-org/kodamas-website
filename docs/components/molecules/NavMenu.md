@@ -15,11 +15,11 @@ Inside SiteHeader. On phones the links fold into a “Menu” toggle; the button
 | Prop | Options | Default | What it does |
 |---|---|---|---|
 | `links` | list of { label, href } | — | Text links, in order. |
-| `cta` | { label, href } | — | The button. |
+| `cta` | { label, href, short? } | — | The button. `short` (optional) is the label on small phones (≤ 22.5rem); it must be the start of `label`, and the rest is hidden. |
 
 ## Variants
 
-Desktop/tablet: one row. Mobile: Menu toggle + button.
+Desktop/tablet: one row. Mobile: Menu toggle + button. Small phones (≤ 22.5rem): the button shows only its `short` label.
 
 ## Tokens used
 
@@ -28,7 +28,7 @@ Desktop/tablet: one row. Mobile: Menu toggle + button.
 ## Example
 
 ```astro
-<NavMenu links={[{ label: "Blogfolio", href: "#" }]} cta={{ label: "Connect With Us", href: "#" }} />
+<NavMenu links={[{ label: "Blogfolio", href: "#" }]} cta={{ label: "Connect With Us", short: "Connect", href: "#" }} />
 ```
 
 ## Notes

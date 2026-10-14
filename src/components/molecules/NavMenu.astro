@@ -2,15 +2,19 @@
 // Header navigation: text links plus a call-to-action button.
 // On small screens the text links fold into a "Menu" toggle.
 // The link whose href matches the current page is marked as current.
+// cta.short: optional shorter label for small phones; it must be the start
+// of cta.label (e.g. "Connect" of "Connect With Us"), so the rest is hidden.
 import Link from '../atoms/Link.astro';
 import Button from '../atoms/Button.astro';
 
 interface Props {
 	links: { label: string; href: string }[];
-	cta: { label: string; href: string };
+	cta: { label: string; href: string; short?: string };
 }
 
 const { links, cta } = Astro.props;
+const ctaRest = cta.short && cta.label.startsWith(cta.short) ? cta.label.slice(cta.short.length) : '';
+const ctaStart = ctaRest ? cta.short : cta.label;
 const here = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
@@ -29,7 +33,7 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
 			))
 		}
 	</ul>
-	<Button href={cta.href} variant="aqua" size="m">{cta.label}</Button>
+	<Button href={cta.href} variant="aqua" size="m"><span>{ctaStart}{ctaRest && <span class="nav-menu__cta-rest">{ctaRest}</span>}</span></Button>
 </nav>
 
 <script>
@@ -87,6 +91,13 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
 		}
 		.nav-menu__toggle[aria-expanded='true'] + .nav-menu__list {
 			display: flex;
+		}
+	}
+
+	/* Small phones: the button keeps only its short label */
+	@media (max-width: 22.5rem) {
+		.nav-menu__cta-rest {
+			display: none;
 		}
 	}
 </style>

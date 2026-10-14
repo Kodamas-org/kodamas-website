@@ -145,6 +145,7 @@
 	--duration-float: 9s;
 	--duration-marquee: 40s;
 	--stagger: 60ms;
+	--duration-beat: 450ms; /* time between the steps of a sequence that reads in order (NameHero equation) */
 	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
 	--ease-drift: ease-in-out;
 

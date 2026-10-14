@@ -200,6 +200,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--duration-float` | `9s` |  |
 | `--duration-marquee` | `40s` |  |
 | `--stagger` | `60ms` |  |
+| `--duration-beat` | `450ms` | Time between the steps of a sequence that reads in order (the NameHero equation) |
 | `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` |  |
 | `--ease-drift` | `ease-in-out` |  |
 
