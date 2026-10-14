@@ -4,7 +4,7 @@
 
 ## What it is
 
-Kodama wisps, the spirit lights from the forest that inspired the palette: small flames with a crisp white core glowing in the brand aqua (`--color-aqua-glow`, the colour of the buttons and the wordmark), a soft aqua halo, and a few twinkling sparks around them. Each flame changes shape as it flickers, with a second thinner tongue of light out of phase, and drifts slowly upwards. Decorative (`aria-hidden`).
+Kodama wisps, the spirit lights from the forest that inspired the palette: small round orbs of light with a crisp white core glowing in the brand aqua (`--color-aqua-glow`, the colour of the buttons and the wordmark), a soft round aqua halo, and a few twinkling sparks around them. Each orb wobbles slightly as it flickers and drifts slowly upwards. Decorative (`aria-hidden`).
 
 ## When to use it
 
