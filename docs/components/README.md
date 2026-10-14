@@ -38,6 +38,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Principle](molecules/Principle.md) — One manifesto principle: a pink drop and the principle as an aqua heading, then two columns. A first paragraph in the right column reads as a pull statement; list bullets are small drops.
 - [CaseStudy](molecules/CaseStudy.md) — A Blogfolio entry: drop-shaped photo on one side; case label with a pink drop, the title as an aqua link with an arrow, and a one-line summary on the other. The whole card is clickable.
 - [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
+- [WispField](molecules/WispField.md) — Kodama wisps: white-aqua flames with a blue halo and twinkling sparks. They fade in when scrolled into view, flicker and drift, and rise away as the page scrolls. Decorative.
 - [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.
 - [FooterLink](molecules/FooterLink.md) — A footer navigation row: the label large in Funnel Display Light with ↗ on the right, between hairlines. Slides in and turns aqua on hover. Renders an `<li>`.
 

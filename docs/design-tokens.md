@@ -32,6 +32,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--color-glass-aqua` | `#55c6c8` | Muted text on navy (captions, meta, counters) |
 | `--color-control-teal` | `#1f5d62` | Photo placeholders |
 | `--color-white` | `#ffffff` | Text on navy |
+| `--color-spirit-blue` | `#2ec5ff` | The halo of the kodama wisps (decorative only, never text) |
 
 ## Colour: roles
 
@@ -152,6 +153,9 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-drop-s` | `1.25rem` |  |
 | `--size-drop-m` | `4.5rem` |  |
 | `--size-drop-equation` | `var(--size-drop-m)` | The + and = drops in `NameHero` |
+| `--size-wisp` | `2.25rem` | Base width of a wisp flame (WispField) |
+| `--size-wisp-blur` | `0.1rem` | Softness of a wisp flame’s edge |
+| `--size-spark` | `0.1875rem` | A twinkling spark beside the wisps |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
 | `--size-avatar-s` | `3.5rem` |  |
 | `--size-avatar-l` | `15rem` |  |
@@ -198,6 +202,9 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--duration-rise` | `1.1s` |  |
 | `--duration-count` | `1600ms` |  |
 | `--duration-float` | `9s` |  |
+| `--duration-flicker` | `2.2s` | A wisp flame changing shape |
+| `--duration-wisp-drift` | `8s` | A wisp rising and swaying |
+| `--duration-wisp-fade` | `2.4s` | A wisp fading in when scrolled into view |
 | `--duration-marquee` | `40s` |  |
 | `--stagger` | `60ms` |  |
 | `--duration-beat` | `450ms` | Time between the steps of a sequence that reads in order (the NameHero equation) |

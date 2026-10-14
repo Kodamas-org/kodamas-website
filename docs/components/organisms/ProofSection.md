@@ -17,6 +17,7 @@ Homepage. Figures are hidden from screen readers because the quotation says the 
 | `num` | text | — | Section number. |
 | `stats` | list of Stat props | — | The figures. |
 | `source` | text | — | Citation source. |
+| `wisps` | boolean | false | A pair of kodama wisps (WispField) beside the title; on mobile they rise from the section number row. |
 | slot "title" | text | — | The statement (`<em>` turns aqua). |
 | (content) | text | — | The quotation. |
 
@@ -26,7 +27,7 @@ Figures stack on mobile.
 
 ## Tokens used
 
-`--border-width-thin`, `--color-accent`, `--color-rule`, `--font-display`, `--font-size-statement`, `--font-weight-bold`, `--font-weight-light`, `--layout-col-gap`, `--letter-spacing-display`, `--line-height-heading`, `--space-5`, `--space-6`, `--space-8`
+`--border-width-thin`, `--color-accent`, `--color-rule`, `--font-display`, `--font-size-statement`, `--font-weight-bold`, `--font-weight-light`, `--layout-col-gap`, `--letter-spacing-display`, `--line-height-heading`, `--size-wisp`, `--space-4`, `--space-5`, `--space-6`, `--space-8`
 
 ## Example
 

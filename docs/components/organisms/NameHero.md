@@ -19,6 +19,7 @@ Our Story only (its small label is the h1). Shown on `/about`, not on the styleg
 | `word` | text | — | Result word without the final letter. |
 | `final` | text | — | The added letter (pink). |
 | `lead` | number | 2 | White leading letters. |
+| `wisps` | boolean | false | A pair of kodama wisps (WispField) right after the meaning; on mobile after the note. |
 | slot "meaning" | text | — | Under the wordmark. |
 | slot "note" | text | — | Note for the final letter. |
 | (content) | text | — | Intro paragraph. |
@@ -31,7 +32,7 @@ On mobile (≤ 48rem) the equation stays on one line (Ko + Dama =): a four-colum
 
 ## Tokens used
 
-`--color-aqua-glow`, `--color-highlight-pink`, `--color-number`, `--color-text-muted`, `--color-white`, `--duration-beat`, `--duration-rise`, `--ease-standard`, `--font-display`, `--font-size-body`, `--font-size-intro`, `--font-size-lead`, `--font-size-mark`, `--font-size-small`, `--font-size-statement`, `--font-weight-heavy`, `--font-weight-light`, `--font-weight-semibold`, `--layout-col-gap`, `--layout-section`, `--layout-text-max`, `--letter-spacing-label`, `--letter-spacing-tight`, `--line-height-lead`, `--line-height-mark`, `--line-height-none`, `--line-height-snug`, `--size-drop-equation`, `--space-2`, `--space-3`, `--space-5`, `--space-6`, `--space-8`, `--space-9`, `--stagger`
+`--color-aqua-glow`, `--color-highlight-pink`, `--color-number`, `--color-text-muted`, `--color-white`, `--duration-beat`, `--duration-rise`, `--ease-standard`, `--font-display`, `--font-size-body`, `--font-size-intro`, `--font-size-lead`, `--font-size-mark`, `--font-size-small`, `--font-size-statement`, `--font-weight-heavy`, `--font-weight-light`, `--font-weight-semibold`, `--layout-col-gap`, `--layout-section`, `--layout-text-max`, `--letter-spacing-label`, `--letter-spacing-tight`, `--line-height-lead`, `--line-height-mark`, `--line-height-none`, `--line-height-snug`, `--size-drop-equation`, `--size-wisp`, `--space-2`, `--space-3`, `--space-5`, `--space-6`, `--space-8`, `--space-9`, `--stagger`
 
 ## Example
 
@@ -41,6 +42,6 @@ On mobile (≤ 48rem) the equation stays on one line (Ko + Dama =): a four-colum
 
 ## Notes
 
-Uses: Container, Drop.
+Uses: Container, Drop, WispField.
 
 See it live at `/styleguide`. Token values: [design-tokens.md](../../design-tokens.md).

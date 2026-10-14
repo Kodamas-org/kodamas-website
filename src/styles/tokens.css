@@ -16,6 +16,7 @@
 	--color-glass-aqua: #55c6c8;
 	--color-control-teal: #1f5d62;
 	--color-white: #ffffff;
+	--color-spirit-blue: #2ec5ff; /* the halo of the kodama wisps */
 
 	/* ---------- Colour: roles ---------- */
 	--color-surface-page: var(--color-midnight-navy);
@@ -109,6 +110,9 @@
 	--size-drop-s: 1.25rem;
 	--size-drop-m: 4.5rem;
 	--size-drop-equation: var(--size-drop-m); /* + and = drops in NameHero */
+	--size-wisp: 2.25rem; /* base width of a wisp flame */
+	--size-wisp-blur: 0.1rem;
+	--size-spark: 0.1875rem;
 	--size-drop-cluster: clamp(7.5rem, 3rem + 15vw, 17rem);
 	--size-avatar-s: 3.5rem;
 	--size-avatar-l: 15rem;
@@ -143,6 +147,9 @@
 	--duration-rise: 1.1s;
 	--duration-count: 1600ms;
 	--duration-float: 9s;
+	--duration-flicker: 2.2s; /* a wisp flame changing shape */
+	--duration-wisp-drift: 8s; /* a wisp rising and swaying */
+	--duration-wisp-fade: 2.4s; /* a wisp fading in when scrolled into view */
 	--duration-marquee: 40s;
 	--stagger: 60ms;
 	--duration-beat: 450ms; /* time between the steps of a sequence that reads in order (NameHero equation) */

@@ -3,11 +3,13 @@
 // by hairlines, and the sourced quotation they come from.
 // The figures are hidden from screen readers because the quotation says
 // the same thing in full.
+// wisps: a pair of kodama wisps in the empty space beside the title
 // Slots: "title" (the statement; <em> turns aqua bold), default (the
 //        quotation text)
 import Section from '../molecules/Section.astro';
 import Stat from '../molecules/Stat.astro';
 import Citation from '../molecules/Citation.astro';
+import WispField from '../molecules/WispField.astro';
 
 interface Props {
 	num: string;
@@ -21,13 +23,23 @@ interface Props {
 		accent?: boolean;
 	}[];
 	source: string;
+	wisps?: boolean;
 }
 
-const { num, stats, source } = Astro.props;
+const { num, stats, source, wisps = false } = Astro.props;
 ---
 
 <Section labelledby="proof-title" num={num} rule={false}>
-	<h2 id="proof-title" class="proof__title" data-reveal><slot name="title" /></h2>
+	<div class="proof__head">
+		<h2 id="proof-title" class="proof__title" data-reveal><slot name="title" /></h2>
+		{
+			wisps && (
+				<div class="proof__wisps">
+					<WispField size="pair" />
+				</div>
+			)
+		}
+	</div>
 	<div class="proof__stats" aria-hidden="true">
 		{stats.map((s) => <Stat {...s} />)}
 	</div>
@@ -37,6 +49,25 @@ const { num, stats, source } = Astro.props;
 </Section>
 
 <style>
+	.proof__head {
+		position: relative;
+	}
+	.proof__wisps {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: calc(var(--size-wisp) * 7);
+		height: calc(var(--size-wisp) * 3);
+	}
+	/* Mobile: the title spans the width, so the wisps rise from the section number row */
+	@media (max-width: 48rem) {
+		.proof__wisps {
+			top: auto;
+			bottom: calc(100% + var(--space-4));
+			width: calc(var(--size-wisp) * 5);
+			height: calc(var(--size-wisp) * 2);
+		}
+	}
 	.proof__title {
 		max-width: 20ch;
 		font-family: var(--font-display);

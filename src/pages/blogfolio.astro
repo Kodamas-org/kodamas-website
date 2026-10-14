@@ -6,6 +6,7 @@ import PageIntro from '../components/organisms/PageIntro.astro';
 import CallToActionSection from '../components/organisms/CallToActionSection.astro';
 import Section from '../components/molecules/Section.astro';
 import CaseStudy from '../components/molecules/CaseStudy.astro';
+import WispField from '../components/molecules/WispField.astro';
 import { links } from '../data/links';
 
 const cases = [
@@ -34,11 +35,14 @@ const cases = [
 	title="Blogfolio · Kodamas"
 	description="Before Kodamas, we helped build, fix, and grow digital products around the world. Here, we share what we learned and what we are learning."
 >
-	<PageIntro label="Welcome to our Blogfolio">
+	<div class="intro">
+		<div class="intro__wisps"><WispField /></div>
+		<PageIntro label="Welcome to our Blogfolio">
 		<Fragment slot="title">Notes from the <em>Doing</em></Fragment>
 		Before Kodamas, we helped build, fix, and grow digital products around the world. Here, we share what we learned and
 		what we are learning.
-	</PageIntro>
+		</PageIntro>
+	</div>
 
 	<Section num="01">
 		<ol class="cases" role="list">
@@ -67,6 +71,25 @@ const cases = [
 </BaseLayout>
 
 <style>
+	/* Trial: kodama wisps in the empty space beside the title */
+	.intro {
+		position: relative;
+	}
+	.intro__wisps {
+		position: absolute;
+		top: var(--space-6);
+		right: var(--layout-gutter);
+		width: 40%;
+		height: var(--space-10);
+	}
+	/* Mobile: the title spans the width, so the wisps sit in the gap below the intro */
+	@media (max-width: 48rem) {
+		.intro__wisps {
+			top: 100%;
+			width: 70%;
+			height: var(--layout-section);
+		}
+	}
 	.cases {
 		display: flex;
 		flex-direction: column;

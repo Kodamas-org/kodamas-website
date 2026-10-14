@@ -9,10 +9,12 @@
 // The page's h1 is the small label above (e.g. "Our Story").
 // terms: the two parts of the name; colour 'white' or 'aqua'
 // word: the result word, without the final letter; final: the added letter
+// wisps: a pair of kodama wisps beside the meaning (the spirit of the tree)
 // Slots: "meaning" (what the word means, under the wordmark),
 //        "note" (the note for the final letter), default (intro paragraph)
 import Container from '../atoms/Container.astro';
 import Drop from '../atoms/Drop.astro';
+import WispField from '../molecules/WispField.astro';
 
 interface Props {
 	title: string;
@@ -20,9 +22,10 @@ interface Props {
 	word: string;
 	final: string;
 	lead?: number;
+	wisps?: boolean;
 }
 
-const { title, terms, word, final, lead = 2 } = Astro.props;
+const { title, terms, word, final, lead = 2, wisps = false } = Astro.props;
 const letters = [...word];
 ---
 
@@ -60,6 +63,13 @@ const letters = [...word];
 			</p>
 			<div class="name-hero__caption">
 				<p class="name-hero__meaning-line" style="--step: 4"><slot name="meaning" /></p>
+				{
+					wisps && (
+						<div class="name-hero__wisps">
+							<WispField size="pair" />
+						</div>
+					)
+				}
 				<p class="name-hero__note" style="--step: 5"><slot name="note" /></p>
 			</div>
 		</div>
@@ -158,6 +168,18 @@ const letters = [...word];
 		font-size: var(--font-size-intro);
 		font-weight: var(--font-weight-light);
 		line-height: var(--line-height-snug);
+	}
+	.name-hero__wisps {
+		width: calc(var(--size-wisp) * 5);
+		height: calc(var(--size-wisp) * 2);
+		margin-right: auto;
+	}
+	/* Mobile: the meaning takes the full line, so the wisps sit after the note */
+	@media (max-width: 48rem) {
+		.name-hero__wisps {
+			order: 1;
+			margin-right: 0;
+		}
 	}
 	.name-hero__note {
 		font-size: var(--font-size-small);

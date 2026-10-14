@@ -33,6 +33,7 @@ import Profile from '../components/molecules/Profile.astro';
 import Principle from '../components/molecules/Principle.astro';
 import CaseStudy from '../components/molecules/CaseStudy.astro';
 import DropCluster from '../components/molecules/DropCluster.astro';
+import WispField from '../components/molecules/WispField.astro';
 import Marquee from '../components/molecules/Marquee.astro';
 import FooterLink from '../components/molecules/FooterLink.astro';
 
@@ -354,6 +355,14 @@ const radii = ['s', 'pill', 'drop'];
 				<DropCluster />
 			</div>
 
+			<div class="sg__demo">
+				<Eyebrow as="h3">WispField</Eyebrow>
+				<div class="sg__wisps">
+					<div><WispField /></div>
+					<div><WispField size="pair" /></div>
+				</div>
+			</div>
+
 			<div class="sg__demo sg__demo--bleed">
 				<Eyebrow as="h3">Marquee</Eyebrow>
 				<Marquee id="sg-marquee" outline="Keep" fill="Going" />
@@ -512,6 +521,13 @@ const radii = ['s', 'pill', 'drop'];
 		width: var(--space-10);
 		height: var(--space-10);
 		background: var(--gradient-drop);
+	}
+	.sg__wisps {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: var(--space-8);
+		height: var(--space-10);
+		margin-top: var(--space-8);
 	}
 	.sg__demo {
 		display: flex;
