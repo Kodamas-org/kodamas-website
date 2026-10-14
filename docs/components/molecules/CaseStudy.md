@@ -8,13 +8,13 @@ A Blogfolio entry: a drop-shaped photo on one side; on the other, the case label
 
 ## When to use it
 
-The list of cases on `/blogfolio`, one per `<li>`, alternating `reverse`.
+The Blogfolio list, one per `<li>`, alternating `reverse`. The page builds it from the articles in `src/content/blog/`.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `label` | text | — | The case label (e.g. `Case_1`), shown uppercase in pink. |
+| `label` | text | — | Optional case label (e.g. `Case_1`), shown uppercase in pink. |
 | `title` | text | — | The case title; the link text. |
 | `href` | URL | — | Where the case leads (from `src/data/links.ts`). |
 | `photo` | URL | — | The photo; omitted shows the “photo needed” placeholder. |
@@ -34,7 +34,7 @@ Default (photo left, columns 1–4) and `reverse` (photo right, columns 9–12).
 ## Example
 
 ```astro
-<CaseStudy label="Case_1" title="Bug Reporting Workflow Optimization" href={links.caseBugReporting}>
+<CaseStudy label="Case_1" title="Bug Reporting Workflow Optimization" href="/blogfolio/bug-reporting-workflow-optimization">
 	How We Built a Seamless, Automated System That Scales
 </CaseStudy>
 ```

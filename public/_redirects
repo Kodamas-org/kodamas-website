@@ -1,0 +1,6 @@
+# Netlify redirects: addresses of the previous (Squarespace) site that
+# moved, so shared links keep working once this site takes the domain.
+/blogfolio-bug-reporting-workflow-optimization-how-we-built-a-seamless-automated-system-that-scales  /blogfolio/bug-reporting-workflow-optimization  301
+/blogfolio-from-b2c-to-b2b  /blogfolio/from-b2c-to-b2b  301
+/integrated-roadmap-for-b2c-and-b2b  /blogfolio/integrated-roadmap-for-b2c-and-b2b  301
+/home  /  301

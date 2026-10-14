@@ -1,0 +1,73 @@
+---
+// A Blogfolio article (case study or blog post), one page per Markdown file
+// in src/content/blog/. Built from the shared system: PageIntro (title,
+// summary, meta), the article in Prose, then the bright call to action.
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/organisms/PageIntro.astro';
+import CallToActionSection from '../../components/organisms/CallToActionSection.astro';
+import Section from '../../components/molecules/Section.astro';
+import Prose from '../../components/molecules/Prose.astro';
+import { links } from '../../data/links';
+import { inlineMarkdown } from '../../lib/inline-markdown';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => data.status === 'final');
+	return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+
+const cta = data.cta ?? {
+	title: 'Want your delivery management to be aligned and effortless?',
+	body: [
+		'At **Kodamas**, we help teams move faster, collaborate better, and sale with ease.',
+		'If your internal delivery ops feel like chaos, let’s turn them into clarity.',
+	],
+};
+const date = data.date?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const meta = [data.author, date].filter(Boolean).join(' · ');
+---
+
+<BaseLayout title={`${data.seoTitle ?? data.title} · Kodamas`} description={data.description}>
+	<PageIntro label={data.label} back={{ label: 'Blogfolio', href: links.blogfolio }}>
+		<Fragment slot="title">{data.title}</Fragment>
+		{data.summary}
+		{meta && <Fragment slot="meta">{meta}</Fragment>}
+	</PageIntro>
+
+	<Section rule={false}>
+		<article class="article">
+			<Prose><Content /></Prose>
+		</article>
+	</Section>
+
+	<div class="cta-gap">
+		<CallToActionSection num="" title={cta.title} cta={{ label: 'Connect With Us', href: links.connect }}>
+			{cta.body.map((p) => <p set:html={inlineMarkdown(p)} />)}
+		</CallToActionSection>
+	</div>
+</BaseLayout>
+
+<style>
+	.article {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+	}
+	.article > :global(.prose) {
+		grid-column: 4 / span 7;
+	}
+	@media (max-width: 64rem) {
+		.article > :global(.prose) {
+			grid-column: 1 / -1;
+			max-width: var(--layout-text-max);
+		}
+	}
+	/* The bright section follows a navy one: keep the one section gap above it */
+	.cta-gap {
+		margin-top: var(--layout-section);
+	}
+</style>

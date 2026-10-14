@@ -3,32 +3,70 @@
 // drop, the page title as the h1 set as a large statement (key word in <em>
 // turns aqua bold), and an intro paragraph. Each part rises in turn.
 // label: the small label above the title
-// Slots: "title" (the h1 content), default (the intro paragraph)
+// back: optional link above the label, back to the parent page (articles)
+// Slots: "title" (the h1 content), default (the intro paragraph),
+//        "meta" (optional small line under the intro: author, date…)
 import Container from '../atoms/Container.astro';
 import Drop from '../atoms/Drop.astro';
 import Eyebrow from '../atoms/Eyebrow.astro';
 import Heading from '../atoms/Heading.astro';
 
 interface Props {
-	label: string;
+	label?: string;
+	back?: { label: string; href: string };
 }
 
-const { label } = Astro.props;
+const { label, back } = Astro.props;
 ---
 
 <div class="page-intro">
 	<Container>
-		<p class="page-intro__label" style="--step: 0"><Drop size="s" /><Eyebrow as="span">{label}</Eyebrow></p>
+		{
+			back && (
+				<a class="page-intro__back" href={back.href} style="--step: 0">
+					<span aria-hidden="true">←</span> {back.label}
+				</a>
+			)
+		}
+		{
+			label && (
+				<p class="page-intro__label" style="--step: 0">
+					<Drop size="s" />
+					<Eyebrow as="span">{label}</Eyebrow>
+				</p>
+			)
+		}
 		<div class="page-intro__title" style="--step: 1">
 			<Heading level={1} size="statement"><slot name="title" /></Heading>
 		</div>
-		<p class="page-intro__lead" style="--step: 2"><slot /></p>
+		{Astro.slots.has('default') && <p class="page-intro__lead" style="--step: 2"><slot /></p>}
+		{
+			Astro.slots.has('meta') && (
+				<p class="page-intro__meta" style="--step: 2">
+					<slot name="meta" />
+				</p>
+			)
+		}
 	</Container>
 </div>
 
 <style>
 	.page-intro {
 		padding-top: var(--space-8);
+	}
+	.page-intro__back {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		min-height: var(--size-tap-min);
+		margin-bottom: var(--space-4);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+	.page-intro__back:hover {
+		text-decoration: underline;
+		text-underline-offset: var(--size-underline-offset);
 	}
 	.page-intro__label {
 		display: flex;
@@ -48,10 +86,20 @@ const { label } = Astro.props;
 		text-wrap: pretty;
 	}
 
+	.page-intro__meta {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-4);
+		margin-left: auto;
+		font-size: var(--font-size-small);
+		color: var(--color-text-muted);
+	}
+
 	/* ---------- Motion: label, title, intro rise one beat apart ---------- */
+	.page-intro__back,
 	.page-intro__label,
 	.page-intro__title,
-	.page-intro__lead {
+	.page-intro__lead,
+	.page-intro__meta {
 		animation: page-intro-rise var(--duration-rise) var(--ease-standard) both;
 		animation-delay: calc(var(--step) * var(--duration-beat) / 2);
 	}
@@ -62,9 +110,11 @@ const { label } = Astro.props;
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
+		.page-intro__back,
 		.page-intro__label,
 		.page-intro__title,
-		.page-intro__lead {
+		.page-intro__lead,
+		.page-intro__meta {
 			animation: none;
 		}
 	}

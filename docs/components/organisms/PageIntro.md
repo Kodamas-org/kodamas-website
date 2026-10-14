@@ -8,15 +8,17 @@ The opening of a simple page: a small pink label with a drop, the page title as 
 
 ## When to use it
 
-Pages that open with a title and a short intro, such as Blogfolio (its title is the h1). Shown on `/blogfolio`, not on the styleguide.
+Pages that open with a title and a short intro: Blogfolio and every article (its title is the h1). Shown on `/blogfolio` and the article pages, not on the styleguide.
 
 ## Props
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `label` | text | — | The small label above the title. |
+| `label` | text | — | Optional small label above the title. |
+| `back` | { label, href } | — | Optional link above the label, back to the parent page (← Blogfolio on articles). |
 | slot "title" | text | — | The h1 content; `<em>` for the key word. |
-| (content) | text | — | Intro paragraph. |
+| (content) | text | — | Optional intro paragraph. |
+| slot "meta" | text | — | Optional small muted line under the intro (author · date). |
 
 ## Variants
 
@@ -24,7 +26,7 @@ Label, title and intro rise in turn, half a beat (`--duration-beat`) apart; no m
 
 ## Tokens used
 
-`--color-number`, `--duration-beat`, `--duration-rise`, `--ease-standard`, `--font-size-lead`, `--layout-text-max`, `--line-height-lead`, `--space-3`, `--space-6`, `--space-7`, `--space-8`
+`--color-accent`, `--color-number`, `--color-text-muted`, `--duration-beat`, `--duration-rise`, `--ease-standard`, `--font-size-lead`, `--font-size-small`, `--font-weight-semibold`, `--layout-text-max`, `--line-height-lead`, `--size-tap-min`, `--size-underline-offset`, `--space-2`, `--space-3`, `--space-4`, `--space-6`, `--space-7`, `--space-8`
 
 ## Example
 

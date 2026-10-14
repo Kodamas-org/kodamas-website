@@ -1,34 +1,22 @@
 ---
 // Blogfolio. Built from the shared system, in the homepage's design
 // direction. Copy from reference/kodamas-blog-page.png, word for word.
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageIntro from '../components/organisms/PageIntro.astro';
-import CallToActionSection from '../components/organisms/CallToActionSection.astro';
-import Section from '../components/molecules/Section.astro';
-import CaseStudy from '../components/molecules/CaseStudy.astro';
-import WispField from '../components/molecules/WispField.astro';
-import { links } from '../data/links';
+// The list comes from the articles in src/content/blog/.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/organisms/PageIntro.astro';
+import CallToActionSection from '../../components/organisms/CallToActionSection.astro';
+import Section from '../../components/molecules/Section.astro';
+import CaseStudy from '../../components/molecules/CaseStudy.astro';
+import WispField from '../../components/molecules/WispField.astro';
+import { getCollection } from 'astro:content';
+import { links } from '../../data/links';
 
-const cases = [
-	{
-		label: 'Case_1',
-		title: 'Bug Reporting Workflow Optimization',
-		href: links.caseBugReporting,
-		summary: 'How We Built a Seamless, Automated System That Scales',
-	},
-	{
-		label: 'Case_2',
-		title: 'From B2C to B2B: Launching a Successful Global Advertising Platform for Restaurants',
-		href: links.caseRestaurantAds,
-		summary: 'How We Built and Scaled a B2B Advertising Platform from Scratch',
-	},
-	{
-		label: 'Case_3',
-		title: 'Integrated Roadmap for B2C and B2B: Aligning Vision with Execution',
-		href: links.caseIntegratedRoadmap,
-		summary: 'How We Created a Strategic Roadmap for Full-Team Alignment',
-	},
-];
+// Every final article, in Blogfolio order (order first, then newest first)
+const posts = (await getCollection('blog', ({ data }) => data.status === 'final')).sort(
+	(a, b) =>
+		(a.data.order ?? Infinity) - (b.data.order ?? Infinity) ||
+		(b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0),
+);
 ---
 
 <BaseLayout
@@ -47,10 +35,17 @@ const cases = [
 	<Section num="01">
 		<ol class="cases" role="list">
 			{
-				cases.map((c, i) => (
+				posts.map(({ id, data }, i) => (
 					<li>
-						<CaseStudy label={c.label} title={c.title} href={c.href} reverse={i % 2 === 1}>
-							{c.summary}
+						<CaseStudy
+							label={data.label}
+							title={data.cardTitle ?? data.title}
+							href={`${links.blogfolio}/${id}`}
+							photo={data.photo}
+							alt={data.photoAlt}
+							reverse={i % 2 === 1}
+						>
+							{data.summary}
 						</CaseStudy>
 					</li>
 				))

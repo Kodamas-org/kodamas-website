@@ -1,14 +1,12 @@
 // All link destinations on the site in one place.
 // '#' marks a URL that still needs to be provided (see the asset list).
-// The case articles and the privacy page still live on the current site
-// (www.kodamas.io): they must move here before this site takes the domain.
+// The privacy page still lives on the current site (www.kodamas.io): it
+// must move here before this site takes the domain.
+// Article URLs are built from src/content/blog/ (/blogfolio/<slug>).
 
 export const links = {
 	home: '/',
 	blogfolio: '/blogfolio',
-	caseBugReporting: 'https://www.kodamas.io/blogfolio-bug-reporting-workflow-optimization-how-we-built-a-seamless-automated-system-that-scales',
-	caseRestaurantAds: 'https://www.kodamas.io/blogfolio-from-b2c-to-b2b',
-	caseIntegratedRoadmap: 'https://www.kodamas.io/integrated-roadmap-for-b2c-and-b2b',
 	ourStory: '/about',
 	connect: 'mailto:hello@kodamas.io',
 	bookCall: 'mailto:hello@kodamas.io',

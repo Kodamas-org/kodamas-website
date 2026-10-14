@@ -32,8 +32,12 @@ src/
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
-  pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio.astro (Blogfolio), styleguide.astro
+  pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio/index.astro (Blogfolio),
+                         blogfolio/[slug].astro (one page per article), styleguide.astro
+  content/blog/          published articles, one Markdown file each (schema in src/content.config.ts)
+  lib/                   small helpers (inline-markdown.ts)
   data/links.ts          every link URL on the site
+public/_redirects        Netlify redirects from the old Squarespace addresses
 docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level
@@ -102,6 +106,14 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 - Commit at the end of each piece of work with a clear message.
 - **Ask the owner before every push** — a push to `main` deploys to Netlify.
 - Never force-push. Never delete the GitHub repo or the Netlify site.
+
+## Blog articles
+
+- Each article is a Markdown file in `src/content/blog/`; the file name is the slug, so `my-article.md` is published at `/blogfolio/my-article` and listed on `/blogfolio` automatically.
+- The frontmatter is the kodamas-blog-writer format (`content-drafts/README.md`); the fields the site uses are in `src/content.config.ts` (`title`, `description`, `summary`, `cardTitle`, `seoTitle`, `label`, `date`, `author`, `photo`, `order`, `status`, `cta`). Other draft fields are ignored.
+- To publish a final draft: copy `content-drafts/articles/<slug>.md` into `src/content/blog/`, add `summary` (the line under the title), and turn `<!-- IMAGE: … -->` notes into real images or remove them. `status: draft` keeps an article out of the build.
+- Articles start at `##` (the page title is the h1); every `##` becomes a numbered part. A `>` quote is the pull statement.
+- When an old address changes, add a line to `public/_redirects`.
 
 ## Astro documentation
 

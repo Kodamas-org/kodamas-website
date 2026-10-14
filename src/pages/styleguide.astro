@@ -32,6 +32,7 @@ import PersonCard from '../components/molecules/PersonCard.astro';
 import Profile from '../components/molecules/Profile.astro';
 import Principle from '../components/molecules/Principle.astro';
 import CaseStudy from '../components/molecules/CaseStudy.astro';
+import Prose from '../components/molecules/Prose.astro';
 import DropCluster from '../components/molecules/DropCluster.astro';
 import WispField from '../components/molecules/WispField.astro';
 import Marquee from '../components/molecules/Marquee.astro';
@@ -355,6 +356,20 @@ const radii = ['s', 'pill', 'drop'];
 			</div>
 
 			<div class="sg__demo">
+				<Eyebrow as="h3">Prose</Eyebrow>
+				<div class="sg__prose">
+					<Prose>
+						<p>Body text with a <strong>key phrase in aqua bold</strong> and a <a href="#">link</a>.</p>
+						<ul>
+							<li><strong>Bullets</strong> are small drops.</li>
+							<li>Nested lists indent.</li>
+						</ul>
+						<blockquote>A quote becomes the pull statement.</blockquote>
+					</Prose>
+				</div>
+			</div>
+
+			<div class="sg__demo">
 				<Eyebrow as="h3">DropCluster</Eyebrow>
 				<DropCluster />
 			</div>
@@ -525,6 +540,10 @@ const radii = ['s', 'pill', 'drop'];
 		width: var(--space-10);
 		height: var(--space-10);
 		background: var(--gradient-drop);
+	}
+	.sg__prose {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-6);
 	}
 	.sg__wisps {
 		display: grid;

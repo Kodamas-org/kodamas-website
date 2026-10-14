@@ -10,7 +10,7 @@ import Drop from '../atoms/Drop.astro';
 import Eyebrow from '../atoms/Eyebrow.astro';
 
 interface Props {
-	label: string;
+	label?: string;
 	title: string;
 	href: string;
 	photo?: string;
@@ -28,7 +28,14 @@ const Tag = `h${level}` as 'h2';
 		<Avatar name={title} src={photo} alt={alt} shape="drop" size="l" />
 	</div>
 	<div class="case-study__body">
-		<p class="case-study__label"><Drop size="s" /><Eyebrow as="span">{label}</Eyebrow></p>
+		{
+			label && (
+				<p class="case-study__label">
+					<Drop size="s" />
+					<Eyebrow as="span">{label}</Eyebrow>
+				</p>
+			)
+		}
 		<Tag class="case-study__title">
 			<a class="case-study__link" href={href}>{title}<span class="case-study__arrow" aria-hidden="true">→</span></a>
 		</Tag>

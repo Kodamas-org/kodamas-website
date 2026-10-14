@@ -37,6 +37,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Profile](molecules/Profile.md) — A founder profile: large drop portrait on one side; name (Heavy) with a live clock, a personal motto set large and light, a short bio and a profile link on the other.
 - [Principle](molecules/Principle.md) — One manifesto principle: a pink drop and the principle as an aqua heading, then two columns. A first paragraph in the right column reads as a pull statement; list bullets are small drops.
 - [CaseStudy](molecules/CaseStudy.md) — A Blogfolio entry: drop-shaped photo on one side; case label with a pink drop, the title as an aqua link with an arrow, and a one-line summary on the other. The whole card is clickable.
+- [Prose](molecules/Prose.md) — Long-form article text from Markdown: numbered parts (h2 on a hairline with a pink 01, 02…), aqua bold, drop bullets, a large pull statement for quotes.
 - [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
 - [WispField](molecules/WispField.md) — Kodama wisps: white-aqua flames with a blue halo and twinkling sparks. They fade in when scrolled into view, flicker and drift, and rise away as the page scrolls. Decorative.
 - [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.
@@ -47,7 +48,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [SiteHeader](organisms/SiteHeader.md) — The top bar: aqua wordmark (links home) and NavMenu. Sticks to the top, slides away when scrolling down and returns when scrolling up.
 - [Hero](organisms/Hero.md) — The homepage opening. The giant wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
 - [NameHero](organisms/NameHero.md) — The Our Story opening: the name as an equation. Two terms (word + meaning) joined by pink drops with + and =, then the result as the giant wordmark; the final letter drops in last, in pink, with its note. Then the intro paragraph.
-- [PageIntro](organisms/PageIntro.md) — The opening of a simple page: a small pink label with a drop, the h1 as a large statement, and an intro paragraph, rising in turn.
+- [PageIntro](organisms/PageIntro.md) — The opening of a simple page or an article: optional back link, a small pink label with a drop, the h1 as a large statement, an intro paragraph and an optional meta line, rising in turn.
 - [OfferSection](organisms/OfferSection.md) — The offer, on the bright surface: sticky aside with title, price and button; numbered items, covered tags and a closing statement on the right.
 - [ProofSection](organisms/ProofSection.md) — Evidence: a large statement question, a row of counting figures between hairlines, and the sourced quotation.
 - [TestimonialsSection](organisms/TestimonialsSection.md) — Client voices with a sticky aside (pink drop and 01 / 03 counter). The quote in the middle of the screen is in focus; the others step back.
