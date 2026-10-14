@@ -4,7 +4,7 @@
 
 ## What it is
 
-The page template. It sets up the document (language, title, description), loads the fonts, tokens and base styles, adds a “Skip to content” link for keyboard users, lays the Grain texture over the page, and wraps the page between SiteHeader and SiteFooter. It also runs the fade-up reveal: any element with `data-reveal` fades up when scrolled into view (only when motion is allowed; content stays visible otherwise).
+The page template. It sets up the document (language, title, description), loads the fonts, tokens and base styles, adds a “Skip to content” link for keyboard users, lays the Grain texture over the page, and wraps the page between SiteHeader and SiteFooter. It links the favicon (`public/favicon.svg`: a kodama wisp on navy whose flame flickers where the browser animates SVG favicons, Firefox today; still elsewhere), the home-screen icon (`public/apple-touch-icon.png`, a still 180px render of it) and the navy theme colour. It also runs the fade-up reveal: any element with `data-reveal` fades up when scrolled into view (only when motion is allowed; content stays visible otherwise).
 
 ## When to use it
 
