@@ -58,7 +58,9 @@ const Tag = `h${level}` as 'h3';
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		column-gap: var(--layout-col-gap);
 		row-gap: var(--space-6);
-		align-items: center;
+		/* Top-aligned, so opening "Read more" only grows downwards: the photo
+		   and the text above the accordion stay where they are */
+		align-items: start;
 	}
 	.profile__photo {
 		grid-column: 1 / span 5;

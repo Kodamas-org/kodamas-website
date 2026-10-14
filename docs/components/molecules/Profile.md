@@ -27,7 +27,7 @@ Our Story. Alternate `reverse` between profiles.
 
 ## Variants
 
-Normal or reversed. Stacks on mobile.
+Normal or reversed. Photo and text are top-aligned, so opening “Read more” only grows downwards. Stacks on mobile.
 
 ## Tokens used
 
