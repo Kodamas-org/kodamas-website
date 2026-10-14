@@ -1,8 +1,8 @@
 ---
 // Living styleguide: tokens and every component with its variants.
 // Colours are read straight from tokens.css so they can never drift.
-// Hero and NameHero contain a page h1, so they are shown on their pages
-// (/ and /about) instead of here.
+// Hero, NameHero and PageIntro contain a page h1, so they are shown on their
+// pages (/, /about and /blogfolio) instead of here.
 import tokensCss from '../styles/tokens.css?raw';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -31,6 +31,7 @@ import Testimonial from '../components/molecules/Testimonial.astro';
 import PersonCard from '../components/molecules/PersonCard.astro';
 import Profile from '../components/molecules/Profile.astro';
 import Principle from '../components/molecules/Principle.astro';
+import CaseStudy from '../components/molecules/CaseStudy.astro';
 import DropCluster from '../components/molecules/DropCluster.astro';
 import Marquee from '../components/molecules/Marquee.astro';
 import FooterLink from '../components/molecules/FooterLink.astro';
@@ -343,6 +344,12 @@ const radii = ['s', 'pill', 'drop'];
 			</div>
 
 			<div class="sg__demo">
+				<Eyebrow as="h3">CaseStudy</Eyebrow>
+				<CaseStudy label="Case_1" title="A case title, as an aqua link" href="#" level={4}>A one-line summary of the case.</CaseStudy>
+				<CaseStudy label="Case_2" title="Reversed: photo on the right" href="#" reverse level={4}>A one-line summary.</CaseStudy>
+			</div>
+
+			<div class="sg__demo">
 				<Eyebrow as="h3">DropCluster</Eyebrow>
 				<DropCluster />
 			</div>
@@ -363,8 +370,9 @@ const radii = ['s', 'pill', 'drop'];
 		<section class="sg__section" aria-labelledby="organisms">
 			<Heading level={2} id="organisms">Organisms</Heading>
 			<Text tone="muted">
-				SiteHeader and SiteFooter frame this page. Hero is on <Link href="/">the homepage</Link> and NameHero on
-				<Link href="/about">Our Story</Link> (both hold the page’s h1). The rest follow, full width.
+				SiteHeader and SiteFooter frame this page. Hero is on <Link href="/">the homepage</Link>, NameHero on
+				<Link href="/about">Our Story</Link> and PageIntro on <Link href="/blogfolio">Blogfolio</Link> (they hold the
+				page’s h1). The rest follow, full width.
 			</Text>
 		</section>
 	</Container>

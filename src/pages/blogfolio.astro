@@ -1,0 +1,79 @@
+---
+// Blogfolio. Built from the shared system, in the homepage's design
+// direction. Copy from reference/kodamas-blog-page.png, word for word.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/organisms/PageIntro.astro';
+import CallToActionSection from '../components/organisms/CallToActionSection.astro';
+import Section from '../components/molecules/Section.astro';
+import CaseStudy from '../components/molecules/CaseStudy.astro';
+import { links } from '../data/links';
+
+const cases = [
+	{
+		label: 'Case_1',
+		title: 'Bug Reporting Workflow Optimization',
+		href: links.caseBugReporting,
+		summary: 'How We Built a Seamless, Automated System That Scales',
+	},
+	{
+		label: 'Case_2',
+		title: 'From B2C to B2B: Launching a Successful Global Advertising Platform for Restaurants',
+		href: links.caseRestaurantAds,
+		summary: 'How We Built and Scaled a B2B Advertising Platform from Scratch',
+	},
+	{
+		label: 'Case_3',
+		title: 'Integrated Roadmap for B2C and B2B: Aligning Vision with Execution',
+		href: links.caseIntegratedRoadmap,
+		summary: 'How We Created a Strategic Roadmap for Full-Team Alignment',
+	},
+];
+---
+
+<BaseLayout
+	title="Blogfolio · Kodamas"
+	description="Before Kodamas, we helped build, fix, and grow digital products around the world. Here, we share what we learned and what we are learning."
+>
+	<PageIntro label="Welcome to our Blogfolio">
+		<Fragment slot="title">Notes from the <em>Doing</em></Fragment>
+		Before Kodamas, we helped build, fix, and grow digital products around the world. Here, we share what we learned and
+		what we are learning.
+	</PageIntro>
+
+	<Section num="01">
+		<ol class="cases" role="list">
+			{
+				cases.map((c, i) => (
+					<li>
+						<CaseStudy label={c.label} title={c.title} href={c.href} reverse={i % 2 === 1}>
+							{c.summary}
+						</CaseStudy>
+					</li>
+				))
+			}
+		</ol>
+	</Section>
+
+	<div class="cta-gap">
+		<CallToActionSection
+			num="02"
+			title="Want your delivery management to be aligned and effortless?"
+			cta={{ label: 'Connect With Us', href: links.connect }}
+		>
+			<p>At <strong>Kodamas</strong>, we help teams move faster, collaborate better, and sale with ease.</p>
+			<p>If your internal delivery ops feel like chaos, let’s turn them into clarity.</p>
+		</CallToActionSection>
+	</div>
+</BaseLayout>
+
+<style>
+	.cases {
+		display: flex;
+		flex-direction: column;
+		gap: var(--layout-section);
+	}
+	/* The bright section follows a navy one: keep the one section gap above it */
+	.cta-gap {
+		margin-top: var(--layout-section);
+	}
+</style>

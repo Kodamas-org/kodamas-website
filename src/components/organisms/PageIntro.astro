@@ -1,0 +1,71 @@
+---
+// The opening of a simple page (e.g. Blogfolio): a small pink label with a
+// drop, the page title as the h1 set as a large statement (key word in <em>
+// turns aqua bold), and an intro paragraph. Each part rises in turn.
+// label: the small label above the title
+// Slots: "title" (the h1 content), default (the intro paragraph)
+import Container from '../atoms/Container.astro';
+import Drop from '../atoms/Drop.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+
+interface Props {
+	label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="page-intro">
+	<Container>
+		<p class="page-intro__label" style="--step: 0"><Drop size="s" /><Eyebrow as="span">{label}</Eyebrow></p>
+		<div class="page-intro__title" style="--step: 1">
+			<Heading level={1} size="statement"><slot name="title" /></Heading>
+		</div>
+		<p class="page-intro__lead" style="--step: 2"><slot /></p>
+	</Container>
+</div>
+
+<style>
+	.page-intro {
+		padding-top: var(--space-8);
+	}
+	.page-intro__label {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		color: var(--color-number);
+	}
+	.page-intro__title {
+		margin-top: var(--space-6);
+	}
+	.page-intro__lead {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-7);
+		margin-left: auto;
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+		text-wrap: pretty;
+	}
+
+	/* ---------- Motion: label, title, intro rise one beat apart ---------- */
+	.page-intro__label,
+	.page-intro__title,
+	.page-intro__lead {
+		animation: page-intro-rise var(--duration-rise) var(--ease-standard) both;
+		animation-delay: calc(var(--step) * var(--duration-beat) / 2);
+	}
+	@keyframes page-intro-rise {
+		from {
+			opacity: 0;
+			transform: translateY(30%);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.page-intro__label,
+		.page-intro__title,
+		.page-intro__lead {
+			animation: none;
+		}
+	}
+</style>

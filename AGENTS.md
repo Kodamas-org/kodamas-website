@@ -32,7 +32,7 @@ src/
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
-  pages/                 routes: index.astro (home), about.astro (Our Story), styleguide.astro
+  pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio.astro (Blogfolio), styleguide.astro
   data/links.ts          every link URL on the site
 docs/
   design-tokens.md       every token, with values and usage

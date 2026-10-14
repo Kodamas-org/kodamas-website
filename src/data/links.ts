@@ -3,7 +3,10 @@
 
 export const links = {
 	home: '/',
-	blogfolio: '#',
+	blogfolio: '/blogfolio',
+	caseBugReporting: '#',
+	caseRestaurantAds: '#',
+	caseIntegratedRoadmap: '#',
 	ourStory: '/about',
 	connect: '#',
 	bookCall: '#',

@@ -1,0 +1,128 @@
+---
+// A Blogfolio entry: a drop-shaped photo on one side; on the other, the case
+// label with a small pink drop, the title as an aqua link with an arrow, and
+// a one-line summary. The whole card is clickable through the title link.
+// reverse: photo on the right instead of the left (alternate entries)
+// photo: image URL (omit for the "photo needed" placeholder)
+// Slot default: the summary
+import Avatar from '../atoms/Avatar.astro';
+import Drop from '../atoms/Drop.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+
+interface Props {
+	label: string;
+	title: string;
+	href: string;
+	photo?: string;
+	alt?: string;
+	reverse?: boolean;
+	level?: 2 | 3 | 4;
+}
+
+const { label, title, href, photo, alt = '', reverse = false, level = 2 } = Astro.props;
+const Tag = `h${level}` as 'h2';
+---
+
+<article class:list={['case-study', { 'case-study--reverse': reverse }]} data-reveal>
+	<div class="case-study__photo">
+		<Avatar name={title} src={photo} alt={alt} shape="drop" size="l" />
+	</div>
+	<div class="case-study__body">
+		<p class="case-study__label"><Drop size="s" /><Eyebrow as="span">{label}</Eyebrow></p>
+		<Tag class="case-study__title">
+			<a class="case-study__link" href={href}>{title}<span class="case-study__arrow" aria-hidden="true">→</span></a>
+		</Tag>
+		<p class="case-study__summary"><slot /></p>
+	</div>
+</article>
+
+<style>
+	.case-study {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+		row-gap: var(--space-6);
+		align-items: center;
+	}
+	.case-study__photo {
+		grid-column: 1 / span 4;
+	}
+	.case-study__photo > :global(.avatar) {
+		max-width: none;
+	}
+	.case-study:hover .case-study__photo > :global(.avatar) {
+		border-radius: var(--radius-round);
+	}
+	.case-study__body {
+		grid-column: 6 / -1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-4);
+	}
+	.case-study--reverse .case-study__photo {
+		grid-column: 9 / -1;
+		grid-row: 1;
+	}
+	.case-study--reverse .case-study__body {
+		grid-column: 1 / span 7;
+		grid-row: 1;
+	}
+	.case-study__label {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		color: var(--color-number);
+	}
+	.case-study__title {
+		font-family: var(--font-display);
+		font-size: var(--font-size-heading-2);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-display);
+		text-wrap: balance;
+	}
+	.case-study__link {
+		color: var(--color-accent);
+		text-decoration-line: underline;
+		text-decoration-thickness: var(--border-width-thin);
+		text-underline-offset: var(--size-underline-offset);
+	}
+	/* The whole card is the link's hit area */
+	.case-study__link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+	.case-study__link:hover {
+		text-decoration-thickness: var(--border-width-medium);
+	}
+	.case-study__arrow {
+		display: inline-block;
+		margin-left: var(--space-3);
+		text-decoration: none;
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.case-study:hover .case-study__arrow {
+		transform: translateX(var(--space-2));
+	}
+	.case-study__summary {
+		max-width: var(--layout-text-max);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+	}
+
+	@media (max-width: 48rem) {
+		.case-study__photo,
+		.case-study__body,
+		.case-study--reverse .case-study__photo,
+		.case-study--reverse .case-study__body {
+			grid-column: 1 / -1;
+			grid-row: auto;
+		}
+		.case-study__photo {
+			max-width: var(--size-avatar-l);
+		}
+	}
+</style>
