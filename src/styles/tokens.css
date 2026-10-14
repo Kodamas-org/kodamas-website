@@ -110,6 +110,7 @@
 	--size-drop-m: 4.5rem;
 	--size-drop-equation: var(--size-drop-m); /* + and = drops in NameHero */
 	--size-wisp: 2.25rem; /* base width of a wisp flame */
+	--size-wisp-s: 1.5rem; /* smaller wisps where space is tight (Blogfolio on mobile) */
 	--size-wisp-blur: 0.1rem;
 	--size-spark: 0.1875rem;
 	--size-drop-cluster: clamp(7.5rem, 3rem + 15vw, 17rem);

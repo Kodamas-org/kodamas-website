@@ -153,6 +153,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-drop-m` | `4.5rem` |  |
 | `--size-drop-equation` | `var(--size-drop-m)` | The + and = drops in `NameHero` |
 | `--size-wisp` | `2.25rem` | Base width of a wisp flame (WispField) |
+| `--size-wisp-s` | `1.5rem` | Smaller wisps where space is tight (Blogfolio on mobile) |
 | `--size-wisp-blur` | `0.1rem` | Softness of a wisp flame’s edge |
 | `--size-spark` | `0.1875rem` | A twinkling spark beside the wisps |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |

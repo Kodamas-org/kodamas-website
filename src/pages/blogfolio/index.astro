@@ -33,6 +33,7 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 	</div>
 
 	<Section num="01">
+		<div class="cases__wisps"><div class="cases__wisps-field"><WispField /></div></div>
 		<ol class="cases" role="list">
 			{
 				posts.map(({ id, data }, i) => (
@@ -80,12 +81,28 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 		width: 40%;
 		height: var(--space-10);
 	}
-	/* Mobile: the title spans the width, so the wisps sit in the gap below the intro */
+	/* Mobile: the title spans the width, so the wisps move down beside the
+	   first case photo, smaller */
+	.cases__wisps {
+		display: none;
+	}
 	@media (max-width: 48rem) {
 		.intro__wisps {
-			top: 100%;
-			width: 70%;
-			height: var(--layout-section);
+			display: none;
+		}
+		/* A zero-height anchor at the top of the list, beside the first photo */
+		.cases__wisps {
+			display: block;
+			position: relative;
+			height: 0;
+		}
+		.cases__wisps-field {
+			--size-wisp: var(--size-wisp-s);
+			position: absolute;
+			top: 0;
+			right: var(--space-6);
+			width: 40%;
+			height: var(--space-10);
 		}
 	}
 	.cases {

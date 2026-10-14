@@ -8,7 +8,7 @@ Kodama wisps, the spirit lights from the forest that inspired the palette: small
 
 ## When to use it
 
-A few times per page, in empty space, as a quiet touch of magic: never over text. It fills its container, so the parent positions and sizes it. In use: Blogfolio intro (group), homepage “Why is streamlining…” (pair, via `ProofSection wisps`), Our Story beside “the spirit of the tree” (pair, via `NameHero wisps`).
+A few times per page, in empty space, as a quiet touch of magic: never over text. It fills its container, so the parent positions and sizes it. In use: Blogfolio intro (group; on mobile it moves beside the first case photo, smaller via `--size-wisp: var(--size-wisp-s)` on the wrapper), homepage “Why is streamlining…” (pair, via `ProofSection wisps`), Our Story beside “the spirit of the tree” (pair, via `NameHero wisps`).
 
 ## Props
 
