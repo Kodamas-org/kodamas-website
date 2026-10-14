@@ -1,0 +1,90 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A simple workflow for small teams (and why it's never about the columns)",
+      "description": "How to build a simple workflow for small teams and solo founders with Trello or free tools, recurring meetings and a process you keep renegotiating.",
+      "datePublished": "2026-10-12",
+      "dateModified": "2026-10-12",
+      "inLanguage": "en",
+      "keywords": [
+        "simple workflow for small teams",
+        "Trello workflow for small teams",
+        "free project management tools for small teams",
+        "weekly team meeting agenda",
+        "do small teams need processes",
+        "workflow for solo founders"
+      ],
+      "mainEntityOfPage": "https://kodamas.io/blog/simple-workflow-for-small-teams",
+      "author": {
+        "@type": "Person",
+        "name": "Daniela Contessa",
+        "jobTitle": "Co-founder",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Kodamas",
+          "url": "https://kodamas.io"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kodamas",
+        "url": "https://kodamas.io"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do small teams really need a process?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, a small one. Even three people produce a lot of documents, accesses and decisions, and without a few shared agreements everything ends up in the founder's head. You don't need a PM or a framework, just a small set of good practices that the team agrees on and reviews."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a simple workflow for a small team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's a short list of agreements: where tasks live (for example a Trello board), where documents live, who has access to which tools, when the team meets and what gets decided there. It should be simple enough that everyone can explain it without opening a document."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I set up a Trello board for a small team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Look at how your team works first, then choose the columns. Some teams organise by product area, others by type of work or by client. Ours has \"Website\", \"Sales & marketing\", \"Recurring\" and \"Archive\", and it changes when our work changes. There is no right set of columns, only the one that fits your team now."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Trello's free plan enough for a small team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most small teams, yes. The main limit to know is that free Trello workspaces can have up to 10 collaborators, guests and pending invitations included. If you grow beyond that, you'll need a paid plan or a different tool."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should a small team have recurring meetings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As often as you have something to decide. If you are meeting to decide when to meet, that's too often. We started with three 30-minute meetings a week and moved to two when we noticed we kept cancelling one. If meetings get cancelled regularly, that's the signal to change the rhythm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should you review your workflow?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Whenever the signals show up: cancelled meetings, people asking how to access things, bugs reported in DMs, a founder who doesn't know who is working on what. A regular moment to ask \"is this still working for us?\" helps, but listening to those signals matters more than the calendar."
+          }
+        }
+      ]
+    }
+  ]
+}

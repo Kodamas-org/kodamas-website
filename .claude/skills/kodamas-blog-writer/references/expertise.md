@@ -4,9 +4,8 @@
 
 Daniela Contessa, co-founder of Kodamas with Emma.
 
-- 10 years of experience in web and native app design, B2B and B2C.
-- Roles: UI/UX designer, PM and Head of Product at small companies.
-- **Head of Product at HappyCow** and **Product Lead at Work for Impact**.
+- Many years of experience in web and native app design, B2B and B2C (never state the number of years in articles; see `learned-corrections.md`).
+- Roles: UI/UX designer, PM, Head of Product and Product Lead at small companies. (Internal context only: she was Head of Product at HappyCow and Product Lead at Work for Impact. **Never name these or any other company in articles, posts or the author note**; see `learned-corrections.md`.)
 - Her recurring path: she joined companies as a designer and ended up as project manager. She gave structure to documentation and created workflows where everything was in the founder's head, and coordinated developers, marketing, sales and customer support.
 
 Use these facts for the author bio and to make authorship clear. Don't add other roles, companies, numbers or achievements unless Daniela gives them.
