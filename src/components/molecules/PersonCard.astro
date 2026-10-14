@@ -18,7 +18,7 @@ const { name, role, org, nationality, flag, photo } = Astro.props;
 
 <article class="person-card" data-reveal>
 	<div class="person-card__frame">
-		<Avatar name={name} src={photo} shape="drop" size="l" />
+		<Avatar name={name} src={photo} shape="drop" size="l" sizes="(max-width: 48rem) 70vw, 22rem" />
 		<span class="person-card__flag" aria-hidden="true">{flag}</span>
 	</div>
 	<h3 class="person-card__name">{name}</h3>

@@ -8,6 +8,9 @@ label: 'Case_1'
 photo: '../../assets/blog/bug-reporting-workflow-optimization.jpg'
 photoAlt: 'A dragonfly resting on a rope against a pale sky'
 photoFocus: '80% 50%'
+photoCredit:
+  name: 'Utsav Srestha'
+  href: 'https://unsplash.com/photos/nzGSgl9u3Ak'
 order: 1
 cta:
   title: 'Want to optimize your internal workflows?'

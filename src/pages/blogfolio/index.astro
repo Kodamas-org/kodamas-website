@@ -44,6 +44,8 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 							photo={data.photo}
 							alt={data.photoAlt}
 							focus={data.photoFocus}
+							credit={data.photoCredit}
+							priority={i === 0}
 							reverse={i % 2 === 1}
 						>
 							{data.summary}

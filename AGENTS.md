@@ -40,6 +40,7 @@ src/
   data/photos.ts         every portrait, imported from assets/people/
   assets/                photos: people/ (portraits) and blog/ (article photos, named like the article)
 public/_redirects        Netlify redirects from the old Squarespace addresses
+public/_headers          Netlify cache headers (hashed /_astro/ files cached for a year)
 docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level
@@ -109,10 +110,16 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 - **Ask the owner before every push** — a push to `main` deploys to Netlify.
 - Never force-push. Never delete the GitHub repo or the Netlify site.
 
+## Images and speed
+
+- Put photos in `src/assets/` (never `public/`) and pass the imported image to `Avatar` (or a component using it): Astro sends AVIF with a WebP fallback at the right width, never the original.
+- Pass `sizes` for how wide the photo really shows, and `priority` only for a photo visible on load; everything else loads lazily.
+- Every photo and pink drop carries the moving film grain (`grain-shift` in `global.css`).
+
 ## Blog articles
 
 - Each article is a Markdown file in `src/content/blog/`; the file name is the slug, so `my-article.md` is published at `/blogfolio/my-article` and listed on `/blogfolio` automatically.
-- The frontmatter is the kodamas-blog-writer format (`content-drafts/README.md`); the fields the site uses are in `src/content.config.ts` (`title`, `description`, `summary`, `cardTitle`, `seoTitle`, `label`, `date`, `author`, `photo` (path to `src/assets/blog/<slug>.jpg`, relative to the Markdown file), `photoAlt`, `photoFocus`, `order`, `status`, `cta`). Other draft fields are ignored.
+- The frontmatter is the kodamas-blog-writer format (`content-drafts/README.md`); the fields the site uses are in `src/content.config.ts` (`title`, `description`, `summary`, `cardTitle`, `seoTitle`, `label`, `date`, `author`, `photo` (path to `src/assets/blog/<slug>.jpg`, relative to the Markdown file), `photoAlt`, `photoFocus`, `photoCredit` ({ name, href }: shown as “Photo by …” under the photo), `order`, `status`, `cta`). Other draft fields are ignored.
 - To publish a final draft: copy `content-drafts/articles/<slug>.md` into `src/content/blog/`, add `summary` (the line under the title), and turn `<!-- IMAGE: … -->` notes into real images or remove them. `status: draft` keeps an article out of the build.
 - Articles start at `##` (the page title is the h1); every `##` becomes a numbered part. A `>` quote is the pull statement.
 - When an old address changes, add a line to `public/_redirects`.

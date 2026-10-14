@@ -97,3 +97,27 @@ ol[role='list'] {
 		transition-duration: 0.01ms !important;
 	}
 }
+
+/* Film grain that moves like film: the noise texture jumps to a new place
+   each step. Used by photos (Avatar) and the pink drops (Drop,
+   DropCluster) on a ::after layer with --texture-grain-photo. */
+@keyframes grain-shift {
+	0% {
+		background-position: 0 0;
+	}
+	17% {
+		background-position: 37% 61%;
+	}
+	33% {
+		background-position: 83% 12%;
+	}
+	50% {
+		background-position: 19% 88%;
+	}
+	67% {
+		background-position: 64% 33%;
+	}
+	83% {
+		background-position: 7% 46%;
+	}
+}

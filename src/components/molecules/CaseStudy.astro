@@ -5,6 +5,8 @@
 // reverse: photo on the right instead of the left (alternate entries)
 // photo: imported image or URL (omit for the "photo needed" placeholder)
 // focus: which part of the photo stays in the drop crop (object-position)
+// credit: the photographer, shown under the photo ("Photo by …", linked)
+// priority: true for the first entry, visible on load
 // Slot default: the summary
 import type { ImageMetadata } from 'astro';
 import Avatar from '../atoms/Avatar.astro';
@@ -18,17 +20,35 @@ interface Props {
 	photo?: ImageMetadata | string;
 	alt?: string;
 	focus?: string;
+	credit?: { name: string; href: string };
+	priority?: boolean;
 	reverse?: boolean;
 	level?: 2 | 3 | 4;
 }
 
-const { label, title, href, photo, alt = '', focus, reverse = false, level = 2 } = Astro.props;
+const { label, title, href, photo, alt = '', focus, credit, priority = false, reverse = false, level = 2 } = Astro.props;
 const Tag = `h${level}` as 'h2';
 ---
 
 <article class:list={['case-study', { 'case-study--reverse': reverse }]} data-reveal>
 	<div class="case-study__photo">
-		<Avatar name={title} src={photo} alt={alt} focus={focus} shape="drop" size="l" />
+		<Avatar
+			name={title}
+			src={photo}
+			alt={alt}
+			focus={focus}
+			priority={priority}
+			sizes="(max-width: 48rem) 12.5rem, min(33vw, 26rem)"
+			shape="drop"
+			size="l"
+		/>
+		{
+			photo && credit && (
+				<p class="case-study__credit">
+					Photo by <a href={credit.href}>{credit.name}</a>
+				</p>
+			)
+		}
 	</div>
 	<div class="case-study__body">
 		{
@@ -63,6 +83,21 @@ const Tag = `h${level}` as 'h2';
 	}
 	.case-study:hover .case-study__photo > :global(.avatar) {
 		border-radius: var(--radius-round);
+	}
+	/* Above the card's link area, so the credit link stays clickable */
+	.case-study__credit {
+		position: relative;
+		z-index: var(--z-raised);
+		margin-top: var(--space-3);
+		font-size: var(--font-size-small);
+		color: var(--color-text-muted);
+	}
+	.case-study__credit a {
+		color: inherit;
+		text-underline-offset: var(--size-underline-offset);
+	}
+	.case-study__credit a:hover {
+		color: var(--color-accent);
 	}
 	.case-study__body {
 		grid-column: 6 / -1;

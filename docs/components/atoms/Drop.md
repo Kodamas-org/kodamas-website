@@ -23,9 +23,11 @@ Markers, the name equation operators, anywhere the brand shape is used as a smal
 
 Three tones, optional symbol.
 
+The pink tone carries the same moving film grain as the photos (`--texture-grain-photo`, `grain-shift`), still for reduced motion.
+
 ## Tokens used
 
-`--border-width-medium`, `--color-aqua-glow`, `--color-white`, `--gradient-drop`, `--radius-drop`, `--size-drop-m`, `--size-drop-s`, `--size-drop-xs`
+`--border-width-medium`, `--color-aqua-glow`, `--color-white`, `--gradient-drop`, `--radius-drop`, `--size-drop-m`, `--size-drop-s`, `--size-drop-xs`, `--duration-grain`, `--opacity-grain-photo`, `--texture-grain-photo`
 
 ## Example
 

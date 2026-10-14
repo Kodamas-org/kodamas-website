@@ -7,6 +7,9 @@ label: 'Case_2'
 photo: '../../assets/blog/from-b2c-to-b2b.jpg'
 photoAlt: 'A praying mantis with raised forelegs on a mossy log'
 photoFocus: '45% 50%'
+photoCredit:
+  name: 'Andrey Tikhonovskiy'
+  href: 'https://unsplash.com/photos/kcMWH-mvOTQ'
 order: 2
 cta:
   title: 'Want to Launch a B2B Product That Sticks?'

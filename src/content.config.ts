@@ -30,6 +30,8 @@ const blog = defineCollection({
 			photoAlt: z.string().optional(),
 			// Which part of the photo stays in the drop crop (object-position)
 			photoFocus: z.string().optional(),
+			// The photographer, credited under the photo ("Photo by …")
+			photoCredit: z.object({ name: z.string(), href: z.string().url() }).optional(),
 			// Position in the Blogfolio list (lower first); then newest first
 			order: z.number().optional(),
 			// Drafts are not built

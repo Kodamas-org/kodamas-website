@@ -2,7 +2,8 @@
 // The Kodamas drop: a shape with a square top-left corner and three rounded
 // corners. Decorative only, so it is hidden from screen readers.
 // size: 'xs' (footer mark), 's' (markers, compact counter), 'm' (quote mark)
-// tone: 'pink' (pink gradient), 'aqua' (solid aqua) or 'outline' (aqua line)
+// tone: 'pink' (pink gradient with the moving film grain of the photos),
+//       'aqua' (solid aqua) or 'outline' (aqua line)
 // symbol: an optional '+' or '=' drawn inside (used by the name equation)
 interface Props {
 	size?: 'xs' | 's' | 'm';
@@ -50,7 +51,26 @@ const { size = 's', tone = 'pink', symbol, class: className } = Astro.props;
 		width: var(--size-drop-m);
 	}
 	.drop--pink {
+		position: relative;
+		overflow: hidden;
 		background: var(--gradient-drop);
+	}
+	/* The same moving film grain as the photos (still for reduced motion) */
+	.drop--pink::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background-image: var(--texture-grain-photo);
+		opacity: var(--opacity-grain-photo);
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		animation: grain-shift var(--duration-grain) steps(1) infinite;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.drop--pink::after {
+			animation: none;
+		}
 	}
 	.drop--aqua {
 		background: var(--color-aqua-glow);

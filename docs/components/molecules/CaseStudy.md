@@ -20,6 +20,8 @@ The Blogfolio list, one per `<li>`, alternating `reverse`. The page builds it fr
 | `photo` | imported image · URL | — | The photo (the article’s `photo`); omitted shows the “photo needed” placeholder. |
 | `focus` | object-position | — | Which part of the photo stays in the drop crop (the article’s `photoFocus`, e.g. `80% 50%`). |
 | `alt` | text | `''` | Photo description; empty when decorative (the title already names the case). |
+| `credit` | { name, href } | — | The photographer, shown under the photo as “Photo by {name}” (linked; the article’s `photoCredit`). |
+| `priority` | true / false | false | The first entry: its photo loads first. |
 | `reverse` | boolean | false | Photo on the right. |
 | `level` | 2 · 3 · 4 | 2 | Title heading level. |
 | (content) | text | — | The one-line summary. |
@@ -30,7 +32,7 @@ Default (photo left, columns 1–4) and `reverse` (photo right, columns 9–12).
 
 ## Tokens used
 
-`--border-width-medium`, `--border-width-thin`, `--color-accent`, `--color-number`, `--duration-base`, `--ease-standard`, `--font-display`, `--font-size-heading-2`, `--font-size-lead`, `--font-weight-bold`, `--layout-col-gap`, `--layout-text-max`, `--letter-spacing-display`, `--line-height-heading`, `--line-height-lead`, `--radius-round`, `--size-avatar-l`, `--size-underline-offset`, `--space-2`, `--space-3`, `--space-4`, `--space-6`
+`--border-width-medium`, `--border-width-thin`, `--color-accent`, `--color-number`, `--color-text-muted`, `--duration-base`, `--ease-standard`, `--font-display`, `--font-size-heading-2`, `--font-size-lead`, `--font-size-small`, `--font-weight-bold`, `--layout-col-gap`, `--layout-text-max`, `--letter-spacing-display`, `--line-height-heading`, `--line-height-lead`, `--radius-round`, `--size-avatar-l`, `--size-underline-offset`, `--space-2`, `--space-3`, `--space-4`, `--space-6`, `--z-raised`
 
 ## Example
 

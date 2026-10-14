@@ -20,9 +20,11 @@ The homepage hero.
 
 Float stops for reduced motion. The inset percentages are fixed symbol geometry.
 
+The pink drop carries the same moving film grain as the photos (`--texture-grain-photo`, `grain-shift`), still for reduced motion.
+
 ## Tokens used
 
-`--border-width-medium`, `--color-aqua-glow`, `--duration-float`, `--ease-drift`, `--gradient-drop`, `--radius-drop`, `--size-drop-cluster`, `--space-4`
+`--border-width-medium`, `--color-aqua-glow`, `--duration-float`, `--ease-drift`, `--gradient-drop`, `--radius-drop`, `--size-drop-cluster`, `--space-4`, `--duration-grain`, `--opacity-grain-photo`, `--texture-grain-photo`
 
 ## Example
 

@@ -5,6 +5,9 @@
 import '@fontsource-variable/funnel-display';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/inter/wght-italic.css';
+// The two fonts every page shows on load, preloaded so text appears sooner
+import funnelDisplayLatin from '@fontsource-variable/funnel-display/files/funnel-display-latin-wght-normal.woff2?url';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import '../styles/tokens.css';
 import '../styles/global.css';
 import SiteHeader from '../components/organisms/SiteHeader.astro';
@@ -27,6 +30,8 @@ const { title, description, noindex = false } = Astro.props;
 		<meta name="description" content={description} />
 		{noindex && <meta name="robots" content="noindex" />}
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preload" href={funnelDisplayLatin} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="theme-color" content="#1a2231" />

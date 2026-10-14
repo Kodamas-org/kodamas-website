@@ -7,6 +7,9 @@ label: 'Case_3'
 photo: '../../assets/blog/integrated-roadmap-for-b2c-and-b2b.jpg'
 photoAlt: 'A ladybird climbing a thin twig'
 photoFocus: '60% 50%'
+photoCredit:
+  name: 'Dmytro Koplyk'
+  href: 'https://unsplash.com/photos/atTqc0mvIkI'
 order: 3
 cta:
   title: 'Want to align your team around a unified roadmap?'

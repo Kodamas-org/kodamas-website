@@ -28,7 +28,7 @@ const Tag = `h${level}` as 'h3';
 
 <article class:list={['profile', { 'profile--reverse': reverse }]}>
 	<div class="profile__photo" data-reveal>
-		<Avatar name={fullName} src={photo} shape="drop" size="l" />
+		<Avatar name={fullName} src={photo} shape="drop" size="l" sizes="(max-width: 48rem) 16rem, min(40vw, 32rem)" />
 	</div>
 	<div class="profile__body" data-reveal>
 		<Tag class="profile__name">{name}{zone && <Clock zone={zone} />}</Tag>

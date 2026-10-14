@@ -2,6 +2,7 @@
 // The brand symbol: a large pink drop, an aqua outline drop and a small aqua
 // drop, overlapping and floating slowly. Decorative. The float stops for
 // reduced motion. Its size comes from --size-drop-cluster.
+// The pink drop carries the moving film grain of the photos.
 // The inset percentages are the symbol's fixed geometry.
 ---
 
@@ -25,8 +26,21 @@
 	}
 	.drop-cluster__shape--pink {
 		inset: 0 0 18% 18%;
+		overflow: hidden;
 		background: var(--gradient-drop);
 		transform: rotate(180deg);
+	}
+	/* The same moving film grain as the photos */
+	.drop-cluster__shape--pink::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background-image: var(--texture-grain-photo);
+		opacity: var(--opacity-grain-photo);
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		animation: grain-shift var(--duration-grain) steps(1) infinite;
 	}
 	.drop-cluster__shape--outline {
 		inset: 30% 30% 0 0;
@@ -45,7 +59,8 @@
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
-		.drop-cluster {
+		.drop-cluster,
+		.drop-cluster__shape--pink::after {
 			animation: none;
 		}
 	}
