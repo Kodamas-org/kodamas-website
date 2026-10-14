@@ -31,7 +31,7 @@ src/
   components/atoms/      smallest pieces (Button, Link, Heading, Text, Drop…)
   components/molecules/  combinations of atoms (PersonCard, Testimonial…)
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
-  layouts/               page templates (BaseLayout)
+  layouts/               page templates (BaseLayout; ArticleLayout for every article and the legal page)
   pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio/index.astro (Blogfolio),
                          blogfolio/[slug].astro (one page per article),
                          privacy-policy-terms-of-service.astro, styleguide.astro
@@ -135,6 +135,7 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 
 ## Blog articles
 
+- Every article uses one template, `src/layouts/ArticleLayout.astro` (intro, contents, text, author, call to action): change the layout there, never per article.
 - Each article is a Markdown file in `src/content/blog/`; the file name is the slug, so `my-article.md` is published at `/blogfolio/my-article` and listed on `/blogfolio` automatically.
 - The frontmatter is the kodamas-blog-writer format (`content-drafts/README.md`); the fields the site uses are in `src/content.config.ts` (`title`, `description`, `summary`, `cardTitle`, `seoTitle`, `label`, `date`, `author`, `photo` (path to `src/assets/blog/<slug>.jpg`, relative to the Markdown file), `photoAlt`, `photoFocus`, `photoCredit` ({ name, href }: shown as “Photo by …” under the photo), `order`, `status`, `cta`). Other draft fields are ignored.
 - To publish a final draft: copy `content-drafts/articles/<slug>.md` into `src/content/blog/`, add `summary` (the line under the title), and turn `<!-- IMAGE: … -->` notes into real images or remove them. `status: draft` keeps an article out of the build.

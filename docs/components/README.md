@@ -71,6 +71,7 @@ Things that appear in several places live in one place, so a change there shows 
 - [CallToActionSection](organisms/CallToActionSection.md) — A closing invitation on the bright surface: large title on the left, message and navy button on the right.
 - [SiteFooter](organisms/SiteFooter.md) — The footer: large FooterLink rows, then a bar with the sign-off wordmark, copyright and the legal link.
 
-## Template
+## Templates
 
 - [BaseLayout](layouts/BaseLayout.md) — The page template: head, fonts, tokens, grain, header, footer and the fade-up reveal.
+- [ArticleLayout](layouts/ArticleLayout.md) — The template for every long read (all Blogfolio articles, the legal page): intro, sticky contents beside the text, author block, closing call to action. Change it once, every article changes.

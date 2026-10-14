@@ -1,14 +1,10 @@
 ---
-// A Blogfolio article (case study or blog post), one page per Markdown file
-// in src/content/blog/. Built from the shared system: PageIntro (title,
-// summary, meta), ArticleBody (contents beside the text, the author block
-// under it), then the bright call to action.
+// One page per Blogfolio article (case study or blog post): each Markdown
+// file in src/content/blog/ becomes /blogfolio/<file name>. The layout lives
+// in ArticleLayout, shared by every article; this file only reads the
+// article's data and passes it on.
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/organisms/PageIntro.astro';
-import CallToActionSection from '../../components/organisms/CallToActionSection.astro';
-import ArticleBody from '../../components/organisms/ArticleBody.astro';
-import AuthorCard from '../../components/molecules/AuthorCard.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { getAuthor } from '../../data/authors';
 import { ctas } from '../../data/ctas';
 import { pages } from '../../data/navigation';
@@ -26,20 +22,19 @@ const { Content, headings } = await render(post);
 const cta = typeof data.cta === 'string' ? ctas[data.cta] : (data.cta ?? ctas.delivery);
 const date = data.date?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const author = getAuthor(data.author);
-const meta = [author.name, date].filter(Boolean).join(' · ');
 ---
 
-<BaseLayout title={`${data.seoTitle ?? data.title} · Kodamas`} description={data.description}>
-	<PageIntro label={data.label} back={pages.blogfolio}>
-		<Fragment slot="title">{data.title}</Fragment>
-		{data.summary}
-		{meta && <Fragment slot="meta">{meta}</Fragment>}
-	</PageIntro>
-
-	<ArticleBody headings={headings}>
-		<Content />
-		<AuthorCard slot="after" author={author} />
-	</ArticleBody>
-
-	<CallToActionSection {...cta} />
-</BaseLayout>
+<ArticleLayout
+	title={data.seoTitle ?? data.title}
+	heading={data.title}
+	description={data.description}
+	label={data.label}
+	back={pages.blogfolio}
+	summary={data.summary}
+	meta={[author.name, date].filter(Boolean).join(' · ')}
+	headings={headings}
+	author={author}
+	cta={cta}
+>
+	<Content />
+</ArticleLayout>

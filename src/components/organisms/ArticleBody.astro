@@ -18,6 +18,8 @@ interface Props {
 }
 
 const { headings, tocLabel, last = false } = Astro.props;
+// Rendered first, so an "after" slot that turns out empty adds no space
+const after = Astro.slots.has('after') ? (await Astro.slots.render('after')).trim() : '';
 ---
 
 <Section rule={false} spacing={last ? 'block' : 'top'}>
@@ -27,13 +29,7 @@ const { headings, tocLabel, last = false } = Astro.props;
 		</aside>
 		<article class="article-body__text">
 			<Prose><slot /></Prose>
-			{
-				Astro.slots.has('after') && (
-					<div class="article-body__after">
-						<slot name="after" />
-					</div>
-				)
-			}
+			{after && <div class="article-body__after" set:html={after} />}
 		</article>
 	</div>
 </Section>

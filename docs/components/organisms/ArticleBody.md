@@ -8,7 +8,7 @@ The body of a long read. On desktop the TableOfContents stays sticky in the left
 
 ## When to use it
 
-Every article (`/blogfolio/<slug>`) and the Privacy Policy & Terms of Service page. Put it after PageIntro.
+Inside ArticleLayout, which every article and the legal page use.
 
 ## Props
 
@@ -18,7 +18,7 @@ Every article (`/blogfolio/<slug>`) and the Privacy Policy & Terms of Service pa
 | `last` | true / false | false | Nothing follows it on the page: keeps the section gap below too (the legal page). |
 | `tocLabel` | text | `In this article` | The contents’ title (`On this page` on the legal page). |
 | (content) | rendered Markdown | — | The text, starting at `h2`. |
-| slot "after" | content | — | Under the text, in the same column (the AuthorCard on articles). |
+| slot "after" | content | — | Under the text, in the same column (the AuthorCard on articles). Adds no space when empty. |
 
 ## Variants
 

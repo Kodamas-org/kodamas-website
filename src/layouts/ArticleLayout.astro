@@ -1,0 +1,54 @@
+---
+// The template for every long read: Blogfolio articles and the Privacy
+// Policy & Terms page. One place for their layout, so a change here changes
+// them all: PageIntro (back link, label, title, summary, meta), ArticleBody
+// (the contents sticky beside the text, the author block under it), then
+// the closing call to action.
+// title / description: the page <title> and meta description (search)
+// heading: the h1 (defaults to title); label: small pink label above it
+// back: link above the label (e.g. ← Blogfolio)
+// summary: the line under the title; meta: small line under it
+// headings: from render() / getHeadings(), for the table of contents
+// tocLabel: the contents' title (default "In this article")
+// author: shows the author block under the text
+// cta: the closing call to action; without it the page ends with the text
+// Slot default: the rendered Markdown
+import BaseLayout from './BaseLayout.astro';
+import PageIntro from '../components/organisms/PageIntro.astro';
+import ArticleBody from '../components/organisms/ArticleBody.astro';
+import CallToActionSection from '../components/organisms/CallToActionSection.astro';
+import AuthorCard from '../components/molecules/AuthorCard.astro';
+import type { Author } from '../data/authors';
+import type { Cta } from '../data/ctas';
+
+interface Props {
+	title: string;
+	description: string;
+	heading?: string;
+	label?: string;
+	back?: { label: string; href: string };
+	summary?: string;
+	meta?: string;
+	headings: { depth: number; slug: string; text: string }[];
+	tocLabel?: string;
+	author?: Author;
+	cta?: Cta;
+}
+
+const { title, description, heading = title, label, back, summary, meta, headings, tocLabel, author, cta } = Astro.props;
+---
+
+<BaseLayout title={`${title} · Kodamas`} description={description}>
+	<PageIntro label={label} back={back}>
+		<Fragment slot="title">{heading}</Fragment>
+		{summary}
+		{meta && <Fragment slot="meta">{meta}</Fragment>}
+	</PageIntro>
+
+	<ArticleBody headings={headings} tocLabel={tocLabel} last={!cta}>
+		<slot />
+		{author && <AuthorCard slot="after" author={author} />}
+	</ArticleBody>
+
+	{cta && <CallToActionSection {...cta} />}
+</BaseLayout>

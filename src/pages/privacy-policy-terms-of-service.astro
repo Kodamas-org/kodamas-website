@@ -1,26 +1,21 @@
 ---
-// Privacy Policy & Terms of Service, laid out like an article: PageIntro,
-// then ArticleBody (contents beside the text). The text lives in
-// src/legal/privacy-terms.md; update the date below whenever it changes.
+// Privacy Policy & Terms of Service, on the same template as the articles
+// (ArticleLayout), without author block or call to action. The text lives
+// in src/legal/privacy-terms.md; update the date below whenever it changes.
 // Same address as on the previous site, so existing links keep working.
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageIntro from '../components/organisms/PageIntro.astro';
-import ArticleBody from '../components/organisms/ArticleBody.astro';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
 import { Content, getHeadings } from '../legal/privacy-terms.md';
 
 const updated = '14 October 2026';
 ---
 
-<BaseLayout
-	title="Privacy Policy & Terms of Service · Kodamas"
+<ArticleLayout
+	title="Privacy Policy & Terms of Service"
 	description="Kodamas uses no cookies, no analytics and no forms. What happens to your data when you visit or email us, and the terms for using the site."
+	summary="In short: this website uses no cookies, no analytics and no forms. Here is what happens to your data when you visit or email us, and the terms for using the site."
+	meta={`Last updated: ${updated}`}
+	headings={getHeadings()}
+	tocLabel="On this page"
 >
-	<PageIntro>
-		<Fragment slot="title">Privacy Policy &amp; Terms of Service</Fragment>
-		In short: this website uses no cookies, no analytics and no forms. Here is what happens to your data when you visit
-		or email us, and the terms for using the site.
-		<Fragment slot="meta">Last updated: {updated}</Fragment>
-	</PageIntro>
-
-	<ArticleBody headings={getHeadings()} tocLabel="On this page" last><Content /></ArticleBody>
-</BaseLayout>
+	<Content />
+</ArticleLayout>
