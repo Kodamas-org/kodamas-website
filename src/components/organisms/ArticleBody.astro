@@ -1,0 +1,58 @@
+---
+// The body of a long read (articles, the legal page): the table of contents
+// sticky in the left columns on desktop (an accordion above the text on
+// mobile) beside the text set in Prose on columns 4–10.
+// headings: from render() or getHeadings() (the h2s become the contents)
+// tocLabel: the contents' title (TableOfContents default: "In this article")
+// Slot default: the rendered Markdown
+import Section from '../molecules/Section.astro';
+import Prose from '../molecules/Prose.astro';
+import TableOfContents from '../molecules/TableOfContents.astro';
+
+interface Props {
+	headings: { depth: number; slug: string; text: string }[];
+	tocLabel?: string;
+}
+
+const { headings, tocLabel } = Astro.props;
+---
+
+<Section rule={false}>
+	<div class="article-body">
+		<aside class="article-body__toc">
+			<TableOfContents headings={headings} label={tocLabel} />
+		</aside>
+		<article class="article-body__text">
+			<Prose><slot /></Prose>
+		</article>
+	</div>
+</Section>
+
+<style>
+	.article-body {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		column-gap: var(--layout-col-gap);
+	}
+	/* Desktop: the contents stay in view in the left column */
+	.article-body__toc {
+		grid-column: 1 / span 3;
+		position: sticky;
+		top: var(--layout-sticky-top);
+		align-self: start;
+	}
+	.article-body__text {
+		grid-column: 4 / span 7;
+	}
+	@media (max-width: 64rem) {
+		.article-body__toc,
+		.article-body__text {
+			grid-column: 1 / -1;
+			max-width: var(--layout-text-max);
+		}
+		.article-body__toc {
+			position: static;
+			margin-bottom: var(--space-8);
+		}
+	}
+</style>

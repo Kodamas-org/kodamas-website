@@ -33,8 +33,10 @@ src/
   components/organisms/  full page sections (Hero, OfferSection, SiteFooter…)
   layouts/               page templates (BaseLayout)
   pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio/index.astro (Blogfolio),
-                         blogfolio/[slug].astro (one page per article), styleguide.astro
+                         blogfolio/[slug].astro (one page per article),
+                         privacy-policy-terms-of-service.astro, styleguide.astro
   content/blog/          published articles, one Markdown file each (schema in src/content.config.ts)
+  legal/                 privacy-terms.md, the text of /privacy-policy-terms-of-service
   lib/                   small helpers (inline-markdown.ts)
   data/links.ts          every link URL on the site
   data/photos.ts         every portrait, imported from assets/people/
@@ -109,6 +111,10 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 - Commit at the end of each piece of work with a clear message.
 - **Ask the owner before every push** — a push to `main` deploys to Netlify.
 - Never force-push. Never delete the GitHub repo or the Netlify site.
+
+## Privacy
+
+- The site sets no cookies, stores nothing in the browser, runs no analytics, has no forms and loads nothing from third parties. The Privacy Policy (`src/legal/privacy-terms.md`) says so: adding any of these (or an embed, external font or script) means updating the policy and its date first.
 
 ## Images and speed
 

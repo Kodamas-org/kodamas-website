@@ -4,7 +4,7 @@ One page per component, in plain language. Components follow atomic design: **at
 
 The system comes from the approved homepage design (formerly Test Home): one navy canvas with a single bright aqua moment per page, Funnel Display Light against Bold, editorial section numbers, the drop as the visual system, and motion with meaning that is always pausable and off for reduced motion.
 
-All components are shown live at `/styleguide`, except Hero, NameHero and PageIntro, which hold a page’s h1 and are shown on `/`, `/about` and `/blogfolio`. Token values are listed in [design-tokens.md](../design-tokens.md).
+All components are shown live at `/styleguide`, except Hero, NameHero and PageIntro, which hold a page’s h1 and are shown on `/`, `/about` and `/blogfolio`, and ArticleBody, shown on the articles and the legal page. Token values are listed in [design-tokens.md](../design-tokens.md).
 
 ## Atoms
 
@@ -50,6 +50,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Hero](organisms/Hero.md) — The homepage opening. The giant wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
 - [NameHero](organisms/NameHero.md) — The Our Story opening: the name as an equation. Two terms (word + meaning) joined by pink drops with + and =, then the result as the giant wordmark; the final letter drops in last, in pink, with its note. Then the intro paragraph.
 - [PageIntro](organisms/PageIntro.md) — The opening of a simple page or an article: optional back link, a small pink label with a drop, the h1 as a large statement, an intro paragraph and an optional meta line, rising in turn.
+- [ArticleBody](organisms/ArticleBody.md) — The body of a long read: TableOfContents sticky in the left columns (accordion on mobile) beside the text in Prose. Used by articles and the legal page.
 - [OfferSection](organisms/OfferSection.md) — The offer, on the bright surface: sticky aside with title, price and button; numbered items, covered tags and a closing statement on the right.
 - [ProofSection](organisms/ProofSection.md) — Evidence: a large statement question, a row of counting figures between hairlines, and the sourced quotation.
 - [TestimonialsSection](organisms/TestimonialsSection.md) — Client voices with a sticky aside (pink drop and 01 / 03 counter). The quote in the middle of the screen is in focus; the others step back.

@@ -1,7 +1,5 @@
 // All link destinations on the site in one place.
 // '#' marks a URL that still needs to be provided (see the asset list).
-// The privacy page still lives on the current site (www.kodamas.io): it
-// must move here before this site takes the domain.
 // Article URLs are built from src/content/blog/ (/blogfolio/<slug>).
 
 export const links = {
@@ -20,5 +18,5 @@ export const links = {
 	emmaLinkedIn: 'https://www.linkedin.com/in/ecblk/',
 	danielaLinkedIn: 'https://www.linkedin.com/in/danielacontessa',
 	workForImpactDaniela: 'https://www.workforimpact.com/',
-	privacyTerms: 'https://www.kodamas.io/privacy-policy-terms-of-service',
+	privacyTerms: '/privacy-policy-terms-of-service',
 };

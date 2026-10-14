@@ -8,7 +8,7 @@ The opening of a simple page: a small pink label with a drop, the page title as 
 
 ## When to use it
 
-Pages that open with a title and a short intro: Blogfolio and every article (its title is the h1). Shown on `/blogfolio` and the article pages, not on the styleguide.
+Pages that open with a title and a short intro: Blogfolio, every article and the legal page (its title is the h1). Shown on those pages, not on the styleguide.
 
 ## Props
 
