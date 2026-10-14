@@ -7,7 +7,7 @@
 // scrolled into view; as the
 // page scrolls on they rise faster than the page and fade away. Their motion
 // pauses off screen and stops entirely for reduced motion.
-// size: 'group' (four wisps) or 'pair' (two)
+// size: 'group' (three wisps) or 'pair' (two)
 // The positions and scales below are the field's fixed geometry.
 interface Props {
 	size?: 'group' | 'pair';
@@ -18,7 +18,6 @@ const { size = 'group' } = Astro.props;
 const geometry = {
 	group: {
 		wisps: [
-			{ x: '18%', y: '20%', s: 1 },
 			{ x: '62%', y: '8%', s: 0.6 },
 			{ x: '78%', y: '52%', s: 1.3 },
 			{ x: '36%', y: '64%', s: 0.75 },

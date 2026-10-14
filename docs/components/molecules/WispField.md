@@ -14,7 +14,7 @@ A few times per page, in empty space, as a quiet touch of magic: never over text
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `size` | `group` · `pair` | `group` | Four wisps and seven sparks, or two wisps and three sparks. |
+| `size` | `group` · `pair` | `group` | Three wisps and seven sparks, or two wisps and three sparks. |
 
 ## Variants
 
