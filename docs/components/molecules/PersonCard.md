@@ -19,7 +19,7 @@ In TeamSection.
 | `org` | { label, href } | — | Linked organisation. |
 | `nationality` | text | — | Shown uppercase. |
 | `flag` | emoji | — | Flag badge (decorative). |
-| `photo` | URL | — | Photo; placeholder without it. |
+| `photo` | imported image · URL | — | Photo (from `src/data/photos.ts`); placeholder without it. |
 
 ## Variants
 

@@ -1,0 +1,187 @@
+---
+// An article's table of contents: its parts (the h2s), numbered like the
+// parts in Prose (01, 02…). Desktop: a list that the page keeps sticky in
+// the empty left column, with the part being read marked in aqua. Mobile:
+// an accordion above the article, closed by default.
+// headings: from Astro's render() (only depth 2 is listed)
+// label: the title of the list
+interface Props {
+	headings: { depth: number; slug: string; text: string }[];
+	label?: string;
+}
+
+const { headings, label = 'In this article' } = Astro.props;
+const parts = headings.filter((h) => h.depth === 2);
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+{
+	parts.length > 0 && (
+		<div class="toc" data-toc>
+			<nav class="toc__desktop" aria-label={label}>
+				<p class="toc__label">{label}</p>
+				<ol class="toc__list" role="list">
+					{parts.map((p, i) => (
+						<li>
+							<a class="toc__link" href={`#${p.slug}`} data-toc-link={p.slug}>
+								<span class="toc__num">{num(i)}</span>
+								{p.text}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+			<details class="toc__mobile">
+				<summary class="toc__toggle">
+					{label}
+					<span class="toc__icon" aria-hidden="true" />
+				</summary>
+				<nav aria-label={label}>
+					<ol class="toc__list" role="list">
+						{parts.map((p, i) => (
+							<li>
+								<a class="toc__link" href={`#${p.slug}`}>
+									<span class="toc__num">{num(i)}</span>
+									{p.text}
+								</a>
+							</li>
+						))}
+					</ol>
+				</nav>
+			</details>
+		</div>
+	)
+}
+
+<script>
+	// Mark the part being read in the desktop list
+	document.querySelectorAll<HTMLElement>('[data-toc]').forEach((toc) => {
+		const links = new Map(
+			[...toc.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')].map((a) => [a.dataset.tocLink, a]),
+		);
+		const headings = [...links.keys()]
+			.map((id) => document.getElementById(id ?? ''))
+			.filter((h): h is HTMLElement => h !== null);
+		if (!headings.length || !('IntersectionObserver' in window)) return;
+		const mark = (id: string) =>
+			links.forEach((a, key) => (key === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+		// A part counts as being read once its heading passes the upper third
+		const io = new IntersectionObserver(
+			() => {
+				const passed = headings.filter((h) => h.getBoundingClientRect().top < window.innerHeight / 3);
+				mark((passed.at(-1) ?? headings[0]).id);
+			},
+			{ rootMargin: '0px 0px -66% 0px' },
+		);
+		headings.forEach((h) => io.observe(h));
+	});
+	// Close the mobile list after choosing a part
+	document.querySelectorAll<HTMLDetailsElement>('.toc__mobile').forEach((d) =>
+		d.addEventListener('click', (e) => {
+			if ((e.target as HTMLElement).closest('a')) d.open = false;
+		}),
+	);
+</script>
+
+<style>
+	.toc__label {
+		margin-bottom: var(--space-4);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+		color: var(--color-number);
+	}
+	.toc__list {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		list-style: none;
+	}
+	.toc__link {
+		display: flex;
+		gap: var(--space-3);
+		padding-block: var(--space-2);
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-tight);
+		color: var(--color-text-muted);
+		text-decoration: none;
+		transition: color var(--duration-fast) var(--ease-standard);
+	}
+	.toc__link:hover,
+	.toc__link[aria-current] {
+		color: var(--color-accent);
+	}
+	.toc__link[aria-current] {
+		font-weight: var(--font-weight-semibold);
+	}
+	.toc__num {
+		flex-shrink: 0;
+		font-variant-numeric: tabular-nums;
+		color: var(--color-number);
+	}
+
+	/* ---------- Mobile: an accordion, closed by default ---------- */
+	.toc__mobile {
+		display: none;
+		border-block: var(--border-width-thin) solid var(--color-rule);
+	}
+	.toc__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: var(--size-tap-min);
+		padding-block: var(--space-3);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--letter-spacing-label);
+		text-transform: uppercase;
+		color: var(--color-number);
+		cursor: pointer;
+		list-style: none;
+	}
+	.toc__toggle::-webkit-details-marker {
+		display: none;
+	}
+	/* A plus that turns into a cross when open */
+	.toc__icon {
+		position: relative;
+		flex-shrink: 0;
+		width: var(--size-icon-s);
+		aspect-ratio: 1;
+		transition: transform var(--duration-base) var(--ease-standard);
+	}
+	.toc__icon::before,
+	.toc__icon::after {
+		content: '';
+		position: absolute;
+		inset: 50% 0 auto;
+		height: var(--border-width-medium);
+		background: currentColor;
+		transform: translateY(-50%);
+	}
+	.toc__icon::after {
+		transform: translateY(-50%) rotate(90deg);
+	}
+	.toc__mobile[open] .toc__icon {
+		transform: rotate(45deg);
+	}
+	.toc__mobile .toc__list {
+		padding-bottom: var(--space-4);
+	}
+	.toc__mobile .toc__link {
+		min-height: var(--size-tap-min);
+		align-items: center;
+		font-size: var(--font-size-body);
+	}
+
+	@media (max-width: 64rem) {
+		.toc__desktop {
+			display: none;
+		}
+		.toc__mobile {
+			display: block;
+		}
+	}
+</style>

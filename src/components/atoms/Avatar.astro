@@ -1,18 +1,26 @@
 ---
-// A portrait. With `src` it shows the photo cropped to the shape; without it,
-// a dashed placeholder that says a photo is still needed.
-// shape: 'round' (testimonial byline) or 'drop' (team portraits)
+// A photo cropped to a shape (portraits, case photos). With `src` it shows
+// the photo with a fine grain over it, like the rest of the page; without
+// it, a dashed placeholder that says a photo is still needed.
+// src: an imported image (optimised and resized by Astro) or a URL
+// shape: 'round' (testimonial byline) or 'drop' (portraits, case photos)
 // size: 's' (3.5rem byline) or 'l' (fills its column, up to the team width)
+// focus: which part of the photo stays in the crop, as an object-position
+//        (e.g. '70% 50%' for a subject on the right); default keeps faces
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
 interface Props {
 	name: string;
-	src?: string;
+	src?: ImageMetadata | string;
 	alt?: string;
 	shape?: 'round' | 'drop';
 	size?: 's' | 'l';
+	focus?: string;
 	class?: string;
 }
 
-const { name, src, alt, shape = 'round', size = 's', class: className } = Astro.props;
+const { name, src, alt, shape = 'round', size = 's', focus, class: className } = Astro.props;
 const initials = name
 	.split(/\s+/)
 	.map((w) => w[0])
@@ -20,11 +28,28 @@ const initials = name
 	.slice(0, 2)
 	.toUpperCase();
 const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
+
+// Imported images get resized copies: small for bylines, larger for columns
+const image =
+	src && typeof src !== 'string'
+		? await getImage({ src, format: 'webp', widths: size === 's' ? [112, 224] : [480, 800, 1200] })
+		: undefined;
+const sizes = size === 's' ? '3.5rem' : '(max-width: 48rem) 100vw, 40vw';
 ---
 
 {
 	src ? (
-		<img class:list={classes} src={src} alt={alt ?? name} loading="lazy" decoding="async" />
+		<span class:list={classes} style={focus ? `--avatar-focus: ${focus}` : undefined}>
+			<img
+				class="avatar__img"
+				src={image ? image.src : (src as string)}
+				srcset={image?.srcSet.attribute}
+				sizes={image ? sizes : undefined}
+				alt={alt ?? name}
+				loading="lazy"
+				decoding="async"
+			/>
+		</span>
 	) : (
 		<div class:list={[...classes, 'avatar--placeholder']} role="img" aria-label={`${name} (photo needed)`}>
 			<span aria-hidden="true">
@@ -44,10 +69,55 @@ const classes = ['avatar', `avatar--${shape}`, `avatar--${size}`, className];
 
 <style>
 	.avatar {
+		position: relative;
+		display: block;
 		flex-shrink: 0;
 		aspect-ratio: 1;
-		object-fit: cover;
+		overflow: hidden;
 		transition: border-radius var(--duration-base) var(--ease-standard);
+	}
+	.avatar__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--avatar-focus, var(--position-portrait));
+	}
+	/* A rough film grain over the photo, moving like film (still for
+	   reduced motion): the noise texture jumps to a new position each step */
+	.avatar:not(.avatar--placeholder)::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: var(--texture-grain-photo);
+		opacity: var(--opacity-grain-photo);
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		animation: avatar-grain var(--duration-grain) steps(1) infinite;
+	}
+	@keyframes avatar-grain {
+		0% {
+			background-position: 0 0;
+		}
+		17% {
+			background-position: 37% 61%;
+		}
+		33% {
+			background-position: 83% 12%;
+		}
+		50% {
+			background-position: 19% 88%;
+		}
+		67% {
+			background-position: 64% 33%;
+		}
+		83% {
+			background-position: 7% 46%;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.avatar::after {
+			animation: none;
+		}
 	}
 	.avatar--s {
 		width: var(--size-avatar-s);

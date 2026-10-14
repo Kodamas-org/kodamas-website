@@ -33,6 +33,8 @@ import Profile from '../components/molecules/Profile.astro';
 import Principle from '../components/molecules/Principle.astro';
 import CaseStudy from '../components/molecules/CaseStudy.astro';
 import Prose from '../components/molecules/Prose.astro';
+import TableOfContents from '../components/molecules/TableOfContents.astro';
+import { photos } from '../data/photos';
 import DropCluster from '../components/molecules/DropCluster.astro';
 import WispField from '../components/molecules/WispField.astro';
 import Marquee from '../components/molecules/Marquee.astro';
@@ -250,7 +252,9 @@ const radii = ['s', 'pill', 'drop'];
 				<Eyebrow as="h3">Avatar (placeholder until photos arrive)</Eyebrow>
 				<div class="sg__row sg__row--top">
 					<Avatar name="Geoff Hucker" />
+					<Avatar name="Geoff Hucker" src={photos.geoffHucker} />
 					<div class="sg__avatar-l"><Avatar name="Emma Cebuliak" shape="drop" size="l" /></div>
+					<div class="sg__avatar-l"><Avatar name="Emma Cebuliak" src={photos.emma} shape="drop" size="l" /></div>
 				</div>
 			</div>
 
@@ -366,6 +370,19 @@ const radii = ['s', 'pill', 'drop'];
 						</ul>
 						<blockquote>A quote becomes the pull statement.</blockquote>
 					</Prose>
+				</div>
+			</div>
+
+			<div class="sg__demo">
+				<Eyebrow as="h3">TableOfContents</Eyebrow>
+				<div class="sg__prose">
+					<TableOfContents
+						headings={[
+							{ depth: 2, slug: 'sg-part-1', text: 'Context: the first part' },
+							{ depth: 2, slug: 'sg-part-2', text: 'Challenges: the second part' },
+							{ depth: 2, slug: 'sg-part-3', text: 'Moral of the Story' },
+						]}
+					/>
 				</div>
 			</div>
 

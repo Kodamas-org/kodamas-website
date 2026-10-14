@@ -16,7 +16,7 @@ Our Story. Alternate `reverse` between profiles.
 |---|---|---|---|
 | `name` | text | — | Display name (heading). |
 | `fullName` | text | name | Used for the photo placeholder and alt. |
-| `photo` | URL | — | Photo; placeholder without it. |
+| `photo` | imported image · URL | — | Photo (from `src/data/photos.ts`); placeholder without it. |
 | `zone` | IANA time zone | — | Clock next to the name. |
 | `link` | { label, href } | — | Profile link with →. |
 | `reverse` | true / false | false | Portrait on the right. |

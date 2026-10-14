@@ -189,6 +189,9 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 |---|---|---|
 | `--texture-grain` | `SVG fractal noise (data URI)` |  |
 | `--opacity-grain` | `0.05` |  |
+| `--texture-grain-photo` | `SVG high-contrast fractal noise (data URI)` | Rough film grain over photos (Avatar) |
+| `--opacity-grain-photo` | `0.5` | Strength of the photo grain |
+| `--position-portrait` | `50% 25%` | Default crop of photos: keeps faces |
 | `--opacity-dim` | `0.55` |  |
 
 ## Motion
@@ -201,6 +204,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--duration-rise` | `1.1s` |  |
 | `--duration-count` | `1600ms` |  |
 | `--duration-float` | `9s` |  |
+| `--duration-grain` | `0.6s` | One cycle of the moving film grain on photos |
 | `--duration-flicker` | `2.2s` | A wisp flame changing shape |
 | `--duration-wisp-drift` | `8s` | A wisp rising and swaying |
 | `--duration-wisp-fade` | `2.4s` | A wisp fading in when scrolled into view |

@@ -30,6 +30,8 @@
 		line-height: var(--line-height-snug);
 		letter-spacing: var(--letter-spacing-display);
 		text-wrap: balance;
+		/* Jumping here from the contents leaves room above the heading */
+		scroll-margin-top: var(--space-8);
 	}
 	.prose :global(h2)::before {
 		content: counter(prose-part, decimal-leading-zero);

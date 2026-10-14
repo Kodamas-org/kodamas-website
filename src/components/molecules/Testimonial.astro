@@ -4,13 +4,14 @@
 // (linked) and role.
 // long: a smaller size for longer quotes
 // index: position in a TestimonialsSection (used for its focus effect)
+import type { ImageMetadata } from 'astro';
 import Avatar from '../atoms/Avatar.astro';
 
 interface Props {
 	name: string;
 	href: string;
 	role: string;
-	photo?: string;
+	photo?: ImageMetadata | string;
 	long?: boolean;
 	index?: number;
 }

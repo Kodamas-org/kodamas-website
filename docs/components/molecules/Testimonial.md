@@ -17,7 +17,7 @@ In TestimonialsSection.
 | `name` | text | — | Author. |
 | `href` | URL | — | Author link. |
 | `role` | text | — | Author role. |
-| `photo` | URL | — | Photo; placeholder without it. |
+| `photo` | imported image · URL | — | Photo (from `src/data/photos.ts`); placeholder without it. |
 | `long` | true / false | false | Smaller size for long quotes. |
 | `index` | number | — | Position in TestimonialsSection (for the focus effect). |
 

@@ -11,6 +11,7 @@ import Heading from '../components/atoms/Heading.astro';
 import Highlight from '../components/atoms/Highlight.astro';
 import Button from '../components/atoms/Button.astro';
 import { links } from '../data/links';
+import { photos } from '../data/photos';
 ---
 
 <BaseLayout
@@ -41,6 +42,7 @@ import { links } from '../data/links';
 			<Profile
 				name="Emma"
 				fullName="Emma Cebuliak"
+				photo={photos.emma}
 				zone="Asia/Tokyo"
 				link={{ label: 'Visit LinkedIn Profile', href: links.emmaLinkedIn }}
 			>
@@ -66,6 +68,7 @@ import { links } from '../data/links';
 			<Profile
 				name="Dani"
 				fullName="Daniela Contessa"
+				photo={photos.daniela}
 				zone="Europe/Rome"
 				link={{ label: 'Visit LinkedIn Profile', href: links.danielaLinkedIn }}
 				reverse

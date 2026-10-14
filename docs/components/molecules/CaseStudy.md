@@ -17,7 +17,8 @@ The Blogfolio list, one per `<li>`, alternating `reverse`. The page builds it fr
 | `label` | text | — | Optional case label (e.g. `Case_1`), shown uppercase in pink. |
 | `title` | text | — | The case title; the link text. |
 | `href` | URL | — | Where the case leads (from `src/data/links.ts`). |
-| `photo` | URL | — | The photo; omitted shows the “photo needed” placeholder. |
+| `photo` | imported image · URL | — | The photo (the article’s `photo`); omitted shows the “photo needed” placeholder. |
+| `focus` | object-position | — | Which part of the photo stays in the drop crop (the article’s `photoFocus`, e.g. `80% 50%`). |
 | `alt` | text | `''` | Photo description; empty when decorative (the title already names the case). |
 | `reverse` | boolean | false | Photo on the right. |
 | `level` | 2 · 3 · 4 | 2 | Title heading level. |

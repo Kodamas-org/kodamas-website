@@ -43,6 +43,7 @@ const posts = (await getCollection('blog', ({ data }) => data.status === 'final'
 							href={`${links.blogfolio}/${id}`}
 							photo={data.photo}
 							alt={data.photoAlt}
+							focus={data.photoFocus}
 							reverse={i % 2 === 1}
 						>
 							{data.summary}

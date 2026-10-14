@@ -16,6 +16,7 @@ import Link from '../components/atoms/Link.astro';
 import Highlight from '../components/atoms/Highlight.astro';
 import Clock from '../components/atoms/Clock.astro';
 import { links } from '../data/links';
+import { photos } from '../data/photos';
 ---
 
 <BaseLayout
@@ -66,7 +67,7 @@ import { links } from '../data/links';
 	</ProofSection>
 
 	<TestimonialsSection num="03" title="What people say about us" count={3}>
-		<Testimonial index={1} name="Geoff Hucker" href={links.geoffHucker} role="Work for Impact CEO & Founder">
+		<Testimonial index={1} name="Geoff Hucker" href={links.geoffHucker} photo={photos.geoffHucker} role="Work for Impact CEO & Founder">
 			“Daniela <em>sets clear priorities</em> and drives cross-functional teams to deliver on time and to a high standard.”
 		</Testimonial>
 		<Testimonial
@@ -74,12 +75,13 @@ import { links } from '../data/links';
 			long
 			name="Samyukta Kartik"
 			href={links.samyuktaKartik}
+			photo={photos.samyuktaKartik}
 			role="Marketing & Communications Consultant"
 		>
 			“Emma created <em>a thriving environment</em> where every team member had the space to grow into their unique
 			strengths. Her insights helped me and contributed to some of our best team achievements.”
 		</Testimonial>
-		<Testimonial index={3} long name="Martin Kubler" href={links.martinKubler} role="Founder of The Gluttonous Sloth">
+		<Testimonial index={3} long name="Martin Kubler" href={links.martinKubler} photo={photos.martinKubler} role="Founder of The Gluttonous Sloth">
 			“Emma has managed to create <em>a great team culture</em> with the right balance of goal-hungriness and market
 			realism. Furthermore, creating a great product with limited resources takes great skill, yet somehow Daniela
 			manages this effortlessly.”
@@ -98,6 +100,7 @@ import { links } from '../data/links';
 			org={{ label: '@HappyCow', href: links.happyCowDaniela }}
 			nationality="Italian"
 			flag="🇮🇹"
+			photo={photos.daniela}
 		/>
 		<PersonCard
 			name="Emma Cebuliak"
@@ -105,6 +108,7 @@ import { links } from '../data/links';
 			org={{ label: '@HappyCow', href: links.happyCowEmma }}
 			nationality="Canadian"
 			flag="🇨🇦"
+			photo={photos.emma}
 		/>
 	</TeamSection>
 

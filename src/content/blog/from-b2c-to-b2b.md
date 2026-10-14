@@ -4,6 +4,9 @@ summary: 'How We Built, Launched and Grew a New B2B Product to Profitability'
 seoTitle: 'From Zero to Profitable: How We Launched a B2B Advertising Platform for Global Restaurants'
 description: 'Discover how we built and scaled a B2B advertising platform from scratch, turning uncertainty into profitability through strategy, collaboration, and relentless iteration.'
 label: 'Case_2'
+photo: '../../assets/blog/from-b2c-to-b2b.jpg'
+photoAlt: 'A praying mantis with raised forelegs on a mossy log'
+photoFocus: '45% 50%'
 order: 2
 cta:
   title: 'Want to Launch a B2B Product That Sticks?'

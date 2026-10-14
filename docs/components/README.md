@@ -19,7 +19,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Tag](atoms/Tag.md) — An outlined capsule for a short topic label. Renders an `<li>`.
 - [Drop](atoms/Drop.md) — The Kodamas drop: one square corner (top left), three rounded. Decorative, hidden from screen readers.
 - [Wordmark](atoms/Wordmark.md) — The name “Kodamas” in Funnel Display, in aqua.
-- [Avatar](atoms/Avatar.md) — A portrait: the photo cropped to a shape, or a dashed placeholder saying a photo is needed.
+- [Avatar](atoms/Avatar.md) — A photo cropped to a shape, with a moving film grain, or a dashed placeholder saying a photo is needed.
 - [Clock](atoms/Clock.md) — A live local-time pill with a clock icon (e.g. Italy, Japan).
 - [PauseButton](atoms/PauseButton.md) — A small round pause/play button for a looping animation.
 - [Grain](atoms/Grain.md) — A fine noise texture fixed over the whole page for depth. Decorative.
@@ -38,6 +38,7 @@ All components are shown live at `/styleguide`, except Hero, NameHero and PageIn
 - [Principle](molecules/Principle.md) — One manifesto principle: a pink drop and the principle as an aqua heading, then two columns. A first paragraph in the right column reads as a pull statement; list bullets are small drops.
 - [CaseStudy](molecules/CaseStudy.md) — A Blogfolio entry: drop-shaped photo on one side; case label with a pink drop, the title as an aqua link with an arrow, and a one-line summary on the other. The whole card is clickable.
 - [Prose](molecules/Prose.md) — Long-form article text from Markdown: numbered parts (h2 on a hairline with a pink 01, 02…), aqua bold, drop bullets, a large pull statement for quotes.
+- [TableOfContents](molecules/TableOfContents.md) — An article’s parts, numbered like Prose. Desktop: a sticky list in the left column with the part being read in aqua. Mobile: an accordion, closed by default.
 - [DropCluster](molecules/DropCluster.md) — The brand symbol: a large pink drop, an aqua outline drop and a small aqua drop, overlapping and floating slowly. Decorative.
 - [WispField](molecules/WispField.md) — Kodama wisps: white-aqua flames with a blue halo and twinkling sparks. They fade in when scrolled into view, flicker and drift, and rise away as the page scrolls. Decorative.
 - [Marquee](molecules/Marquee.md) — Kinetic type: two words in huge Heavy type (first outlined, second filled aqua) with a pink drop, scrolling sideways forever. Decorative.

@@ -3,8 +3,10 @@
 // label with a small pink drop, the title as an aqua link with an arrow, and
 // a one-line summary. The whole card is clickable through the title link.
 // reverse: photo on the right instead of the left (alternate entries)
-// photo: image URL (omit for the "photo needed" placeholder)
+// photo: imported image or URL (omit for the "photo needed" placeholder)
+// focus: which part of the photo stays in the drop crop (object-position)
 // Slot default: the summary
+import type { ImageMetadata } from 'astro';
 import Avatar from '../atoms/Avatar.astro';
 import Drop from '../atoms/Drop.astro';
 import Eyebrow from '../atoms/Eyebrow.astro';
@@ -13,19 +15,20 @@ interface Props {
 	label?: string;
 	title: string;
 	href: string;
-	photo?: string;
+	photo?: ImageMetadata | string;
 	alt?: string;
+	focus?: string;
 	reverse?: boolean;
 	level?: 2 | 3 | 4;
 }
 
-const { label, title, href, photo, alt = '', reverse = false, level = 2 } = Astro.props;
+const { label, title, href, photo, alt = '', focus, reverse = false, level = 2 } = Astro.props;
 const Tag = `h${level}` as 'h2';
 ---
 
 <article class:list={['case-study', { 'case-study--reverse': reverse }]} data-reveal>
 	<div class="case-study__photo">
-		<Avatar name={title} src={photo} alt={alt} shape="drop" size="l" />
+		<Avatar name={title} src={photo} alt={alt} focus={focus} shape="drop" size="l" />
 	</div>
 	<div class="case-study__body">
 		{

@@ -5,6 +5,9 @@ summary: 'How We Built a Seamless, Automated System that Scales'
 seoTitle: 'Bug Reporting Workflow Optimization: How We Built a Seamless, Automated System That Scales'
 description: 'Discover how we transformed a fragmented bug reporting workflow into an automated, structured process, reducing overhead, improving prioritization, and restoring trust across teams.'
 label: 'Case_1'
+photo: '../../assets/blog/bug-reporting-workflow-optimization.jpg'
+photoAlt: 'A dragonfly resting on a rope against a pale sky'
+photoFocus: '80% 50%'
 order: 1
 cta:
   title: 'Want to optimize your internal workflows?'

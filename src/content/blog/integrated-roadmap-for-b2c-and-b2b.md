@@ -4,6 +4,9 @@ summary: 'How We Created a Strategic Roadmap for Full-Team Alignment'
 seoTitle: 'Integrated B2C & B2B Roadmap : How We Created a Strategic Plan for Full-Team Alignment'
 description: 'Discover how we created an integrated roadmap that brought complex, cross-functional team priorities fully into alignment.'
 label: 'Case_3'
+photo: '../../assets/blog/integrated-roadmap-for-b2c-and-b2b.jpg'
+photoAlt: 'A ladybird climbing a thin twig'
+photoFocus: '60% 50%'
 order: 3
 cta:
   title: 'Want to align your team around a unified roadmap?'

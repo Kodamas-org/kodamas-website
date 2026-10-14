@@ -1,13 +1,15 @@
 ---
 // A Blogfolio article (case study or blog post), one page per Markdown file
 // in src/content/blog/. Built from the shared system: PageIntro (title,
-// summary, meta), the article in Prose, then the bright call to action.
+// summary, meta), the table of contents beside the article in Prose, then
+// the bright call to action.
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/organisms/PageIntro.astro';
 import CallToActionSection from '../../components/organisms/CallToActionSection.astro';
 import Section from '../../components/molecules/Section.astro';
 import Prose from '../../components/molecules/Prose.astro';
+import TableOfContents from '../../components/molecules/TableOfContents.astro';
 import { links } from '../../data/links';
 import { inlineMarkdown } from '../../lib/inline-markdown';
 
@@ -18,7 +20,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { data } = post;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 
 const cta = data.cta ?? {
 	title: 'Want your delivery management to be aligned and effortless?',
@@ -39,9 +41,14 @@ const meta = [data.author, date].filter(Boolean).join(' · ');
 	</PageIntro>
 
 	<Section rule={false}>
-		<article class="article">
-			<Prose><Content /></Prose>
-		</article>
+		<div class="article">
+			<aside class="article__toc">
+				<TableOfContents headings={headings} />
+			</aside>
+			<article class="article__body">
+				<Prose><Content /></Prose>
+			</article>
+		</div>
 	</Section>
 
 	<div class="cta-gap">
@@ -57,13 +64,25 @@ const meta = [data.author, date].filter(Boolean).join(' · ');
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		column-gap: var(--layout-col-gap);
 	}
-	.article > :global(.prose) {
+	/* Desktop: the contents stay in view in the left column */
+	.article__toc {
+		grid-column: 1 / span 3;
+		position: sticky;
+		top: var(--layout-sticky-top);
+		align-self: start;
+	}
+	.article__body {
 		grid-column: 4 / span 7;
 	}
 	@media (max-width: 64rem) {
-		.article > :global(.prose) {
+		.article__toc,
+		.article__body {
 			grid-column: 1 / -1;
 			max-width: var(--layout-text-max);
+		}
+		.article__toc {
+			position: static;
+			margin-bottom: var(--space-8);
 		}
 	}
 	/* The bright section follows a navy one: keep the one section gap above it */
