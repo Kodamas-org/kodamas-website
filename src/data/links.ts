@@ -7,7 +7,7 @@ export const links = {
 	blogfolio: '/blogfolio',
 	ourStory: '/about',
 	connect: 'mailto:hello@kodamas.io',
-	bookCall: 'mailto:hello@kodamas.io',
+	bookCall: 'https://calendly.com/hello-kodamas/30min',
 	happyCowDaniela: 'https://www.happycow.net/',
 	happyCowEmma: 'https://www.happycow.net/',
 	happyCowPartnerProgram: 'https://www.happycow.net/supporter',

@@ -26,13 +26,25 @@ Netlify is based in the United States. When data is transferred outside the Euro
 
 ## When you email us
 
-The “Connect With Us” and “Book a call” buttons open your own email app with our address. If you write to us, we receive your email address, your name if you include it, and whatever you choose to tell us.
+The “Connect With Us” button opens your own email app with our address. If you write to us, we receive your email address, your name if you include it, and whatever you choose to tell us.
 
 We use this only to reply to you and, if we end up working together, to prepare and carry out that work. The legal basis is taking the steps you ask for before a possible contract, and then the contract itself (Article 6(1)(b) GDPR), or our legitimate interest in answering messages (Article 6(1)(f) GDPR).
 
 We keep your messages for as long as we need them to follow up on your request. If they become part of a business relationship, we keep what Italian tax and accounting law requires, generally ten years. We never sell your data or use it for marketing, and we only share it with the providers that run our email, under their own data protection commitments.
 
 Please don’t send us confidential information by email. If you need to share something sensitive, we will agree on a secure channel first.
+
+## When you book a call
+
+The “Book a call” buttons open our booking page on Calendly, a scheduling service, in a new tab. Nothing from Calendly is loaded on this website before you click. On Calendly’s site, its own [privacy policy](https://calendly.com/privacy) and cookies apply.
+
+To book a call, you give us your name, your email address and the time you choose, with your time zone and anything you decide to add in the booking form. Calendly adds the call to our Google Calendar with a Google Meet link and sends you an email about it.
+
+We use this only to organise and hold the call and, if we end up working together, to prepare and carry out that work. The legal basis is taking the steps you ask for before a possible contract (Article 6(1)(b) GDPR).
+
+Calendly LLC and Google process these details on our behalf. Both are based in the United States; transfers are protected by the European Commission’s Standard Contractual Clauses and, where applicable, the EU–US Data Privacy Framework. You can read how [Google](https://policies.google.com/privacy) handles data.
+
+We keep booking details for as long as we need them to follow up on the call. If they become part of a business relationship, we keep what Italian tax and accounting law requires, generally ten years. We never sell them or use them for marketing.
 
 ## Links to other websites
 
@@ -56,7 +68,7 @@ If anything above changes, for example if we ever add a contact form or analytic
 
 ## Using this website
 
-This website gives general information about Kodamas and our project and delivery management consultancy. Nothing on it is a binding offer, a quote or professional advice for your situation, and no consulting relationship starts because you visit the site or email us. Any work together is agreed separately, in writing.
+This website gives general information about Kodamas and our project and delivery management consultancy. Nothing on it is a binding offer, a quote or professional advice for your situation, and no consulting relationship starts because you visit the site, email us or book a call. Any work together is agreed separately, in writing.
 
 Please use the site lawfully, and don’t try to disrupt it, gain access to parts of it that aren’t public, or copy it in bulk with automated tools.
 

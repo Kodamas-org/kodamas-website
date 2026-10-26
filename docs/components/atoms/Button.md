@@ -14,7 +14,7 @@ Calls to action. Aqua on navy; navy on the bright aqua surface.
 
 | Prop | Options | Default | What it does |
 |---|---|---|---|
-| `href` | URL | — | Makes it a link. |
+| `href` | URL | — | Makes it a link. An external URL (`http(s)://`, e.g. the Calendly booking page) opens in a new tab, with a visually hidden “(opens in a new tab)” for screen readers. |
 | `variant` | `aqua` · `navy` | `aqua` | Colour. |
 | `size` | `m` · `l` | `l` | m: header. l: page calls to action (3.5rem tall, aqua glow ring on hover). |
 | `type` | `button` · `submit` | `button` | When it is a `<button>`. |

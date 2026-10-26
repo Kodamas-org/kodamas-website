@@ -2,6 +2,8 @@
 // Pill-shaped button. Renders a link when `href` is given, otherwise a <button>.
 // variant: 'aqua' (aqua with navy text, on navy) or 'navy' (on the aqua surface)
 // size: 'm' (header) or 'l' (page calls to action)
+// An external href (http/https, e.g. Calendly) opens in a new tab and says so
+// to screen readers.
 interface Props {
 	href?: string;
 	variant?: 'aqua' | 'navy';
@@ -12,12 +14,19 @@ interface Props {
 
 const { href, variant = 'aqua', size = 'l', type = 'button', class: className } = Astro.props;
 const classes = ['button', `button--${variant}`, `button--${size}`, className];
+const external = href ? /^https?:\/\//.test(href) : false;
 ---
 
 {
 	href ? (
-		<a href={href} class:list={classes}>
+		<a
+			href={href}
+			class:list={classes}
+			target={external ? '_blank' : undefined}
+			rel={external ? 'noopener' : undefined}
+		>
 			<slot />
+			{external && <span class="visually-hidden"> (opens in a new tab)</span>}
 		</a>
 	) : (
 		<button type={type} class:list={classes}>
