@@ -4,34 +4,18 @@
 // are white, the rest aqua. Below it the intro statement and actions on the
 // left, the floating drop cluster on the right (above the wordmark on
 // tablet and mobile).
-// word / lead: the wordmark and how many leading letters are white
 // Slots: default (the intro statement; wrap the key phrase in
 //        <Highlight variant="underline">), "actions" (button and link)
 import Container from '../atoms/Container.astro';
+import Wordmark from '../atoms/Wordmark.astro';
 import DropCluster from '../molecules/DropCluster.astro';
-
-interface Props {
-	word?: string;
-	lead?: number;
-}
-
-const { word = 'Kodamas', lead = 2 } = Astro.props;
-const letters = [...word];
 ---
 
 <div class="hero">
 	<Container>
 		<h1 class="hero__mark">
-			<span class="visually-hidden">{word}</span>
-			<span class="hero__letters" aria-hidden="true">
-				{
-					letters.map((l, i) => (
-						<span class:list={['hero__letter', { 'hero__letter--lead': i < lead }]} style={`--i: ${i}`}>
-							{l}
-						</span>
-					))
-				}
-			</span>
+			<span class="visually-hidden">Kodamas</span>
+			<Wordmark variant="giant" />
 		</h1>
 		<div class="hero__foot">
 			<div class="hero__text">
@@ -53,26 +37,7 @@ const letters = [...word];
 	}
 	.hero__mark {
 		position: relative;
-		container-type: inline-size;
 		margin-top: var(--space-6);
-	}
-	.hero__letters {
-		display: block;
-		font-family: var(--font-display);
-		font-size: var(--font-size-mark);
-		font-weight: var(--font-weight-heavy);
-		line-height: var(--line-height-mark);
-		letter-spacing: var(--letter-spacing-tight);
-		color: var(--color-aqua-glow);
-		white-space: nowrap;
-	}
-	.hero__letter {
-		display: inline-block;
-		animation: rise var(--duration-rise) var(--ease-standard) both;
-		animation-delay: calc(var(--i) * var(--stagger));
-	}
-	.hero__letter--lead {
-		color: var(--color-white);
 	}
 	.hero__foot {
 		display: grid;
@@ -106,11 +71,6 @@ const letters = [...word];
 		justify-self: end;
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.hero__letter {
-			animation: none;
-		}
-	}
 	@media (max-width: 64rem) {
 		.hero__text {
 			grid-column: 1 / -1;

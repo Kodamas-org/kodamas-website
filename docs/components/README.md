@@ -27,7 +27,7 @@ Things that appear in several places live in one place, so a change there shows 
 - [Link](atoms/Link.md) — A text link.
 - [Tag](atoms/Tag.md) — An outlined capsule for a short topic label. Renders an `<li>`.
 - [Drop](atoms/Drop.md) — The Kodamas drop: one square corner (top left), three rounded. Decorative, hidden from screen readers.
-- [Wordmark](atoms/Wordmark.md) — The name “Kodamas” in Funnel Display, in aqua.
+- [Wordmark](atoms/Wordmark.md) — The name “Kodamas” in Funnel Display, in aqua; giant: fills its container, letters rising in.
 - [Avatar](atoms/Avatar.md) — A photo cropped to a shape, with a moving film grain, or a dashed placeholder saying a photo is needed.
 - [Clock](atoms/Clock.md) — A live local-time pill with a clock icon (e.g. Italy, Japan).
 - [PauseButton](atoms/PauseButton.md) — A small round pause/play button for a looping animation.
@@ -59,7 +59,7 @@ Things that appear in several places live in one place, so a change there shows 
 ## Organisms
 
 - [SiteHeader](organisms/SiteHeader.md) — The top bar: aqua wordmark (links home) and NavMenu. Sticks to the top, slides away when scrolling down and returns when scrolling up.
-- [Hero](organisms/Hero.md) — The homepage opening. The giant wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
+- [Hero](organisms/Hero.md) — The homepage opening. The giant Wordmark (the page’s h1) fills the grid width exactly, letters rising one after another; below it the intro statement and actions, and the floating DropCluster.
 - [NameHero](organisms/NameHero.md) — The Our Story opening: the name as an equation. Two terms (word + meaning) joined by pink drops with + and =, then the result as the giant wordmark; the final letter drops in last, in pink, with its note. Then the intro paragraph.
 - [PageIntro](organisms/PageIntro.md) — The opening of a simple page or an article: optional back link, a small pink label with a drop, the h1 as a large statement, an intro paragraph and an optional meta line, rising in turn.
 - [ArticleBody](organisms/ArticleBody.md) — The body of a long read: TableOfContents sticky in the left columns (accordion on mobile) beside the text in Prose. Used by articles and the legal page.

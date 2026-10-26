@@ -21,6 +21,10 @@ interface Props {
 }
 
 const { title, description, noindex = false } = Astro.props;
+// Share preview (Open Graph): the same image for every page, made by
+// `npm run og-image` from src/pages/og-image.astro
+const pageUrl = new URL(Astro.url.pathname, Astro.site);
+const shareImage = new URL('/og-image.png', Astro.site);
 ---
 
 <html lang="en">
@@ -36,6 +40,16 @@ const { title, description, noindex = false } = Astro.props;
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="theme-color" content="#1a2231" />
 		<title>{title}</title>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Kodamas" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={pageUrl} />
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Kodamas" />
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<a href="#main" class="skip-link">Skip to content</a>

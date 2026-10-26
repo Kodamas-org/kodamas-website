@@ -253,6 +253,9 @@ const radii = ['s', 'pill', 'drop'];
 					<Wordmark />
 					<Wordmark variant="signoff" />
 				</div>
+				<div class="sg__giant">
+					<Wordmark variant="giant" />
+				</div>
 			</div>
 
 			<div class="sg__demo">
@@ -608,6 +611,10 @@ const radii = ['s', 'pill', 'drop'];
 		border: var(--border-width-thin) solid var(--color-rule);
 		border-radius: var(--radius-s);
 		overflow: hidden;
+	}
+	.sg__giant {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-6);
 	}
 	.sg__row {
 		display: flex;

@@ -13,6 +13,7 @@ Marketing site for Kodamas. `CLAUDE.md` is a symlink to this file.
 
 - `npm run dev` — local server at http://localhost:4321
 - `npm run build` — production build into `dist/`
+- `npm run og-image` — rebuild the share image after changing `src/pages/og-image.astro` (or the wordmark, drops or wisps); needs Google Chrome
 
 When starting the dev server from an agent, use background mode:
 
@@ -34,7 +35,8 @@ src/
   layouts/               page templates (BaseLayout; ArticleLayout for every article and the legal page)
   pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio/index.astro (Blogfolio),
                          blogfolio/[slug].astro (one page per article),
-                         privacy-policy-terms-of-service.astro, styleguide.astro
+                         privacy-policy-terms-of-service.astro, styleguide.astro,
+                         og-image.astro (the share image, not for visitors)
   content/blog/          published articles, one Markdown file each (schema in src/content.config.ts)
   legal/                 privacy-terms.md, the text of /privacy-policy-terms-of-service
   lib/                   small helpers (inline-markdown.ts)
@@ -46,6 +48,8 @@ src/
   assets/                photos: people/ (portraits) and blog/ (article photos, named like the article)
 public/_redirects        Netlify redirects from the old Squarespace addresses
 public/_headers          Netlify cache headers (hashed /_astro/ files cached for a year)
+public/og-image.png      share image (Open Graph) for every page, made by `npm run og-image`
+scripts/og-image.sh      photographs /og-image into public/og-image.png (headless Chrome)
 docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level

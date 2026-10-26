@@ -114,6 +114,8 @@
 	--size-wisp-blur: 0.1rem;
 	--size-spark: 0.1875rem;
 	--size-drop-cluster: clamp(7.5rem, 3rem + 15vw, 17rem);
+	--size-og-width: 75rem; /* 1200: the share image (/og-image) */
+	--size-og-height: 39.375rem; /* 630 */
 	--size-avatar-s: 3.5rem;
 	--size-avatar-m: 6rem; /* author block */
 	--size-avatar-l: 15rem;

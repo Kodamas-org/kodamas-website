@@ -1,17 +1,37 @@
 ---
 // The name "Kodamas" in Funnel Display, in aqua.
-// variant: 'header' (Bold, top bar) or 'signoff' (Heavy, with a small pink
-//          drop before it, footer bar)
+// variant: 'header' (Bold, top bar), 'signoff' (Heavy, with a small pink
+//          drop before it, footer bar) or 'giant' (Heavy, fills its
+//          container's width exactly, letters rising one after another,
+//          the first two white: the homepage h1 and the share image)
+// Decorative in 'giant': the parent gives the accessible name.
 interface Props {
-	variant?: 'header' | 'signoff';
+	variant?: 'header' | 'signoff' | 'giant';
 }
 
 const { variant = 'header' } = Astro.props;
+const word = 'Kodamas';
+const lead = 2;
 ---
 
-<span class:list={['wordmark', `wordmark--${variant}`]}>
-	{variant === 'signoff' && <span class="wordmark__drop" aria-hidden="true" />}Kodamas
-</span>
+{
+	variant === 'giant' ? (
+		<span class="wordmark-giant" aria-hidden="true">
+			<span class="wordmark-giant__letters">
+				{[...word].map((l, i) => (
+					<span class:list={['wordmark-giant__letter', { 'wordmark-giant__letter--lead': i < lead }]} style={`--i: ${i}`}>
+						{l}
+					</span>
+				))}
+			</span>
+		</span>
+	) : (
+		<span class:list={['wordmark', `wordmark--${variant}`]}>
+			{variant === 'signoff' && <span class="wordmark__drop" aria-hidden="true" />}
+			{word}
+		</span>
+	)
+}
 
 <style>
 	.wordmark {
@@ -34,5 +54,33 @@ const { variant = 'header' } = Astro.props;
 		aspect-ratio: 1;
 		border-radius: var(--radius-drop);
 		background: var(--gradient-drop);
+	}
+
+	.wordmark-giant {
+		display: block;
+		container-type: inline-size;
+	}
+	.wordmark-giant__letters {
+		display: block;
+		font-family: var(--font-display);
+		font-size: var(--font-size-mark);
+		font-weight: var(--font-weight-heavy);
+		line-height: var(--line-height-mark);
+		letter-spacing: var(--letter-spacing-tight);
+		color: var(--color-aqua-glow);
+		white-space: nowrap;
+	}
+	.wordmark-giant__letter {
+		display: inline-block;
+		animation: rise var(--duration-rise) var(--ease-standard) both;
+		animation-delay: calc(var(--i) * var(--stagger));
+	}
+	.wordmark-giant__letter--lead {
+		color: var(--color-white);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.wordmark-giant__letter {
+			animation: none;
+		}
 	}
 </style>

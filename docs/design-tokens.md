@@ -157,6 +157,8 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-wisp-blur` | `0.1rem` | Softness of a wisp flame’s edge |
 | `--size-spark` | `0.1875rem` | A twinkling spark beside the wisps |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
+| `--size-og-width` | `75rem` | 1200px: width of the share image (`/og-image`) |
+| `--size-og-height` | `39.375rem` | 630px: height of the share image |
 | `--size-avatar-s` | `3.5rem` |  |
 | `--size-avatar-m` | `6rem` | Author block |
 | `--size-avatar-l` | `15rem` |  |
