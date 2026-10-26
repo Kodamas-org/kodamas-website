@@ -44,6 +44,8 @@ We use this only to organise and hold the call and, if we end up working togethe
 
 Calendly LLC and Google process these details on our behalf. Both are based in the United States; transfers are protected by the European Commission’s Standard Contractual Clauses and, where applicable, the EU–US Data Privacy Framework. You can read how [Google](https://policies.google.com/privacy) handles data.
 
+We do not record calls. With your agreement at the start of the call, we may use an AI note-taking tool to write a short summary of it; the provider processes the call on our behalf only to produce that summary. We keep the summary like the booking details.
+
 We keep booking details for as long as we need them to follow up on the call. If they become part of a business relationship, we keep what Italian tax and accounting law requires, generally ten years. We never sell them or use them for marketing.
 
 ## Links to other websites
