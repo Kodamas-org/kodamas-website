@@ -6,11 +6,18 @@ Blog articles and LinkedIn posts for Kodamas, written with the `kodamas-blog-wri
 
 ## Folders
 
-- `articles/`: long-form articles, one file per article: `<slug>.md`, plus `<slug>.schema.json` (JSON-LD, created when the article is final)
-- `interviews/`: interview notes for each article: `<slug>.md`
-- `linkedin/`: short LinkedIn version of each article: `<slug>.md`
+Every article has its own folder, `articles/<slug>/`, with everything about it:
 
-The same slug is used across all three folders.
+```
+articles/<slug>/
+  <slug>.md            the article, always the latest version
+  <slug>.txt           the same article as plain text
+  <slug>.schema.json   JSON-LD, created when the article is final
+  interview.md         interview notes
+  linkedin.md          short LinkedIn version
+  versions/            earlier versions, kept before each round of edits:
+                       <slug>.v1.md, <slug>.v1.txt, then v2…
+```
 
 ## Article frontmatter
 

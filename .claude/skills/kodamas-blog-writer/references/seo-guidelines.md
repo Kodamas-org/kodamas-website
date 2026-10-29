@@ -56,7 +56,7 @@ The goal is to be understood, quoted and cited by ChatGPT, Perplexity, Google AI
 
 ## JSON-LD (step 7)
 
-When the article is final, save `content-drafts/articles/<slug>.schema.json`. Fill it from the frontmatter and the FAQ (FAQ answers must match the article text). Don't add fields with invented data (no image URL until a real one exists). The URL is a placeholder until the blog exists.
+When the article is final, save `content-drafts/articles/<slug>/<slug>.schema.json`. Fill it from the frontmatter and the FAQ (FAQ answers must match the article text). Don't add fields with invented data (no image URL until a real one exists). The URL is a placeholder until the blog exists.
 
 ```json
 {

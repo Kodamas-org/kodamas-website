@@ -21,12 +21,14 @@ If a topic is outside Daniela's areas in `expertise.md` (for example Emma's sale
 
 ## Where files go
 
-Everything lives in `content-drafts/`, outside `src/`, and is never published. Use the same `<slug>` in every folder.
+Everything lives in `content-drafts/`, outside `src/`, and is never published. Every article has its own folder, `content-drafts/articles/<slug>/`, with everything about it:
 
-- `content-drafts/articles/<slug>.md`: the article, with the frontmatter template from `content-drafts/README.md`
-- `content-drafts/articles/<slug>.schema.json`: JSON-LD (Article + FAQPage), created when the article is final
-- `content-drafts/interviews/<slug>.md`: interview notes
-- `content-drafts/linkedin/<slug>.md`: LinkedIn post
+- `<slug>.md`: the article, always the latest version, with the frontmatter template from `content-drafts/README.md`
+- `<slug>.txt`: the same article as plain text, regenerated whenever the article changes (`python3 scripts/md2txt.py <slug>.md > <slug>.txt`, from this skill's folder)
+- `<slug>.schema.json`: JSON-LD (Article + FAQPage), created when the article is final
+- `interview.md`: interview notes
+- `linkedin.md`: LinkedIn post
+- `versions/<slug>.v<N>.md` (and `.txt`): before editing an article that has already been shown to Daniela, copy the current files here with the next version number.
 
 Never touch site code, pages, components or layouts. Never push or deploy. Commit locally only when Daniela asks.
 
@@ -44,13 +46,13 @@ The article must deliver on all three in its body: the reason shows up early (us
 
 1. **Topic.** Daniela gives a topic or rough idea.
 2. **Keywords and angle.** Do a quick web search, then propose: a primary keyword, 3 to 5 secondary keywords, the questions people actually ask, what currently ranks, the angle that would make our article stand out, and a first proposal for `why`, `relevance` and `learning`. Say clearly these are estimates from web searches, not keyword-tool data. Never invent search volumes or difficulty scores. **Wait for her OK.**
-3. **Interview.** Before writing anything, interview Daniela to pull out her real stories, examples, numbers, opinions and mistakes. Ask **one question at a time** and wait for the answer. Follow up on anything vague or interesting. Stop when you have enough material and tell her you think so. Save the notes in `content-drafts/interviews/<slug>.md` (her answers close to her own words, plus the agreed keywords, angle, `why`, `relevance` and `learning`, refined with what the interview revealed).
+3. **Interview.** Before writing anything, interview Daniela to pull out her real stories, examples, numbers, opinions and mistakes. Ask **one question at a time** and wait for the answer. Follow up on anything vague or interesting. Stop when you have enough material and tell her you think so. Save the notes in `content-drafts/articles/<slug>/interview.md` (her answers close to her own words, plus the agreed keywords, angle, `why`, `relevance` and `learning`, refined with what the interview revealed).
 4. **Research.** Her experience is the core. Add a few researched facts, studies or stats only where they back up a point, always with a link she can check. Never invent sources, numbers, quotes or anecdotes. If no solid source exists, say so and leave the point without one. Never invent stories she didn't tell you.
-5. **Draft.** Write the article (2,000+ words) in `content-drafts/articles/<slug>.md` with `status: draft`, following `seo-guidelines.md`. Audience: mainly founders of small teams, but written so peers in the field (designers, PMs, ops people, other consultants) also find it worth reading and sharing, because the goal is positioning and referrals. **No call to action at the end** for now.
+5. **Draft.** Write the article (2,000+ words) in `content-drafts/articles/<slug>/<slug>.md` with `status: draft`, following `seo-guidelines.md`. Audience: mainly founders of small teams, but written so peers in the field (designers, PMs, ops people, other consultants) also find it worth reading and sharing, because the goal is positioning and referrals. **No call to action at the end** for now.
 6. **Voice and SEO check** before showing it (full checklist in `seo-guidelines.md`):
    - Voice: zero em dashes (search the file for `—`, and also `–`), no AI clichés from `voice.md`, nothing judgmental or bitter, nothing that contradicts `kodamas-values.md`, all `learned-corrections.md` rules applied.
    - Usefulness: the article delivers its `why`, `relevance` and `learning`; every section earns its place (cut anything that doesn't serve them).
    - SEO: keyword placement, heading hierarchy, seoTitle and description length (count the characters), FAQ, direct answers under each H2, links, image ideas with alt text.
    Fix what's wrong, then show the draft with its `why`, `relevance` and `learning`, a short SEO checklist (ticked or flagged items) and the list of sources used.
-7. **LinkedIn version.** Once Daniela approves the article: set `status: final`, create `<slug>.schema.json`, and write a LinkedIn post of about 150 to 250 words in `content-drafts/linkedin/<slug>.md`. It must stand on its own (no "read the article" dependency), same voice, no em dashes, max 3 hashtags.
+7. **LinkedIn version.** Once Daniela approves the article: set `status: final`, create `<slug>.schema.json`, and write a LinkedIn post of about 150 to 250 words in `content-drafts/articles/<slug>/linkedin.md`. It must stand on its own (no "read the article" dependency), same voice, no em dashes, max 3 hashtags.
 8. **Learning from corrections.** Whenever Daniela corrects a draft (changes a sentence, removes a word, says "I'd never say this"), propose a short, general rule for `references/learned-corrections.md` and show it to her. **Save it only after her OK.**
