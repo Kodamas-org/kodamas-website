@@ -51,7 +51,9 @@ public/_redirects        Netlify redirects from the old Squarespace addresses
 public/_headers          Netlify cache headers (hashed /_astro/ files cached for a year)
 public/og-image.png      share image (Open Graph) for every page, made by `npm run og-image`
 scripts/snapshot.sh      photographs a page into a PNG (headless Chrome), used by og-image and logo-mark
-brand/                   brand files for use outside the site (kodamas-mark.png, made by `npm run logo-mark`)
+scripts/wisps-loop.py    draws the looping wisps animation into brand/ (Python with Pillow and numpy, see its header)
+brand/                   brand files for use outside the site: kodamas-mark.png (`npm run logo-mark`),
+                         kodamas-wisps.gif and .webp (480×270 looping wisps, scripts/wisps-loop.py)
 docs/
   design-tokens.md       every token, with values and usage
   components/            one Markdown file per component, by level
