@@ -2,11 +2,12 @@
 // Thank you: where the Tally contact form (Connect With Us) sends people
 // after they send a message. Not linked from the site and not indexed.
 // Copy: the form's thank-you message. The footer leads back to the site.
-// The drop cluster sits in the space beside the title, wisps drifting by,
-// both on the page grid.
+// Title and message centred, one above the other; a small drop cluster
+// just behind the T, wisps drifting at the bottom right.
+// The offsets of the cluster are its fixed placement against the letter.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageIntro from '../components/organisms/PageIntro.astro';
 import Container from '../components/atoms/Container.astro';
+import Heading from '../components/atoms/Heading.astro';
 import DropCluster from '../components/molecules/DropCluster.astro';
 import WispField from '../components/molecules/WispField.astro';
 ---
@@ -17,54 +18,85 @@ import WispField from '../components/molecules/WispField.astro';
 	noindex
 >
 	<div class="thanks">
-		<div class="thanks__layer">
-			<Container>
-				<div class="thanks__decor">
-					<div class="thanks__wisps"><WispField size="pair" /></div>
-					<div class="thanks__symbol"><DropCluster /></div>
+		<Container>
+			<div class="thanks__block">
+				<div class="thanks__title">
+					<span class="thanks__symbol"><DropCluster /></span>
+					<Heading level={1} size="statement">Thank <em>you!</em></Heading>
 				</div>
-			</Container>
-		</div>
-		<PageIntro>
-			<Fragment slot="title">Thank <em>you!</em></Fragment>
-			Your message is on its way to Emma and Daniela. We'll be in touch soon.
-		</PageIntro>
+				<p class="thanks__lead">Your message is on its way to Emma and Daniela. We'll be in touch soon.</p>
+				<div class="thanks__wisps"><WispField size="pair" /></div>
+			</div>
+		</Container>
 	</div>
 </BaseLayout>
 
 <style>
 	.thanks {
-		position: relative;
-		padding-bottom: var(--layout-section);
+		padding-block: var(--space-10) var(--space-6);
 		--size-drop-cluster: var(--size-drop-cluster-s);
 	}
-	.thanks__layer {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-	.thanks__decor {
+	.thanks__block {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding-bottom: var(--space-10);
+	}
+
+	/* The cluster sits behind the title, its centre near the top of the T */
+	.thanks__title {
+		position: relative;
+		isolation: isolate;
 	}
 	.thanks__symbol {
 		position: absolute;
-		top: var(--space-7);
-		right: 0;
+		z-index: -1;
+		left: calc(var(--size-drop-cluster) * -0.45);
+		top: calc(var(--size-drop-cluster) * -0.5);
 	}
+
+	.thanks__lead {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-6);
+		font-size: var(--font-size-lead);
+		line-height: var(--line-height-lead);
+		text-wrap: balance;
+	}
+
 	.thanks__wisps {
 		position: absolute;
-		top: var(--space-5);
-		right: calc(var(--size-drop-cluster) + var(--space-5));
+		right: 0;
+		bottom: 0;
 		width: 30%;
 		height: var(--space-10);
 	}
+
+	/* Title, message and wisps rise in one beat apart */
+	.thanks__title,
+	.thanks__lead,
+	.thanks__wisps {
+		animation: rise var(--duration-rise) var(--ease-standard) both;
+	}
+	.thanks__lead {
+		animation-delay: calc(var(--duration-beat) / 2);
+	}
+	.thanks__wisps {
+		animation-delay: var(--duration-beat);
+	}
+
 	@media (max-width: 48rem) {
-		.thanks__symbol {
-			top: var(--space-6);
-		}
 		.thanks__wisps {
 			--size-wisp: var(--size-wisp-s);
-			width: 35%;
+			width: 50%;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.thanks__title,
+		.thanks__lead,
+		.thanks__wisps {
+			animation: none;
 		}
 	}
 </style>
