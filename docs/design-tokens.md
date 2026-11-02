@@ -78,6 +78,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--font-size-marquee` | `clamp(5rem, 2rem + 12vw, 14rem)` |  |
 | `--font-size-stat` | `clamp(4rem, 2rem + 7vw, 9rem)` |  |
 | `--font-size-statement` | `clamp(2rem, 1.1rem + 3.4vw, 4.25rem)` |  |
+| `--font-size-statement-xl` | `clamp(3rem, 1.5rem + 8vw, 9.5rem)` | A page that is one short statement (`/thank-you` title) |
 | `--font-size-statement-fit` | `3.3cqi` | one-line statement sized to its container (desktop) |
 | `--font-size-heading-2` | `clamp(2rem, 1.25rem + 2.6vw, 3.5rem)` |  |
 | `--font-size-footer-link` | `clamp(1.75rem, 1rem + 2.6vw, 3.5rem)` |  |
@@ -157,7 +158,7 @@ Checked pairings (WCAG AA: 4.5:1 normal text, 3:1 large):
 | `--size-wisp-blur` | `0.1rem` | Softness of a wisp flame’s edge |
 | `--size-spark` | `0.1875rem` | A twinkling spark beside the wisps |
 | `--size-drop-cluster` | `clamp(7.5rem, 3rem + 15vw, 17rem)` |  |
-| `--size-drop-cluster-s` | `clamp(3.25rem, 2rem + 3.5vw, 6rem)` | The drop cluster behind the first letter of a title (`/thank-you`) |
+| `--size-drop-cluster-s` | `calc(var(--font-size-statement-xl) * 0.85)` | The drop cluster behind the first letter of a title (`/thank-you`) |
 | `--size-og-width` | `75rem` | 1200px: width of the share image (`/og-image`) |
 | `--size-og-height` | `39.375rem` | 630px: height of the share image |
 | `--size-logo-mark` | `32rem` | 512px: side of the square K mark (`/logo-mark`) |
