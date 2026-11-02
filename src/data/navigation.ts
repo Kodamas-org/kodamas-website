@@ -4,7 +4,6 @@
 import { links } from './links';
 
 export const pages = {
-	home: { label: 'Home', href: links.home },
 	ourStory: { label: 'Our Story', href: links.ourStory },
 	blogfolio: { label: 'Blogfolio', href: links.blogfolio },
 	privacyTerms: { label: 'Privacy Policy & Terms of Service', href: links.privacyTerms },
