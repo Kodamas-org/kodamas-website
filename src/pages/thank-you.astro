@@ -24,7 +24,10 @@ import WispField from '../components/molecules/WispField.astro';
 					<span class="thanks__symbol"><DropCluster /></span>
 					<Heading level={1} size="statement">Thank <em>you!</em></Heading>
 				</div>
-				<p class="thanks__lead">Your message is on its way to Emma and Daniela. We'll be in touch soon.</p>
+				<p class="thanks__lead">
+					<span class="thanks__line">Your message is on its way to <span class="thanks__keep">Emma and Daniela.</span></span>
+					<span class="thanks__line">We'll be in touch soon.</span>
+				</p>
 				<div class="thanks__wisps"><WispField size="pair" /></div>
 			</div>
 		</Container>
@@ -65,7 +68,14 @@ import WispField from '../components/molecules/WispField.astro';
 		margin-top: var(--space-6);
 		font-size: var(--font-size-lead);
 		line-height: var(--line-height-lead);
-		text-wrap: balance;
+		text-wrap: pretty;
+	}
+	/* Each sentence on its own line; if one must wrap, the names stay together */
+	.thanks__line {
+		display: block;
+	}
+	.thanks__keep {
+		white-space: nowrap;
 	}
 
 	.thanks__wisps {
