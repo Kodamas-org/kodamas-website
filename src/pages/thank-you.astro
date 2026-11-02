@@ -1,0 +1,80 @@
+---
+// Thank you: where the Tally contact form (Connect With Us) sends people
+// after they send a message. Not linked from the site and not indexed.
+// Copy: the form's thank-you message. Links back to the site's main pages.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/organisms/PageIntro.astro';
+import WispField from '../components/molecules/WispField.astro';
+import Container from '../components/atoms/Container.astro';
+import Link from '../components/atoms/Link.astro';
+import { pages } from '../data/navigation';
+
+const next = [pages.home, pages.blogfolio, pages.ourStory];
+---
+
+<BaseLayout
+	title="Thank you · Kodamas"
+	description="Your message is on its way to Emma and Daniela. We'll be in touch soon."
+	noindex
+>
+	<div class="thanks">
+		<div class="thanks__wisps"><WispField /></div>
+		<PageIntro>
+			<Fragment slot="title">Thank <em>you!</em></Fragment>
+			Your message is on its way to Emma and Daniela. We'll be in touch soon.
+		</PageIntro>
+		<Container>
+			<nav class="thanks__next" aria-label="Keep exploring">
+				<ul class="thanks__links" role="list">
+					{
+						next.map((p) => (
+							<li>
+								<Link href={p.href} variant="action" arrow="→">
+									{p.label}
+								</Link>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</Container>
+	</div>
+</BaseLayout>
+
+<style>
+	.thanks {
+		position: relative;
+		padding-bottom: var(--layout-section);
+	}
+	.thanks__wisps {
+		position: absolute;
+		top: var(--space-6);
+		right: var(--layout-gutter);
+		width: 40%;
+		height: var(--space-10);
+	}
+	/* Under the intro paragraph, on its column, rising in after it */
+	.thanks__next {
+		max-width: var(--layout-text-max);
+		margin-top: var(--space-6);
+		margin-left: auto;
+		animation: rise var(--duration-rise) var(--ease-standard) both;
+		animation-delay: calc(var(--duration-beat) * 1.5);
+	}
+	.thanks__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2) var(--space-6);
+	}
+	@media (max-width: 48rem) {
+		.thanks__wisps {
+			--size-wisp: var(--size-wisp-s);
+			right: var(--space-6);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.thanks__next {
+			animation: none;
+		}
+	}
+</style>

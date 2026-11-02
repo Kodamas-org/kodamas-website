@@ -37,6 +37,7 @@ src/
   pages/                 routes: index.astro (home), about.astro (Our Story), blogfolio/index.astro (Blogfolio),
                          blogfolio/[slug].astro (one page per article),
                          privacy-policy-terms-of-service.astro, styleguide.astro,
+                         thank-you.astro (after the Tally contact form; not linked, noindex),
                          og-image.astro (the share image) and logo-mark.astro (the square K mark), not for visitors
   content/blog/          published articles, one Markdown file each (schema in src/content.config.ts)
   legal/                 privacy-terms.md, the text of /privacy-policy-terms-of-service
