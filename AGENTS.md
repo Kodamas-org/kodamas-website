@@ -7,7 +7,7 @@ Marketing site for Kodamas. `CLAUDE.md` is a symlink to this file.
 - **Astro** (static site), plain `.astro` components and CSS. No CSS framework, no UI framework.
 - **Fonts:** self-hosted via Fontsource — `@fontsource-variable/funnel-display` (titles, headings, wordmark, testimonial quotes) and `@fontsource-variable/inter` (body and UI, including real italic). Do not add or substitute fonts.
 - **Git:** GitHub `Kodamas-org/kodamas-website`, branch `main`. `archive/old-site` keeps the previous site.
-- **Hosting:** Netlify site `hello-kodamas` (https://hello-kodamas.netlify.app), deploys automatically on every push to `main`. Build settings live in the Netlify dashboard (no `netlify.toml`): `npm run build`, publish `dist`.
+- **Hosting:** Netlify site `hello-kodamas`, live at https://www.kodamas.io (main domain; kodamas.io and https://hello-kodamas.netlify.app lead there), deploys automatically on every push to `main`. Build settings live in the Netlify dashboard (no `netlify.toml`): `npm run build`, publish `dist`.
 
 ## Commands
 

@@ -1,6 +1,6 @@
 # Kodamas website
 
-Astro site for Kodamas, deployed on Netlify at https://hello-kodamas.netlify.app.
+Astro site for Kodamas, deployed on Netlify at https://www.kodamas.io (also https://hello-kodamas.netlify.app).
 
 ```sh
 npm install
