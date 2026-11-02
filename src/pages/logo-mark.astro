@@ -1,0 +1,77 @@
+---
+// The square K mark, 512 × 512: the white K of the wordmark with the pink
+// drop behind it (as on the old site) and a small aqua drop, on the navy
+// canvas with grain. For places that need a square logo (forms, profiles).
+// Not a page for visitors: `npm run logo-mark` photographs it into
+// brand/kodamas-mark.png. The percentages below are the mark's fixed geometry.
+import '@fontsource-variable/funnel-display';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Grain from '../components/atoms/Grain.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="noindex" />
+		<title>K mark · Kodamas</title>
+	</head>
+	<body>
+		<Grain />
+		<div class="mark" role="img" aria-label="Kodamas">
+			<span class="mark__drop mark__drop--pink" aria-hidden="true"></span>
+			<span class="mark__drop mark__drop--aqua" aria-hidden="true"></span>
+			<span class="mark__k" aria-hidden="true">K</span>
+		</div>
+	</body>
+</html>
+
+<style>
+	.mark {
+		position: relative;
+		width: var(--size-logo-mark);
+		height: var(--size-logo-mark);
+		overflow: hidden;
+		background: var(--color-surface-page);
+	}
+	.mark__k {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		font-family: var(--font-display);
+		font-weight: var(--font-weight-heavy);
+		font-size: calc(var(--size-logo-mark) * 0.62);
+		line-height: var(--line-height-none);
+		color: var(--color-white);
+		/* optical centre: the K sits a little right of its box */
+		translate: -2% 7.5%;
+	}
+	.mark__drop {
+		position: absolute;
+		aspect-ratio: 1;
+		border-radius: var(--radius-drop);
+	}
+	.mark__drop--pink {
+		width: 34%;
+		left: 18%;
+		top: 19.5%;
+		overflow: hidden;
+		background: var(--gradient-drop);
+	}
+	.mark__drop--pink::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background-image: var(--texture-grain-photo);
+		opacity: var(--opacity-grain-photo);
+		mix-blend-mode: overlay;
+	}
+	.mark__drop--aqua {
+		width: 9%;
+		right: 20%;
+		top: 23.5%;
+		background: var(--color-aqua-glow);
+	}
+</style>

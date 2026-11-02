@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "og-image": "sh scripts/og-image.sh"
+    "og-image": "sh scripts/snapshot.sh og-image 1200 630 public/og-image.png",
+    "logo-mark": "sh scripts/snapshot.sh logo-mark 512 512 brand/kodamas-mark.png"
   },
   "dependencies": {
     "@fontsource-variable/funnel-display": "^5.3.0",
