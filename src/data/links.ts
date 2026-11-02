@@ -6,7 +6,7 @@ export const links = {
 	home: '/',
 	blogfolio: '/blogfolio',
 	ourStory: '/about',
-	connect: 'mailto:hello@kodamas.io',
+	connect: 'https://tally.so/r/EqKb7X', // contact form on Tally
 	bookCall: 'https://calendly.com/hello-kodamas/30min',
 	happyCowDaniela: 'https://www.happycow.net/',
 	happyCowEmma: 'https://www.happycow.net/',

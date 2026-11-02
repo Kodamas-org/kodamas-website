@@ -133,7 +133,7 @@ A new component needs all three plus an entry in `docs/components/README.md`.
 
 ## Privacy
 
-- The site sets no cookies, stores nothing in the browser, runs no analytics, has no forms and loads nothing from third parties. The Privacy Policy (`src/legal/privacy-terms.md`) says so: adding any of these (or an embed, external font or script) means updating the policy and its date first.
+- The site sets no cookies, stores nothing in the browser, runs no analytics, has no forms of its own (Connect With Us opens the Tally contact form in a new tab, like Book a call on Calendly) and loads nothing from third parties. The Privacy Policy (`src/legal/privacy-terms.md`) says so: adding any of these (or an embed, external font or script) means updating the policy and its date first.
 
 ## Images and speed
 

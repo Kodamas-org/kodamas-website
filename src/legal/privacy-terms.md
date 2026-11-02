@@ -10,7 +10,7 @@ We built this website to be read, not to watch you read it. It:
 
 - **does not use cookies**, neither our own nor anyone else’s, so there is no cookie banner;
 - **does not use analytics** or any other tool that tracks your visit, measures your behaviour or builds a profile of you;
-- **has no forms**: no contact form, no newsletter sign-up, no account;
+- **has no forms of its own**: the contact form opens on Tally (see below), and there is no newsletter sign-up and no account;
 - **does not load anything from third parties**: fonts and images are served from this website, and there are no embedded videos, maps, social media widgets or advertising;
 - **does not store anything in your browser**.
 
@@ -24,15 +24,19 @@ We do not use these logs to identify you, and we do not combine them with any ot
 
 Netlify is based in the United States. When data is transferred outside the European Union, it is protected by the safeguards recognised under the GDPR, such as the European Commission’s Standard Contractual Clauses and, where applicable, the EU–US Data Privacy Framework. You can read how Netlify handles data in its [privacy policy](https://www.netlify.com/privacy/).
 
-## When you email us
+## When you contact us
 
-The “Connect With Us” button opens your own email app with our address. If you write to us, we receive your email address, your name if you include it, and whatever you choose to tell us.
+The “Connect With Us” buttons open our contact form on Tally, a form service, in a new tab. Nothing from Tally is loaded on this website before you click. On Tally’s site, its own [privacy policy](https://tally.so/help/privacy-policy) and cookies apply.
+
+In the form, you give us your name, your email address, your company name, what you would like help with, and anything you choose to tell us. If you write to us by email instead, we receive your email address, your name if you include it, and whatever you choose to tell us.
 
 We use this only to reply to you and, if we end up working together, to prepare and carry out that work. The legal basis is taking the steps you ask for before a possible contract, and then the contract itself (Article 6(1)(b) GDPR), or our legitimate interest in answering messages (Article 6(1)(f) GDPR).
 
-We keep your messages for as long as we need them to follow up on your request. If they become part of a business relationship, we keep what Italian tax and accounting law requires, generally ten years. We never sell your data or use it for marketing, and we only share it with the providers that run our email, under their own data protection commitments.
+Tally BV, based in Belgium, processes the form answers on our behalf and stores them on servers in the European Union.
 
-Please don’t send us confidential information by email. If you need to share something sensitive, we will agree on a secure channel first.
+We keep your messages and form answers for as long as we need them to follow up on your request. If they become part of a business relationship, we keep what Italian tax and accounting law requires, generally ten years. We never sell your data or use it for marketing, and we only share it with Tally and the providers that run our email, under their own data protection commitments.
+
+Please don’t send us confidential information through the form or by email. If you need to share something sensitive, we will agree on a secure channel first.
 
 ## When you book a call
 
@@ -66,11 +70,11 @@ To use any of these rights, email [hello@kodamas.io](mailto:hello@kodamas.io). W
 
 ## Changes to this policy
 
-If anything above changes, for example if we ever add a contact form or analytics, we will update this page before it happens and change the date at the top.
+If anything above changes, for example if we ever add analytics, we will update this page before it happens and change the date at the top.
 
 ## Using this website
 
-This website gives general information about Kodamas and our project and delivery management consultancy. Nothing on it is a binding offer, a quote or professional advice for your situation, and no consulting relationship starts because you visit the site, email us or book a call. Any work together is agreed separately, in writing.
+This website gives general information about Kodamas and our project and delivery management consultancy. Nothing on it is a binding offer, a quote or professional advice for your situation, and no consulting relationship starts because you visit the site, contact us or book a call. Any work together is agreed separately, in writing.
 
 Please use the site lawfully, and don’t try to disrupt it, gain access to parts of it that aren’t public, or copy it in bulk with automated tools.
 
